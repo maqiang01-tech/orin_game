@@ -1,0 +1,14 @@
+{
+  "id": "event_example",
+  "title": "示例事件",
+  "text": "这里填写事件文本。",
+  "conditions": [],
+  "options": [
+    {
+      "text": "继续",
+      "conditions": [],
+      "effects": [],
+      "next": null
+    }
+  ]
+}

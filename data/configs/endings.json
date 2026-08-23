@@ -1,0 +1,7 @@
+{
+  "truth": {"name":"真相","conditions":{"defeat_first":true,"relic_count":12,"shen_lin_favor_level":"信任"},"text":"灵潮不是神罚，也不是自然现象。它是一场实验的遗毒——一场试图让人类超越自身极限的实验。你摧毁了灵潮的核心，裂隙开始收缩，世界正在恢复正常。但你知道，真相永远留在了你心里。"},
+  "survival": {"name":"生存","conditions":{"min_day":100,"defeat_first":false,"living_partner_count":10},"text":"你活过了一百天。也许是灵潮爆发后最长寿的幸存者之一。世界没有变得更好，也没有变得更糟。你活过了一百天。这就够了。明天，又是新的一天。"},
+  "sacrifice": {"name":"牺牲","conditions":{"all_partners_defeated":true,"player_min_level":20},"text":"你倒下的时候，看到的最后一个画面是残破的天空。你记起了灵潮爆发前的那个早晨——阳光很好，咖啡很香。你闭上眼睛。至少，你战斗到了最后一刻。"},
+  "domination": {"name":"霸主","conditions":{"defeat_first":true,"unified_camps":true,"average_level":25},"text":"你做了比击败灵潮更狠的事——你击败了所有幸存者营地的首领，把他们纳入了你的统治。他们说你是暴君。你说，暴君比死人好。没有人反驳你。"},
+  "escape": {"name":"逃亡","conditions":{"relic_count":12,"defeat_first":false,"chapter":20,"choice":"融合"},"text":"你迈入了裂隙。灵能在你周围扭曲、撕裂、重组。你不知道裂隙的另一边是什么——另一个世界？另一个时间？也许只是死亡。但你转身看了一眼身后的地球，然后，你不再回头。"}
+}

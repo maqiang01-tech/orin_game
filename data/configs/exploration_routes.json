@@ -1,0 +1,657 @@
+[
+  {
+    "id": "route_1_1",
+    "name": "废弃便利店",
+    "region": "曙光郊区",
+    "region_id": 1,
+    "unlock_day": 1,
+    "recommended_level": "LV 1~3",
+    "description": "你推开便利店早已碎裂的玻璃门。货架东倒西歪，地面上散落着锈蚀的罐头和发霉的包装袋。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "search",
+        "text": "收银台下面有两箱未开封的矿泉水。",
+        "effects": {"food": 8},
+        "chance_effects": {"medicine": 2, "chance": 0.5}
+      },
+      {
+        "id": "node_2",
+        "type": "branch",
+        "text": "听到后门有声响。",
+        "options": [
+          {
+            "id": "alert",
+            "text": "警戒靠近",
+            "battle_id": "mutated_cockroach",
+            "effects": {"cores": 3},
+            "result": "一只变异的蟑螂从货架后面窜出。"
+          },
+          {
+            "id": "retreat",
+            "text": "撤退离开",
+            "effects": {},
+            "result": "你悄悄退了出去，安全第一。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "route_1_2",
+    "name": "居民楼天台",
+    "region": "曙光郊区",
+    "region_id": 1,
+    "unlock_day": 2,
+    "recommended_level": "LV 2~4",
+    "description": "居民楼的入口被杂物堵了一半。楼梯间里传来窸窸窣窣的声音。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "branch",
+        "text": "楼梯间（黑暗中有什么在爬）",
+        "options": [
+          {
+            "id": "force",
+            "text": "强行通过",
+            "battle_id": "crawler",
+            "effects": {"cores": 5},
+            "result": "你与爬行者搏斗，最终通过了楼梯间。"
+          },
+          {
+            "id": "detour",
+            "text": "绕道外挂楼梯",
+            "effects": {"food": -5},
+            "result": "你消耗了额外的体力绕道而行。"
+          }
+        ]
+      },
+      {
+        "id": "node_2",
+        "type": "search",
+        "text": "天台视野很好。有人在你之前来过这里。",
+        "effects": {"equipment": "simple_scope"},
+        "chance_effects": {"medicine": 2, "chance": 0.5}
+      }
+    ]
+  },
+  {
+    "id": "route_1_3",
+    "name": "河岸搜索",
+    "region": "曙光郊区",
+    "region_id": 1,
+    "unlock_day": 3,
+    "recommended_level": "LV 1~3",
+    "description": "河水泛着诡异的荧光。河岸上散落着被吃剩一半的鱼——体型比正常的大两倍。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "branch",
+        "text": "选择搜索方向",
+        "options": [
+          {
+            "id": "upstream",
+            "text": "搜索上游废弃营地",
+            "effects": {"food": 15, "medicine": 3},
+            "result": "废弃营地里还有不少可用的物资。"
+          },
+          {
+            "id": "downstream",
+            "text": "调查下游异常发光",
+            "battle_id": "psychic_fish",
+            "effects": {"spirit_battery": 5},
+            "result": "发光的源头是几条被灵能污染的鱼。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "route_1_4",
+    "name": "警察岗亭",
+    "region": "曙光郊区",
+    "region_id": 1,
+    "unlock_day": 4,
+    "recommended_level": "LV 3~5",
+    "description": "废弃的警察岗亭。玻璃碎了，但里面的柜子似乎还完好。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "search",
+        "text": "搜索岗亭内部",
+        "effects": {"equipment": "police_pistol"},
+        "chance_effects": {"ammo": 10, "chance": 0.7}
+      },
+      {
+        "id": "node_2",
+        "type": "branch",
+        "text": "附近传来求救声",
+        "options": [
+          {
+            "id": "rescue",
+            "text": "前往救援",
+            "join_partner": "bao_zi",
+            "result": "你找到了求救的人——一个瘦弱的少年。"
+          },
+          {
+            "id": "ignore",
+            "text": "无视返回",
+            "effects": {"food": 5},
+            "result": "你带着搜索到的物资返回了集结地。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "route_2_1",
+    "name": "废弃医院",
+    "region": "废弃市区",
+    "region_id": 2,
+    "unlock_day": 6,
+    "recommended_level": "LV 5~8",
+    "description": "市立医院的招牌斜挂在门楣上，只有“院”字还在发光。大厅里弥漫着消毒水和某种腐臭混合的气味。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "branch",
+        "text": "医院大厅，选择探索方向",
+        "options": [
+          {
+            "id": "pharmacy",
+            "text": "左翼药房",
+            "effects": {"medicine": 15, "spirit_battery": 5},
+            "result": "找到了大量抗生素和止痛药。"
+          },
+          {
+            "id": "surgery",
+            "text": "右翼手术室",
+            "effects": {"equipment": "surgical_knife"},
+            "result": "手术台上有一把干净的手术刀。"
+          },
+          {
+            "id": "morgue",
+            "text": "地下太平间",
+            "battle_id": "corrupted_nurse",
+            "join_partner": "xiao_qi",
+            "result": "一个穿着护士服的身影站在黑暗中……“别靠近我……”"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "route_2_2",
+    "name": "商业街",
+    "region": "废弃市区",
+    "region_id": 2,
+    "unlock_day": 7,
+    "recommended_level": "LV 4~7",
+    "description": "商业街的橱窗大多碎裂。服装店的模特穿着最新款的时装，却已经蒙上了厚厚的灰尘。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "branch",
+        "text": "选择搜索目标",
+        "options": [
+          {
+            "id": "clothing",
+            "text": "搜索服装店",
+            "effects": {"equipment": "bulletproof_vest"},
+            "result": "你找到了一件防弹背心。"
+          },
+          {
+            "id": "convenience",
+            "text": "搜索便利店",
+            "effects": {"food": 20, "medicine": 5},
+            "result": "便利店的货架还有不少存货。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "route_2_3",
+    "name": "地铁隧道",
+    "region": "废弃市区",
+    "region_id": 2,
+    "unlock_day": 8,
+    "recommended_level": "LV 6~9",
+    "description": "地铁入口被倒塌的水泥板半掩着。黑暗中传来滴水和某种低沉的嘶吼声。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "branch",
+        "text": "隧道一片漆黑",
+        "options": [
+          {
+            "id": "light",
+            "text": "消耗晶核照明",
+            "effects": {"cores": -2},
+            "result": "晶核发出的光芒照亮了隧道。"
+          },
+          {
+            "id": "dark",
+            "text": "摸黑前进",
+            "effects": {"speed_penalty": 0.5},
+            "result": "你小心翼翼地摸黑前进。"
+          }
+        ]
+      },
+      {
+        "id": "node_2",
+        "type": "battle",
+        "text": "遭遇异兽群",
+        "battle_id": "beast_group",
+        "effects": {"cores": 8}
+      },
+      {
+        "id": "node_3",
+        "type": "search",
+        "text": "搜索地铁车厢",
+        "effects": {"item": "subway_map"},
+        "chance_effects": {"cores": 15, "chance": 0.6}
+      }
+    ]
+  },
+  {
+    "id": "route_2_4",
+    "name": "学校废墟",
+    "region": "废弃市区",
+    "region_id": 2,
+    "unlock_day": 10,
+    "recommended_level": "LV 5~8",
+    "description": "学校的大门敞开着。操场上散落着课本和书包，仿佛学生们只是刚刚离开。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "search",
+        "text": "搜索教学楼",
+        "effects": {"relic": "student_notebook"},
+        "chance_effects": {"medicine": 5, "chance": 0.5}
+      },
+      {
+        "id": "node_2",
+        "type": "branch",
+        "text": "操场有异兽在进食",
+        "options": [
+          {
+            "id": "sneak",
+            "text": "潜行绕开",
+            "effects": {},
+            "result": "你悄悄绕过了异兽。"
+          },
+          {
+            "id": "ambush",
+            "text": "偷袭",
+            "battle_id": "mutated_teacher",
+            "effects": {"equipment": "teaching_pointer"},
+            "result": "你成功偷袭了变异教师。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "route_2_5",
+    "name": "流浪商人据点",
+    "region": "废弃市区",
+    "region_id": 2,
+    "unlock_day": 12,
+    "recommended_level": "LV 3+",
+    "description": "一个推着改装手推车的中年男人拦住了你的去路。他的车上堆满了各种杂物。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "shop",
+        "text": "商人的改装卡车",
+        "trades": [
+          {"cost": {"cores": 10}, "reward": {"tickets": 1}},
+          {"cost": {"medicine": 5}, "reward": {"equipment": "random_white_blue"}},
+          {"cost": {"food": 20}, "reward": {"memory_shards": 2}},
+          {"cost": {"spirit_battery": 3}, "reward": {"skill_book": "random"}}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "route_3_1",
+    "name": "下水道主干道",
+    "region": "地下通道",
+    "region_id": 3,
+    "unlock_day": 15,
+    "recommended_level": "LV 8~12",
+    "description": "下水道井盖被顶开了。下面传来水流声和某种低沉的呼吸声。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "branch",
+        "text": "下水道分岔口",
+        "options": [
+          {
+            "id": "left",
+            "text": "左通道",
+            "effects": {"cores": 20, "rare_material": 3},
+            "result": "左通道里堆积着大量晶核。"
+          },
+          {
+            "id": "right",
+            "text": "右通道",
+            "battle_id": "nest_guardian",
+            "effects": {"item": "beast_egg"},
+            "result": "右通道深处盘踞着一只巢穴守卫。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "route_3_2",
+    "name": "地下实验室",
+    "region": "地下通道",
+    "region_id": 3,
+    "unlock_day": 18,
+    "recommended_level": "LV 10~14",
+    "description": "地下实验室的门禁系统还在运行。指示灯闪烁着微弱的红光。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "branch",
+        "text": "破解门禁",
+        "options": [
+          {
+            "id": "hack",
+            "text": "消耗晶核破解",
+            "effects": {"cores": -5},
+            "result": "你成功破解了门禁系统。"
+          },
+          {
+            "id": "force",
+            "text": "强行破门",
+            "battle_id": "lab_alarm",
+            "effects": {},
+            "result": "警报响起，你不得不应对赶来的异兽。"
+          }
+        ]
+      },
+      {
+        "id": "node_2",
+        "type": "search",
+        "text": "搜索实验区",
+        "effects": {"relic": "experiment_notes", "spirit_battery": 10}
+      },
+      {
+        "id": "node_3",
+        "type": "recruit",
+        "text": "发现幸存者叶宁",
+        "join_partner": "ye_ning",
+        "cost": {"medicine": 5},
+        "result": "叶宁需要药品救治才能加入。"
+      }
+    ]
+  },
+  {
+    "id": "route_3_3",
+    "name": "废弃防空洞",
+    "region": "地下通道",
+    "region_id": 3,
+    "unlock_day": 20,
+    "recommended_level": "LV 9~13",
+    "description": "防空洞的铁门锈迹斑斑。门缝里透出微弱的光线。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "search",
+        "text": "搜索物资",
+        "effects": {"food": 20, "ammo": 15}
+      },
+      {
+        "id": "node_2",
+        "type": "battle",
+        "text": "遭遇异兽",
+        "battle_id": "beast_trio",
+        "effects": {"cores": 12}
+      },
+      {
+        "id": "node_3",
+        "type": "search",
+        "text": "发现极光计划文件",
+        "effects": {"relic": "aurora_plan_file"}
+      }
+    ]
+  },
+  {
+    "id": "route_3_4",
+    "name": "地下水道",
+    "region": "地下通道",
+    "region_id": 3,
+    "unlock_day": 22,
+    "recommended_level": "LV 12~15",
+    "description": "地下水道深处传来沉重的脚步声。有什么巨大的东西在移动。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "boss",
+        "text": "BOSS战：腐化巨蜥",
+        "battle_id": "corrupted_lizard",
+        "join_partner": "lie_huo",
+        "effects": {"cores": 30, "equipment": "rare_equipment"}
+      }
+    ]
+  },
+  {
+    "id": "route_4_1",
+    "name": "废弃工厂",
+    "region": "工业禁区",
+    "region_id": 4,
+    "unlock_day": 25,
+    "recommended_level": "LV 13~17",
+    "description": "工厂大门敞开着。传送带还在运转，但上面运送的早已不是产品。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "branch",
+        "text": "工厂内部，选择探索区域",
+        "options": [
+          {
+            "id": "warehouse",
+            "text": "原料仓库",
+            "effects": {"cores": 25, "rare_material": 5},
+            "result": "仓库里堆满了晶核原料。"
+          },
+          {
+            "id": "assembly",
+            "text": "车间流水线",
+            "battle_id": "mechanical_beast",
+            "effects": {"equipment": "alloy_armor"},
+            "result": "你击败了机械异兽，获得了合金板甲。"
+          },
+          {
+            "id": "office",
+            "text": "办公区",
+            "effects": {"relic": "factory_log", "tickets": 3},
+            "result": "办公区里找到了工厂日志。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "route_4_2",
+    "name": "军事检查站",
+    "region": "工业禁区",
+    "region_id": 4,
+    "unlock_day": 28,
+    "recommended_level": "LV 14~18",
+    "description": "废弃的军事检查站。沙袋和铁丝网还在，但守卫早已不在。一辆装甲车被掀翻在路边。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "search",
+        "text": "搜索装甲车",
+        "effects": {"equipment": "military_dagger", "cores": 10}
+      },
+      {
+        "id": "node_2",
+        "type": "search",
+        "text": "检查岗亭",
+        "effects": {"relic": "aurora_operation_log"}
+      },
+      {
+        "id": "node_3",
+        "type": "search",
+        "text": "发现通讯设备",
+        "effects": {"item": "encrypted_signal"}
+      }
+    ]
+  },
+  {
+    "id": "route_4_3",
+    "name": "焚烧厂",
+    "region": "工业禁区",
+    "region_id": 4,
+    "unlock_day": 30,
+    "recommended_level": "LV 13~16",
+    "description": "焚烧厂的烟囱还在冒着烟。高温让周围的空气扭曲。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "branch",
+        "text": "选择探索区域",
+        "options": [
+          {
+            "id": "furnace",
+            "text": "主焚烧炉",
+            "effects": {"item": "flame_core", "hp_cost": 0.2},
+            "result": "你冒着高温取出了火焰核心。"
+          },
+          {
+            "id": "control",
+            "text": "控制室",
+            "effects": {"item": "control_key"},
+            "result": "你找到了控制台密钥。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "route_4_4",
+    "name": "研究所遗址",
+    "region": "工业禁区",
+    "region_id": 4,
+    "unlock_day": 46,
+    "recommended_level": "LV 16~20",
+    "description": "这里是国家生物研究所的旧址。烧焦的墙壁上布满了弹孔和爪痕。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "search",
+        "text": "搜索地面建筑",
+        "effects": {"relic": "experiment_notes", "spirit_battery": 20}
+      },
+      {
+        "id": "node_2",
+        "type": "boss",
+        "text": "BOSS战：研究所守卫",
+        "battle_id": "research_lab_guardian",
+        "join_partner": "shen_lin",
+        "effects": {"relic": "experiment_subject_file"}
+      }
+    ]
+  },
+  {
+    "id": "route_5_1",
+    "name": "裂隙外围",
+    "region": "裂隙深处",
+    "region_id": 5,
+    "unlock_day": 40,
+    "recommended_level": "LV 18~22",
+    "description": "你站在一道巨大裂隙的边缘。灵能从裂缝中涌出，肉眼可见的蓝色光晕扭曲着空气。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "search",
+        "text": "测量裂隙能量",
+        "effects": {"relic": "rift_energy_reading"}
+      },
+      {
+        "id": "node_2",
+        "type": "battle",
+        "text": "遭遇灵能异兽",
+        "battle_id": "psychic_beast",
+        "effects": {"spirit_core": 5}
+      }
+    ]
+  },
+  {
+    "id": "route_5_2",
+    "name": "灵潮之城",
+    "region": "裂隙深处",
+    "region_id": 5,
+    "unlock_day": 141,
+    "recommended_level": "LV 22~25",
+    "description": "你站在灵潮之城的边缘。建筑从天空垂下来，地面是扭曲的金属和玻璃。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "battle",
+        "text": "异兽潮",
+        "battle_id": "beast_wave",
+        "effects": {"cores": 20}
+      },
+      {
+        "id": "node_2",
+        "type": "battle",
+        "text": "精英·灵能守卫",
+        "battle_id": "psychic_guard",
+        "effects": {"cores": 30}
+      },
+      {
+        "id": "node_3",
+        "type": "boss",
+        "text": "BOSS战：裂隙之影",
+        "battle_id": "rift_shadow",
+        "effects": {"item": "tide_core"}
+      }
+    ]
+  },
+  {
+    "id": "route_5_3",
+    "name": "核心祭坛",
+    "region": "裂隙深处",
+    "region_id": 5,
+    "unlock_day": 151,
+    "recommended_level": "LV 25~30",
+    "description": "祭坛外围。林铮的投影出现在你面前。",
+    "nodes": [
+      {
+        "id": "node_1",
+        "type": "branch",
+        "text": "林铮投影对话",
+        "options": [
+          {
+            "id": "fight",
+            "text": "战斗",
+            "battle_id": "lin_zheng_final",
+            "result": "你选择了与林铮一战。"
+          },
+          {
+            "id": "persuade",
+            "text": "说服",
+            "require_partner": "shen_lin",
+            "require_favor": "trust",
+            "ending": "truth",
+            "result": "沈琳的劝说让林铮放下了执念。"
+          },
+          {
+            "id": "merge",
+            "text": "融合",
+            "ending": "escape",
+            "result": "你选择了与裂隙融合。"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "player_chenmo": {
+    "id": "player_chenmo",
+    "name": "陈末",
+    "title": "探索者",
+    "profession": "先锋",
+    "rarity": "主角",
+    "level": 1,
+    "max_level": 30,
+    "hp": 150,
+    "max_hp": 150,
+    "energy": 100,
+    "max_energy": 100,
+    "stats": {"attack": 18, "defense": 12, "spirit": 10, "resistance": 10, "speed": 10},
+    "skills": []
+  },
+  "lin_mei": {
+    "id": "lin_mei",
+    "name": "林美",
+    "title": "生化研究员",
+    "profession": "灵能者",
+    "rarity": "SR",
+    "level": 1,
+    "max_level": 30,
+    "hp": 120,
+    "max_hp": 120,
+    "energy": 100,
+    "max_energy": 100,
+    "stats": {"attack": 15, "defense": 8, "spirit": 22, "resistance": 12, "speed": 10},
+    "skills": []
+  }
+}

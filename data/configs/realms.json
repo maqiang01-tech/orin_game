@@ -1,0 +1,20 @@
+{
+  "mortal": {
+    "id": "mortal",
+    "name": "凡人",
+    "cultivation_required": 100,
+    "lifespan_bonus": 0
+  },
+  "qi": {
+    "id": "qi",
+    "name": "炼气",
+    "cultivation_required": 500,
+    "lifespan_bonus": 20
+  },
+  "foundation": {
+    "id": "foundation",
+    "name": "筑基",
+    "cultivation_required": 2000,
+    "lifespan_bonus": 60
+  }
+}
