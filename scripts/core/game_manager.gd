@@ -8,6 +8,7 @@ extends Control
 const UI_FRAME_TEXTURE = preload("res://assets/images/ui/ui_frame_full.png")
 const UI_PANEL_CARD_TEXTURE = preload("res://assets/images/ui/ui_panel_card.png")
 const UI_ROUTE_CARD_TEXTURE = preload("res://assets/images/ui/ui_route_card.png")
+const WORLD_MAP_TEXTURE = preload("res://assets/images/exploration/world_map_wide_city_realm_v5_clean.png")
 
 const COLOR_TEXT = Color(0.88, 0.96, 1.0)
 const COLOR_MUTED = Color(0.58, 0.68, 0.72)
@@ -63,15 +64,69 @@ var current_site_grid: Array = []
 var current_site_position: Vector2i = Vector2i.ZERO
 var current_site_floor: int = 1
 var current_site_total_floors: int = 1
+var world_map_canvas: Control
+var world_map_base_size := Vector2.ZERO
+var world_map_zoom: float = 1.0
+var world_map_touches: Dictionary = {}
+var world_map_last_pinch_distance: float = 0.0
 
 # 背包界面引用
 var inventory_label: Label
 
 # 图鉴界面引用
 var codex_label: Label
+var codex_content_container: VBoxContainer
+var codex_view_mode: String = "categories"
+var selected_codex_category: String = ""
+var selected_codex_beast_id: String = ""
 
 # 当前选中的伙伴
 var selected_partner: Dictionary = {}
+
+# 战斗系统UI引用
+var battle_popup: PopupPanel
+var battle_round_label: Label
+var battle_actor_label: Label
+var battle_enemy_container: VBoxContainer
+var battle_status_label: Label
+var battle_log_label: RichTextLabel
+var battle_party_container: HBoxContainer
+var battle_action_bar: HBoxContainer
+var battle_flee_button: Button
+var battle_mode_buttons: Dictionary = {}  # mode -> Button
+var battle_overlay_panel: PanelContainer
+var battle_overlay_box: VBoxContainer
+var battle_pending_action: Dictionary = {}  # {"type": "attack"/"skill", "skill_id": "", "team": ""}
+var battle_data: Dictionary = {}
+var battle_auto_mode: String = "manual"
+var battle_waiting_input: bool = false
+var battle_finished: bool = false
+var battle_callback: Callable = Callable()
+var battle_site_context: Dictionary = {}  # 小地图遇敌战斗上下文：记录敌人格/原位置，用于结算后处理
+
+
+class WorldMapConnections:
+	extends Control
+
+	var connection_points: Array = []
+	var line_color := Color(0.45, 0.85, 1.0, 0.55)
+	var label_color := Color(0.85, 0.95, 1.0, 0.85)
+
+	func _draw() -> void:
+		for connection in connection_points:
+			var from: Vector2 = connection["from"]
+			var to: Vector2 = connection["to"]
+			draw_line(from, to, line_color, 2.0, true)
+			var label: String = connection.get("label", "")
+			if label != "":
+				var font := ThemeDB.fallback_font
+				var label_size := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
+				var direction := from.direction_to(to)
+				var normal := Vector2(-direction.y, direction.x)
+				var mid := (from + to) * 0.5 + normal * 10.0
+				var label_position := mid - Vector2(label_size.x * 0.5, -label_size.y * 0.5)
+				draw_rect(Rect2(label_position - Vector2(3, label_size.y + 2), label_size + Vector2(6, 4)), Color(0.01, 0.04, 0.06, 0.82), true)
+				draw_string(font, label_position, label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, label_color)
 
 
 func _ready() -> void:
@@ -80,6 +135,7 @@ func _ready() -> void:
 	_build_status_bar()
 	_build_content_area()
 	_build_tab_navigation()
+	_build_battle_popup()
 	exploration_system = ExplorationSystem.new()
 	exploration_system.player = GameState.player
 	exploration_system.data_manager = DataManager
@@ -161,8 +217,8 @@ func _apply_tab_button_texture_style(button: Button, region: Rect2) -> void:
 	button.add_theme_color_override("font_hover_color", COLOR_TEXT)
 	button.add_theme_color_override("font_pressed_color", COLOR_CYAN)
 	button.add_theme_color_override("font_outline_color", Color(0.0, 0.02, 0.03, 0.9))
-	button.add_theme_constant_override("outline_size", 2)
-	button.add_theme_font_size_override("font_size", 11)
+	button.add_theme_constant_override("outline_size", 1)
+	button.add_theme_font_size_override("font_size", 9)
 
 
 func _apply_route_card_texture_style(button: Button) -> void:
@@ -179,6 +235,22 @@ func _apply_route_card_texture_style(button: Button) -> void:
 	button.add_theme_color_override("font_outline_color", Color(0.0, 0.02, 0.03, 0.9))
 	button.add_theme_constant_override("outline_size", 2)
 	button.add_theme_font_size_override("font_size", 13)
+
+
+func _apply_map_region_style(button: Button) -> void:
+	var normal := _make_flat_style(Color(0.015, 0.045, 0.06, 0.94), Color(0.0, 0.72, 0.84, 0.9), 1, 4, 6)
+	var hover := _make_flat_style(Color(0.02, 0.14, 0.17, 0.97), COLOR_CYAN, 2, 4, 6)
+	var pressed := _make_flat_style(Color(0.12, 0.13, 0.08, 0.98), COLOR_AMBER, 2, 4, 6)
+	button.add_theme_stylebox_override("normal", normal)
+	button.add_theme_stylebox_override("hover", hover)
+	button.add_theme_stylebox_override("pressed", pressed)
+	button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	button.add_theme_color_override("font_color", COLOR_TEXT)
+	button.add_theme_color_override("font_hover_color", Color.WHITE)
+	button.add_theme_color_override("font_pressed_color", COLOR_AMBER)
+	button.add_theme_color_override("font_outline_color", Color(0.0, 0.02, 0.03, 0.95))
+	button.add_theme_constant_override("outline_size", 2)
+	button.add_theme_font_size_override("font_size", 11)
 
 
 func _apply_label_style(label: Label, font_size: int = 16, color: Color = COLOR_TEXT) -> void:
@@ -591,6 +663,176 @@ func _build_partner_detail_popup() -> void:
 
 
 # ============================================================
+# 战斗弹窗
+# ============================================================
+func _build_battle_popup() -> void:
+	battle_popup = PopupPanel.new()
+	battle_popup.size = Vector2(700, 1240)
+	battle_popup.exclusive = true
+	battle_popup.add_theme_stylebox_override("panel", _make_flat_style(Color(0.04, 0.06, 0.07, 0.97), COLOR_CYAN, 1, 5, 0))
+	add_child(battle_popup)
+
+	var margin := MarginContainer.new()
+	margin.name = "MainMargin"
+	margin.add_theme_constant_override("margin_left", 12)
+	margin.add_theme_constant_override("margin_top", 12)
+	margin.add_theme_constant_override("margin_right", 12)
+	margin.add_theme_constant_override("margin_bottom", 12)
+	battle_popup.add_child(margin)
+
+	var vbox := VBoxContainer.new()
+	vbox.name = "MainVBox"
+	vbox.add_theme_constant_override("separation", 6)
+	margin.add_child(vbox)
+
+	battle_round_label = Label.new()
+	battle_round_label.text = "⚔️ 战斗 · 回合 1"
+	_apply_label_style(battle_round_label, 20, COLOR_CYAN)
+	battle_round_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(battle_round_label)
+
+	battle_actor_label = Label.new()
+	battle_actor_label.text = "当前行动："
+	_apply_label_style(battle_actor_label, 13, COLOR_AMBER)
+	battle_actor_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(battle_actor_label)
+
+	var enemy_panel := _make_panel_container()
+	vbox.add_child(enemy_panel)
+	var enemy_box := _make_panel_margin(enemy_panel, 8)
+
+	var enemy_title := Label.new()
+	enemy_title.text = "【敌方】"
+	_apply_label_style(enemy_title, 15, COLOR_AMBER)
+	enemy_box.add_child(enemy_title)
+
+	battle_enemy_container = VBoxContainer.new()
+	battle_enemy_container.add_theme_constant_override("separation", 3)
+	enemy_box.add_child(battle_enemy_container)
+
+	battle_status_label = Label.new()
+	battle_status_label.text = "状态：无"
+	_apply_label_style(battle_status_label, 12, COLOR_MUTED)
+	battle_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	vbox.add_child(battle_status_label)
+
+	var log_panel := _make_panel_container()
+	log_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	vbox.add_child(log_panel)
+	var log_box := _make_panel_margin(log_panel, 6)
+
+	battle_log_label = RichTextLabel.new()
+	battle_log_label.bbcode_enabled = true
+	battle_log_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	battle_log_label.custom_minimum_size = Vector2(0, 180)
+	battle_log_label.add_theme_font_size_override("normal_font_size", 13)
+	battle_log_label.scroll_active = true
+	log_box.add_child(battle_log_label)
+
+	var party_title := Label.new()
+	party_title.text = "【我方队伍】"
+	_apply_label_style(party_title, 15, COLOR_AMBER)
+	vbox.add_child(party_title)
+
+	battle_party_container = HBoxContainer.new()
+	battle_party_container.add_theme_constant_override("separation", 6)
+	vbox.add_child(battle_party_container)
+
+	# 模式切换
+	var mode_title := Label.new()
+	mode_title.text = "操作模式"
+	_apply_label_style(mode_title, 13, COLOR_MUTED)
+	vbox.add_child(mode_title)
+
+	var mode_row := HBoxContainer.new()
+	mode_row.add_theme_constant_override("separation", 6)
+	vbox.add_child(mode_row)
+	var mode_defs := [["manual", "手动"], ["semi", "半自动"], ["auto", "全自动"]]
+	for md in mode_defs:
+		var mode_btn := Button.new()
+		mode_btn.text = str(md[1])
+		mode_btn.toggle_mode = true
+		mode_btn.button_pressed = (str(md[0]) == "manual")
+		mode_btn.custom_minimum_size = Vector2(0, 30)
+		mode_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_apply_button_style(mode_btn)
+		mode_btn.pressed.connect(_on_battle_mode_pressed.bind(str(md[0])))
+		mode_row.add_child(mode_btn)
+		battle_mode_buttons[str(md[0])] = mode_btn
+
+	# 操作按钮
+	battle_action_bar = HBoxContainer.new()
+	battle_action_bar.add_theme_constant_override("separation", 6)
+	vbox.add_child(battle_action_bar)
+
+	var attack_btn := Button.new()
+	attack_btn.text = "⚔️ 攻击"
+	attack_btn.custom_minimum_size = Vector2(0, 40)
+	attack_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(attack_btn)
+	attack_btn.pressed.connect(_on_battle_attack_pressed)
+	battle_action_bar.add_child(attack_btn)
+
+	var skill_btn := Button.new()
+	skill_btn.text = "✨ 技能"
+	skill_btn.custom_minimum_size = Vector2(0, 40)
+	skill_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(skill_btn)
+	skill_btn.pressed.connect(_on_battle_skill_pressed)
+	battle_action_bar.add_child(skill_btn)
+
+	var guard_btn := Button.new()
+	guard_btn.text = "🛡️ 防御"
+	guard_btn.custom_minimum_size = Vector2(0, 40)
+	guard_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(guard_btn)
+	guard_btn.pressed.connect(_on_battle_guard_pressed)
+	battle_action_bar.add_child(guard_btn)
+
+	var item_btn := Button.new()
+	item_btn.text = "🎒 道具"
+	item_btn.custom_minimum_size = Vector2(0, 40)
+	item_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(item_btn)
+	item_btn.pressed.connect(_on_battle_item_pressed)
+	battle_action_bar.add_child(item_btn)
+
+	# 撤退按钮
+	var flee_btn := Button.new()
+	flee_btn.text = "🏳️ 撤退"
+	flee_btn.custom_minimum_size = Vector2(0, 34)
+	flee_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(flee_btn)
+	flee_btn.pressed.connect(_on_battle_close_pressed)
+	vbox.add_child(flee_btn)
+	battle_flee_button = flee_btn
+
+	_update_battle_controls(false)
+
+	# 覆盖层（技能选择/目标选择使用，避免多弹窗冲突）
+	battle_overlay_panel = PanelContainer.new()
+	battle_overlay_panel.name = "BattleOverlay"
+	battle_overlay_panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	battle_overlay_panel.add_theme_stylebox_override("panel", _make_flat_style(Color(0.03, 0.05, 0.06, 0.98), COLOR_AMBER, 2, 5, 0))
+	battle_overlay_panel.visible = false
+	battle_overlay_panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	battle_popup.add_child(battle_overlay_panel)
+
+	var overlay_margin := MarginContainer.new()
+	overlay_margin.name = "OverlayMargin"
+	overlay_margin.add_theme_constant_override("margin_left", 16)
+	overlay_margin.add_theme_constant_override("margin_top", 16)
+	overlay_margin.add_theme_constant_override("margin_right", 16)
+	overlay_margin.add_theme_constant_override("margin_bottom", 16)
+	battle_overlay_panel.add_child(overlay_margin)
+
+	battle_overlay_box = VBoxContainer.new()
+	battle_overlay_box.name = "OverlayBox"
+	battle_overlay_box.add_theme_constant_override("separation", 8)
+	overlay_margin.add_child(battle_overlay_box)
+
+
+# ============================================================
 # 探索界面
 # ============================================================
 func _build_explore_page() -> Control:
@@ -672,6 +914,8 @@ func _build_codex_page() -> Control:
 	var page := VBoxContainer.new()
 	page.name = "CodexPage"
 	page.add_theme_constant_override("separation", 6)
+	page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	page.size_flags_vertical = Control.SIZE_EXPAND_FILL
 
 	var title := Label.new()
 	title.text = "图鉴"
@@ -683,11 +927,23 @@ func _build_codex_page() -> Control:
 	codex_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	page.add_child(codex_panel)
 	var codex_box := _make_panel_margin(codex_panel, 12)
+	codex_box.size_flags_vertical = Control.SIZE_EXPAND_FILL
 
 	codex_label = Label.new()
 	_apply_label_style(codex_label, 14)
 	codex_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	codex_label.visible = false
 	codex_box.add_child(codex_label)
+
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	codex_box.add_child(scroll)
+
+	codex_content_container = VBoxContainer.new()
+	codex_content_container.add_theme_constant_override("separation", 8)
+	codex_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(codex_content_container)
 
 	return page
 
@@ -1140,27 +1396,226 @@ func _show_world_map() -> void:
 	explore_status_label.text = "大地图 · %s · 口粮 %d" % [player.get_time_label(), player.supplies.get("food", 0)]
 	_clear_explore_container()
 
+	var map_data: Dictionary = DataManager.region_data.get("map", {})
 	var map_title := Label.new()
-	map_title.text = "【荒原大地图】"
+	map_title.text = "【%s】" % map_data.get("name", "荒原大地图")
 	_apply_label_style(map_title, 16, COLOR_AMBER)
 	explore_route_container.add_child(map_title)
 
-	var hint := Label.new()
-	hint.text = "选择一个地点进入小地图。资源点、秘境、事件建筑都会在小地图内探索。"
-	_apply_label_style(hint, 12, COLOR_MUTED)
-	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	explore_route_container.add_child(hint)
+	_add_world_map_canvas()
 
-	var map_card := TextureRect.new()
-	map_card.texture = UI_PANEL_CARD_TEXTURE
-	map_card.custom_minimum_size = Vector2(0, 96)
-	map_card.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	map_card.stretch_mode = TextureRect.STRETCH_SCALE
-	map_card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	explore_route_container.add_child(map_card)
 
-	for site in _get_world_sites():
-		_add_world_site_button(site)
+func _add_world_map_canvas() -> void:
+	var sites := _get_region_world_sites()
+	var texture_size := WORLD_MAP_TEXTURE.get_size()
+	var map_width := texture_size.x
+	var map_height := map_width * texture_size.y / maxf(1.0, texture_size.x)
+	var map_size := Vector2(map_width, map_height)
+	world_map_zoom = 1.0
+	world_map_touches.clear()
+	world_map_last_pinch_distance = 0.0
+	world_map_base_size = map_size
+
+	var scroll := ScrollContainer.new()
+	scroll.custom_minimum_size = Vector2(0, 560.0)
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_ALWAYS
+	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.scroll_deadzone = 12
+	explore_route_container.add_child(scroll)
+
+	var canvas := Control.new()
+	world_map_canvas = canvas
+	canvas.custom_minimum_size = map_size
+	canvas.size = map_size
+	canvas.mouse_filter = Control.MOUSE_FILTER_STOP
+	canvas.gui_input.connect(_on_world_map_input)
+	scroll.add_child(canvas)
+
+	var map_texture := TextureRect.new()
+	map_texture.texture = WORLD_MAP_TEXTURE
+	map_texture.position = Vector2.ZERO
+	map_texture.size = map_size
+	map_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	map_texture.stretch_mode = TextureRect.STRETCH_SCALE
+	map_texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	canvas.add_child(map_texture)
+
+	_add_world_map_connections(canvas, sites, map_size)
+
+	for site in sites:
+		_add_world_map_region_button(canvas, site, map_size)
+
+
+func _on_world_map_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouse_event: InputEventMouseButton = event
+		if mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			_set_world_map_zoom(world_map_zoom + 0.1)
+		elif mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			_set_world_map_zoom(world_map_zoom - 0.1)
+		return
+
+	if event is InputEventScreenTouch:
+		var touch_event: InputEventScreenTouch = event
+		if touch_event.pressed:
+			world_map_touches[touch_event.index] = touch_event.position
+		else:
+			world_map_touches.erase(touch_event.index)
+		world_map_last_pinch_distance = _get_world_map_pinch_distance()
+		return
+
+	if event is InputEventScreenDrag:
+		var drag_event: InputEventScreenDrag = event
+		if world_map_touches.has(drag_event.index):
+			world_map_touches[drag_event.index] = drag_event.position
+		var pinch_distance := _get_world_map_pinch_distance()
+		if world_map_touches.size() >= 2 and world_map_last_pinch_distance > 0.0 and pinch_distance > 0.0:
+			_set_world_map_zoom(world_map_zoom * pinch_distance / world_map_last_pinch_distance)
+		world_map_last_pinch_distance = pinch_distance
+
+
+func _get_world_map_pinch_distance() -> float:
+	if world_map_touches.size() < 2:
+		return 0.0
+	var touch_positions: Array = world_map_touches.values()
+	return touch_positions[0].distance_to(touch_positions[1])
+
+
+func _set_world_map_zoom(value: float) -> void:
+	if world_map_canvas == null or world_map_base_size == Vector2.ZERO:
+		return
+	world_map_zoom = clampf(value, 0.4, 2.0)
+	var scaled_size := world_map_base_size * world_map_zoom
+	world_map_canvas.scale = Vector2(world_map_zoom, world_map_zoom)
+	world_map_canvas.custom_minimum_size = scaled_size
+	world_map_canvas.size = scaled_size
+
+
+func _add_world_map_connections(canvas: Control, sites: Array, map_size: Vector2) -> void:
+	var region_data: Dictionary = DataManager.region_data
+	var connections: Array = region_data.get("connections", [])
+	if connections.is_empty():
+		return
+
+	var site_by_id: Dictionary = {}
+	for site in sites:
+		site_by_id[site.get("id", "")] = site
+
+	var map_data: Dictionary = region_data.get("map", {})
+	var coordinate_size: Dictionary = map_data.get("coordinate_size", {"x": 200, "y": 150})
+	var max_x: float = maxf(1.0, float(coordinate_size.get("x", 200)))
+	var max_y: float = maxf(1.0, float(coordinate_size.get("y", 150)))
+
+	var connections_layer := WorldMapConnections.new()
+	connections_layer.name = "RegionConnections"
+	connections_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	connections_layer.position = Vector2.ZERO
+	connections_layer.size = map_size
+
+	for connection in connections:
+		var from_id: String = connection.get("from", "")
+		var to_id: String = connection.get("to", "")
+		if not site_by_id.has(from_id) or not site_by_id.has(to_id):
+			continue
+
+		var from_site: Dictionary = site_by_id[from_id]
+		var to_site: Dictionary = site_by_id[to_id]
+		var from_pos: Dictionary = from_site.get("position", {})
+		var to_pos: Dictionary = to_site.get("position", {})
+
+		var from_normalized := Vector2(
+			float(from_pos.get("x", 0)) / max_x,
+			1.0 - float(from_pos.get("y", 0)) / max_y
+		)
+		var to_normalized := Vector2(
+			float(to_pos.get("x", 0)) / max_x,
+			1.0 - float(to_pos.get("y", 0)) / max_y
+		)
+
+		connections_layer.connection_points.append({
+			"from": Vector2(from_normalized.x * map_size.x, from_normalized.y * map_size.y),
+			"to": Vector2(to_normalized.x * map_size.x, to_normalized.y * map_size.y),
+			"label": connection.get("route", "")
+		})
+
+	canvas.add_child(connections_layer)
+	connections_layer.queue_redraw()
+
+
+func _add_world_map_region_button(canvas: Control, site: Dictionary, map_size: Vector2) -> void:
+	var position_data: Dictionary = site.get("position", {})
+	var map_data: Dictionary = DataManager.region_data.get("map", {})
+	var coordinate_size: Dictionary = map_data.get("coordinate_size", {"x": 200, "y": 150})
+	var max_x: float = maxf(1.0, float(coordinate_size.get("x", 200)))
+	var max_y: float = maxf(1.0, float(coordinate_size.get("y", 150)))
+	var normalized_x := float(position_data.get("x", 0)) / max_x
+	var normalized_y := 1.0 - float(position_data.get("y", 0)) / max_y
+
+	var button := Button.new()
+	button.text = "%s %s\nLV %d" % [
+		site.get("icon", "*"),
+		site.get("name", "未知地点"),
+		int(site.get("danger", 1))
+	]
+	var button_width := clampf(map_size.x * 0.11, 110.0, 150.0)
+	var button_height := 38.0
+	var horizontal_padding := button_width * 0.5 + 18.0
+	var vertical_padding := button_height * 0.5 + 18.0
+	button.custom_minimum_size = Vector2(button_width, button_height)
+	button.size = Vector2(button_width, button_height)
+	button.position = Vector2(
+		clampf(normalized_x * map_size.x - button_width * 0.5, horizontal_padding - button_width * 0.5, map_size.x - horizontal_padding - button_width * 0.5),
+		clampf(normalized_y * map_size.y - button_height * 0.5, vertical_padding - button_height * 0.5, map_size.y - vertical_padding - button_height * 0.5)
+	)
+	button.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_apply_map_region_style(button)
+	button.pressed.connect(_on_world_site_pressed.bind(site))
+	canvas.add_child(button)
+
+
+func _get_region_world_sites() -> Array:
+	DataManager.ensure_loaded()
+	var region_data: Dictionary = DataManager.region_data
+	var regions: Array = region_data.get("regions", [])
+	if regions.is_empty():
+		return _get_world_sites()
+
+	var sites: Array = []
+	for region in regions:
+		if region is Dictionary:
+			sites.append(_region_to_world_site(region))
+	return sites
+
+
+func _region_to_world_site(region: Dictionary) -> Dictionary:
+	var recommended_level: int = int(region.get("recommended_level", 1))
+	var total_floors: int = 1
+	if recommended_level >= 28:
+		total_floors = 5
+	elif recommended_level >= 20:
+		total_floors = 4
+	elif recommended_level >= 12:
+		total_floors = 3
+
+	return {
+		"id": region.get("id", ""),
+		"name": region.get("name", "未知地点"),
+		"icon": region.get("icon", "*"),
+		"site_type": "realm",
+		"desc": "固定秘境 · 推荐 LV%d · 危险半径 %d" % [
+			recommended_level,
+			int(region.get("danger_radius", 20))
+		],
+		"danger": recommended_level,
+		"grid_size": clampi(5 + int(recommended_level / 12), 5, 8),
+		"total_floors": total_floors,
+		"dungeon_type": region.get("dungeon_type", ""),
+		"boss_id": region.get("boss_id", ""),
+		"theme": region.get("theme", ""),
+		"position": region.get("position", {})
+	}
 
 
 func _get_world_sites() -> Array:
@@ -1296,6 +1751,19 @@ func _generate_site_grid(site: Dictionary, floor_num: int) -> Array:
 		loot_count = 2 + floor_num
 		enemy_count = 2 + floor_num
 		special_count = 1
+		match site.get("theme", ""):
+			"urban":
+				obstacle_rate = 0.30
+				loot_count += 2
+			"historical":
+				obstacle_rate = 0.28
+				special_count = 2
+			"religious":
+				obstacle_rate = 0.18
+				special_count = 2
+			"legendary":
+				obstacle_rate = 0.26
+				enemy_count += 1
 	elif site.get("id", "") == "ammo_cache":
 		obstacle_rate = 0.18
 		loot_count = 4
@@ -1476,6 +1944,21 @@ func _try_move_site_player(target_pos: Vector2i) -> void:
 
 	var old_row: Array = current_site_grid[current_site_position.x]
 	var old_cell: Dictionary = old_row[current_site_position.y]
+	var previous_pos: Vector2i = current_site_position
+
+	# 遇敌：先原地等待战斗结算，胜利后再移动到敌人格
+	if content == "enemy":
+		battle_site_context = {
+			"enemy_pos": target_pos,
+			"previous_pos": previous_pos
+		}
+		_process_site_cell(target_cell)
+		if battle_data.is_empty():
+			# 战斗未能开始（无出战伙伴等），保持原位
+			battle_site_context = {}
+			_refresh_explore()
+		return
+
 	old_cell["content"] = "empty"
 	current_site_position = target_pos
 	_process_site_cell(target_cell)
@@ -1708,10 +2191,11 @@ func _on_battle_node_clicked(node: Dictionary) -> void:
 	if battle_id == "":
 		_set_home_status("该节点没有配置异兽。")
 		return
+	battle_callback = func() -> void:
+		_apply_node_effects(node.get("effects", {}))
+		exploration_system.advance_node()
+		_refresh_explore()
 	_run_battle(battle_id)
-	_apply_node_effects(node.get("effects", {}))
-	exploration_system.advance_node()
-	_refresh_explore()
 
 
 func _on_search_node_clicked(node: Dictionary) -> void:
@@ -1751,7 +2235,12 @@ func _on_branch_option_clicked(option: Dictionary) -> void:
 		"battle":
 			var battle_id: String = result.get("battle_id", "")
 			if battle_id != "":
+				battle_callback = func() -> void:
+					_set_home_status(result.get("text", ""))
+					exploration_system.advance_node()
+					_refresh_explore()
 				_run_battle(battle_id)
+				return
 			_set_home_status(result.get("text", ""))
 		"recruit":
 			_recruit_partner(result.get("join_partner", ""))
@@ -1786,11 +2275,12 @@ func _on_boss_node_clicked(node: Dictionary) -> void:
 	if battle_id == "":
 		_set_home_status("该节点没有配置BOSS。")
 		return
+	battle_callback = func() -> void:
+		_apply_node_effects(node.get("effects", {}))
+		_recruit_partner(node.get("join_partner", ""), "击败BOSS！%s 加入了队伍（替补席）。")
+		exploration_system.advance_node()
+		_refresh_explore()
 	_run_battle(battle_id)
-	_apply_node_effects(node.get("effects", {}))
-	_recruit_partner(node.get("join_partner", ""), "击败BOSS！%s 加入了队伍（替补席）。")
-	exploration_system.advance_node()
-	_refresh_explore()
 
 
 func _apply_node_effects(effects: Dictionary) -> void:
@@ -1826,32 +2316,472 @@ func _on_abandon_exploration() -> void:
 
 func _run_battle(beast_id: String) -> void:
 	if not DataManager.beasts.has(beast_id):
+		battle_site_context = {}
 		return
-
 	var beast: Dictionary = DataManager.beasts[beast_id].duplicate(true)
-	var player_survivors: Array = GameState.player.survivors
-	if player_survivors.size() == 0:
+	var player := GameState.player
+	var party: Array = []
+	var grid_indices: Array = []
+	for i in range(9):
+		var sid: String = player.get_grid_survivor(i)
+		if sid != "":
+			for s in player.survivors:
+				if s.get("id", "") == sid:
+					party.append(s)
+					grid_indices.append(i)
+					break
+		if party.size() >= BattleSystem.MAX_PARTY_SIZE:
+			break
+	if party.is_empty():
+		battle_site_context = {}
+		_set_home_status("没有可出战的伙伴，请先在编队中上阵。")
 		return
 
-	var survivor: Dictionary = {}
-	for survivor_id in GameState.player.active_survivor_ids:
-		for s in player_survivors:
-			if s["id"] == survivor_id:
-				survivor = s
+	battle_data = BattleSystem.create_battle(party, [beast], player.get_formation_bonus(), grid_indices)
+	battle_auto_mode = "manual"
+	battle_finished = false
+	battle_waiting_input = false
+	battle_data["mode"] = battle_auto_mode
+	for mode in battle_mode_buttons:
+		battle_mode_buttons[mode].button_pressed = (mode == "manual")
+
+	battle_popup.popup_centered()
+	_refresh_battle_ui()
+	_process_battle_turn()
+
+
+# ============================================================
+# 战斗流程控制
+# ============================================================
+func _process_battle_turn() -> void:
+	if battle_data.is_empty() or battle_finished:
+		return
+	if battle_data.get("battle_over", false):
+		_finish_battle()
+		return
+	_refresh_battle_ui()
+
+	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+	if actor_id == "":
+		_finish_battle()
+		return
+
+	if not BattleSystem.is_actor_player(battle_data, actor_id):
+		_update_battle_controls(false)
+		_auto_execute_ai(actor_id)
+	elif battle_auto_mode == "auto":
+		_update_battle_controls(false)
+		_auto_execute_ai(actor_id)
+	elif battle_auto_mode == "semi":
+		_update_battle_controls(false)
+		_auto_basic_decision(actor_id)
+	else:
+		battle_waiting_input = true
+		_update_battle_controls(true)
+		var actor: Dictionary = battle_data["units"][actor_id]
+		battle_actor_label.text = "当前行动：%s（请操作）" % actor["name"]
+
+
+func _auto_execute_ai(actor_id: String) -> void:
+	var action: Dictionary = BattleSystem.decide_ai_action(battle_data, actor_id)
+	await get_tree().create_timer(0.45).timeout
+	if battle_finished or battle_data.is_empty():
+		return
+	_apply_battle_action(action)
+	_process_battle_turn()
+
+
+func _auto_basic_decision(actor_id: String) -> void:
+	await get_tree().create_timer(0.35).timeout
+	if battle_finished or battle_data.is_empty():
+		return
+	var hp_ratio: float = BattleSystem.get_unit_hp_ratio(battle_data, actor_id)
+	if hp_ratio < 0.3:
+		BattleSystem.perform_action(battle_data, actor_id, "guard")
+	else:
+		var alive_enemies: Array = BattleSystem.get_alive_team_units(battle_data, "enemy")
+		var target_id: String = BattleSystem.get_team_lowest_hp_unit(battle_data, "enemy")
+		if target_id == "" and not alive_enemies.is_empty():
+			target_id = str(alive_enemies[0])
+		BattleSystem.perform_action(battle_data, actor_id, "attack", [target_id] if target_id != "" else [])
+	_process_battle_turn()
+
+
+func _apply_battle_action(action: Dictionary) -> void:
+	if battle_data.is_empty() or battle_finished:
+		return
+	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+	if actor_id == "":
+		return
+	var action_type: String = str(action.get("action", "attack"))
+	var target_id: String = str(action.get("target_id", ""))
+	var target_ids: Array = [target_id] if target_id != "" else []
+	if action_type == "skill":
+		BattleSystem.perform_action(battle_data, actor_id, "skill", target_ids, str(action.get("skill_id", "")))
+	else:
+		BattleSystem.perform_action(battle_data, actor_id, action_type, target_ids)
+
+
+# ============================================================
+# 战斗UI刷新
+# ============================================================
+func _refresh_battle_ui() -> void:
+	if battle_data.is_empty():
+		return
+	battle_round_label.text = "⚔️ 战斗 · 回合 %d" % int(battle_data.get("round", 1))
+
+	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+	if actor_id != "":
+		var actor: Dictionary = battle_data["units"][actor_id]
+		var team_text := "我方" if actor.get("team", "") == "player" else "敌方"
+		battle_actor_label.text = "当前行动：%s[%s]%s" % [
+			actor.get("name", ""),
+			team_text,
+			"（防御中）" if actor.get("guard", false) else ""
+		]
+
+	# 敌方信息
+	for child in battle_enemy_container.get_children():
+		battle_enemy_container.remove_child(child)
+		child.queue_free()
+	var enemy_alive: Array = BattleSystem.get_alive_team_units(battle_data, "enemy")
+	for enemy_id in enemy_alive:
+		var unit: Dictionary = battle_data["units"][enemy_id]
+		var status_parts: Array[String] = []
+		for sid in unit.get("statuses", {}):
+			status_parts.append(BattleSystem.STATUS_NAMES.get(sid, sid))
+		var status_text := ("  [%s]" % "、".join(status_parts)) if not status_parts.is_empty() else ""
+		var enemy_label := Label.new()
+		enemy_label.text = "%s  HP %d/%d%s" % [unit.get("name", ""), int(unit.get("hp", 0)), int(unit.get("max_hp", 0)), status_text]
+		_apply_label_style(enemy_label, 14, Color(0.95, 0.4, 0.45))
+		battle_enemy_container.add_child(enemy_label)
+
+	# 状态摘要
+	var status_text_all: String = BattleSystem.get_battle_status_text(battle_data)
+	battle_status_label.text = ("状态：\n" + status_text_all) if status_text_all != "" else "状态：无"
+
+	# 战斗日志
+	battle_log_label.text = ""
+	for line in battle_data.get("log", []):
+		battle_log_label.append_text(_battle_log_line_to_bbcode(str(line)))
+
+	# 我方队伍卡片
+	for child in battle_party_container.get_children():
+		battle_party_container.remove_child(child)
+		child.queue_free()
+	for unit_id in battle_data.get("player_party", []):
+		var unit: Dictionary = battle_data["units"][unit_id]
+		var card := Label.new()
+		card.text = "%s\nHP %d/%d\nEP %d/%d" % [
+			unit.get("name", ""),
+			int(unit.get("hp", 0)), int(unit.get("max_hp", 0)),
+			int(unit.get("energy", 0)), int(unit.get("max_energy", 0))
+		]
+		card.custom_minimum_size = Vector2(84, 0)
+		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		card.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_apply_label_style(card, 12, COLOR_TEXT)
+		card.add_theme_stylebox_override("normal", _make_flat_style(Color(0.08, 0.12, 0.14, 0.9), Color(0.3, 0.6, 0.65, 0.8), 1, 4, 4))
+		if actor_id == unit_id and BattleSystem.is_actor_player(battle_data, actor_id):
+			card.add_theme_stylebox_override("normal", _make_flat_style(Color(0.10, 0.20, 0.22, 0.96), COLOR_AMBER, 2, 4, 4))
+		battle_party_container.add_child(card)
+
+
+func _battle_log_line_to_bbcode(line: String) -> String:
+	if line.begins_with("——"):
+		return "[color=#00D4FF]%s[/color]\n" % line
+	if line.begins_with("🎉"):
+		return "[color=#FFC107]%s[/color]\n" % line
+	if line.begins_with("💀"):
+		return "[color=#FF5252]%s[/color]\n" % line
+	if line.find("被击败") >= 0 or line.find("失败") >= 0:
+		return "[color=#FF6E6E]%s[/color]\n" % line
+	if line.find("暴击") >= 0:
+		return "[color=#FFC107]%s[/color]\n" % line
+	return "[color=#E0F5FF]%s[/color]\n" % line
+
+
+func _update_battle_controls(enabled: bool) -> void:
+	for child in battle_action_bar.get_children():
+		child.disabled = not enabled
+	if battle_flee_button != null:
+		battle_flee_button.disabled = false
+	for mode in battle_mode_buttons:
+		battle_mode_buttons[mode].disabled = battle_data.is_empty()
+
+
+# ============================================================
+# 战斗按钮操作
+# ============================================================
+func _on_battle_attack_pressed() -> void:
+	if not battle_waiting_input:
+		return
+	battle_pending_action = {"type": "attack", "skill_id": ""}
+	_open_target_popup("enemy")
+
+
+func _on_battle_skill_pressed() -> void:
+	if not battle_waiting_input:
+		return
+	_open_skill_popup()
+
+
+func _on_battle_guard_pressed() -> void:
+	if not battle_waiting_input:
+		return
+	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+	if actor_id == "":
+		return
+	battle_waiting_input = false
+	_update_battle_controls(false)
+	BattleSystem.perform_action(battle_data, actor_id, "guard")
+	_process_battle_turn()
+
+
+func _on_battle_item_pressed() -> void:
+	_set_home_status("道具功能开发中，请使用攻击/技能/防御。")
+
+
+func _on_battle_mode_pressed(mode: String) -> void:
+	battle_auto_mode = mode
+	for m in battle_mode_buttons:
+		battle_mode_buttons[m].button_pressed = (m == mode)
+	if battle_data.is_empty() or battle_finished or not battle_waiting_input:
+		return
+	if mode != "manual":
+		battle_waiting_input = false
+		_update_battle_controls(false)
+		_process_battle_turn()
+
+
+func _on_battle_close_pressed() -> void:
+	_finish_battle(false)
+
+
+func _show_battle_overlay(kind: String) -> void:
+	if battle_overlay_panel == null:
+		return
+	var border_color := COLOR_AMBER if kind == "skill" else COLOR_CYAN
+	battle_overlay_panel.add_theme_stylebox_override("panel", _make_flat_style(Color(0.03, 0.05, 0.06, 0.98), border_color, 2, 5, 0))
+	battle_overlay_panel.visible = true
+	battle_overlay_panel.move_to_front()
+
+
+func _hide_battle_overlay() -> void:
+	if battle_overlay_panel != null:
+		battle_overlay_panel.visible = false
+
+
+func _open_skill_popup() -> void:
+	if battle_data.is_empty():
+		return
+	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+	if actor_id == "":
+		return
+	_show_battle_overlay("skill")
+	var vbox: VBoxContainer = battle_overlay_box
+	for child in vbox.get_children():
+		vbox.remove_child(child)
+		child.queue_free()
+
+	var title := Label.new()
+	title.text = "✨ 选择技能"
+	_apply_label_style(title, 18, COLOR_AMBER)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(title)
+
+	var usable: Array = BattleSystem.get_usable_skills(battle_data, actor_id)
+	if usable.is_empty():
+		var empty := Label.new()
+		empty.text = "没有可用技能（能量不足或冷却中）\n可以使用攻击或防御。"
+		_apply_label_style(empty, 13, COLOR_MUTED)
+		empty.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		vbox.add_child(empty)
+	else:
+		for skill_id in usable:
+			var skill: Dictionary = DataManager.skills.get(skill_id, {})
+			var skill_btn := Button.new()
+			skill_btn.text = "%s  (EP %d)" % [skill.get("name", skill_id), int(skill.get("energy", 0))]
+			skill_btn.custom_minimum_size = Vector2(0, 40)
+			skill_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			_apply_button_style(skill_btn)
+			skill_btn.pressed.connect(_on_skill_selected.bind(skill_id))
+			vbox.add_child(skill_btn)
+
+	var cancel := Button.new()
+	cancel.text = "取消"
+	cancel.custom_minimum_size = Vector2(0, 32)
+	cancel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(cancel)
+	cancel.pressed.connect(func() -> void: _hide_battle_overlay())
+	vbox.add_child(cancel)
+
+
+func _on_skill_selected(skill_id: String) -> void:
+	_hide_battle_overlay()
+	var skill: Dictionary = DataManager.skills.get(skill_id, {})
+	var type_text: String = str(skill.get("type", ""))
+	if type_text.find("全体") >= 0 or type_text.begins_with("辅助"):
+		_confirm_battle_action("skill", skill_id, [])
+		return
+	battle_pending_action = {"type": "skill", "skill_id": skill_id}
+	_open_target_popup("enemy")
+
+
+func _open_target_popup(team: String) -> void:
+	if battle_data.is_empty():
+		return
+	_show_battle_overlay("target")
+	var vbox: VBoxContainer = battle_overlay_box
+	for child in vbox.get_children():
+		vbox.remove_child(child)
+		child.queue_free()
+
+	var title := Label.new()
+	title.text = "🎯 选择目标"
+	_apply_label_style(title, 18, COLOR_CYAN)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(title)
+
+	var targets: Array = BattleSystem.get_alive_team_units(battle_data, team)
+	for target_id in targets:
+		var unit: Dictionary = battle_data["units"][target_id]
+		var target_btn := Button.new()
+		target_btn.text = "%s  HP %d/%d" % [unit.get("name", ""), int(unit.get("hp", 0)), int(unit.get("max_hp", 0))]
+		target_btn.custom_minimum_size = Vector2(0, 40)
+		target_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_apply_button_style(target_btn)
+		target_btn.pressed.connect(_on_target_selected.bind(target_id))
+		vbox.add_child(target_btn)
+
+	var cancel := Button.new()
+	cancel.text = "取消"
+	cancel.custom_minimum_size = Vector2(0, 32)
+	cancel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(cancel)
+	cancel.pressed.connect(func() -> void: _hide_battle_overlay())
+	vbox.add_child(cancel)
+
+
+func _on_target_selected(target_id: String) -> void:
+	_hide_battle_overlay()
+	if battle_pending_action.is_empty():
+		return
+	var action_type: String = str(battle_pending_action.get("type", "attack"))
+	var skill_id: String = str(battle_pending_action.get("skill_id", ""))
+	battle_pending_action = {}
+	_confirm_battle_action(action_type, skill_id, [target_id])
+
+
+func _confirm_battle_action(action_type: String, skill_id: String, target_ids: Array) -> void:
+	if not battle_waiting_input:
+		return
+	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+	if actor_id == "":
+		return
+	battle_waiting_input = false
+	_update_battle_controls(false)
+	if action_type == "skill":
+		BattleSystem.perform_action(battle_data, actor_id, "skill", target_ids, skill_id)
+	else:
+		BattleSystem.perform_action(battle_data, actor_id, action_type, target_ids)
+	_process_battle_turn()
+
+
+# ============================================================
+# 战斗结算
+# ============================================================
+func _finish_battle(sync_hp: bool = true) -> void:
+	if battle_finished:
+		return
+	battle_finished = true
+	battle_waiting_input = false
+	_update_battle_controls(false)
+
+	var victory: bool = battle_data.get("victory", false)
+	var enemy_name := ""
+	var enemy_base_id := ""
+	if not battle_data.is_empty() and not battle_data["enemy_party"].is_empty():
+		var first_enemy_id: String = str(battle_data["enemy_party"][0])
+		if battle_data["units"].has(first_enemy_id):
+			enemy_name = str(battle_data["units"][first_enemy_id].get("name", ""))
+			enemy_base_id = str(battle_data["units"][first_enemy_id].get("base_id", first_enemy_id))
+
+	if sync_hp and not battle_data.is_empty():
+		_sync_battle_results()
+
+	battle_popup.hide()
+	_hide_battle_overlay()
+	if sync_hp and victory and enemy_base_id != "":
+		var defeated_beasts: Array = GameState.player.story_flags.get("defeated_beasts", [])
+		if not (enemy_base_id in defeated_beasts):
+			defeated_beasts.append(enemy_base_id)
+			GameState.player.story_flags["defeated_beasts"] = defeated_beasts
+	battle_data = {}
+
+	# 小地图遇敌结算：胜利则占领先前敌人格，失败/撤退则退回大地图
+	var site_context: Dictionary = battle_site_context
+	battle_site_context = {}
+	if not site_context.is_empty():
+		if sync_hp and victory:
+			_occupy_site_enemy_cell(site_context)
+		else:
+			explore_view_mode = "world"
+			current_world_site = {}
+			current_site_grid = []
+			current_site_position = Vector2i.ZERO
+			current_site_floor = 1
+			current_site_total_floors = 1
+
+	if sync_hp:
+		if victory:
+			_set_home_status("战斗胜利！%s 已被击败。" % enemy_name)
+		else:
+			if not site_context.is_empty():
+				_set_home_status("战斗失败……已退回大地图，请先治疗伙伴再战。")
+			else:
+				_set_home_status("战斗失败……伙伴们倒下了，请治疗后再战。")
+	else:
+		_set_home_status("已撤离战斗。")
+	_refresh_all()
+
+	var callback := battle_callback
+	battle_callback = Callable()
+	if sync_hp and victory and callback.is_valid():
+		callback.call()
+
+
+func _occupy_site_enemy_cell(context: Dictionary) -> void:
+	if current_site_grid.is_empty():
+		return
+	# 清理战斗前所在格（玩家在战斗期间没有真正移动）
+	var previous_pos: Vector2i = context.get("previous_pos", Vector2i.ZERO)
+	if previous_pos.x >= 0 and previous_pos.y >= 0 and previous_pos.x < current_site_grid.size():
+		var prev_row: Array = current_site_grid[previous_pos.x]
+		if previous_pos.y < prev_row.size():
+			prev_row[previous_pos.y]["content"] = "empty"
+	# 占领敌人所在格
+	var enemy_pos: Vector2i = context.get("enemy_pos", Vector2i.ZERO)
+	if enemy_pos.x >= 0 and enemy_pos.y >= 0 and enemy_pos.x < current_site_grid.size():
+		var enemy_row: Array = current_site_grid[enemy_pos.x]
+		if enemy_pos.y < enemy_row.size():
+			enemy_row[enemy_pos.y]["content"] = "player"
+			current_site_position = enemy_pos
+
+
+func _sync_battle_results() -> void:
+	if battle_data.is_empty():
+		return
+	for unit_id in battle_data["units"]:
+		var unit: Dictionary = battle_data["units"][unit_id]
+		if unit.get("team", "") != "player":
+			continue
+		var base_id: String = str(unit.get("base_id", ""))
+		for survivor in GameState.player.survivors:
+			if survivor.get("id", "") == base_id:
+				survivor["hp"] = maxf(1.0, float(unit.get("hp", 1.0)))
+				survivor["energy"] = float(unit.get("energy", 0.0))
 				break
-		if not survivor.is_empty():
-			break
-
-	if survivor.is_empty():
-		survivor = player_survivors[0]
-
-	var battle := BattleSystem.create_battle(survivor, beast)
-	BattleSystem.player_basic_attack(battle)
-
-	var damage: int = battle["log"][0]["value"]
-	_set_home_status("战斗：%s 造成 %d 点伤害，%s 剩余 HP %d。" % [
-		survivor["name"], damage, beast["name"], battle["enemy"]["hp"]
-	])
 
 
 func _refresh_inventory() -> void:
@@ -1870,6 +2800,449 @@ func _refresh_inventory() -> void:
 
 
 func _refresh_codex() -> void:
+		if codex_content_container == null:
+			return
+
+		_clear_container(codex_content_container)
+
+		match codex_view_mode:
+			"categories":
+				_show_codex_categories()
+			"beasts":
+				_show_beast_codex_list()
+			"partners":
+				_show_partner_codex_list()
+			"equipment":
+				_show_placeholder_codex("装备图鉴", "装备配置表尚未接入。后续可从装备、配方、掉落材料生成装备条目。")
+			"relics":
+				_show_placeholder_codex("遗物图鉴", "遗物配置表尚未接入。后续可按秘境、BOSS、主线章节补充遗物条目。")
+			"detail":
+				_show_beast_codex_detail(selected_codex_beast_id)
+			"info":
+				_show_beast_codex_full_info(selected_codex_beast_id)
+			_:
+				_show_codex_categories()
+
+
+func _show_codex_categories() -> void:
+		selected_codex_category = ""
+		selected_codex_beast_id = ""
+
+		var player := GameState.player
+		var defeated_beasts: Array = player.story_flags.get("defeated_beasts", [])
+
+		var title := Label.new()
+		title.text = "请选择图鉴分类"
+		_apply_label_style(title, 16, COLOR_AMBER)
+		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		codex_content_container.add_child(title)
+
+		_add_codex_category_button(
+			"beasts",
+			"怪物图鉴",
+			"%d/%d 已记录 · 查看异兽、BOSS、掉落和应对" % [defeated_beasts.size(), DataManager.beasts.size()]
+		)
+		_add_codex_category_button(
+			"partners",
+			"人物图鉴",
+			"%d/%d 已加入 · 查看伙伴、职业和基础信息" % [player.survivors.size(), DataManager.partners.size()]
+		)
+		_add_codex_category_button(
+			"equipment",
+			"装备图鉴",
+			"待接入 · 武器、防具、消耗品和合成装备"
+		)
+		_add_codex_category_button(
+			"relics",
+			"遗物图鉴",
+			"待接入 · 秘境遗物、BOSS 掉落和主线收藏"
+		)
+
+
+func _add_codex_category_button(category_id: String, title: String, description: String) -> void:
+		var button := Button.new()
+		button.text = "%s\n%s" % [title, description]
+		button.custom_minimum_size = Vector2(0, 66)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		_apply_button_style(button)
+		button.pressed.connect(_on_codex_category_pressed.bind(category_id))
+		codex_content_container.add_child(button)
+
+
+func _show_partner_codex_list() -> void:
+		_add_codex_category_back_button()
+
+		var player := GameState.player
+		var summary := Label.new()
+		summary.text = "【人物图鉴】%d/%d\n当前显示已加入队伍的伙伴；未加入人物后续可做锁定条目。" % [
+			player.survivors.size(),
+			DataManager.partners.size()
+		]
+		_apply_label_style(summary, 14, COLOR_MUTED)
+		summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		codex_content_container.add_child(summary)
+
+		var list: Array = player.survivors
+		if list.is_empty():
+			list = DataManager.partners
+
+		for partner in list:
+			if not partner is Dictionary:
+				continue
+			var partner_data: Dictionary = partner
+			var raw_stats: Variant = partner_data.get("stats", {})
+			var stats: Dictionary = {}
+			if raw_stats is Dictionary:
+				stats = raw_stats
+			var button := Button.new()
+			button.text = "%s  Lv.%d  %s\n%s  HP %d  攻击 %d  防御 %d" % [
+				partner_data.get("name", partner_data.get("id", "未知人物")),
+				int(partner_data.get("level", 1)),
+				partner_data.get("profession", "未知职业"),
+				partner_data.get("rarity", partner_data.get("title", "")),
+				int(partner_data.get("max_hp", partner_data.get("hp", 0))),
+				int(stats.get("attack", 0)),
+				int(stats.get("defense", 0))
+			]
+			button.custom_minimum_size = Vector2(0, 58)
+			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+			_apply_button_style(button)
+			codex_content_container.add_child(button)
+
+
+func _show_placeholder_codex(title_text: String, description: String) -> void:
+		_add_codex_category_back_button()
+
+		var title := Label.new()
+		title.text = "【%s】" % title_text
+		_apply_label_style(title, 16, COLOR_AMBER)
+		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		codex_content_container.add_child(title)
+
+		var label := Label.new()
+		label.text = description
+		_apply_label_style(label, 14, COLOR_MUTED)
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		codex_content_container.add_child(label)
+
+
+func _add_codex_category_back_button() -> void:
+		var back_button := Button.new()
+		back_button.text = "返回图鉴分类"
+		back_button.custom_minimum_size = Vector2(0, 34)
+		back_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_apply_button_style(back_button)
+		back_button.pressed.connect(_on_codex_back_to_categories_pressed)
+		codex_content_container.add_child(back_button)
+
+
+func _show_beast_codex_list() -> void:
+		_add_codex_category_back_button()
+
+		var player := GameState.player
+		var defeated_beasts: Array = player.story_flags.get("defeated_beasts", [])
+
+		var summary := Label.new()
+		summary.text = "【异兽图鉴】%d/%d\n点击怪物条目查看详情。" % [
+				defeated_beasts.size(),
+				DataManager.beasts.size()
+		]
+		_apply_label_style(summary, 14, COLOR_MUTED)
+		summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		codex_content_container.add_child(summary)
+
+		var beast_ids: Array = DataManager.beasts.keys()
+		beast_ids.sort()
+		for beast_id_variant in beast_ids:
+				var beast_id := str(beast_id_variant)
+				if not DataManager.beasts.has(beast_id):
+						continue
+				var beast: Dictionary = DataManager.beasts[beast_id]
+				var codex: Dictionary = _get_beast_codex_entry(beast_id)
+				var threat := str(codex.get("threat_level", _threat_from_beast_type(str(beast.get("type", "")))))
+				var button := Button.new()
+				button.text = "%s  Lv.%d  [%s]\n%s" % [
+						beast.get("name", beast_id),
+						int(beast.get("level", 1)),
+						threat,
+						codex.get("battle_role", "暂无详细记录")
+				]
+				button.custom_minimum_size = Vector2(0, 58)
+				button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+				_apply_button_style(button)
+				button.pressed.connect(_on_codex_beast_pressed.bind(beast_id))
+				codex_content_container.add_child(button)
+
+
+func _show_beast_codex_detail(beast_id: String) -> void:
+		if not DataManager.beasts.has(beast_id):
+			codex_view_mode = "beasts"
+			_show_beast_codex_list()
+			return
+
+		var beast: Dictionary = DataManager.beasts[beast_id]
+		var codex: Dictionary = _get_beast_codex_entry(beast_id)
+		var asset: Dictionary = _get_beast_asset_entry(beast_id)
+
+		var back_button := Button.new()
+		back_button.text = "返回图鉴"
+		back_button.custom_minimum_size = Vector2(0, 34)
+		back_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_apply_button_style(back_button)
+		back_button.pressed.connect(_on_codex_back_to_list_pressed)
+		codex_content_container.add_child(back_button)
+
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 10)
+		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		codex_content_container.add_child(row)
+
+		var image_button := Button.new()
+		var display_texture := _get_beast_display_texture(beast_id)
+		image_button.text = "" if display_texture != null else "暂无图像"
+		image_button.icon = display_texture
+		image_button.expand_icon = true
+		image_button.custom_minimum_size = Vector2(120, 120)
+		image_button.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+		image_button.tooltip_text = "点击查看完整资料"
+		_apply_button_style(image_button)
+		image_button.pressed.connect(_on_codex_image_pressed.bind(beast_id))
+		row.add_child(image_button)
+
+		var info_box := VBoxContainer.new()
+		info_box.add_theme_constant_override("separation", 5)
+		info_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(info_box)
+
+		var name_label := Label.new()
+		name_label.text = "%s · %s" % [
+				beast.get("name", beast_id),
+				codex.get("title", beast.get("type", "异兽"))
+		]
+		_apply_label_style(name_label, 18, COLOR_CYAN)
+		name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		info_box.add_child(name_label)
+
+		var status_label := Label.new()
+		status_label.text = "等级 %d  |  类型 %s  |  威胁 %s" % [
+				int(beast.get("level", 1)),
+				beast.get("type", "未知"),
+				codex.get("threat_level", _threat_from_beast_type(str(beast.get("type", ""))))
+		]
+		_apply_label_style(status_label, 13, COLOR_AMBER)
+		status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		info_box.add_child(status_label)
+
+		var role_label := Label.new()
+		role_label.text = str(codex.get("battle_role", asset.get("role", "暂无定位记录")))
+		_apply_label_style(role_label, 13)
+		role_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		info_box.add_child(role_label)
+
+		var hint := Label.new()
+		hint.text = "点击左侧图像进入完整信息。"
+		_apply_label_style(hint, 12, COLOR_MUTED)
+		info_box.add_child(hint)
+
+		var brief := Label.new()
+		brief.text = "【栖息地】%s\n【掉落预览】%s" % [
+				codex.get("habitat", "未知区域"),
+				_format_codex_values(codex.get("drops", asset.get("material_drops", [])))
+		]
+		_apply_label_style(brief, 13)
+		brief.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		codex_content_container.add_child(brief)
+
+
+func _show_beast_codex_full_info(beast_id: String) -> void:
+		if not DataManager.beasts.has(beast_id):
+			codex_view_mode = "beasts"
+			_show_beast_codex_list()
+			return
+
+		var beast: Dictionary = DataManager.beasts[beast_id]
+		var codex: Dictionary = _get_beast_codex_entry(beast_id)
+		var asset: Dictionary = _get_beast_asset_entry(beast_id)
+
+		var back_button := Button.new()
+		back_button.text = "返回详情"
+		back_button.custom_minimum_size = Vector2(0, 34)
+		back_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_apply_button_style(back_button)
+		back_button.pressed.connect(_on_codex_back_to_detail_pressed.bind(beast_id))
+		codex_content_container.add_child(back_button)
+
+		var title := Label.new()
+		title.text = "%s · 完整信息" % beast.get("name", beast_id)
+		_apply_label_style(title, 18, COLOR_CYAN)
+		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		codex_content_container.add_child(title)
+
+		var stats := Label.new()
+		stats.text = "【战斗数值】\nHP %d  |  攻击 %d  |  防御 %d\n灵能 %d  |  抵抗 %d  |  速度 %d\n弱点：%s" % [
+				int(beast.get("hp", 0)),
+				int(beast.get("attack", 0)),
+				int(beast.get("defense", 0)),
+				int(beast.get("spirit", 0)),
+				int(beast.get("resistance", 0)),
+				int(beast.get("speed", 0)),
+				_format_codex_values(beast.get("weakness", []))
+		]
+		_apply_label_style(stats, 13)
+		stats.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		codex_content_container.add_child(stats)
+
+		var detail := Label.new()
+		detail.text = "【定位】%s\n\n【习性】%s\n\n【技能】%s\n\n【应对】%s\n\n【材料】%s\n\n【物语】%s\n\n【标签】%s" % [
+				codex.get("battle_role", asset.get("role", "暂无定位记录")),
+				codex.get("behavior", "暂无习性记录"),
+				_format_codex_values(codex.get("skills", beast.get("skills", []))),
+				codex.get("counter", "暂无应对记录"),
+				_format_codex_values(codex.get("drops", asset.get("material_drops", []))),
+				asset.get("lore", "暂无物语记录"),
+				_format_codex_values(codex.get("tags", []))
+		]
+		_apply_label_style(detail, 13)
+		detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		codex_content_container.add_child(detail)
+
+
+func _on_codex_category_pressed(category_id: String) -> void:
+		selected_codex_category = category_id
+		selected_codex_beast_id = ""
+		codex_view_mode = category_id
+		_refresh_codex()
+
+
+func _on_codex_back_to_categories_pressed() -> void:
+		codex_view_mode = "categories"
+		selected_codex_category = ""
+		selected_codex_beast_id = ""
+		_refresh_codex()
+
+
+func _on_codex_beast_pressed(beast_id: String) -> void:
+		selected_codex_beast_id = beast_id
+		codex_view_mode = "detail"
+		_refresh_codex()
+
+
+func _on_codex_image_pressed(beast_id: String) -> void:
+		selected_codex_beast_id = beast_id
+		codex_view_mode = "info"
+		_refresh_codex()
+
+
+func _on_codex_back_to_list_pressed() -> void:
+		codex_view_mode = "beasts"
+		selected_codex_beast_id = ""
+		_refresh_codex()
+
+
+func _on_codex_back_to_detail_pressed(beast_id: String) -> void:
+		selected_codex_beast_id = beast_id
+		codex_view_mode = "detail"
+		_refresh_codex()
+
+
+func _get_beast_asset_entry(beast_id: String) -> Dictionary:
+		var raw_assets: Variant = DataManager.beast_assets.get("beasts", {})
+		if not raw_assets is Dictionary:
+				return {}
+		var assets: Dictionary = raw_assets
+		if assets.has(beast_id) and assets[beast_id] is Dictionary:
+				return assets[beast_id]
+		return {}
+
+
+func _get_beast_codex_entry(beast_id: String) -> Dictionary:
+		var raw_entries: Variant = DataManager.beast_codex.get("entries", {})
+		if not raw_entries is Dictionary:
+				return {}
+		var entries: Dictionary = raw_entries
+		if entries.has(beast_id) and entries[beast_id] is Dictionary:
+				return entries[beast_id]
+		return {}
+
+
+func _get_beast_display_texture(beast_id: String) -> Texture2D:
+		var asset := _get_beast_asset_entry(beast_id)
+		var portrait_path := str(asset.get("portrait", ""))
+		var portrait := _load_texture_or_null(portrait_path)
+		if portrait != null:
+				return portrait
+		return _get_beast_avatar_texture(beast_id)
+
+
+func _get_beast_avatar_texture(beast_id: String) -> Texture2D:
+		var asset := _get_beast_asset_entry(beast_id)
+		var raw_rect_data: Variant = asset.get("avatar_rect", [])
+		var raw_sheet_data: Variant = DataManager.beast_assets.get("avatar_sheet", {})
+		if not raw_rect_data is Array or not raw_sheet_data is Dictionary:
+				return null
+		var rect_data: Array = raw_rect_data
+		var sheet_data: Dictionary = raw_sheet_data
+		var sheet_path := str(sheet_data.get("path", ""))
+		if rect_data.size() < 4 or sheet_path == "":
+				return null
+
+		var sheet := _load_texture_or_null(sheet_path)
+		if sheet == null:
+				return null
+
+		var atlas := AtlasTexture.new()
+		atlas.atlas = sheet
+		atlas.region = Rect2(
+				float(rect_data[0]),
+				float(rect_data[1]),
+				float(rect_data[2]),
+				float(rect_data[3])
+		)
+		return atlas
+
+
+func _load_texture_or_null(path: String) -> Texture2D:
+		if path == "":
+				return null
+		var resource: Resource = load(path)
+		if resource is Texture2D:
+				return resource
+		return null
+
+
+func _format_codex_values(values: Variant) -> String:
+		if values is Array:
+				if values.is_empty():
+						return "无"
+				var parts: Array[String] = []
+				for value in values:
+						parts.append(str(value))
+				return "、".join(parts)
+		var text := str(values)
+		return text if text != "" else "无"
+
+
+func _threat_from_beast_type(beast_type: String) -> String:
+		match beast_type:
+				"BOSS":
+						return "极高"
+				"精英":
+						return "高"
+				"普通":
+						return "低"
+		return "未知"
+
+
+func _clear_container(container: Node) -> void:
+		for child in container.get_children():
+				container.remove_child(child)
+				child.queue_free()
+
+
+func _refresh_codex_legacy_unused() -> void:
 	var player := GameState.player
 	var partner_count: int = player.survivors.size()
 	var total_partners: int = DataManager.partners.size()

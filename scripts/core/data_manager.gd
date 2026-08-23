@@ -8,6 +8,12 @@ var chapters: Array = []
 var events: Array = []
 var endings: Dictionary = {}
 var exploration_routes: Array = []
+var region_data: Dictionary = {}
+var beast_assets: Dictionary = {}
+var beast_codex: Dictionary = {}
+var dungeon_types: Array = []
+var bosses: Array = []
+var exploration_events: Array = []
 var configs_loaded: bool = false
 
 
@@ -35,6 +41,30 @@ func ensure_loaded() -> void:
 	var route_data: Variant = load_json_file("res://data/configs/exploration_routes.json")
 	if route_data is Array:
 		exploration_routes = route_data
+
+	var region_raw_data: Variant = load_json_file("res://data/configs/region_data.json")
+	if region_raw_data is Dictionary:
+		region_data = region_raw_data
+
+	var beast_asset_data: Variant = load_json_file("res://data/configs/beast_assets.json")
+	if beast_asset_data is Dictionary:
+		beast_assets = beast_asset_data
+
+	var beast_codex_data: Variant = load_json_file("res://data/configs/beast_codex.json")
+	if beast_codex_data is Dictionary:
+		beast_codex = beast_codex_data
+
+	var dungeon_raw_data: Variant = load_json_file("res://data/configs/dungeon_types.json")
+	if dungeon_raw_data is Dictionary and dungeon_raw_data.get("dungeon_types") is Array:
+		dungeon_types = dungeon_raw_data["dungeon_types"]
+
+	var boss_raw_data: Variant = load_json_file("res://data/configs/bosses.json")
+	if boss_raw_data is Dictionary and boss_raw_data.get("bosses") is Array:
+		bosses = boss_raw_data["bosses"]
+
+	var exploration_event_data: Variant = load_json_file("res://data/configs/exploration_events.json")
+	if exploration_event_data is Dictionary and exploration_event_data.get("events") is Array:
+		exploration_events = exploration_event_data["events"]
 
 	configs_loaded = true
 	print("Loaded survivors: ", survivors.size(), " / beasts: ", beasts.size(), " / routes: ", exploration_routes.size())

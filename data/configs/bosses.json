@@ -1,0 +1,58 @@
+{
+  "bosses": [
+    {
+      "id": "buzhou_guardian",
+      "name": "断柱守护者",
+      "title": "天柱之影",
+      "region_id": "buzhou_mountain",
+      "recommended_level": "28-30",
+      "phases": [
+        {"threshold": 0.7, "name": "石躯形态", "skills": ["天柱碾压", "碎石飞溅", "磐石之躯"]},
+        {"threshold": 0.3, "name": "灵能觉醒", "skills": ["灵能震爆", "天柱碎片", "风暴召唤"]},
+        {"threshold": 0.0, "name": "崩坏形态", "skills": ["最后的崩塌", "灵潮引爆", "天柱之怒"]}
+      ],
+      "skills": {
+        "天柱碾压": {"type": "physical_single", "multiplier": 2.0, "cooldown": 3, "status": "stun:0.5"},
+        "碎石飞溅": {"type": "physical_all", "multiplier": 0.8, "cooldown": 2},
+        "磐石之躯": {"type": "passive", "effect": "physical_damage_taken:-0.3"},
+        "灵能震爆": {"type": "psychic_all", "multiplier": 1.2, "cooldown": 2, "status": "confusion:0.3"},
+        "天柱碎片": {"type": "physical_single", "multiplier": 1.8, "cooldown": 3, "status": "psychic_burn"},
+        "风暴召唤": {"type": "environment", "cooldown": 5, "effect": "party_hp_percent:-0.05"},
+        "最后的崩塌": {"type": "physical_all", "multiplier": 2.0, "cooldown": 2, "effect": "self_hp_percent:-0.1"},
+        "灵潮引爆": {"type": "psychic_all", "multiplier": 1.5, "cooldown": 4, "effect": "clear_buffs"},
+        "天柱之怒": {"type": "passive", "effect": "below_hp:0.2;all_stats:+0.3"}
+      },
+      "drops": [{"item": "灵潮核心碎片", "min": 2, "max": 5, "rate": 0.8}, {"item": "远古神纹", "min": 1, "max": 1, "rate": 0.15}, {"item": "天柱石", "min": 10, "max": 20, "rate": 1.0}],
+      "achievement": "天柱征服者"
+    },
+    {
+      "id": "queen_mother_shadow",
+      "name": "西王母幻影",
+      "title": "瑶池之影",
+      "region_id": "kunlun_snow",
+      "recommended_level": "22-25",
+      "phases": [{"threshold": 0.5, "name": "冰霜形态", "skills": ["瑶池冰晶", "雪山风暴", "冰霜护盾"]}, {"threshold": 0.0, "name": "灵能觉醒", "skills": ["西王母之怒", "不死药反噬", "瑶池庇护"]}],
+      "skills": {"瑶池冰晶": {"type": "psychic_single", "multiplier": 1.6, "cooldown": 2, "status": "freeze:0.5"}, "雪山风暴": {"type": "psychic_all", "multiplier": 0.9, "cooldown": 3, "status": "slow:0.3"}, "冰霜护盾": {"type": "self_support", "cooldown": 4, "effect": "shield:0.3;duration:3"}, "西王母之怒": {"type": "psychic_all", "multiplier": 1.4, "cooldown": 3, "effect": "clear_party_buffs"}, "不死药反噬": {"type": "psychic_single", "multiplier": 2.2, "cooldown": 4, "effect": "damage_to_heal"}, "瑶池庇护": {"type": "passive", "effect": "below_hp:0.3;heal_percent:0.08"}},
+      "drops": [{"item": "雪山灵药", "min": 2, "max": 3, "rate": 0.8}, {"item": "冰晶玉髓", "min": 5, "max": 10, "rate": 0.7}, {"item": "瑶池圣水", "min": 1, "max": 1, "rate": 0.4}], "achievement": "西王母的试炼"
+    },
+    {
+      "id": "feitian_beast",
+      "name": "飞天异兽", "title": "壁画之灵", "region_id": "mogao_caves", "recommended_level": "17-20",
+      "phases": [{"threshold": 0.5, "name": "壁画形态", "skills": ["飞天幻舞", "色彩喷涌", "壁画遁走"]}, {"threshold": 0.0, "name": "灵能觉醒", "skills": ["千佛怒目", "藏经之秘", "飞天之歌"]}],
+      "skills": {"飞天幻舞": {"type": "psychic_all", "multiplier": 0.7, "cooldown": 2, "status": "hallucination:0.3"}, "色彩喷涌": {"type": "psychic_single", "multiplier": 1.8, "cooldown": 3, "status": "confusion:0.5"}, "壁画遁走": {"type": "self_support", "cooldown": 4, "effect": "evasion:+0.5;duration:2"}, "千佛怒目": {"type": "psychic_all", "multiplier": 1.2, "cooldown": 3, "status": "fear"}, "藏经之秘": {"type": "support_all", "cooldown": 4, "effect": "steal_party_buffs"}, "飞天之歌": {"type": "passive", "effect": "random_debuff_each_turn"}},
+      "drops": [{"item": "古代经卷", "min": 1, "max": 2, "rate": 0.6}, {"item": "灵能颜料", "min": 5, "max": 10, "rate": 0.8}, {"item": "藏经遗物", "min": 1, "max": 1, "rate": 0.3}], "achievement": "壁画的秘密", "special_interactions": [{"condition": "晶核>=20", "effect": "boss_hp:-0.2"}, {"condition": "考古笔记", "effect": "extra_drop:藏经洞地图"}]
+    },
+    {
+      "id": "pass_behemoth", "name": "关隘巨兽", "title": "烽火之怒", "region_id": "great_wall", "recommended_level": "17-20", "phases": [{"threshold": 0.6, "name": "攻城形态", "skills": ["城墙冲撞", "碎石横扫", "铁甲加身"]}, {"threshold": 0.0, "name": "狂暴形态", "skills": ["烽火燃尽", "兽潮召唤", "最后的冲锋"]}], "skills": {"城墙冲撞": {"type": "physical_single", "multiplier": 2.2, "cooldown": 3, "status": "armor_break:0.5"}, "碎石横扫": {"type": "physical_all", "multiplier": 0.8, "cooldown": 2, "status": "knockback:0.3"}, "铁甲加身": {"type": "self_support", "cooldown": 5, "effect": "defense:+0.4;duration:3"}, "烽火燃尽": {"type": "physical_all", "multiplier": 1.4, "cooldown": 3, "status": "burn"}, "兽潮召唤": {"type": "support", "cooldown": 6, "effect": "summon:elite_beast:2"}, "最后的冲锋": {"type": "physical_single", "multiplier": 3.0, "cooldown": 5, "effect": "self_defense:-0.5;duration:1"}}, "drops": [{"item": "军用装备", "min": 1, "max": 1, "rate": 0.7}, {"item": "烽火令", "min": 3, "max": 5, "rate": 0.8}, {"item": "长城砖石", "min": 5, "max": 10, "rate": 1.0}], "achievement": "烽火重燃"},
+    {
+      "id": "palace_guardian", "name": "宫城守卫", "title": "朱门之影", "region_id": "central_city", "recommended_level": "20-23", "phases": [{"threshold": 0.5, "name": "长戟形态", "skills": ["朱门长戟", "宫城巡逻", "灵能灯笼"]}, {"threshold": 0.0, "name": "战傀觉醒", "skills": ["帝王意志", "金水河潮", "战傀核心"]}], "skills": {"朱门长戟": {"type": "physical_single", "multiplier": 2.0, "cooldown": 2, "status": "bleed:0.3"}, "宫城巡逻": {"type": "physical_all", "multiplier": 0.9, "cooldown": 3, "status": "slow:0.3"}, "灵能灯笼": {"type": "psychic_single", "multiplier": 1.4, "cooldown": 4, "effect": "mark_damage:+0.2"}, "帝王意志": {"type": "psychic_all", "multiplier": 1.2, "cooldown": 3, "status": "fear"}, "金水河潮": {"type": "psychic_all", "multiplier": 1.0, "cooldown": 4, "status": "freeze:0.5"}, "战傀核心": {"type": "passive", "effect": "below_hp:0.3;heal_percent:0.05;attack:+0.2"}}, "drops": [{"item": "科技材料", "min": 10, "max": 20, "rate": 1.0}, {"item": "宫城遗物", "min": 1, "max": 2, "rate": 0.6}, {"item": "灵能晶片", "min": 3, "max": 5, "rate": 0.7}], "achievement": "紫禁之巅"},
+    {
+      "id": "qin_emperor_shadow", "name": "秦始皇幻影", "title": "千古一帝", "region_id": "qin_tomb", "recommended_level": "30-33", "phases": [{"threshold": 0.7, "name": "帝王威仪", "skills": ["青铜战车", "水银之河", "帝王号令"]}, {"threshold": 0.3, "name": "长生觉醒", "skills": ["不死之躯", "星辰陨落", "兵马俑阵"]}, {"threshold": 0.0, "name": "帝陨之怒", "skills": ["焚书坑儒", "长城血祭", "始皇帝威"]}], "skills": {"青铜战车": {"type": "physical_single", "multiplier": 2.5, "cooldown": 3, "status": "armor_break:0.5"}, "水银之河": {"type": "psychic_all", "multiplier": 1.0, "cooldown": 2, "status": "poison:0.5"}, "帝王号令": {"type": "support", "cooldown": 5, "effect": "summon:awakened_terracotta:2"}, "不死之躯": {"type": "self_support", "cooldown": 4, "effect": "heal_percent:0.3;clear_debuffs"}, "星辰陨落": {"type": "psychic_all", "multiplier": 1.4, "cooldown": 3, "status": "confusion:0.5"}, "兵马俑阵": {"type": "support", "cooldown": 6, "effect": "summon:awakened_terracotta:4"}, "焚书坑儒": {"type": "psychic_all", "multiplier": 1.6, "cooldown": 3, "effect": "clear_buffs_and_debuffs"}, "长城血祭": {"type": "physical_single", "multiplier": 3.0, "cooldown": 4, "effect": "self_hp_percent:-0.15"}, "始皇帝威": {"type": "passive", "effect": "all_stats:+0.3;control_immune"}}, "drops": [{"item": "先秦灵器", "min": 1, "max": 1, "rate": 0.4}, {"item": "长生残篇", "min": 1, "max": 1, "rate": 0.3}, {"item": "水银精华", "min": 5, "max": 10, "rate": 0.8}], "achievement": "千古一帝"},
+    {
+      "id": "three_mountain_guardian", "name": "三山护法", "title": "符箓之灵", "region_id": "daoist_mountains", "recommended_level": "14-18", "phases": [{"threshold": 0.6, "name": "三面轮换", "skills": ["武当剑阵", "青城符箓", "龙虎炼丹"]}, {"threshold": 0.0, "name": "八臂形态", "skills": ["符箓连击", "道法自然", "三山合一"]}], "skills": {"武当剑阵": {"type": "physical_all", "multiplier": 0.9, "cooldown": 2, "status": "slow:0.3"}, "青城符箓": {"type": "psychic_single", "multiplier": 1.8, "cooldown": 3, "status": "silence:1"}, "龙虎炼丹": {"type": "self_support", "cooldown": 4, "effect": "heal_percent:0.15;attack:+0.15"}, "符箓连击": {"type": "physical_multi", "multiplier": 0.5, "hits": 6, "cooldown": 3}, "道法自然": {"type": "psychic_all", "multiplier": 1.2, "cooldown": 4, "effect": "clear_party_buffs"}, "三山合一": {"type": "passive", "effect": "rotate_damage_affinity"}}, "drops": [{"item": "道法秘籍", "min": 1, "max": 2, "rate": 0.6}, {"item": "灵符材料", "min": 10, "max": 20, "rate": 0.8}, {"item": "山门令牌", "min": 1, "max": 1, "rate": 0.5}], "achievement": "三山问道"},
+    {
+      "id": "formless_demon", "name": "无相魔", "title": "佛光之影", "region_id": "buddhist_temple", "recommended_level": "14-18", "phases": [{"threshold": 0.5, "name": "金刚怒目", "skills": ["降魔杵", "佛光普照", "金刚不坏"]}, {"threshold": 0.0, "name": "无相之形", "skills": ["无相变幻", "梵音渡厄", "涅槃之火"]}], "skills": {"降魔杵": {"type": "physical_single", "multiplier": 2.0, "cooldown": 2, "status": "stun:0.3"}, "佛光普照": {"type": "psychic_all", "multiplier": 0.8, "cooldown": 3, "status": "blind:0.5"}, "金刚不坏": {"type": "self_support", "cooldown": 5, "effect": "defense:+0.5;duration:2"}, "无相变幻": {"type": "passive", "effect": "rotate_physical_psychic"}, "梵音渡厄": {"type": "psychic_all", "multiplier": 1.2, "cooldown": 3, "status": "silence:0.5"}, "涅槃之火": {"type": "psychic_single", "multiplier": 2.5, "cooldown": 4, "status": "burn:3"}}, "drops": [{"item": "佛骨舍利", "min": 1, "max": 1, "rate": 0.4}, {"item": "梵文经卷", "min": 1, "max": 2, "rate": 0.6}, {"item": "菩提子", "min": 3, "max": 5, "rate": 0.7}], "achievement": "佛门试炼"},
+    {
+      "id": "spiritual_tide_core", "name": "灵潮之核", "title": "万潮之源", "region_id": "penglai_island", "recommended_level": "32-35", "phases": [{"threshold": 0.7, "name": "晶核形态", "skills": ["灵潮脉冲", "裂隙召唤", "灵能护盾"]}, {"threshold": 0.4, "name": "觉醒形态", "skills": ["万潮归宗", "本源爆发", "灵潮化生"]}, {"threshold": 0.0, "name": "最终形态", "skills": ["潮汐末日", "核心崩塌", "终结之潮"]}], "skills": {"灵潮脉冲": {"type": "psychic_all", "multiplier": 1.0, "cooldown": 2, "effect": "mutation:+0.05"}, "裂隙召唤": {"type": "support", "cooldown": 4, "effect": "summon:rift_shadow:1"}, "灵能护盾": {"type": "self_support", "cooldown": 5, "effect": "shield:0.5;duration:3"}, "万潮归宗": {"type": "psychic_all", "multiplier": 1.4, "cooldown": 3, "effect": "clear_party_buffs"}, "本源爆发": {"type": "psychic_single", "multiplier": 3.0, "cooldown": 4}, "灵潮化生": {"type": "passive", "effect": "heal_percent:0.1"}, "潮汐末日": {"type": "psychic_all", "multiplier": 2.0, "cooldown": 3, "effect": "mutation:+0.2"}, "核心崩塌": {"type": "environment", "effect": "all_damage_multiplier:1.5;duration:permanent"}, "终结之潮": {"type": "passive", "effect": "below_hp:0.2;self_hp_percent:-0.05;attack:+0.5"}}, "drops": [{"item": "仙草药引", "min": 3, "max": 5, "rate": 1.0}, {"item": "远海裂隙数据", "min": 1, "max": 1, "rate": 1.0}, {"item": "蓬莱仙玉", "min": 1, "max": 3, "rate": 0.6}], "achievement": "潮汐终结者", "special_interactions": [{"condition": "灵潮核心碎片>=5", "effect": "boss_hp:-0.2"}, {"condition": "沈琳_affinity:bonded", "effect": "boss_hp:-0.1"}, {"condition": "persuasion_route", "effect": "skip_battle:true"}]}
+  ]
+}

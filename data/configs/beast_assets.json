@@ -1,0 +1,83 @@
+{
+  "version": "v1",
+  "style": "Shanhaijing inspired post-apocalyptic 3D anime monster assets",
+  "avatar_sheet": {
+    "path": "res://assets/images/beasts/avatar_sheet_beasts_8_v1.png",
+    "columns": 4,
+    "rows": 2,
+    "sheet_size": [1536, 1024],
+    "cell_size": [384, 512],
+    "order": [
+      "feral_rat",
+      "flame_hound",
+      "mutated_cockroach",
+      "crawler",
+      "nest_guardian",
+      "mechanical_beast",
+      "psychic_beast",
+      "rift_shadow"
+    ]
+  },
+  "beasts": {
+    "feral_rat": {
+      "name": "异化鼠",
+      "role": "普通敌人",
+      "portrait": "res://assets/images/beasts/portrait_feral_rat_v1.png",
+      "avatar_rect": [0, 0, 384, 512],
+      "lore": "城市下层最常见的异化生物，骨刺从颅骨与尾节处增生，体内残留的灵能纹路会在黑暗里发出冷青色微光。",
+      "material_drops": ["异化毛皮", "啮齿骨刺", "低纯度灵能凝胶"]
+    },
+    "flame_hound": {
+      "name": "熔岩犬",
+      "role": "精英敌人",
+      "portrait": "res://assets/images/beasts/portrait_flame_hound_v1.png",
+      "avatar_rect": [384, 0, 384, 512],
+      "lore": "诞生于地裂热涌区的猎犬型异兽，体表像烧裂的玄武岩，奔袭时会拖出短促的火线。",
+      "material_drops": ["熔岩犬牙", "焦黑甲片", "余烬核心"]
+    },
+    "mutated_cockroach": {
+      "name": "变异蟑螂",
+      "role": "普通敌人",
+      "avatar_rect": [768, 0, 384, 512],
+      "lore": "极强适应性的虫类异化体，背壳囊泡会储存腐蚀性毒液，常出没于废弃食堂、下水道与地下仓库。",
+      "material_drops": ["几丁质甲壳", "腐蚀毒囊", "虫类触须"]
+    },
+    "crawler": {
+      "name": "爬行者",
+      "role": "普通敌人",
+      "avatar_rect": [1152, 0, 384, 512],
+      "lore": "由人形或兽形感染体进一步扭曲而成，脊骨外翻、口器扩大，常伏在墙面与管道暗处伏击幸存者。",
+      "material_drops": ["爬行者脊骨", "畸变口器", "黏液样本"]
+    },
+    "nest_guardian": {
+      "name": "巢穴守卫",
+      "role": "精英敌人",
+      "portrait": "res://assets/images/beasts/portrait_nest_guardian_v1.png",
+      "avatar_rect": [0, 512, 384, 512],
+      "lore": "巢穴深处的重甲守卫，背部孕育着发光卵囊，骨面具与巨牙让它像从古代兽纹里爬出的灾厄。",
+      "material_drops": ["巢穴卵囊", "守卫骨面", "重质虫甲"]
+    },
+    "mechanical_beast": {
+      "name": "机械异兽",
+      "role": "精英敌人",
+      "avatar_rect": [384, 512, 384, 512],
+      "lore": "旧时代自动兵器与异兽组织融合后的产物，机械骨架仍在执行失控的防御协议。",
+      "material_drops": ["断裂伺服骨", "异化线路", "机械兽核心"]
+    },
+    "psychic_beast": {
+      "name": "灵能异兽",
+      "role": "精英敌人",
+      "avatar_rect": [768, 512, 384, 512],
+      "lore": "受秘境裂隙长期照射的灵能兽，头骨变成类似祭器的白色骨冠，会用精神波动压制弱小目标。",
+      "material_drops": ["灵能骨冠", "幽蓝髓液", "精神残响晶"]
+    },
+    "rift_shadow": {
+      "name": "裂隙暗影",
+      "role": "BOSS",
+      "portrait": "res://assets/images/beasts/portrait_rift_shadow_v1.png",
+      "avatar_rect": [1152, 512, 384, 512],
+      "lore": "秘境裂隙凝成的影形灾兽，鹿角般的碎骨冠悬挂着破裂符片，胸口空洞不断吞吐紫黑色灵能。",
+      "material_drops": ["裂隙残核", "暗影骨片", "虚空火种"]
+    }
+  }
+}
