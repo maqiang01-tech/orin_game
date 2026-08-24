@@ -217,6 +217,7 @@ static func _build_enemy_unit(beast: Dictionary, index: int) -> Dictionary:
 		"statuses": {},
 		"defeated": false,
 		"weakness": beast.get("weakness", []),
+		"affixes": beast.get("affixes", []),
 		"base_id_ref": beast
 	}
 
@@ -265,7 +266,58 @@ static func _get_unit_speed(battle: Dictionary, unit_id: String) -> float:
 		speed *= 1.0 - value / 100.0
 	if statuses.has("freeze"):
 		speed *= 0.7
+	# 词缀：终焉意志（HP<20%全属性+50%）
+	if _has_final_will_active(unit):
+		speed *= 1.5
 	return speed
+
+
+# 检查单位是否拥有指定词缀
+static func _has_affix(unit: Dictionary, affix_id: String) -> bool:
+	var affixes: Array = unit.get("affixes", [])
+	for affix in affixes:
+		if affix is Dictionary and str(affix.get("id", "")) == affix_id:
+			return true
+	return false
+
+
+# 检查单位是否处于终焉意志激活状态（HP<20%）
+static func _has_final_will_active(unit: Dictionary) -> bool:
+	if not _has_affix(unit, "final_will"):
+		return false
+	var hp_ratio := float(unit.get("hp", 0.0)) / maxf(float(unit.get("max_hp", 1.0)), 1.0)
+	return hp_ratio < 0.2
+
+
+# 词缀：复苏——首次死亡恢复20% HP（每单位一次）
+static func _try_revive(battle: Dictionary) -> bool:
+	for unit_id in battle["units"]:
+		var unit: Dictionary = battle["units"][unit_id]
+		if unit.get("team", "") != "enemy":
+			continue
+		if not unit.get("defeated", false):
+			continue
+		if unit.get("revived", false):
+			continue
+		if not _has_affix(unit, "revive"):
+			continue
+		unit["defeated"] = false
+		unit["hp"] = float(unit["max_hp"]) * 0.2
+		unit["revived"] = true
+		_add_log(battle, "%s 触发了[复苏]，恢复 20%% 生命重新站起！" % unit["name"])
+		return true
+	return false
+
+
+# 词缀：裂隙召唤——动态添加敌人单位
+static func _spawn_enemy(battle: Dictionary, beast_id: String) -> void:
+	var beast: Dictionary = DataManager.beasts.get(beast_id, {})
+	if beast.is_empty():
+		return
+	var index: int = battle.get("enemy_party", []).size()
+	var unit: Dictionary = _build_enemy_unit(beast.duplicate(true), index)
+	battle["units"][unit["id"]] = unit
+	battle["enemy_party"].append(unit["id"])
 
 
 static func _get_final_attack(unit: Dictionary, damage_type: String) -> float:
@@ -277,6 +329,14 @@ static func _get_final_attack(unit: Dictionary, damage_type: String) -> float:
 	# 蓄力加成
 	if unit.get("charging", "") != "" or unit.get("charge_multiplier", 0) > 0:
 		base *= CHARGE_MULTIPLIER
+	# 词缀：狂暴（HP<30%攻击+20%）
+	if _has_affix(unit, "berserk"):
+		var hp_ratio := float(unit.get("hp", 0.0)) / maxf(float(unit.get("max_hp", 1.0)), 1.0)
+		if hp_ratio < 0.3:
+			base *= 1.2
+	# 词缀：终焉意志（HP<20%全属性+50%）
+	if _has_final_will_active(unit):
+		base *= 1.5
 	return base
 
 
@@ -288,6 +348,9 @@ static func _get_final_defense(unit: Dictionary, damage_type: String) -> float:
 		base *= 1.0 + value / 100.0
 	if unit.get("guard", false):
 		base *= 1.0 + GUARD_DEFENSE_BONUS
+	# 词缀：终焉意志（HP<20%全属性+50%）
+	if _has_final_will_active(unit):
+		base *= 1.5
 	return base
 
 
@@ -475,6 +538,8 @@ static func _resolve_attack(battle: Dictionary, attacker_id: String, target_id: 
 	if target_id == "":
 		return
 	var units: Dictionary = battle["units"]
+	if not units.has(attacker_id) or not units.has(target_id):
+		return
 	var attacker: Dictionary = units[attacker_id]
 	var defender: Dictionary = units[target_id]
 	if defender.get("defeated", false):
@@ -517,6 +582,19 @@ static func _resolve_attack(battle: Dictionary, attacker_id: String, target_id: 
 		_add_log(battle, "%s 发起攻击 → %s 受到 %s 点伤害。" % [attacker["name"], defender["name"], "、".join(hits_text)])
 	else:
 		_add_log(battle, "%s 使用[%s] → %s 受到 %s 点伤害。" % [attacker["name"], skill_name, defender["name"], "、".join(hits_text)])
+
+	# 词缀：毒血（攻击附带中毒）
+	if _has_affix(attacker, "poison_blood") and not defender.get("defeated", false):
+		_apply_status(battle, defender, "poison", 3, {"value": 2})
+		_add_log(battle, "%s 的毒血侵蚀了 %s！" % [attacker["name"], defender["name"]])
+
+	# 词缀：灵能反噬（灵能攻击反伤20%）
+	var skill_type := str(skill.get("type", ""))
+	if skill_type.begins_with("灵能") and _has_affix(defender, "spirit_reflect") and not defender.get("defeated", false):
+		var reflect := roundi(float(total_damage) * 0.2)
+		if reflect > 0:
+			attacker["hp"] = maxf(0.0, float(attacker["hp"]) - float(reflect))
+			_add_log(battle, "%s 的灵能反噬反弹 %d 点伤害给 %s！" % [defender["name"], reflect, attacker["name"]])
 
 	# 普攻反击
 	_check_counter(battle, attacker_id, target_id, total_damage, skill, is_basic)
@@ -681,6 +759,10 @@ static func _apply_skill_status_effects(battle: Dictionary, actor: Dictionary, t
 
 static func _apply_status(battle: Dictionary, target: Dictionary, status_id: String, duration: int, extra: Dictionary = {}) -> void:
 	var statuses: Dictionary = target["statuses"]
+	# 词缀：轮回感知（控制效果持续时间-50%）
+	var control_statuses := ["freeze", "confusion", "speed_down"]
+	if _has_affix(target, "reincarnation_sense") and status_id in control_statuses:
+		duration = maxi(1, int(ceil(float(duration) * 0.5)))
 	if not statuses.has(status_id):
 		statuses[status_id] = {"duration": duration}
 	for key in extra:
@@ -718,6 +800,10 @@ static func _select_optimal_target(battle: Dictionary, attacker_id: String) -> S
 	var alive_enemies: Array = get_alive_team_units(battle, enemy_team)
 	if alive_enemies.is_empty():
 		return ""
+
+	# 词缀：猎杀（无视嘲讽，强制攻击生命最低的敌人）
+	if _has_affix(actor, "hunter"):
+		return get_team_lowest_hp_unit(battle, enemy_team)
 
 	# 嘲讽检查：强制攻击嘲讽者
 	for enemy_id in alive_enemies:
@@ -788,6 +874,42 @@ static func _process_round_end(battle: Dictionary) -> void:
 				unit["defeated"] = true
 				_add_log(battle, "%s 中毒身亡！" % unit["name"])
 
+	# 词缀：虚空连接（每回合恢复2% HP）
+	for unit_id in battle["units"]:
+		var unit: Dictionary = battle["units"][unit_id]
+		if unit.get("defeated", false):
+			continue
+		if _has_affix(unit, "void_link"):
+			var heal_amount: int = roundi(float(unit["max_hp"]) * 0.02)
+			unit["hp"] = minf(float(unit["max_hp"]), float(unit["hp"]) + float(heal_amount))
+			_add_log(battle, "%s 通过虚空连接恢复了 %d 点生命。" % [unit["name"], heal_amount])
+
+	# 词缀：暗影屏障（每5回合获得3000护盾）
+	if int(battle.get("round", 1)) % 5 == 0:
+		for unit_id in battle["units"]:
+			var unit: Dictionary = battle["units"][unit_id]
+			if unit.get("defeated", false):
+				continue
+			if _has_affix(unit, "shadow_barrier"):
+				unit["statuses"]["shield"] = {"value": 3000.0}
+				_add_log(battle, "%s 展开暗影屏障，获得 3000 点护盾！" % unit["name"])
+
+	# 词缀：裂隙召唤（HP<50%召唤裂隙暗影×1，每场战斗一次）
+	var summon_owners: Array = []
+	for unit_id in battle["units"]:
+		var unit: Dictionary = battle["units"][unit_id]
+		if unit.get("defeated", false) or unit.get("team") != "enemy":
+			continue
+		if _has_affix(unit, "rift_summon") and not unit.get("summoned", false):
+			var hp_ratio := float(unit.get("hp", 0.0)) / maxf(float(unit.get("max_hp", 1.0)), 1.0)
+			if hp_ratio < 0.5:
+				unit["summoned"] = true
+				summon_owners.append(unit["name"])
+	if not summon_owners.is_empty():
+		for owner_name in summon_owners:
+			_spawn_enemy(battle, "rift_shadow")
+			_add_log(battle, "%s 撕裂了裂隙，召唤出裂隙暗影！" % owner_name)
+
 	# 能量恢复（每回合20%）
 	for unit_id in battle["units"]:
 		var unit: Dictionary = battle["units"][unit_id]
@@ -851,6 +973,9 @@ static func check_battle_over(battle: Dictionary) -> bool:
 	var enemy_alive: Array = get_alive_team_units(battle, "enemy")
 
 	if enemy_alive.is_empty():
+		# 词缀：复苏（首次死亡恢复20% HP）
+		if _try_revive(battle):
+			return false
 		battle["battle_over"] = true
 		battle["victory"] = true
 		_add_log(battle, "🎉 战斗胜利！")
@@ -1008,6 +1133,14 @@ static func get_battle_status_text(battle: Dictionary) -> String:
 	for unit_id in enemy_alive:
 		var unit: Dictionary = battle["units"][unit_id]
 		var label := _get_unit_status_label(unit)
+		var affixes: Array = unit.get("affixes", [])
+		if not affixes.is_empty():
+			var affix_names: Array[String] = []
+			for affix in affixes:
+				if affix is Dictionary:
+					affix_names.append(str(affix.get("name", "")))
+			if not affix_names.is_empty():
+				label = (label + " " if label != "" else "") + "词缀:" + "、".join(affix_names)
 		if label != "":
 			enemy_status_labels.append("%s[%s]" % [unit["name"], label])
 	if not enemy_status_labels.is_empty():

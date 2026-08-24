@@ -32,6 +32,7 @@ var home_event_label: Label
 var home_chapter_label: Label
 var home_status_panel: PanelContainer
 var home_status_label: Label
+var home_reincarnation_label: Label
 
 # 编队界面引用
 var formation_label: Label
@@ -48,8 +49,17 @@ var selected_formation_survivor_id: String = ""
 var partner_list_container: VBoxContainer
 var partner_detail_popup: PopupPanel
 var partner_detail_name: Label
+var partner_detail_affinity: Label
+var partner_detail_star: Label
+var partner_star_up_button: Button
 var partner_detail_stats: Label
+var partner_detail_equipment: Label
+var partner_equip_buttons: Dictionary = {}  # slot -> Button
 var partner_detail_skills: Label
+var partner_skill_upgrade_container: VBoxContainer
+var partner_equipment_select_popup: PopupPanel
+var partner_equipment_select_container: VBoxContainer
+var partner_equipment_select_slot: String = ""
 
 # 探索界面引用
 var explore_route_container: VBoxContainer
@@ -64,7 +74,9 @@ var current_site_grid: Array = []
 var current_site_position: Vector2i = Vector2i.ZERO
 var current_site_floor: int = 1
 var current_site_total_floors: int = 1
+var world_map_viewport: Control
 var world_map_canvas: Control
+var world_map_zoom_container: Control
 var world_map_base_size := Vector2.ZERO
 var world_map_zoom: float = 1.0
 var world_map_touches: Dictionary = {}
@@ -79,6 +91,7 @@ var codex_content_container: VBoxContainer
 var codex_view_mode: String = "categories"
 var selected_codex_category: String = ""
 var selected_codex_beast_id: String = ""
+var selected_codex_boss_id: String = ""
 
 # 当前选中的伙伴
 var selected_partner: Dictionary = {}
@@ -103,6 +116,14 @@ var battle_waiting_input: bool = false
 var battle_finished: bool = false
 var battle_callback: Callable = Callable()
 var battle_site_context: Dictionary = {}  # 小地图遇敌战斗上下文：记录敌人格/原位置，用于结算后处理
+
+# 轮回结算UI引用
+var reincarnation_popup: PopupPanel
+var reincarnation_confirm_label: Label
+var reincarnation_result_label: Label
+var reincarnation_cancel_button: Button
+var reincarnation_confirm_button: Button
+var reincarnation_close_button: Button
 
 
 class WorldMapConnections:
@@ -136,6 +157,7 @@ func _ready() -> void:
 	_build_content_area()
 	_build_tab_navigation()
 	_build_battle_popup()
+	_build_reincarnation_popup()
 	exploration_system = ExplorationSystem.new()
 	exploration_system.player = GameState.player
 	exploration_system.data_manager = DataManager
@@ -456,6 +478,30 @@ func _build_home_page() -> Control:
 	home_chapter_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	chapter_box.add_child(home_chapter_label)
 
+	# 轮回信息
+	var reincarnation_panel := _make_panel_container()
+	page.add_child(reincarnation_panel)
+	var reincarnation_box := _make_panel_margin(reincarnation_panel, 12)
+
+	var reincarnation_title := Label.new()
+	reincarnation_title.text = "【轮回进度】"
+	_apply_label_style(reincarnation_title, 16, COLOR_AMBER)
+	reincarnation_box.add_child(reincarnation_title)
+
+	home_reincarnation_label = Label.new()
+	home_reincarnation_label.text = "第 1 轮 · 真相进度 0%"
+	_apply_label_style(home_reincarnation_label, 13)
+	home_reincarnation_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	reincarnation_box.add_child(home_reincarnation_label)
+
+	var reincarnation_button := Button.new()
+	reincarnation_button.text = "🔄 主动轮回（结算本轮成就）"
+	reincarnation_button.custom_minimum_size = Vector2(0, 38)
+	reincarnation_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(reincarnation_button, "panel")
+	reincarnation_button.pressed.connect(_on_reincarnation_pressed)
+	reincarnation_box.add_child(reincarnation_button)
+
 	# 快速操作
 	var quick_panel := _make_panel_container()
 	page.add_child(quick_panel)
@@ -625,16 +671,21 @@ func _build_partners_page() -> Control:
 
 func _build_partner_detail_popup() -> void:
 	partner_detail_popup = PopupPanel.new()
-	partner_detail_popup.size = Vector2(320, 480)
-	partner_detail_popup.add_theme_stylebox_override("panel", _make_flat_style(Color(0.06, 0.08, 0.09, 0.96), COLOR_CYAN, 1, 5, 0))
+	partner_detail_popup.size = Vector2(360, 640)
+	partner_detail_popup.add_theme_stylebox_override("panel", _make_flat_style(Color(0.06, 0.08, 0.09, 0.97), COLOR_CYAN, 1, 5, 0))
 	add_child(partner_detail_popup)
+
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	partner_detail_popup.add_child(scroll)
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 16)
-	margin.add_theme_constant_override("margin_top", 16)
+	margin.add_theme_constant_override("margin_top", 12)
 	margin.add_theme_constant_override("margin_right", 16)
 	margin.add_theme_constant_override("margin_bottom", 16)
-	partner_detail_popup.add_child(margin)
+	scroll.add_child(margin)
 
 	var vbox := VBoxContainer.new()
 	vbox.add_theme_constant_override("separation", 8)
@@ -644,15 +695,61 @@ func _build_partner_detail_popup() -> void:
 	_apply_label_style(partner_detail_name, 20, COLOR_CYAN)
 	vbox.add_child(partner_detail_name)
 
+	partner_detail_affinity = Label.new()
+	_apply_label_style(partner_detail_affinity, 13)
+	partner_detail_affinity.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	vbox.add_child(partner_detail_affinity)
+
+	partner_detail_star = Label.new()
+	_apply_label_style(partner_detail_star, 14, COLOR_AMBER)
+	partner_detail_star.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	vbox.add_child(partner_detail_star)
+
+	partner_star_up_button = Button.new()
+	partner_star_up_button.text = "⭐ 升星"
+	partner_star_up_button.custom_minimum_size = Vector2(0, 30)
+	partner_star_up_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(partner_star_up_button)
+	partner_star_up_button.pressed.connect(_on_partner_star_up_pressed)
+	vbox.add_child(partner_star_up_button)
+
 	partner_detail_stats = Label.new()
-	_apply_label_style(partner_detail_stats, 15)
+	_apply_label_style(partner_detail_stats, 14)
 	partner_detail_stats.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	vbox.add_child(partner_detail_stats)
 
+	partner_detail_equipment = Label.new()
+	_apply_label_style(partner_detail_equipment, 13)
+	partner_detail_equipment.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	vbox.add_child(partner_detail_equipment)
+
+	var equip_row := HBoxContainer.new()
+	equip_row.add_theme_constant_override("separation", 6)
+	vbox.add_child(equip_row)
+	var slot_defs := [["weapon", "武器"], ["armor", "防具"], ["accessory", "饰品"]]
+	for slot_def in slot_defs:
+		var equip_button := Button.new()
+		equip_button.text = "装备%s" % slot_def[1]
+		equip_button.custom_minimum_size = Vector2(0, 30)
+		equip_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_apply_button_style(equip_button)
+		equip_button.pressed.connect(_on_partner_equip_pressed.bind(str(slot_def[0])))
+		equip_row.add_child(equip_button)
+		partner_equip_buttons[str(slot_def[0])] = equip_button
+
+	var skill_title := Label.new()
+	skill_title.text = "【技能】"
+	_apply_label_style(skill_title, 15, COLOR_AMBER)
+	vbox.add_child(skill_title)
+
 	partner_detail_skills = Label.new()
-	_apply_label_style(partner_detail_skills, 15)
+	_apply_label_style(partner_detail_skills, 14)
 	partner_detail_skills.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	vbox.add_child(partner_detail_skills)
+
+	partner_skill_upgrade_container = VBoxContainer.new()
+	partner_skill_upgrade_container.add_theme_constant_override("separation", 4)
+	vbox.add_child(partner_skill_upgrade_container)
 
 	var close_button := Button.new()
 	close_button.text = "关闭"
@@ -661,15 +758,54 @@ func _build_partner_detail_popup() -> void:
 	close_button.pressed.connect(func() -> void: partner_detail_popup.hide())
 	vbox.add_child(close_button)
 
+	# 装备选择弹窗
+	partner_equipment_select_popup = PopupPanel.new()
+	partner_equipment_select_popup.size = Vector2(300, 420)
+	partner_equipment_select_popup.add_theme_stylebox_override("panel", _make_flat_style(Color(0.06, 0.08, 0.09, 0.97), COLOR_AMBER, 1, 5, 0))
+	add_child(partner_equipment_select_popup)
+
+	var select_margin := MarginContainer.new()
+	select_margin.add_theme_constant_override("margin_left", 12)
+	select_margin.add_theme_constant_override("margin_top", 12)
+	select_margin.add_theme_constant_override("margin_right", 12)
+	select_margin.add_theme_constant_override("margin_bottom", 12)
+	partner_equipment_select_popup.add_child(select_margin)
+
+	var select_vbox := VBoxContainer.new()
+	select_vbox.add_theme_constant_override("separation", 6)
+	select_margin.add_child(select_vbox)
+
+	var select_title := Label.new()
+	select_title.text = "选择装备"
+	_apply_label_style(select_title, 16, COLOR_AMBER)
+	select_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	select_vbox.add_child(select_title)
+
+	var select_scroll := ScrollContainer.new()
+	select_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	select_vbox.add_child(select_scroll)
+
+	partner_equipment_select_container = VBoxContainer.new()
+	partner_equipment_select_container.add_theme_constant_override("separation", 4)
+	partner_equipment_select_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	select_scroll.add_child(partner_equipment_select_container)
+
+	var select_close := Button.new()
+	select_close.text = "关闭"
+	select_close.custom_minimum_size = Vector2(0, 30)
+	_apply_button_style(select_close)
+	select_close.pressed.connect(func() -> void: partner_equipment_select_popup.hide())
+	select_vbox.add_child(select_close)
+
 
 # ============================================================
 # 战斗弹窗
 # ============================================================
 func _build_battle_popup() -> void:
 	battle_popup = PopupPanel.new()
-	battle_popup.size = Vector2(700, 1240)
+	battle_popup.size = Vector2(520, 820)
 	battle_popup.exclusive = true
-	battle_popup.add_theme_stylebox_override("panel", _make_flat_style(Color(0.04, 0.06, 0.07, 0.97), COLOR_CYAN, 1, 5, 0))
+	battle_popup.add_theme_stylebox_override("panel", _make_texture_style(UI_PANEL_CARD_TEXTURE, 14, 14, 14, 14))
 	add_child(battle_popup)
 
 	var margin := MarginContainer.new()
@@ -698,6 +834,7 @@ func _build_battle_popup() -> void:
 	vbox.add_child(battle_actor_label)
 
 	var enemy_panel := _make_panel_container()
+	enemy_panel.custom_minimum_size = Vector2(0, 178)
 	vbox.add_child(enemy_panel)
 	var enemy_box := _make_panel_margin(enemy_panel, 8)
 
@@ -708,6 +845,7 @@ func _build_battle_popup() -> void:
 
 	battle_enemy_container = VBoxContainer.new()
 	battle_enemy_container.add_theme_constant_override("separation", 3)
+	battle_enemy_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	enemy_box.add_child(battle_enemy_container)
 
 	battle_status_label = Label.new()
@@ -736,6 +874,7 @@ func _build_battle_popup() -> void:
 
 	battle_party_container = HBoxContainer.new()
 	battle_party_container.add_theme_constant_override("separation", 6)
+	battle_party_container.custom_minimum_size = Vector2(0, 118)
 	vbox.add_child(battle_party_container)
 
 	# 模式切换
@@ -839,6 +978,8 @@ func _build_explore_page() -> Control:
 	var page := VBoxContainer.new()
 	page.name = "ExplorePage"
 	page.add_theme_constant_override("separation", 6)
+	page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	page.size_flags_vertical = Control.SIZE_EXPAND_FILL
 
 	var title := Label.new()
 	title.text = "探索"
@@ -865,10 +1006,10 @@ func _build_explore_page() -> Control:
 	page.add_child(map_panel)
 
 	var map_margin := MarginContainer.new()
-	map_margin.add_theme_constant_override("margin_left", 12)
-	map_margin.add_theme_constant_override("margin_top", 12)
-	map_margin.add_theme_constant_override("margin_right", 12)
-	map_margin.add_theme_constant_override("margin_bottom", 12)
+	map_margin.add_theme_constant_override("margin_left", 4)
+	map_margin.add_theme_constant_override("margin_top", 8)
+	map_margin.add_theme_constant_override("margin_right", 4)
+	map_margin.add_theme_constant_override("margin_bottom", 8)
 	map_panel.add_child(map_margin)
 
 	explore_route_container = VBoxContainer.new()
@@ -1062,20 +1203,43 @@ func _refresh_home() -> void:
 	var reserve_count := player.reserve_survivor_ids.size()
 	home_team_label.text = "小队状态：%d/3 出战 · %d 未上阵" % [active_count, reserve_count]
 
-	# 主线进度
-	var chapter_info := "第 %d 章" % player.chapter_id
-	for chapter in DataManager.chapters:
-		if chapter.get("id") == player.chapter_id:
-			chapter_info = "第 %d 章 · %s" % [chapter["id"], chapter.get("title", "")]
-			break
-	home_chapter_label.text = chapter_info
+	# 主线进度（V2.0 48章配置）
+	home_chapter_label.text = _get_chapter_display_name(player.chapter_id)
 
-	# 事件通知
-	if DataManager.events.size() > 0:
+	# 轮回进度
+	var progress: Dictionary = player.get_reincarnation_progress()
+	var best_rating: String = str(progress.get("best_rating", ""))
+	var best_text := ""
+	if best_rating != "":
+		best_text = " · 最佳评价 %s" % best_rating
+	home_reincarnation_label.text = "第 %d 轮 · 主线 %d/%d 章 · 真相 %d%%\n轮回印记 ×%d · 天赋点 ×%d%s" % [
+		int(progress.get("reincarnation", 1)),
+		int(progress.get("highest_chapter_all_time", 1)),
+		int(progress.get("total_chapters", 48)),
+		int(float(progress.get("truth_progress", 0.0)) * 100.0),
+		int(progress.get("reincarnation_marks", 0)),
+		int(progress.get("talent_points", 0)),
+		best_text
+	]
+
+	# 事件通知（含轮回记忆）
+	var memory_event: Dictionary = player.try_trigger_reincarnation_event()
+	if bool(memory_event.get("triggered", false)):
+		home_event_label.text = "💭 轮回记忆：" + str(memory_event.get("text", ""))
+	elif DataManager.events.size() > 0:
 		var first_event: Dictionary = DataManager.events[0]
 		home_event_label.text = first_event.get("description", "暂无新事件。")
 	else:
 		home_event_label.text = "暂无新事件。"
+
+
+# 获取章节显示名（V2.0 48章配置）
+func _get_chapter_display_name(chapter_id: int) -> String:
+	var chapters: Array = DataManager.main_story.get("chapters", [])
+	for ch in chapters:
+		if int(ch.get("id", 0)) == chapter_id:
+			return "第 %d 章 · %s" % [chapter_id, str(ch.get("name", ""))]
+	return "第 %d 章" % chapter_id
 
 
 func _refresh_formation() -> void:
@@ -1294,14 +1458,17 @@ func _refresh_partners() -> void:
 
 	var player := GameState.player
 	for survivor in player.survivors:
+		player._ensure_partner_training_fields(survivor)
+		var affinity_title: String = str(player.get_affinity_level_info(int(survivor.get("affinity", 0))).get("title", "初识"))
 		var button := Button.new()
-		button.text = "%s  %s  Lv.%d  %s" % [
+		button.text = "%s  %s  Lv.%d  %s\n好感：%s" % [
 			survivor["name"],
 			"★".repeat(survivor.get("star", 1)),
 			survivor["level"],
-			survivor.get("rarity", "")
+			survivor.get("rarity", ""),
+			affinity_title
 		]
-		button.custom_minimum_size = Vector2(0, 38)
+		button.custom_minimum_size = Vector2(0, 48)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		_apply_button_style(button)
 		button.pressed.connect(_on_partner_clicked.bind(survivor))
@@ -1310,32 +1477,263 @@ func _refresh_partners() -> void:
 
 func _on_partner_clicked(partner: Dictionary) -> void:
 	selected_partner = partner
-	partner_detail_name.text = "%s · %s" % [partner["name"], partner.get("title", "")]
+	_refresh_partner_detail()
+	partner_detail_popup.popup_centered()
+
+
+func _format_stat_label(stat_key: String) -> String:
+	match stat_key:
+		"attack":
+			return "攻击"
+		"defense":
+			return "防御"
+		"spirit":
+			return "灵能"
+		"resistance":
+			return "抵抗"
+		"speed":
+			return "速度"
+	return stat_key
+
+
+func _format_equipment_stats(item: Dictionary) -> String:
+	var parts: Array[String] = []
+	var item_stats: Dictionary = item.get("stats", {})
+	for stat_key in item_stats:
+		parts.append("%s%+d" % [_format_stat_label(str(stat_key)), int(item_stats[stat_key])])
+	return "、".join(parts)
+
+
+func _refresh_partner_detail() -> void:
+	if selected_partner.is_empty():
+		return
+	var player := GameState.player
+	var fresh_partner := player.get_partner_by_id(str(selected_partner.get("id", "")))
+	if fresh_partner.is_empty():
+		return
+	selected_partner = fresh_partner
+	player._ensure_partner_training_fields(selected_partner)
+	var partner: Dictionary = selected_partner
+	var partner_id: String = str(partner.get("id", ""))
+
+	partner_detail_name.text = "%s · %s" % [partner.get("name", ""), partner.get("title", "")]
+
+	# 好感度
+	var affinity_value := int(partner.get("affinity", 0))
+	var aff_info: Dictionary = player.get_affinity_level_info(affinity_value)
+	var affinity_text := "好感度：%s Lv.%d（%d）" % [aff_info.get("title", ""), aff_info.get("level", 1), affinity_value]
+	for level_info in PlayerData.AFFINITY_LEVELS:
+		if int(level_info.get("threshold", 0)) > affinity_value:
+			affinity_text += "  /  下一阶 %d" % int(level_info.get("threshold", 0))
+			affinity_text += "（%s）" % str(level_info.get("bonus", {}).get("attack", 0))
+			break
+	partner_detail_affinity.text = affinity_text
+
+	# 星级
+	var star_count := int(partner.get("star", 1))
+	var star_text := "★".repeat(star_count) + "☆".repeat(maxi(0, PlayerData.MAX_PARTNER_STAR - star_count))
+	partner_detail_star.text = star_text + "\n星级加成：每星全属性+12%"
+	if star_count >= PlayerData.MAX_PARTNER_STAR:
+		partner_star_up_button.disabled = true
+		partner_star_up_button.text = "已满星"
+	else:
+		var cost: Dictionary = PlayerData.STAR_UP_COSTS.get(star_count + 1, {})
+		partner_star_up_button.disabled = int(player.materials.get("memory_shards", 0)) < int(cost.get("memory_shards", 0))
+		partner_star_up_button.text = "⭐ 升星为 %d★（%s）" % [star_count + 1, _format_resources(cost)]
+
+	# 属性
 	var stats: Dictionary = partner.get("stats", {})
-	partner_detail_stats.text = "HP %d/%d  |  能量 %d/%d\n攻击 %d  |  防御 %d\n灵能 %d  |  抵抗 %d\n速度 %d" % [
+	var effective_bonus: Dictionary = player.get_partner_effective_bonus(partner_id)
+	var bonus_parts: Array[String] = []
+	for stat_key in effective_bonus:
+		var bonus_value: int = int(effective_bonus[stat_key])
+		if bonus_value != 0:
+			bonus_parts.append("%s%+d" % [_format_stat_label(str(stat_key)), bonus_value])
+	var bonus_text := "、".join(bonus_parts) if not bonus_parts.is_empty() else "无"
+	partner_detail_stats.text = "HP %d/%d  |  能量 %d/%d\n攻击 %d  |  防御 %d\n灵能 %d  |  抵抗 %d\n速度 %d\n装备+好感加成：%s" % [
 		partner.get("hp", 0), partner.get("max_hp", 0),
 		partner.get("energy", 0), partner.get("max_energy", 0),
 		stats.get("attack", 0), stats.get("defense", 0),
 		stats.get("spirit", 0), stats.get("resistance", 0),
-		stats.get("speed", 0)
+		stats.get("speed", 0),
+		bonus_text
 	]
 
-	# 技能列表（支持 initial_skills 和 skills 两种格式）
-	var skill_text := "【技能】\n"
-	var skills: Array = partner.get("skills", [])
-	if skills.size() == 0 and partner.has("initial_skills"):
-		skills = partner["initial_skills"]
-	if skills.size() > 0:
-		for skill_ref in skills:
-			var skill_id: String = skill_ref.get("id", "") if skill_ref is Dictionary else str(skill_ref)
-			if DataManager.skills.has(skill_id):
-				var skill: Dictionary = DataManager.skills[skill_id]
-				skill_text += "%s  Lv.%d\n" % [skill.get("name", skill_id), skill_ref.get("level", 1) if skill_ref is Dictionary else 1]
-	else:
-		skill_text += "暂无技能"
-	partner_detail_skills.text = skill_text
+	# 装备
+	var slot_names := {"weapon": "武器", "armor": "防具", "accessory": "饰品"}
+	var equipment: Dictionary = partner.get("equipment", {"weapon": "", "armor": "", "accessory": ""})
+	var equip_parts: Array[String] = ["【装备】"]
+	for slot in slot_names:
+		var item_id: String = equipment.get(slot, "")
+		if item_id == "":
+			equip_parts.append("%s：未装备" % slot_names[slot])
+		else:
+			var item := DataManager.get_equipment_by_id(item_id)
+			equip_parts.append("%s：%s  %s" % [slot_names[slot], item.get("name", item_id), _format_equipment_stats(item)])
+	partner_detail_equipment.text = "\n".join(equip_parts)
 
-	partner_detail_popup.popup_centered()
+	# 技能
+	var skills: Array = partner.get("skills", [])
+	if skills.is_empty() and partner.has("initial_skills"):
+		skills = partner["initial_skills"]
+	var skill_parts: Array[String] = []
+	for skill_ref in skills:
+		var skill_id: String = skill_ref.get("id", "") if skill_ref is Dictionary else str(skill_ref)
+		var skill_lv: int = skill_ref.get("level", 1) if skill_ref is Dictionary else 1
+		var skill_name: String = skill_id
+		if DataManager.skills.has(skill_id):
+			skill_name = str(DataManager.skills[skill_id].get("name", skill_id))
+		skill_parts.append("%s Lv.%d" % [skill_name, skill_lv])
+	partner_detail_skills.text = "\n".join(skill_parts) if not skill_parts.is_empty() else "暂无技能"
+
+	# 技能升级按钮
+	for child in partner_skill_upgrade_container.get_children():
+		partner_skill_upgrade_container.remove_child(child)
+		child.queue_free()
+	for i in range(skills.size()):
+		var skill_ref: Dictionary = skills[i]
+		var skill_id: String = skill_ref.get("id", "") if skill_ref is Dictionary else str(skill_ref)
+		var skill_lv: int = skill_ref.get("level", 1) if skill_ref is Dictionary else 1
+		var skill_name: String = skill_id
+		if DataManager.skills.has(skill_id):
+			skill_name = str(DataManager.skills[skill_id].get("name", skill_id))
+		if skill_lv >= PlayerData.MAX_SKILL_LEVEL:
+			var max_label := Label.new()
+			max_label.text = "%s · 已满级" % skill_name
+			_apply_label_style(max_label, 12, COLOR_MUTED)
+			partner_skill_upgrade_container.add_child(max_label)
+			continue
+		var skill_cost: Dictionary = PlayerData.SKILL_UPGRADE_COSTS.get(skill_lv, {})
+		var upgrade_button := Button.new()
+		upgrade_button.text = "↑ %s Lv.%d → %d（%s）" % [skill_name, skill_lv, skill_lv + 1, _format_resources(skill_cost)]
+		upgrade_button.custom_minimum_size = Vector2(0, 30)
+		upgrade_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_apply_button_style(upgrade_button)
+		upgrade_button.pressed.connect(_on_partner_skill_upgrade_pressed.bind(i))
+		partner_skill_upgrade_container.add_child(upgrade_button)
+
+
+func _on_partner_star_up_pressed() -> void:
+	if selected_partner.is_empty():
+		return
+	var partner_id: String = str(selected_partner.get("id", ""))
+	var result: Dictionary = GameState.player.upgrade_partner_star(partner_id)
+	if result.get("success", false):
+		_set_home_status("%s 升星成功！当前 %d★，全属性提升！" % [_get_survivor_name(partner_id), int(result.get("star", 1))])
+	else:
+		_set_home_status(str(result.get("reason", "升星失败。")))
+	_refresh_partner_detail()
+	_refresh_partners()
+
+
+func _on_partner_equip_pressed(slot: String) -> void:
+	if selected_partner.is_empty():
+		return
+	partner_equipment_select_slot = slot
+	_open_equipment_select_popup(slot)
+
+
+func _open_equipment_select_popup(slot: String) -> void:
+	var player := GameState.player
+	for child in partner_equipment_select_container.get_children():
+		partner_equipment_select_container.remove_child(child)
+		child.queue_free()
+
+	var partner := player.get_partner_by_id(str(selected_partner.get("id", "")))
+	player._ensure_partner_training_fields(partner)
+	var equipment: Dictionary = partner.get("equipment", {})
+	var equipped_item: String = equipment.get(slot, "")
+
+	var title := Label.new()
+	title.text = "选择【%s】" % _format_stat_label(slot)
+	_apply_label_style(title, 14, COLOR_AMBER)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	partner_equipment_select_container.add_child(title)
+
+	if equipped_item != "":
+		var unequip_button := Button.new()
+		var equipped: Dictionary = DataManager.get_equipment_by_id(equipped_item)
+		unequip_button.text = "卸下：%s" % equipped.get("name", equipped_item)
+		unequip_button.custom_minimum_size = Vector2(0, 32)
+		unequip_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_apply_button_style(unequip_button)
+		unequip_button.pressed.connect(_on_partner_unequip_pressed.bind(slot))
+		partner_equipment_select_container.add_child(unequip_button)
+
+	var available: Array = []
+	for equipment_id in DataManager.equipment:
+		var item: Dictionary = DataManager.equipment[equipment_id]
+		if item.get("slot", "") != slot:
+			continue
+		var already_equipped := false
+		for survivor in player.survivors:
+			player._ensure_partner_training_fields(survivor)
+			var survivor_equipment: Dictionary = survivor.get("equipment", {})
+			if survivor_equipment.get(slot, "") == equipment_id:
+				already_equipped = true
+				break
+		if not already_equipped:
+			available.append(item)
+
+	if available.is_empty():
+		var empty_label := Label.new()
+		empty_label.text = "没有可用的%s装备。" % _format_stat_label(slot)
+		_apply_label_style(empty_label, 13, COLOR_MUTED)
+		empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		partner_equipment_select_container.add_child(empty_label)
+	else:
+		for item in available:
+			var item_button := Button.new()
+			item_button.text = "%s  [%s]\n%s" % [
+				item.get("name", item.get("id", "")),
+				item.get("rarity", ""),
+				_format_equipment_stats(item)
+			]
+			item_button.custom_minimum_size = Vector2(0, 46)
+			item_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			item_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+			_apply_button_style(item_button)
+			item_button.pressed.connect(_on_equipment_selected.bind(str(item.get("id", "")), slot))
+			partner_equipment_select_container.add_child(item_button)
+
+	partner_equipment_select_popup.popup_centered()
+
+
+func _on_equipment_selected(item_id: String, slot: String) -> void:
+	if selected_partner.is_empty():
+		return
+	var result: Dictionary = GameState.player.equip_partner_item(str(selected_partner.get("id", "")), item_id)
+	if result.get("success", false):
+		var item: Dictionary = result.get("item", {})
+		_set_home_status("已装备 %s。" % item.get("name", item_id))
+	else:
+		_set_home_status(str(result.get("reason", "装备失败。")))
+	partner_equipment_select_popup.hide()
+	_refresh_partner_detail()
+
+
+func _on_partner_unequip_pressed(slot: String) -> void:
+	if selected_partner.is_empty():
+		return
+	var result: Dictionary = GameState.player.unequip_partner_item(str(selected_partner.get("id", "")), slot)
+	if result.get("success", false):
+		_set_home_status("已卸下 %s。" % str(result.get("item_id", "")))
+	else:
+		_set_home_status(str(result.get("reason", "卸下失败。")))
+	partner_equipment_select_popup.hide()
+	_refresh_partner_detail()
+
+
+func _on_partner_skill_upgrade_pressed(skill_index: int) -> void:
+	if selected_partner.is_empty():
+		return
+	var partner_id: String = str(selected_partner.get("id", ""))
+	var result: Dictionary = GameState.player.upgrade_partner_skill(partner_id, skill_index)
+	if result.get("success", false):
+		_set_home_status("技能升级成功！当前 Lv.%d。" % int(result.get("level", 1)))
+	else:
+		_set_home_status(str(result.get("reason", "技能升级失败。")))
+	_refresh_partner_detail()
 
 
 func _refresh_explore() -> void:
@@ -1343,46 +1741,6 @@ func _refresh_explore() -> void:
 		_show_site_map()
 		return
 	_show_world_map()
-	return
-
-	var player := GameState.player
-	explore_status_label.text = "消耗：半天（%s）" % player.get_time_label()
-
-	# 清空路线
-	for child in explore_route_container.get_children():
-		explore_route_container.remove_child(child)
-		child.queue_free()
-
-	# 检查是否正在探索中
-	if exploration_system.is_exploring():
-		_show_explore_nodes()
-		return
-
-	# 从探索路线数据生成路线按钮
-	var available_routes: Array = exploration_system.get_available_routes(player.day)
-
-	# 最多显示3个
-	var shown_routes: Array = available_routes.slice(0, 3)
-
-	if shown_routes.size() == 0:
-		var empty_label := Label.new()
-		empty_label.text = "当前没有可探索的路线。"
-		empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		explore_route_container.add_child(empty_label)
-		return
-
-	for route in shown_routes:
-		var route_button := Button.new()
-		var route_id: String = route.get("id", "")
-		var completed_count: int = player.get_route_completed_count(route_id)
-		var recommended_level: String = route.get("recommended_level", "LV ?")
-		var route_text := "%s  [%s]  (已完成%d次)" % [route.get("name", "未知路线"), recommended_level, completed_count]
-		route_button.text = route_text
-		route_button.custom_minimum_size = Vector2(0, 44)
-		route_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		_apply_button_style(route_button, "route")
-		route_button.pressed.connect(_on_route_clicked.bind(route))
-		explore_route_container.add_child(route_button)
 
 
 func _clear_explore_container() -> void:
@@ -1397,10 +1755,23 @@ func _show_world_map() -> void:
 	_clear_explore_container()
 
 	var map_data: Dictionary = DataManager.region_data.get("map", {})
+	var map_header := HBoxContainer.new()
+	map_header.add_theme_constant_override("separation", 8)
+	map_header.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	explore_route_container.add_child(map_header)
+
 	var map_title := Label.new()
 	map_title.text = "【%s】" % map_data.get("name", "荒原大地图")
 	_apply_label_style(map_title, 16, COLOR_AMBER)
-	explore_route_container.add_child(map_title)
+	map_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	map_header.add_child(map_title)
+
+	var fit_mode_button := Button.new()
+	fit_mode_button.text = "沉浸查看"
+	fit_mode_button.custom_minimum_size = Vector2(96, 30)
+	_apply_button_style(fit_mode_button)
+	fit_mode_button.pressed.connect(_on_world_map_immersive_pressed)
+	map_header.add_child(fit_mode_button)
 
 	_add_world_map_canvas()
 
@@ -1416,14 +1787,30 @@ func _add_world_map_canvas() -> void:
 	world_map_last_pinch_distance = 0.0
 	world_map_base_size = map_size
 
+	var map_viewport := Control.new()
+	map_viewport.name = "WorldMapViewport"
+	world_map_viewport = map_viewport
+	map_viewport.custom_minimum_size = Vector2(0, 640)
+	map_viewport.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	map_viewport.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	map_viewport.clip_contents = true
+	map_viewport.resized.connect(_fit_world_map)
+	explore_route_container.add_child(map_viewport)
+
 	var scroll := ScrollContainer.new()
-	scroll.custom_minimum_size = Vector2(0, 560.0)
+	scroll.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_ALWAYS
-	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
 	scroll.scroll_deadzone = 12
-	explore_route_container.add_child(scroll)
+	map_viewport.add_child(scroll)
+
+	var zoom_container := Control.new()
+	world_map_zoom_container = zoom_container
+	zoom_container.custom_minimum_size = map_size
+	zoom_container.size = map_size
+	scroll.add_child(zoom_container)
 
 	var canvas := Control.new()
 	world_map_canvas = canvas
@@ -1431,21 +1818,28 @@ func _add_world_map_canvas() -> void:
 	canvas.size = map_size
 	canvas.mouse_filter = Control.MOUSE_FILTER_STOP
 	canvas.gui_input.connect(_on_world_map_input)
-	scroll.add_child(canvas)
+	zoom_container.add_child(canvas)
 
-	var map_texture := TextureRect.new()
-	map_texture.texture = WORLD_MAP_TEXTURE
-	map_texture.position = Vector2.ZERO
-	map_texture.size = map_size
-	map_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	map_texture.stretch_mode = TextureRect.STRETCH_SCALE
-	map_texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	canvas.add_child(map_texture)
+	_rebuild_world_map_content(map_size)
 
-	_add_world_map_connections(canvas, sites, map_size)
+	call_deferred("_fit_world_map")
 
-	for site in sites:
-		_add_world_map_region_button(canvas, site, map_size)
+
+func _fit_world_map() -> void:
+	if world_map_viewport == null or world_map_base_size == Vector2.ZERO:
+		return
+	var viewport_size := world_map_viewport.size
+	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
+		return
+	var fit_zoom := maxf(
+		viewport_size.x / world_map_base_size.x,
+		viewport_size.y / world_map_base_size.y
+	)
+	_set_world_map_zoom(fit_zoom)
+
+
+func _on_world_map_immersive_pressed() -> void:
+	_fit_world_map()
 
 
 func _on_world_map_input(event: InputEvent) -> void:
@@ -1484,13 +1878,47 @@ func _get_world_map_pinch_distance() -> float:
 
 
 func _set_world_map_zoom(value: float) -> void:
-	if world_map_canvas == null or world_map_base_size == Vector2.ZERO:
+	if world_map_canvas == null or world_map_zoom_container == null or world_map_base_size == Vector2.ZERO:
 		return
-	world_map_zoom = clampf(value, 0.4, 2.0)
+	var minimum_zoom := 0.18
+	if world_map_viewport != null and world_map_viewport.size.x > 0.0 and world_map_viewport.size.y > 0.0:
+		minimum_zoom = minf(
+			world_map_viewport.size.x / world_map_base_size.x,
+			world_map_viewport.size.y / world_map_base_size.y
+		)
+		minimum_zoom = maxf(0.18, minimum_zoom)
+	world_map_zoom = clampf(value, minimum_zoom, 2.0)
 	var scaled_size := world_map_base_size * world_map_zoom
-	world_map_canvas.scale = Vector2(world_map_zoom, world_map_zoom)
+	world_map_zoom_container.scale = Vector2.ONE
+	world_map_zoom_container.custom_minimum_size = scaled_size
+	world_map_zoom_container.size = scaled_size
 	world_map_canvas.custom_minimum_size = scaled_size
 	world_map_canvas.size = scaled_size
+	_rebuild_world_map_content(scaled_size)
+
+
+func _rebuild_world_map_content(map_size: Vector2) -> void:
+	if world_map_canvas == null:
+		return
+
+	for child in world_map_canvas.get_children():
+		world_map_canvas.remove_child(child)
+		child.queue_free()
+
+	var map_texture := TextureRect.new()
+	map_texture.texture = WORLD_MAP_TEXTURE
+	map_texture.position = Vector2.ZERO
+	map_texture.size = map_size
+	map_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	map_texture.stretch_mode = TextureRect.STRETCH_SCALE
+	map_texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	world_map_canvas.add_child(map_texture)
+
+	var sites := _get_region_world_sites()
+	_add_world_map_connections(world_map_canvas, sites, map_size)
+
+	for site in sites:
+		_add_world_map_region_button(world_map_canvas, site, map_size)
 
 
 func _add_world_map_connections(canvas: Control, sites: Array, map_size: Vector2) -> void:
@@ -1693,12 +2121,14 @@ func _on_world_site_pressed(site: Dictionary) -> void:
 		_set_home_status("口粮不足，无法外出探索。")
 		return
 
+	# 进入小地图扣 1 口粮，防止反复进出免费刷图
+	GameState.player.supplies["food"] = maxi(0, int(GameState.player.supplies.get("food", 0)) - 1)
 	current_world_site = site.duplicate(true)
 	current_site_floor = 1
 	current_site_total_floors = maxi(1, int(site.get("total_floors", 1)))
 	explore_view_mode = "site"
 	_generate_current_site_grid()
-	_set_home_status("进入%s的小地图。" % current_world_site.get("name", "未知地点"))
+	_set_home_status("进入%s的小地图，消耗口粮×1。" % current_world_site.get("name", "未知地点"))
 	_refresh_explore()
 
 
@@ -1952,9 +2382,10 @@ func _try_move_site_player(target_pos: Vector2i) -> void:
 			"enemy_pos": target_pos,
 			"previous_pos": previous_pos
 		}
-		_process_site_cell(target_cell)
-		if battle_data.is_empty():
-			# 战斗未能开始（无出战伙伴等），保持原位
+		var battle_started: bool = _process_site_cell(target_cell)
+		if not battle_started:
+			# 战斗未能开始（无出战伙伴/异兽无效等），保持原位
+			battle_data = {}
 			battle_site_context = {}
 			_refresh_explore()
 		return
@@ -1966,23 +2397,27 @@ func _try_move_site_player(target_pos: Vector2i) -> void:
 	_refresh_explore()
 
 
-func _process_site_cell(cell: Dictionary) -> void:
+func _process_site_cell(cell: Dictionary) -> bool:
 	match cell.get("content", "empty"):
 		"loot":
 			var item: String = cell.get("item", "food")
 			var qty: int = int(cell.get("qty", 1))
 			GameState.player.add_resource(item, qty)
 			_set_home_status("拾取：%s×%d。" % [_format_resource_label(item), qty])
+			return true
 		"enemy":
 			var enemy_id: String = cell.get("enemy_id", "")
 			if enemy_id != "" and DataManager.beasts.has(enemy_id):
-				_run_battle(enemy_id)
+				return _run_battle(enemy_id)
 			else:
 				_set_home_status("遭遇未知异兽，已将其驱散。")
+				return true
 		"special":
 			_process_site_special(cell.get("special_type", "cache"))
+			return true
 		_:
 			_set_home_status("继续探索。")
+			return true
 
 
 func _process_site_special(special_type: String) -> void:
@@ -2314,11 +2749,15 @@ func _on_abandon_exploration() -> void:
 	_refresh_explore()
 
 
-func _run_battle(beast_id: String) -> void:
+func _run_battle(beast_id: String) -> bool:
 	if not DataManager.beasts.has(beast_id):
+		battle_data = {}
 		battle_site_context = {}
-		return
+		return false
 	var beast: Dictionary = DataManager.beasts[beast_id].duplicate(true)
+	# Boss动态公式 + 轮回词缀（仅对 BOSS 类型生效）
+	if str(beast.get("type", "")) == "BOSS":
+		_apply_boss_scaling(beast)
 	var player := GameState.player
 	var party: Array = []
 	var grid_indices: Array = []
@@ -2333,9 +2772,10 @@ func _run_battle(beast_id: String) -> void:
 		if party.size() >= BattleSystem.MAX_PARTY_SIZE:
 			break
 	if party.is_empty():
+		battle_data = {}
 		battle_site_context = {}
 		_set_home_status("没有可出战的伙伴，请先在编队中上阵。")
-		return
+		return false
 
 	battle_data = BattleSystem.create_battle(party, [beast], player.get_formation_bonus(), grid_indices)
 	battle_auto_mode = "manual"
@@ -2348,6 +2788,41 @@ func _run_battle(beast_id: String) -> void:
 	battle_popup.popup_centered()
 	_refresh_battle_ui()
 	_process_battle_turn()
+	return true
+
+
+# 应用Boss动态公式与轮回词缀
+func _apply_boss_scaling(beast: Dictionary) -> void:
+	var player := GameState.player
+	var base_stats := {
+		"hp": beast.get("hp", 0),
+		"attack": beast.get("attack", 0),
+		"defense": beast.get("defense", 0),
+		"spirit": beast.get("spirit", 0),
+		"resistance": beast.get("resistance", 0)
+	}
+	var scaled: Dictionary = player.get_scaled_boss_stats(base_stats)
+	beast["hp"] = scaled.get("hp", beast.get("hp", 0))
+	beast["attack"] = scaled.get("attack", beast.get("attack", 0))
+	beast["defense"] = scaled.get("defense", beast.get("defense", 0))
+	beast["spirit"] = scaled.get("spirit", beast.get("spirit", 0))
+	beast["resistance"] = scaled.get("resistance", beast.get("resistance", 0))
+	# 轮回词缀
+	var affixes: Array = player.get_reincarnation_affixes()
+	if not affixes.is_empty():
+		beast["affixes"] = affixes
+		# 复杂词缀数值简化：极光记忆、轮回共鸣
+		for affix in affixes:
+			var affix_id := str(affix.get("id", ""))
+			if affix_id == "aurora_memory":
+				beast["attack"] = int(round(float(beast["attack"]) * 1.25))
+			elif affix_id == "reincarnation_resonance":
+				var bonus := 1.0 + 0.1 * float(player.reincarnation)
+				beast["hp"] = int(round(float(beast["hp"]) * bonus))
+				beast["attack"] = int(round(float(beast["attack"]) * bonus))
+				beast["defense"] = int(round(float(beast["defense"]) * bonus))
+				beast["spirit"] = int(round(float(beast["spirit"]) * bonus))
+				beast["resistance"] = int(round(float(beast["resistance"]) * bonus))
 
 
 # ============================================================
@@ -2555,7 +3030,8 @@ func _on_battle_mode_pressed(mode: String) -> void:
 
 
 func _on_battle_close_pressed() -> void:
-	_finish_battle(false)
+	# 撤退也同步当前 HP，避免关闭战斗弹窗无损撤离
+	_finish_battle(true, true)
 
 
 func _show_battle_overlay(kind: String) -> void:
@@ -2691,7 +3167,7 @@ func _confirm_battle_action(action_type: String, skill_id: String, target_ids: A
 # ============================================================
 # 战斗结算
 # ============================================================
-func _finish_battle(sync_hp: bool = true) -> void:
+func _finish_battle(sync_hp: bool = true, is_retreat: bool = false) -> void:
 	if battle_finished:
 		return
 	battle_finished = true
@@ -2736,6 +3212,11 @@ func _finish_battle(sync_hp: bool = true) -> void:
 	if sync_hp:
 		if victory:
 			_set_home_status("战斗胜利！%s 已被击败。" % enemy_name)
+		elif is_retreat:
+			if not site_context.is_empty():
+				_set_home_status("已撤离战斗，队员伤势已同步，返回大地图。")
+			else:
+				_set_home_status("已撤离战斗，队员伤势已同步。")
 		else:
 			if not site_context.is_empty():
 				_set_home_status("战斗失败……已退回大地图，请先治疗伙伴再战。")
@@ -2779,7 +3260,7 @@ func _sync_battle_results() -> void:
 		var base_id: String = str(unit.get("base_id", ""))
 		for survivor in GameState.player.survivors:
 			if survivor.get("id", "") == base_id:
-				survivor["hp"] = maxf(1.0, float(unit.get("hp", 1.0)))
+				survivor["hp"] = maxf(0.0, float(unit.get("hp", 0.0)))
 				survivor["energy"] = float(unit.get("energy", 0.0))
 				break
 
@@ -2810,6 +3291,10 @@ func _refresh_codex() -> void:
 				_show_codex_categories()
 			"beasts":
 				_show_beast_codex_list()
+			"bosses":
+				_show_boss_codex_list()
+			"boss_detail":
+				_show_boss_codex_detail(selected_codex_boss_id)
 			"partners":
 				_show_partner_codex_list()
 			"equipment":
@@ -2827,6 +3312,7 @@ func _refresh_codex() -> void:
 func _show_codex_categories() -> void:
 		selected_codex_category = ""
 		selected_codex_beast_id = ""
+		selected_codex_boss_id = ""
 
 		var player := GameState.player
 		var defeated_beasts: Array = player.story_flags.get("defeated_beasts", [])
@@ -2857,6 +3343,11 @@ func _show_codex_categories() -> void:
 			"遗物图鉴",
 			"待接入 · 秘境遗物、BOSS 掉落和主线收藏"
 		)
+		_add_codex_category_button(
+			"bosses",
+			"Boss 情报图鉴",
+			"主线Boss · 已解析情报、弱点与背景故事"
+		)
 
 
 func _add_codex_category_button(category_id: String, title: String, description: String) -> void:
@@ -2868,6 +3359,113 @@ func _add_codex_category_button(category_id: String, title: String, description:
 		_apply_button_style(button)
 		button.pressed.connect(_on_codex_category_pressed.bind(category_id))
 		codex_content_container.add_child(button)
+
+
+# ============================================================
+# Boss 情报图鉴
+# ============================================================
+func _show_boss_codex_list() -> void:
+	_add_codex_category_back_button()
+
+	var player := GameState.player
+	var bosses: Array = DataManager.main_story.get("bosses", [])
+	var summary := Label.new()
+	summary.text = "【Boss 情报图鉴】共 %d 个主线 Boss\n情报随遭遇 / 击败 / 轮回逐步解锁。" % bosses.size()
+	_apply_label_style(summary, 14, COLOR_MUTED)
+	summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	codex_content_container.add_child(summary)
+
+	for boss_cfg in bosses:
+		if not boss_cfg is Dictionary:
+			continue
+		var boss: Dictionary = boss_cfg
+		var boss_id: String = str(boss.get("id", ""))
+		if boss_id == "":
+			continue
+		var display_name: String = player.get_boss_display_name(boss_id)
+		var state: Dictionary = player.get_boss_intel_state(boss_id)
+		var defeated: bool = bool(state.get("defeated", false))
+		var progress: float = player.get_boss_intel_progress(boss_id)
+		var button := Button.new()
+		button.text = "%s  %s\n解析进度 %d%% · 第%s章" % [
+			display_name,
+			"已击败" if defeated else "未击败",
+			int(progress * 100.0),
+			str(boss.get("chapter", "?"))
+		]
+		button.custom_minimum_size = Vector2(0, 58)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		_apply_button_style(button)
+		button.pressed.connect(_on_codex_boss_pressed.bind(boss_id))
+		codex_content_container.add_child(button)
+
+
+func _show_boss_codex_detail(boss_id: String) -> void:
+	var player := GameState.player
+	var boss_cfg := player.get_boss_config(boss_id)
+	if boss_cfg.is_empty():
+		_show_boss_codex_list()
+		return
+	_add_codex_category_back_button()
+
+	var boss: Dictionary = boss_cfg
+	var display_name: String = player.get_boss_display_name(boss_id)
+	var state: Dictionary = player.get_boss_intel_state(boss_id)
+	var progress: float = player.get_boss_intel_progress(boss_id)
+
+	var title := Label.new()
+	title.text = "📖 Boss图鉴 · %s" % display_name
+	_apply_label_style(title, 16, COLOR_AMBER)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	codex_content_container.add_child(title)
+
+	var stats: Dictionary = boss.get("base_stats", {})
+	var encounter_count := 1 if bool(state.get("encountered", false)) else 0
+	var info_label := Label.new()
+	info_label.text = "HP %d · 攻击 %d · 防御 %d · 推荐等级 LV %d\n遭遇 %d 次 · 击败 %d 次 · 解析进度 %d%%" % [
+		int(stats.get("hp", 0)),
+		int(stats.get("attack", 0)),
+		int(stats.get("defense", 0)),
+		int(boss.get("recommended_level", 0)),
+		encounter_count,
+		int(state.get("kill_count", 0)),
+		int(progress * 100.0)
+	]
+	_apply_label_style(info_label, 13, COLOR_MUTED)
+	info_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	codex_content_container.add_child(info_label)
+
+	var unlocked: Array = player.get_boss_unlocked_intel(boss_id)
+	var intel_text := "【已解锁情报】\n"
+	if unlocked.is_empty():
+		intel_text += "尚未解锁任何情报。\n"
+	else:
+		for item in unlocked:
+			intel_text += "✅ %s：%s\n" % [str(item.get("label", "")), str(item.get("value", ""))]
+	var intel: Dictionary = boss.get("intel", {})
+	for info in intel.get("weakness_info", []):
+		if info is Dictionary and not bool(info.get("confirmed", false)):
+			intel_text += "⏳ 弱点：???（待发现）\n"
+	var intel_label := Label.new()
+	intel_label.text = intel_text
+	_apply_label_style(intel_label, 13)
+	intel_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	codex_content_container.add_child(intel_label)
+
+	var lore_unlocked: bool = bool(state.get("lore_unlocked", false))
+	if lore_unlocked and intel.has("lore"):
+		var lore_label := Label.new()
+		lore_label.text = "【背景故事】\n%s" % str(intel.get("lore", ""))
+		_apply_label_style(lore_label, 13, COLOR_MUTED)
+		lore_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		codex_content_container.add_child(lore_label)
+
+
+func _on_codex_boss_pressed(boss_id: String) -> void:
+	selected_codex_boss_id = boss_id
+	codex_view_mode = "boss_detail"
+	_refresh_codex()
 
 
 func _show_partner_codex_list() -> void:
@@ -3113,6 +3711,7 @@ func _show_beast_codex_full_info(beast_id: String) -> void:
 func _on_codex_category_pressed(category_id: String) -> void:
 		selected_codex_category = category_id
 		selected_codex_beast_id = ""
+		selected_codex_boss_id = ""
 		codex_view_mode = category_id
 		_refresh_codex()
 
@@ -3121,6 +3720,7 @@ func _on_codex_back_to_categories_pressed() -> void:
 		codex_view_mode = "categories"
 		selected_codex_category = ""
 		selected_codex_beast_id = ""
+		selected_codex_boss_id = ""
 		_refresh_codex()
 
 
@@ -3311,6 +3911,129 @@ func _format_formation_bonus(bonus: Dictionary) -> String:
 
 func _on_settings_pressed() -> void:
 	_set_home_status("设置功能开发中……")
+
+
+# ============================================================
+# 轮回结算弹窗
+# ============================================================
+func _build_reincarnation_popup() -> void:
+	reincarnation_popup = PopupPanel.new()
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 20)
+	margin.add_theme_constant_override("margin_top", 20)
+	margin.add_theme_constant_override("margin_right", 20)
+	margin.add_theme_constant_override("margin_bottom", 20)
+	reincarnation_popup.add_child(margin)
+
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 10)
+	box.custom_minimum_size = Vector2(300, 0)
+	margin.add_child(box)
+
+	var title := Label.new()
+	title.text = "🔄 主动轮回"
+	_apply_label_style(title, 20, COLOR_CYAN)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(title)
+
+	reincarnation_confirm_label = Label.new()
+	reincarnation_confirm_label.text = ""
+	_apply_label_style(reincarnation_confirm_label, 14)
+	reincarnation_confirm_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	box.add_child(reincarnation_confirm_label)
+
+	reincarnation_result_label = Label.new()
+	reincarnation_result_label.text = ""
+	_apply_label_style(reincarnation_result_label, 13, COLOR_MUTED)
+	reincarnation_result_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	reincarnation_result_label.visible = false
+	box.add_child(reincarnation_result_label)
+
+	var button_row := HBoxContainer.new()
+	button_row.add_theme_constant_override("separation", 8)
+	box.add_child(button_row)
+
+	reincarnation_cancel_button = Button.new()
+	reincarnation_cancel_button.text = "取消"
+	reincarnation_cancel_button.custom_minimum_size = Vector2(0, 38)
+	reincarnation_cancel_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(reincarnation_cancel_button)
+	reincarnation_cancel_button.pressed.connect(func() -> void: reincarnation_popup.hide())
+	button_row.add_child(reincarnation_cancel_button)
+
+	reincarnation_confirm_button = Button.new()
+	reincarnation_confirm_button.text = "确认轮回"
+	reincarnation_confirm_button.custom_minimum_size = Vector2(0, 38)
+	reincarnation_confirm_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(reincarnation_confirm_button, "panel")
+	reincarnation_confirm_button.pressed.connect(_do_reincarnation)
+	button_row.add_child(reincarnation_confirm_button)
+
+	reincarnation_close_button = Button.new()
+	reincarnation_close_button.text = "完成"
+	reincarnation_close_button.custom_minimum_size = Vector2(0, 38)
+	reincarnation_close_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	reincarnation_close_button.visible = false
+	_apply_button_style(reincarnation_close_button, "panel")
+	reincarnation_close_button.pressed.connect(func() -> void:
+		reincarnation_popup.hide()
+		_refresh_all()
+	)
+	button_row.add_child(reincarnation_close_button)
+
+	add_child(reincarnation_popup)
+
+
+# 打开主动轮回确认弹窗
+func _on_reincarnation_pressed() -> void:
+	var player := GameState.player
+	var progress: Dictionary = player.get_reincarnation_progress()
+	reincarnation_confirm_label.text = "本轮进度：主线 %d/%d 章，累计击杀 Boss %d 次。\n\n轮回后将结算评级并发放轮回印记、天赋点；\n当前等级、装备、资源与地图进度将被重置（软死亡），\n但图鉴、Boss情报、天赋、印记将永久保留。\n\n确定要主动轮回吗？" % [
+		int(progress.get("max_chapter_reached", 1)),
+		int(progress.get("total_chapters", 48)),
+		_boss_kill_total()
+	]
+	reincarnation_result_label.visible = false
+	reincarnation_result_label.text = ""
+	reincarnation_cancel_button.visible = true
+	reincarnation_confirm_button.visible = true
+	reincarnation_close_button.visible = false
+	reincarnation_popup.popup_centered()
+
+
+# 获取累计击杀Boss数
+func _boss_kill_total() -> int:
+	var player := GameState.player
+	var total := 0
+	for boss_id in player.boss_kill_records:
+		total += int(player.boss_kill_records[boss_id])
+	return total
+
+
+# 执行主动轮回结算
+func _do_reincarnation() -> void:
+	var player := GameState.player
+	var result: Dictionary = player.perform_reincarnation()
+	var rating: String = str(result.get("rating", "C"))
+	var marks: int = int(result.get("marks", 0))
+	var talent: int = int(result.get("talent_points", 0))
+	var killed: int = int(result.get("killed_bosses", 0))
+	var total_bosses: int = int(result.get("total_bosses", 0))
+	var ratio: float = float(result.get("chapter_ratio", 0.0))
+	reincarnation_result_label.visible = true
+	reincarnation_result_label.text = "━━━━ 轮回结算 ━━━━\n评级：%s\n主线进度：%d%%（击杀 Boss %d/%d）\n获得轮回印记 ×%d\n获得天赋点 ×%d\n\n软死亡：等级/装备/资源/地图进度已重置\n保留：图鉴 / Boss情报 / 天赋 / 印记\n\n进入第 %d 轮。" % [
+		rating,
+		int(ratio * 100.0),
+		killed,
+		total_bosses,
+		marks,
+		talent,
+		int(player.reincarnation)
+	]
+	reincarnation_confirm_label.text = ""
+	reincarnation_cancel_button.visible = false
+	reincarnation_confirm_button.visible = false
+	reincarnation_close_button.visible = true
 
 
 func _make_separator() -> HSeparator:

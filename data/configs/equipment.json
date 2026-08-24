@@ -1,0 +1,23 @@
+{
+  "weapon": [
+    {"id": "weapon_rusty_blade", "name": "锈蚀军刀", "slot": "weapon", "rarity": 1, "description": "从废墟中捡到的军刀，虽已锈蚀但依然锋利。", "stats": {"attack": 6}, "cost": {"cores": 20}},
+    {"id": "weapon_compound_bow", "name": "复合弓", "slot": "weapon", "rarity": 2, "description": "经过改造的复合弓，射程远且安静，适合潜行猎杀。", "stats": {"attack": 12, "speed": 2}, "cost": {"cores": 60, "rare_material": 1}},
+    {"id": "weapon_alloy_sword", "name": "合金战刃", "slot": "weapon", "rarity": 3, "description": "以灵能合金锻造的战刃，对变异生物有额外杀伤力。", "stats": {"attack": 22, "defense": 5}, "cost": {"cores": 150, "rare_material": 3}},
+    {"id": "weapon_spirit_cannon", "name": "灵能脉冲炮", "slot": "weapon", "rarity": 4, "description": "搭载灵能核心的脉冲武器，可穿透变异体的甲壳。", "stats": {"attack": 35, "spirit": 10, "speed": -2}, "cost": {"cores": 400, "spirit_core": 2}},
+    {"id": "weapon_lightning_spear", "name": "雷霆长枪", "slot": "weapon", "rarity": 5, "description": "传说中击杀雷兽的圣物，枪尖萦绕着蓝色的电弧。", "stats": {"attack": 55, "spirit": 15, "speed": 5}, "cost": {"cores": 1000, "spirit_core": 5}}
+  ],
+  "armor": [
+    {"id": "armor_scavenger_coat", "name": "拾荒者外套", "slot": "armor", "rarity": 1, "description": "耐磨的厚布外套，口袋很多，适合外出探索。", "stats": {"defense": 5, "resistance": 2}, "cost": {"cores": 20}},
+    {"id": "armor_leather_armor", "name": "鞣制皮甲", "slot": "armor", "rarity": 2, "description": "用变异兽皮鞣制而成的护甲，轻便且防护力不错。", "stats": {"defense": 10, "resistance": 4}, "cost": {"cores": 60, "rare_material": 1}},
+    {"id": "armor_ceramic_plate", "name": "陶瓷复合甲", "slot": "armor", "rarity": 3, "description": "利用陶瓷插板强化关键部位，能有效抵御利爪攻击。", "stats": {"defense": 18, "resistance": 8, "speed": -2}, "cost": {"cores": 150, "rare_material": 3}},
+    {"id": "armor_nanofiber_suit", "name": "纳米纤维作战服", "slot": "armor", "rarity": 4, "description": "采用纳米纤维编织的作战服，轻若无物却坚韧异常。", "stats": {"defense": 28, "resistance": 12, "speed": 4}, "cost": {"cores": 400, "spirit_core": 2}},
+    {"id": "armor_apocalypse_guard", "name": "末日守护者", "slot": "armor", "rarity": 5, "description": "收集陨星合金打造的终极护甲，传说能硬抗核爆冲击。", "stats": {"defense": 45, "resistance": 20, "attack": 8}, "cost": {"cores": 1000, "spirit_core": 5}}
+  ],
+  "accessory": [
+    {"id": "accessory_old_watch", "name": "旧怀表", "slot": "accessory", "rarity": 1, "description": "一位老人在末日来临前留下的怀表，指针早已停摆。", "stats": {"speed": 3}, "cost": {"cores": 20}},
+    {"id": "accessory_lucky_charm", "name": "幸运护符", "slot": "accessory", "rarity": 2, "description": "雕刻着神秘纹路的护符，据说能带来好运。", "stats": {"spirit": 6, "resistance": 3}, "cost": {"cores": 60, "rare_material": 1}},
+    {"id": "accessory_energy_cell", "name": "聚能电池", "slot": "accessory", "rarity": 3, "description": "可储存并释放灵能的便携电池，强化技能威力。", "stats": {"spirit": 12, "attack": 6}, "cost": {"cores": 150, "rare_material": 3}},
+    {"id": "accessory_spirit_core_pendant", "name": "灵核吊坠", "slot": "accessory", "rarity": 4, "description": "嵌有变异兽灵核的吊坠，散发着微弱的脉动光芒。", "stats": {"spirit": 20, "resistance": 10, "attack": 5}, "cost": {"cores": 400, "spirit_core": 2}},
+    {"id": "accessory_destiny_eye", "name": "命运之瞳", "slot": "accessory", "rarity": 5, "description": "传说能窥见命运丝线的奇异晶石，佩戴者总能先人一步。", "stats": {"speed": 10, "spirit": 18, "attack": 10}, "cost": {"cores": 1000, "spirit_core": 5}}
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "version": "v1",
+  "style": "post-apocalyptic 3D anime survivor assets",
+  "avatar_sheet": {
+    "path": "res://assets/images/characters/avatar_sheet_core_8_v1.png",
+    "columns": 4,
+    "rows": 2,
+    "sheet_size": [1536, 1024],
+    "cell_size": [384, 512],
+    "order": [
+      "player_chenmo",
+      "lin_mei",
+      "chen_feng",
+      "su_xiao",
+      "old_zhou",
+      "xiao_qi",
+      "shen_lin",
+      "jiang_li"
+    ]
+  },
+  "portrait_sheet": {
+    "path": "res://assets/images/characters/portrait_sheet_core_8_v1.png",
+    "columns": 4,
+    "rows": 2,
+    "sheet_size": [1536, 1024],
+    "cell_size": [384, 512],
+    "order": [
+      "player_chenmo",
+      "lin_mei",
+      "chen_feng",
+      "su_xiao",
+      "old_zhou",
+      "xiao_qi",
+      "shen_lin",
+      "jiang_li"
+    ]
+  },
+  "characters": {
+    "player_chenmo": {
+      "name": "陈末",
+      "avatar_rect": [0, 0, 384, 512],
+      "portrait_rect": [0, 0, 384, 512],
+      "visual_role": "前特种部队孤狼，战术外套、围巾、步枪背带"
+    },
+    "lin_mei": {
+      "name": "林美",
+      "avatar_rect": [384, 0, 384, 512],
+      "portrait_rect": [384, 0, 384, 512],
+      "visual_role": "前生化研究员，实验服、战术内衬、青色灵能粒子"
+    },
+    "chen_feng": {
+      "name": "陈锋",
+      "avatar_rect": [768, 0, 384, 512],
+      "portrait_rect": [768, 0, 384, 512],
+      "visual_role": "老兵坦克，重型拼装护甲、盾板、硬朗防御姿态"
+    },
+    "su_xiao": {
+      "name": "苏晓",
+      "avatar_rect": [1152, 0, 384, 512],
+      "portrait_rect": [1152, 0, 384, 512],
+      "visual_role": "街头猎人，跑酷装备、轻甲、双短刃"
+    },
+    "old_zhou": {
+      "name": "周建国（老周）",
+      "avatar_rect": [0, 512, 384, 512],
+      "portrait_rect": [0, 512, 384, 512],
+      "visual_role": "老侦察兵，旧军帽、伪装斗篷、狙击步枪"
+    },
+    "xiao_qi": {
+      "name": "小七",
+      "avatar_rect": [384, 512, 384, 512],
+      "portrait_rect": [384, 512, 384, 512],
+      "visual_role": "战地护士，急救夹克、医疗包、温和坚韧"
+    },
+    "shen_lin": {
+      "name": "沈琳",
+      "avatar_rect": [768, 512, 384, 512],
+      "portrait_rect": [768, 512, 384, 512],
+      "visual_role": "灵能暴君，黑色研究所服装、暗红异化右臂"
+    },
+    "jiang_li": {
+      "name": "江离",
+      "avatar_rect": [1152, 512, 384, 512],
+      "portrait_rect": [1152, 512, 384, 512],
+      "visual_role": "流浪剑客，破旧斗篷、束发、锈剑"
+    }
+  }
+}
