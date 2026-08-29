@@ -34,27 +34,52 @@ var day: int = 1
 var time_slot: int = 0
 var chapter_id: int = 1
 var mutation: int = 0
+var hunger: int = 100    # 饱食度（100满，0饥饿）
+var thirst: int = 100    # 水分（100满，0脱水）
+var stamina: int = 100   # 体力（100满，0疲劳）
 var story_flags: Dictionary = {}
+var story_chapter: int = 1              # 当前主线剧情章节（第一篇章1~8）
+var story_step: int = 0                 # 当前章节内剧情步骤索引
+var story_completed: Array = []         # 已完成剧情章节编号
+var owned_equipment: Array = []         # 拥有的装备id列表（未装备到伙伴）
 var supplies: Dictionary = {"food": 30, "medicine": 10}
-var materials: Dictionary = {"cores": 0, "memory_shards": 0, "tickets": 0, "spirit_battery": 0, "ammo": 0, "rare_material": 0, "spirit_core": 0}
-var resource_caps: Dictionary = {"food": 99, "medicine": 99, "cores": 999, "memory_shards": 999, "tickets": 999, "spirit_battery": 99, "ammo": 99, "rare_material": 99, "spirit_core": 99}
+var materials: Dictionary = {"cores": 0, "memory_shards": 0, "tickets": 0, "spirit_battery": 0, "ammo": 0, "rare_material": 0, "spirit_core": 0, "crystal": 0, "gold": 0}
+var resource_caps: Dictionary = {"food": 99, "medicine": 99, "cores": 999, "memory_shards": 999, "tickets": 999, "spirit_battery": 99, "ammo": 99, "rare_material": 99, "spirit_core": 99, "crystal": 999999, "gold": 999999}
 var survivors: Array[Dictionary] = []
 var active_survivor_ids: Array[String] = ["player_chenmo", "lin_mei"]
 var reserve_survivor_ids: Array[String] = []
 
-# 九宫格编队系统
-# 3x3 网格，每个格子可放置一名伙伴
+# 九宫格编队系统（V3.0）
+# 5人出战 + 3x3 站位（9格），每个格子可放置一名伙伴
 # 格子索引: 0-2 前排(先锋位) / 3-5 中排(输出位) / 6-8 后排(支援位)
 # 阵型: "assault"(强攻阵) / "iron"(铁壁阵) / "wind"(疾风阵)
+const MAX_ACTIVE_SURVIVORS: int = 5
+const FORMATION_GRID_SIZE: int = 9
+const POSITION_BONUSES: Dictionary = {
+	0: {"label": "前排", "desc": "受击+30% · DEF+10% · 近战伤害+5%"},
+	1: {"label": "中排", "desc": "ATK+5% · SPI+5%"},
+	2: {"label": "后排", "desc": "受近战伤害-15% · 治疗+10% · 辅助+10%"}
+}
 var formation_grid: Array = [null, null, null, null, null, null, null, null, null]
 var current_formation: String = "assault"
 var formation_bonuses: Dictionary = {
-	"assault": {"attack": 0.10, "defense": -0.10, "speed": 0.0},
-	"iron": {"attack": 0.0, "defense": 0.15, "speed": -0.10},
-	"wind": {"attack": -0.05, "defense": 0.0, "speed": 0.15}
+	"assault": {"attack": 0.10, "spirit": 0.10, "defense": -0.05},
+	"iron": {"defense": 0.12, "resistance": 0.12, "speed": -0.05},
+	"wind": {"speed": 0.10, "ep_start": 0.20}
 }
 var explored_routes: Dictionary = {}  # route_id -> completed_count
 var route_progress: Dictionary = {}  # route_id -> {node_index: int, completed: bool}
+
+# 基地建设（存档持久化）
+var base_level: int = 5
+var base_facility_levels: Dictionary = {
+	"workbench": 5,
+	"storage": 5,
+	"bed": 4,
+	"medical": 4,
+	"kitchen": 4,
+	"generator": 4
+}
 
 # ============================================================
 # 轮回系统数据（V2.0 轮回主线）
@@ -65,6 +90,7 @@ var highest_chapter_all_time: int = 1          # 历史最高章节（跨轮回�
 var truth_progress: float = 0.0                # 真相进度 0.0 ~ 1.0
 var reincarnation_marks: int = 0               # 轮回印记（永久货币）
 var talent_points: int = 0                     # 天赋点（永久）
+var talent_levels: Dictionary = {}             # 天赋等级 talent_id -> level（永久）
 var boss_intel: Dictionary = {}                # boss_id -> {encountered, defeated, kill_count, intel_unlocked: [], lore_unlocked: bool}
 var boss_kill_records: Dictionary = {}         # boss_id -> kill_count（跨轮回）
 var reincarnation_memories: Array[String] = [] # 已触发的轮回记忆叙事
@@ -84,6 +110,9 @@ func advance_half_day() -> void:
 	if time_slot >= 3:
 		time_slot = 0
 		day += 1
+		# 每日生存衰减
+		hunger = clampi(hunger - 8, 0, 100)
+		thirst = clampi(thirst - 10, 0, 100)
 	chapter_id = _chapter_for_day(day)
 	update_max_chapter_reached()
 
@@ -93,6 +122,75 @@ func add_resource(resource_id: String, amount: int) -> void:
 	if not target.has(resource_id):
 		return
 	target[resource_id] = clampi(target[resource_id] + amount, 0, resource_caps[resource_id])
+
+
+func get_base_facility_level(facility_id: String) -> int:
+	return int(base_facility_levels.get(facility_id, 1))
+
+
+func get_base_facility_upgrade_cost(facility_id: String) -> Dictionary:
+	var level := get_base_facility_level(facility_id)
+	return {
+		"cores": 80 + level * 40,
+		"spirit_battery": maxi(1, int(ceil(float(level) / 2.0)))
+	}
+
+
+func upgrade_base_facility(facility_id: String) -> Dictionary:
+	if not base_facility_levels.has(facility_id):
+		return {"success": false, "reason": "未知设施。"}
+	var current_level := get_base_facility_level(facility_id)
+	if current_level >= base_level:
+		return {"success": false, "reason": "设施等级不能超过避难所等级。"}
+	var cost := get_base_facility_upgrade_cost(facility_id)
+	for resource_id in cost:
+		if int(materials.get(resource_id, 0)) < int(cost[resource_id]):
+			return {"success": false, "reason": "升级资源不足。"}
+	for resource_id in cost:
+		materials[resource_id] = int(materials.get(resource_id, 0)) - int(cost[resource_id])
+	base_facility_levels[facility_id] = current_level + 1
+	return {"success": true, "level": current_level + 1, "cost": cost}
+
+
+# 获取物品数量（消耗品/材料）
+func get_item_count(item_id: String) -> int:
+	if item_id in supplies:
+		return int(supplies[item_id])
+	if item_id in materials:
+		return int(materials[item_id])
+	return 0
+
+
+# 添加装备到背包
+func add_equipment(equip_id: String) -> void:
+	if equip_id != "" and equip_id not in owned_equipment:
+		owned_equipment.append(equip_id)
+
+
+# 移除装备
+func remove_equipment(equip_id: String) -> void:
+	if equip_id in owned_equipment:
+		owned_equipment.erase(equip_id)
+
+
+# 使用消耗品（药品恢复伙伴HP）
+func use_consumable(item_id: String) -> Dictionary:
+	var count := get_item_count(item_id)
+	if count <= 0:
+		return {"success": false, "text": "物品数量不足。"}
+	if item_id == "medicine":
+		var healed := false
+		for survivor in survivors:
+			if float(survivor.get("hp", 0)) < float(survivor.get("max_hp", 0)):
+				survivor["hp"] = float(survivor.get("max_hp", 0))
+				healed = true
+		if not healed:
+			return {"success": false, "text": "伙伴状态良好，无需用药。"}
+		add_resource(item_id, -1)
+		return {"success": true, "text": "使用药品，全体伙伴恢复至满血。"}
+	if item_id == "food":
+		return {"success": false, "text": "口粮用于探索消耗，无法直接使用。"}
+	return {"success": false, "text": "该物品无法直接使用。"}
 
 
 func get_act_id() -> int:
@@ -119,7 +217,14 @@ func to_dict() -> Dictionary:
 		"time_slot": time_slot,
 		"chapter_id": chapter_id,
 		"mutation": mutation,
+		"hunger": hunger,
+		"thirst": thirst,
+		"stamina": stamina,
 		"story_flags": story_flags,
+		"story_chapter": story_chapter,
+		"story_step": story_step,
+		"story_completed": story_completed,
+		"owned_equipment": owned_equipment,
 		"supplies": supplies,
 		"materials": materials,
 		"survivors": survivors,
@@ -129,12 +234,15 @@ func to_dict() -> Dictionary:
 		"current_formation": current_formation,
 		"explored_routes": explored_routes,
 		"route_progress": route_progress,
+		"base_level": base_level,
+		"base_facility_levels": base_facility_levels,
 		"reincarnation": reincarnation,
 		"max_chapter_reached": max_chapter_reached,
 		"highest_chapter_all_time": highest_chapter_all_time,
 		"truth_progress": truth_progress,
 		"reincarnation_marks": reincarnation_marks,
 		"talent_points": talent_points,
+		"talent_levels": talent_levels,
 		"boss_intel": boss_intel,
 		"boss_kill_records": boss_kill_records,
 		"reincarnation_memories": reincarnation_memories,
@@ -152,9 +260,20 @@ static func from_dict(data: Dictionary) -> PlayerData:
 	player.time_slot = int(data.get("time_slot", 0))
 	player.chapter_id = int(data.get("chapter_id", 1))
 	player.mutation = int(data.get("mutation", 0))
+	player.hunger = int(data.get("hunger", 100))
+	player.thirst = int(data.get("thirst", 100))
+	player.stamina = int(data.get("stamina", 100))
 	player.story_flags = data.get("story_flags", {})
 	if player.story_flags is Dictionary:
 		player.story_flags = player.story_flags.duplicate()
+	player.story_chapter = int(data.get("story_chapter", 1))
+	player.story_step = int(data.get("story_step", 0))
+	player.story_completed = data.get("story_completed", [])
+	if player.story_completed is Array:
+		player.story_completed = player.story_completed.duplicate()
+	player.owned_equipment = data.get("owned_equipment", [])
+	if player.owned_equipment is Array:
+		player.owned_equipment.assign(player.owned_equipment.map(func(id): return str(id)))
 	player.supplies = data.get("supplies", {"food": 30, "medicine": 10})
 	if player.supplies is Dictionary:
 		player.supplies = player.supplies.duplicate()
@@ -180,6 +299,13 @@ static func from_dict(data: Dictionary) -> PlayerData:
 	player.route_progress = data.get("route_progress", {})
 	if player.route_progress is Dictionary:
 		player.route_progress = player.route_progress.duplicate()
+	player.base_level = int(data.get("base_level", 5))
+	player.base_facility_levels = data.get("base_facility_levels", {
+		"workbench": 5, "storage": 5, "bed": 4,
+		"medical": 4, "kitchen": 4, "generator": 4
+	})
+	if player.base_facility_levels is Dictionary:
+		player.base_facility_levels = player.base_facility_levels.duplicate()
 	# 轮回数据（旧存档兼容默认值）
 	player.reincarnation = int(data.get("reincarnation", 1))
 	player.max_chapter_reached = int(data.get("max_chapter_reached", player.chapter_id))
@@ -187,6 +313,9 @@ static func from_dict(data: Dictionary) -> PlayerData:
 	player.truth_progress = float(data.get("truth_progress", 0.0))
 	player.reincarnation_marks = int(data.get("reincarnation_marks", 0))
 	player.talent_points = int(data.get("talent_points", 0))
+	player.talent_levels = data.get("talent_levels", {})
+	if player.talent_levels is Dictionary:
+		player.talent_levels = player.talent_levels.duplicate()
 	player.boss_intel = data.get("boss_intel", {})
 	if player.boss_intel is Dictionary:
 		player.boss_intel = player.boss_intel.duplicate(true)
@@ -219,6 +348,15 @@ func get_grid_survivor(grid_index: int) -> String:
 # 放置伙伴到指定格子
 func place_survivor_on_grid(survivor_id: String, grid_index: int) -> bool:
 	if grid_index < 0 or grid_index >= formation_grid.size():
+		return false
+	# 该伙伴是否已在其他格子上（移动）？
+	var already_on_grid := false
+	for i in range(formation_grid.size()):
+		if formation_grid[i] == survivor_id:
+			already_on_grid = true
+			break
+	# 5人出战上限：新增上阵（非移动）且已满员时拒绝
+	if not already_on_grid and get_active_count() >= MAX_ACTIVE_SURVIVORS:
 		return false
 	var replaced_survivor_id := get_grid_survivor(grid_index)
 	# 检查该伙伴是否已在其他格子
@@ -262,6 +400,16 @@ func get_active_ids_from_grid() -> Array[String]:
 		if survivor_id != null:
 			result.append(str(survivor_id))
 	return result
+
+
+# 当前出战人数
+func get_active_count() -> int:
+	return get_active_ids_from_grid().size()
+
+
+# 是否已达到5人出战上限
+func is_formation_full() -> bool:
+	return get_active_count() >= MAX_ACTIVE_SURVIVORS
 
 
 # 同步 active_survivor_ids 与九宫格
@@ -687,6 +835,23 @@ func get_reincarnation_progress() -> Dictionary:
 	}
 
 
+# 获取天赋等级
+func get_talent_level(talent_id: String) -> int:
+	return int(talent_levels.get(talent_id, 0))
+
+
+# 升级天赋（消耗天赋点）
+func upgrade_talent(talent_id: String, max_level: int, cost: int) -> Dictionary:
+	var current := get_talent_level(talent_id)
+	if current >= max_level:
+		return {"success": false, "text": "已满级"}
+	if talent_points < cost:
+		return {"success": false, "text": "天赋点不足"}
+	talent_points -= cost
+	talent_levels[talent_id] = current + 1
+	return {"success": true, "text": "升级成功", "level": current + 1}
+
+
 # 获取Boss情报攻略进度（0.0~1.0）
 func get_boss_intel_progress(boss_id: String) -> float:
 	var boss_cfg := get_boss_config(boss_id)
@@ -771,6 +936,60 @@ func get_reincarnation_affixes() -> Array:
 		result.append(pool[idx])
 		pool.remove_at(idx)
 	return result
+
+
+# ============================================================
+# 主线剧情系统（第一篇章）
+# ============================================================
+
+# 获取当前剧情章节（act_01_story.chapters[story_chapter-1]）
+func get_current_story_chapter() -> Dictionary:
+	var chapters: Array = DataManager.act_01_story.get("chapters", [])
+	var idx := story_chapter - 1
+	if idx >= 0 and idx < chapters.size():
+		return chapters[idx]
+	return {}
+
+
+# 获取当前剧情步骤
+func get_current_story_step() -> Dictionary:
+	var story: Array = get_current_story_chapter().get("story", [])
+	if story_step >= 0 and story_step < story.size():
+		return story[story_step]
+	return {}
+
+
+# 剧情是否已播完（章节内所有步骤）
+func is_story_chapter_done() -> bool:
+	var story: Array = get_current_story_chapter().get("story", [])
+	return story_step >= story.size()
+
+
+# 推进剧情步骤
+func advance_story_step() -> void:
+	story_step += 1
+
+
+# 完成当前剧情章节，进入下一章，返回章节结算数据
+func complete_story_chapter() -> Dictionary:
+	var settlement: Dictionary = get_current_story_chapter().get("settlement", {})
+	if not story_completed.has(story_chapter):
+		story_completed.append(story_chapter)
+	story_chapter += 1
+	story_step = 0
+	return settlement
+
+
+# 获取剧情进度（用于 UI）
+func get_story_progress() -> Dictionary:
+	var chapters: Array = DataManager.act_01_story.get("chapters", [])
+	return {
+		"story_chapter": story_chapter,
+		"story_step": story_step,
+		"story_completed": story_completed,
+		"total_chapters": chapters.size(),
+		"chapter_name": get_current_story_chapter().get("name", "")
+	}
 
 
 # ============================================================

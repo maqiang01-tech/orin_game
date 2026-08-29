@@ -1,0 +1,1512 @@
+{
+  "png_count": 215,
+  "all_openable": true,
+  "exact_duplicate_groups": 0,
+  "checks": [
+    {
+      "file": "01_buttons/cta/btn_danger_disabled.png",
+      "ok": true,
+      "width": 512,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_danger_hover.png",
+      "ok": true,
+      "width": 512,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_danger_normal.png",
+      "ok": true,
+      "width": 512,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_danger_pressed.png",
+      "ok": true,
+      "width": 512,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_primary_disabled.png",
+      "ok": true,
+      "width": 512,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_primary_hover.png",
+      "ok": true,
+      "width": 512,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_primary_normal.png",
+      "ok": true,
+      "width": 512,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_primary_pressed.png",
+      "ok": true,
+      "width": 512,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_secondary_disabled.png",
+      "ok": true,
+      "width": 320,
+      "height": 88,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_secondary_hover.png",
+      "ok": true,
+      "width": 320,
+      "height": 88,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_secondary_normal.png",
+      "ok": true,
+      "width": 320,
+      "height": 88,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/cta/btn_secondary_pressed.png",
+      "ok": true,
+      "width": 320,
+      "height": 88,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_adjust_team_disabled.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_adjust_team_hover.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_adjust_team_normal.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_adjust_team_pressed.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_bag_disabled.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_bag_hover.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_bag_normal.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_bag_pressed.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_equipment_disabled.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_equipment_hover.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_equipment_normal.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_equipment_pressed.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_leave_disabled.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_leave_hover.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_leave_normal.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_leave_pressed.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_medical_disabled.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_medical_hover.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_medical_normal.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_medical_pressed.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_rest_disabled.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_rest_hover.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_rest_normal.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_rest_pressed.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_reward_disabled.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_reward_hover.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_reward_normal.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_reward_pressed.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_search_disabled.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_search_hover.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_search_normal.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_search_pressed.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_settings_disabled.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_settings_hover.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_settings_normal.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_settings_pressed.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_skill_disabled.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_skill_hover.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_skill_normal.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/function/btn_skill_pressed.png",
+      "ok": true,
+      "width": 208,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/system/btn_system_disabled.png",
+      "ok": true,
+      "width": 72,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/system/btn_system_normal.png",
+      "ok": true,
+      "width": 72,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "01_buttons/system/btn_system_pressed.png",
+      "ok": true,
+      "width": 72,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_hospital_danger.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_hospital_locked.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_hospital_normal.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_hospital_selected.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_safehouse_danger.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_safehouse_locked.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_safehouse_normal.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_safehouse_selected.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_subway_danger.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_subway_locked.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_subway_normal.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_subway_selected.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_supermarket_danger.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_supermarket_locked.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_supermarket_normal.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_supermarket_selected.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_unknown_danger.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_unknown_locked.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_unknown_normal.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "02_map_nodes/node_unknown_selected.png",
+      "ok": true,
+      "width": 192,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_add.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_arrow_left.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_arrow_right.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_attack.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_back.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_close.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_defense.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_heal.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_lock.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_minus.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_notification.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_question.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_settings.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "03_icons/system/icon_unlock.png",
+      "ok": true,
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "file": "04_backgrounds/bg_aurora_lab.png",
+      "ok": true,
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB"
+    },
+    {
+      "file": "04_backgrounds/bg_base_shelter.png",
+      "ok": true,
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB"
+    },
+    {
+      "file": "04_backgrounds/bg_city_night.png",
+      "ok": true,
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB"
+    },
+    {
+      "file": "04_backgrounds/bg_city_ruins.png",
+      "ok": true,
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB"
+    },
+    {
+      "file": "04_backgrounds/bg_hospital_exterior.png",
+      "ok": true,
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB"
+    },
+    {
+      "file": "04_backgrounds/bg_military_base.png",
+      "ok": true,
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB"
+    },
+    {
+      "file": "04_backgrounds/bg_reincarnation_hall.png",
+      "ok": true,
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB"
+    },
+    {
+      "file": "04_backgrounds/bg_subway_abandoned.png",
+      "ok": true,
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB"
+    },
+    {
+      "file": "04_backgrounds/bg_supermarket.png",
+      "ok": true,
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB"
+    },
+    {
+      "file": "04_backgrounds/bg_wasteland.png",
+      "ok": true,
+      "width": 1920,
+      "height": 1080,
+      "mode": "RGB"
+    },
+    {
+      "file": "05_windows/popup_boss_info.png",
+      "ok": true,
+      "width": 560,
+      "height": 330,
+      "mode": "RGBA"
+    },
+    {
+      "file": "05_windows/popup_confirm.png",
+      "ok": true,
+      "width": 480,
+      "height": 420,
+      "mode": "RGBA"
+    },
+    {
+      "file": "05_windows/popup_reward.png",
+      "ok": true,
+      "width": 560,
+      "height": 320,
+      "mode": "RGBA"
+    },
+    {
+      "file": "05_windows/popup_story.png",
+      "ok": true,
+      "width": 600,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    {
+      "file": "05_windows/window_full.png",
+      "ok": true,
+      "width": 672,
+      "height": 760,
+      "mode": "RGBA"
+    },
+    {
+      "file": "05_windows/window_large.png",
+      "ok": true,
+      "width": 560,
+      "height": 650,
+      "mode": "RGBA"
+    },
+    {
+      "file": "05_windows/window_medium.png",
+      "ok": true,
+      "width": 420,
+      "height": 520,
+      "mode": "RGBA"
+    },
+    {
+      "file": "05_windows/window_title_bar.png",
+      "ok": true,
+      "width": 640,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_multiline_disabled.png",
+      "ok": true,
+      "width": 520,
+      "height": 170,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_multiline_focus.png",
+      "ok": true,
+      "width": 520,
+      "height": 170,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_multiline_normal.png",
+      "ok": true,
+      "width": 520,
+      "height": 170,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_numeric_focus.png",
+      "ok": true,
+      "width": 300,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_numeric_normal.png",
+      "ok": true,
+      "width": 300,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_search_focus.png",
+      "ok": true,
+      "width": 520,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_search_normal.png",
+      "ok": true,
+      "width": 520,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_single_disabled.png",
+      "ok": true,
+      "width": 520,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_single_focus.png",
+      "ok": true,
+      "width": 520,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_single_normal.png",
+      "ok": true,
+      "width": 520,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_title.png",
+      "ok": true,
+      "width": 420,
+      "height": 64,
+      "mode": "RGBA"
+    },
+    {
+      "file": "06_textboxes/textbox_tooltip.png",
+      "ok": true,
+      "width": 360,
+      "height": 150,
+      "mode": "RGBA"
+    },
+    {
+      "file": "07_panels/panel_base_facility.png",
+      "ok": true,
+      "width": 326,
+      "height": 244,
+      "mode": "RGBA"
+    },
+    {
+      "file": "07_panels/panel_boss.png",
+      "ok": true,
+      "width": 640,
+      "height": 220,
+      "mode": "RGBA"
+    },
+    {
+      "file": "07_panels/panel_character.png",
+      "ok": true,
+      "width": 300,
+      "height": 520,
+      "mode": "RGBA"
+    },
+    {
+      "file": "07_panels/panel_formation.png",
+      "ok": true,
+      "width": 362,
+      "height": 492,
+      "mode": "RGBA"
+    },
+    {
+      "file": "07_panels/panel_inventory.png",
+      "ok": true,
+      "width": 640,
+      "height": 520,
+      "mode": "RGBA"
+    },
+    {
+      "file": "07_panels/panel_location_info.png",
+      "ok": true,
+      "width": 672,
+      "height": 390,
+      "mode": "RGBA"
+    },
+    {
+      "file": "07_panels/panel_main_quest.png",
+      "ok": true,
+      "width": 672,
+      "height": 170,
+      "mode": "RGBA"
+    },
+    {
+      "file": "07_panels/panel_resource.png",
+      "ok": true,
+      "width": 672,
+      "height": 110,
+      "mode": "RGBA"
+    },
+    {
+      "file": "07_panels/panel_scene.png",
+      "ok": true,
+      "width": 672,
+      "height": 500,
+      "mode": "RGBA"
+    },
+    {
+      "file": "07_panels/panel_team_rating.png",
+      "ok": true,
+      "width": 298,
+      "height": 492,
+      "mode": "RGBA"
+    },
+    {
+      "file": "08_frames/frame_gold_heavy.png",
+      "ok": true,
+      "width": 320,
+      "height": 240,
+      "mode": "RGBA"
+    },
+    {
+      "file": "08_frames/frame_gold_thin.png",
+      "ok": true,
+      "width": 320,
+      "height": 240,
+      "mode": "RGBA"
+    },
+    {
+      "file": "08_frames/frame_gray.png",
+      "ok": true,
+      "width": 320,
+      "height": 240,
+      "mode": "RGBA"
+    },
+    {
+      "file": "08_frames/frame_portrait.png",
+      "ok": true,
+      "width": 300,
+      "height": 480,
+      "mode": "RGBA"
+    },
+    {
+      "file": "08_frames/frame_red_warning.png",
+      "ok": true,
+      "width": 320,
+      "height": 240,
+      "mode": "RGBA"
+    },
+    {
+      "file": "08_frames/frame_selected_glow.png",
+      "ok": true,
+      "width": 320,
+      "height": 240,
+      "mode": "RGBA"
+    },
+    {
+      "file": "09_progress_bars/progress_fill_blue.png",
+      "ok": true,
+      "width": 420,
+      "height": 28,
+      "mode": "RGBA"
+    },
+    {
+      "file": "09_progress_bars/progress_fill_gold.png",
+      "ok": true,
+      "width": 420,
+      "height": 28,
+      "mode": "RGBA"
+    },
+    {
+      "file": "09_progress_bars/progress_fill_green.png",
+      "ok": true,
+      "width": 420,
+      "height": 28,
+      "mode": "RGBA"
+    },
+    {
+      "file": "09_progress_bars/progress_fill_purple.png",
+      "ok": true,
+      "width": 420,
+      "height": 28,
+      "mode": "RGBA"
+    },
+    {
+      "file": "09_progress_bars/progress_fill_red.png",
+      "ok": true,
+      "width": 420,
+      "height": 28,
+      "mode": "RGBA"
+    },
+    {
+      "file": "09_progress_bars/progress_track_dark.png",
+      "ok": true,
+      "width": 420,
+      "height": 28,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_equipment_locked.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_equipment_normal.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_equipment_selected.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_formation_locked.png",
+      "ok": true,
+      "width": 120,
+      "height": 120,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_formation_normal.png",
+      "ok": true,
+      "width": 120,
+      "height": 120,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_formation_occupied.png",
+      "ok": true,
+      "width": 120,
+      "height": 120,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_formation_selected.png",
+      "ok": true,
+      "width": 120,
+      "height": 120,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_item_locked.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_item_new.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_item_normal.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_item_selected.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_partner_empty.png",
+      "ok": true,
+      "width": 120,
+      "height": 120,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_partner_normal.png",
+      "ok": true,
+      "width": 120,
+      "height": 120,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_partner_selected.png",
+      "ok": true,
+      "width": 120,
+      "height": 120,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_skill_cooldown.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_skill_locked.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_skill_normal.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "10_slots/slot_skill_selected.png",
+      "ok": true,
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/badge_red_dot.png",
+      "ok": true,
+      "width": 48,
+      "height": 48,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/badge_red_glow.png",
+      "ok": true,
+      "width": 64,
+      "height": 64,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/badge_red_ring.png",
+      "ok": true,
+      "width": 48,
+      "height": 48,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/bottom_nav_background.png",
+      "ok": true,
+      "width": 720,
+      "height": 92,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_base_disabled.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_base_normal.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_base_selected.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_explore_disabled.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_explore_normal.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_explore_selected.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_reincarnation_disabled.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_reincarnation_normal.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_reincarnation_selected.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_survival_disabled.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_survival_normal.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_survival_selected.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_team_disabled.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_team_normal.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "11_bottom_navigation/nav_team_selected.png",
+      "ok": true,
+      "width": 144,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "12_characters/full/char_chen_feng_full.png",
+      "ok": true,
+      "width": 768,
+      "height": 1152,
+      "mode": "RGBA"
+    },
+    {
+      "file": "12_characters/full/char_chen_mo_full.png",
+      "ok": true,
+      "width": 768,
+      "height": 1152,
+      "mode": "RGBA"
+    },
+    {
+      "file": "12_characters/full/char_lao_zhou_full.png",
+      "ok": true,
+      "width": 768,
+      "height": 1152,
+      "mode": "RGBA"
+    },
+    {
+      "file": "12_characters/full/char_lin_mei_full.png",
+      "ok": true,
+      "width": 768,
+      "height": 1152,
+      "mode": "RGBA"
+    },
+    {
+      "file": "12_characters/full/char_su_xiao_full.png",
+      "ok": true,
+      "width": 768,
+      "height": 1152,
+      "mode": "RGBA"
+    },
+    {
+      "file": "12_characters/portraits/portrait_chen_feng.png",
+      "ok": true,
+      "width": 320,
+      "height": 400,
+      "mode": "RGBA"
+    },
+    {
+      "file": "12_characters/portraits/portrait_chen_mo.png",
+      "ok": true,
+      "width": 320,
+      "height": 400,
+      "mode": "RGBA"
+    },
+    {
+      "file": "12_characters/portraits/portrait_lao_zhou.png",
+      "ok": true,
+      "width": 320,
+      "height": 400,
+      "mode": "RGBA"
+    },
+    {
+      "file": "12_characters/portraits/portrait_lin_mei.png",
+      "ok": true,
+      "width": 320,
+      "height": 400,
+      "mode": "RGBA"
+    },
+    {
+      "file": "12_characters/portraits/portrait_su_xiao.png",
+      "ok": true,
+      "width": 320,
+      "height": 400,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/boss/boss_warden_portrait.png",
+      "ok": true,
+      "width": 320,
+      "height": 180,
+      "mode": "RGB"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_bed.png",
+      "ok": true,
+      "width": 320,
+      "height": 320,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_generator.png",
+      "ok": true,
+      "width": 320,
+      "height": 320,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_kitchen.png",
+      "ok": true,
+      "width": 320,
+      "height": 320,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_medical_station.png",
+      "ok": true,
+      "width": 320,
+      "height": 320,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_storage.png",
+      "ok": true,
+      "width": 320,
+      "height": 320,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_workbench.png",
+      "ok": true,
+      "width": 320,
+      "height": 320,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/items/item_bandage.png",
+      "ok": true,
+      "width": 160,
+      "height": 160,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/items/item_battery.png",
+      "ok": true,
+      "width": 160,
+      "height": 160,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/items/item_mechanical_parts.png",
+      "ok": true,
+      "width": 160,
+      "height": 160,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/items/item_medicine.png",
+      "ok": true,
+      "width": 160,
+      "height": 160,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/items/item_old_archive.png",
+      "ok": true,
+      "width": 160,
+      "height": 160,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/roles/role_control.png",
+      "ok": true,
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/roles/role_healer.png",
+      "ok": true,
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/roles/role_main_dps.png",
+      "ok": true,
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/roles/role_ranged_dps.png",
+      "ok": true,
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/roles/role_tank.png",
+      "ok": true,
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/talents/talent_01.png",
+      "ok": true,
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/talents/talent_02.png",
+      "ok": true,
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/talents/talent_03.png",
+      "ok": true,
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/talents/talent_04.png",
+      "ok": true,
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "13_dedicated/talents/talent_05.png",
+      "ok": true,
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "file": "14_page_mockups/mockup_base_720x1280.png",
+      "ok": true,
+      "width": 720,
+      "height": 1280,
+      "mode": "RGB"
+    },
+    {
+      "file": "14_page_mockups/mockup_explore_720x1280.png",
+      "ok": true,
+      "width": 720,
+      "height": 1280,
+      "mode": "RGB"
+    },
+    {
+      "file": "14_page_mockups/mockup_formation_720x1280.png",
+      "ok": true,
+      "width": 720,
+      "height": 1280,
+      "mode": "RGB"
+    },
+    {
+      "file": "14_page_mockups/mockup_reincarnation_720x1280.png",
+      "ok": true,
+      "width": 720,
+      "height": 1280,
+      "mode": "RGB"
+    },
+    {
+      "file": "14_page_mockups/mockup_survival_720x1280.png",
+      "ok": true,
+      "width": 720,
+      "height": 1280,
+      "mode": "RGB"
+    }
+  ]
+}

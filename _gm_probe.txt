@@ -1,0 +1,742 @@
+﻿8:const UI_FRAME_TEXTURE = preload("res://assets/images/ui/ui_frame_full.png")
+9:const UI_PANEL_CARD_TEXTURE = preload("res://assets/images/ui/ui_panel_card.png")
+10:const UI_ROUTE_CARD_TEXTURE = preload("res://assets/images/ui/ui_route_card.png")
+11:const WORLD_MAP_TEXTURE = preload("res://assets/images/exploration/world_map_wide_city_realm_v5_clean.png")
+13:const COLOR_TEXT = Color(0.88, 0.96, 1.0)
+14:const COLOR_MUTED = Color(0.58, 0.68, 0.72)
+15:const COLOR_CYAN = Color(0.0, 0.83, 1.0)
+16:const COLOR_AMBER = Color(0.96, 0.65, 0.14)
+19:var background_frame: TextureRect
+20:var status_bar: HBoxContainer
+21:var content_container: VBoxContainer
+22:var tab_pages: Dictionary = {}  # tab_id -> Control
+23:var tab_buttons: Dictionary = {}  # tab_id -> Button
+26:var current_tab: String = "home"
+29:var home_day_label: Label
+30:var home_team_label: Label
+31:var home_event_label: Label
+32:var home_chapter_label: Label
+33:var home_status_panel: PanelContainer
+34:var home_status_label: Label
+37:var formation_label: Label
+38:var formation_grid_container: GridContainer
+39:var formation_grid_buttons: Array[Button] = []
+40:var formation_survivor_container: VBoxContainer
+41:var formation_selection_label: Label
+42:var formation_debug_label: Label
+45:var selected_formation_survivor_id: String = ""
+48:var partner_list_container: VBoxContainer
+49:var partner_detail_popup: PopupPanel
+50:var partner_detail_name: Label
+51:var partner_detail_affinity: Label
+52:var partner_detail_star: Label
+53:var partner_star_up_button: Button
+54:var partner_detail_stats: Label
+55:var partner_detail_equipment: Label
+56:var partner_equip_buttons: Dictionary = {}  # slot -> Button
+57:var partner_detail_skills: Label
+58:var partner_skill_upgrade_container: VBoxContainer
+59:var partner_equipment_select_popup: PopupPanel
+60:var partner_equipment_select_container: VBoxContainer
+61:var partner_equipment_select_slot: String = ""
+64:var explore_route_container: VBoxContainer
+65:var explore_status_label: Label
+66:var explore_node_container: VBoxContainer
+67:var explore_log_label: Label
+68:var exploration_system: ExplorationSystem
+69:var dungeon_manager: DungeonManager
+70:var explore_view_mode: String = "world"
+71:var current_world_site: Dictionary = {}
+72:var current_site_grid: Array = []
+73:var current_site_position: Vector2i = Vector2i.ZERO
+74:var current_site_floor: int = 1
+75:var current_site_total_floors: int = 1
+76:var world_map_viewport: Control
+77:var world_map_canvas: Control
+78:var world_map_zoom_container: Control
+79:var world_map_base_size := Vector2.ZERO
+80:var world_map_zoom: float = 1.0
+81:var world_map_touches: Dictionary = {}
+82:var world_map_last_pinch_distance: float = 0.0
+85:var inventory_label: Label
+88:var codex_label: Label
+89:var codex_content_container: VBoxContainer
+90:var codex_view_mode: String = "categories"
+91:var selected_codex_category: String = ""
+92:var selected_codex_beast_id: String = ""
+95:var selected_partner: Dictionary = {}
+98:var battle_popup: PopupPanel
+99:var battle_round_label: Label
+100:var battle_actor_label: Label
+101:var battle_enemy_container: VBoxContainer
+102:var battle_status_label: Label
+103:var battle_log_label: RichTextLabel
+104:var battle_party_container: HBoxContainer
+105:var battle_action_bar: HBoxContainer
+106:var battle_flee_button: Button
+107:var battle_mode_buttons: Dictionary = {}  # mode -> Button
+108:var battle_overlay_panel: PanelContainer
+109:var battle_overlay_box: VBoxContainer
+110:var battle_pending_action: Dictionary = {}  # {"type": "attack"/"skill", "skill_id": "", "team": ""}
+111:var battle_data: Dictionary = {}
+112:var battle_auto_mode: String = "manual"
+113:var battle_waiting_input: bool = false
+114:var battle_finished: bool = false
+115:var battle_callback: Callable = Callable()
+116:var battle_site_context: Dictionary = {}  # 小地图遇敌战斗上下文：记录敌人格/原位置，用于结算后处理
+122:	var connection_points: Array = []
+123:	var line_color := Color(0.45, 0.85, 1.0, 0.55)
+124:	var label_color := Color(0.85, 0.95, 1.0, 0.85)
+126:	func _draw() -> void:
+128:			var from: Vector2 = connection["from"]
+129:			var to: Vector2 = connection["to"]
+131:			var label: String = connection.get("label", "")
+133:				var font := ThemeDB.fallback_font
+134:				var label_size := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
+135:				var direction := from.direction_to(to)
+136:				var normal := Vector2(-direction.y, direction.x)
+137:				var mid := (from + to) * 0.5 + normal * 10.0
+138:				var label_position := mid - Vector2(label_size.x * 0.5, -label_size.y * 0.5)
+143:func _ready() -> void:
+158:func _build_background_frame() -> void:
+169:func _make_flat_style(
+176:	var style := StyleBoxFlat.new()
+194:func _make_atlas_texture(region: Rect2) -> AtlasTexture:
+195:	var atlas := AtlasTexture.new()
+201:func _make_texture_style(
+208:	var style := StyleBoxTexture.new()
+218:func _apply_tab_button_texture_style(button: Button, region: Rect2) -> void:
+219:	var slot_texture := _make_atlas_texture(region)
+220:	var normal := _make_texture_style(slot_texture, 4, 30, 4, 8)
+221:	var hover := _make_texture_style(slot_texture, 4, 30, 4, 8)
+222:	var pressed := _make_texture_style(slot_texture, 4, 30, 4, 8)
+235:func _apply_route_card_texture_style(button: Button) -> void:
+236:	var normal := _make_texture_style(UI_ROUTE_CARD_TEXTURE, 14, 12, 14, 12)
+237:	var hover := _make_texture_style(UI_ROUTE_CARD_TEXTURE, 14, 12, 14, 12)
+238:	var pressed := _make_texture_style(UI_ROUTE_CARD_TEXTURE, 14, 12, 14, 12)
+251:func _apply_map_region_style(button: Button) -> void:
+252:	var normal := _make_flat_style(Color(0.015, 0.045, 0.06, 0.94), Color(0.0, 0.72, 0.84, 0.9), 1, 4, 6)
+253:	var hover := _make_flat_style(Color(0.02, 0.14, 0.17, 0.97), COLOR_CYAN, 2, 4, 6)
+254:	var pressed := _make_flat_style(Color(0.12, 0.13, 0.08, 0.98), COLOR_AMBER, 2, 4, 6)
+267:func _apply_label_style(label: Label, font_size: int = 16, color: Color = COLOR_TEXT) -> void:
+272:func _apply_button_style(button: Button, kind: String = "row") -> void:
+273:	var normal := _make_flat_style(Color(0.07, 0.10, 0.12, 0.86), Color(0.0, 0.62, 0.72, 0.85), 1, 4, 8)
+274:	var hover := _make_flat_style(Color(0.08, 0.16, 0.18, 0.92), COLOR_CYAN, 1, 4, 8)
+275:	var pressed := _make_flat_style(Color(0.10, 0.18, 0.18, 0.96), COLOR_AMBER, 1, 4, 8)
+276:	var font_size := 15
+307:func _make_panel_container() -> PanelContainer:
+308:	var panel := PanelContainer.new()
+314:func _make_panel_margin(parent: PanelContainer, padding: int = 18) -> VBoxContainer:
+315:	var margin := MarginContainer.new()
+322:	var box := VBoxContainer.new()
+328:func _set_home_status(text: String) -> void:
+339:func _build_status_bar() -> void:
+350:	var day_label := Label.new()
+358:	var name_label := Label.new()
+366:	var ticket_label := Label.new()
+373:	var crystal_label := Label.new()
+380:	var settings_button := Button.new()
+392:func _build_content_area() -> void:
+419:func _build_home_page() -> Control:
+420:	var page := VBoxContainer.new()
+425:	var title := Label.new()
+439:	var event_panel := _make_panel_container()
+441:	var event_box := _make_panel_margin(event_panel, 12)
+443:	var event_title := Label.new()
+455:	var chapter_panel := _make_panel_container()
+456:	page.add_child(chapter_panel)
+457:	var chapter_box := _make_panel_margin(chapter_panel, 12)
+459:	var chapter_title := Label.new()
+460:	chapter_title.text = "【主线进度】"
+461:	_apply_label_style(chapter_title, 16, COLOR_AMBER)
+462:	chapter_box.add_child(chapter_title)
+464:	home_chapter_label = Label.new()
+465:	home_chapter_label.text = "第 1 章 · 灵潮之日"
+466:	_apply_label_style(home_chapter_label, 13)
+467:	home_chapter_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+468:	chapter_box.add_child(home_chapter_label)
+471:	var quick_panel := _make_panel_container()
+473:	var quick_box := _make_panel_margin(quick_panel, 12)
+475:	var quick_title := Label.new()
+480:	var quick_row := HBoxContainer.new()
+484:	var heal_button := Button.new()
+492:	var rest_button := Button.new()
+504:	var status_box := _make_panel_margin(home_status_panel, 10)
+518:func _build_formation_page() -> Control:
+519:	var page := VBoxContainer.new()
+525:	var title := Label.new()
+531:	var formation_switch := Button.new()
+538:	var grid_panel := _make_panel_container()
+540:	var grid_box := _make_panel_margin(grid_panel, 10)
+542:	var grid_title := Label.new()
+558:		var grid_button := Button.new()
+573:	var survivor_panel := _make_panel_container()
+577:	var survivor_box := _make_panel_margin(survivor_panel, 10)
+579:	var survivor_title := Label.new()
+591:	var scroll := ScrollContainer.new()
+610:func _build_partners_page() -> Control:
+611:	var page := VBoxContainer.new()
+615:	var title := Label.new()
+622:	var scroll := ScrollContainer.new()
+637:func _build_partner_detail_popup() -> void:
+643:	var scroll := ScrollContainer.new()
+648:	var margin := MarginContainer.new()
+655:	var vbox := VBoxContainer.new()
+691:	var equip_row := HBoxContainer.new()
+694:	var slot_defs := [["weapon", "武器"], ["armor", "防具"], ["accessory", "饰品"]]
+696:		var equip_button := Button.new()
+705:	var skill_title := Label.new()
+719:	var close_button := Button.new()
+732:	var select_margin := MarginContainer.new()
+739:	var select_vbox := VBoxContainer.new()
+743:	var select_title := Label.new()
+749:	var select_scroll := ScrollContainer.new()
+758:	var select_close := Button.new()
+769:func _build_battle_popup() -> void:
+776:	var margin := MarginContainer.new()
+784:	var vbox := VBoxContainer.new()
+801:	var enemy_panel := _make_panel_container()
+804:	var enemy_box := _make_panel_margin(enemy_panel, 8)
+806:	var enemy_title := Label.new()
+822:	var log_panel := _make_panel_container()
+825:	var log_box := _make_panel_margin(log_panel, 6)
+835:	var party_title := Label.new()
+846:	var mode_title := Label.new()
+851:	var mode_row := HBoxContainer.new()
+854:	var mode_defs := [["manual", "手动"], ["semi", "半自动"], ["auto", "全自动"]]
+856:		var mode_btn := Button.new()
+872:	var attack_btn := Button.new()
+880:	var skill_btn := Button.new()
+888:	var guard_btn := Button.new()
+896:	var item_btn := Button.new()
+905:	var flee_btn := Button.new()
+925:	var overlay_margin := MarginContainer.new()
+942:func _build_explore_page() -> Control:
+943:	var page := VBoxContainer.new()
+949:	var title := Label.new()
+961:	var route_title := Label.new()
+967:	var map_panel := PanelContainer.new()
+973:	var map_margin := MarginContainer.new()
+992:func _build_inventory_page() -> Control:
+993:	var page := VBoxContainer.new()
+997:	var title := Label.new()
+1003:	var inventory_panel := _make_panel_container()
+1006:	var inventory_box := _make_panel_margin(inventory_panel, 12)
+1019:func _build_codex_page() -> Control:
+1020:	var page := VBoxContainer.new()
+1026:	var title := Label.new()
+1032:	var codex_panel := _make_panel_container()
+1035:	var codex_box := _make_panel_margin(codex_panel, 12)
+1044:	var scroll := ScrollContainer.new()
+1060:func _build_tab_navigation() -> void:
+1061:	var tab_bar := HBoxContainer.new()
+1070:	var tabs := [
+1079:	var tab_regions := [
+1089:		var tab: Dictionary = tabs[i]
+1090:		var button := Button.new()
+1105:func _on_tab_pressed(tab_id: String) -> void:
+1109:func _switch_tab(tab_id: String) -> void:
+1139:func _refresh_all() -> void:
+1149:func _refresh_status_bar() -> void:
+1150:	var player := GameState.player
+1151:	var day_label: Label = status_bar.get_node("DayLabel")
+1152:	var name_label: Label = status_bar.get_node("NameLabel")
+1153:	var ticket_label: Label = status_bar.get_node("TicketLabel")
+1154:	var crystal_label: Label = status_bar.get_node("CrystalLabel")
+1162:func _refresh_home() -> void:
+1163:	var player := GameState.player
+1164:	var title: Label = tab_pages["home"].get_child(0)
+1167:	var active_count := player.active_survivor_ids.size()
+1168:	var reserve_count := player.reserve_survivor_ids.size()
+1172:	var chapter_info := "第 %d 章" % player.chapter_id
+1173:	for chapter in DataManager.chapters:
+1174:		if chapter.get("id") == player.chapter_id:
+1175:			chapter_info = "第 %d 章 · %s" % [chapter["id"], chapter.get("title", "")]
+1177:	home_chapter_label.text = chapter_info
+1181:		var first_event: Dictionary = DataManager.events[0]
+1187:func _refresh_formation() -> void:
+1189:	var player := GameState.player
+1194:	var title: Label = tab_pages["formation"].get_child(0)
+1199:		var grid_button: Button = formation_grid_buttons[i]
+1200:		var survivor_id: String = player.get_grid_survivor(i)
+1202:			var survivor_name := survivor_id
+1217:		var empty_label := Label.new()
+1233:func _update_formation_debug_label() -> void:
+1237:	var player := GameState.player
+1238:	var grid_ids: Array[String] = []
+1240:		var grid_id: String = player.get_grid_survivor(i)
+1244:	var owned_ids: Array[String] = []
+1258:func _ensure_formation_survivors_exist() -> void:
+1259:	var player := GameState.player
+1260:	var required_ids: Array[String] = []
+1271:		var grid_id: String = player.get_grid_survivor(i)
+1276:		var already_owned := false
+1291:func _add_formation_survivor_button(survivor: Dictionary) -> void:
+1292:	var survivor_id: String = survivor["id"]
+1293:	var player := GameState.player
+1294:	var position_index: int = _find_survivor_grid_position(survivor_id)
+1295:	var status_text := "未上阵"
+1296:	var status_color := COLOR_MUTED
+1301:	var button := Button.new()
+1321:func _on_grid_cell_pressed(grid_index: int) -> void:
+1322:	var player := GameState.player
+1323:	var current_survivor_id: String = player.get_grid_survivor(grid_index)
+1330:			var survivor_name := _get_survivor_name(current_survivor_id)
+1343:	var survivor_name := _get_survivor_name(selected_formation_survivor_id)
+1344:	var replaced_name := _get_survivor_name(current_survivor_id) if current_survivor_id != "" else ""
+1355:func _on_survivor_selected(survivor_id: String) -> void:
+1368:func _find_survivor_grid_position(survivor_id: String) -> int:
+1369:	var player := GameState.player
+1371:		var grid_survivor_id: String = player.get_grid_survivor(i)
+1378:func _update_formation_selection_label() -> void:
+1383:		var survivor_name := _get_survivor_name(selected_formation_survivor_id)
+1388:func _get_survivor_name(survivor_id: String) -> String:
+1395:func _refresh_partners() -> void:
+1401:	var player := GameState.player
+1404:		var affinity_title: String = str(player.get_affinity_level_info(int(survivor.get("affinity", 0))).get("title", "初识"))
+1405:		var button := Button.new()
+1420:func _on_partner_clicked(partner: Dictionary) -> void:
+1426:func _format_stat_label(stat_key: String) -> String:
+1441:func _format_equipment_stats(item: Dictionary) -> String:
+1442:	var parts: Array[String] = []
+1443:	var item_stats: Dictionary = item.get("stats", {})
+1449:func _refresh_partner_detail() -> void:
+1452:	var player := GameState.player
+1453:	var fresh_partner := player.get_partner_by_id(str(selected_partner.get("id", "")))
+1458:	var partner: Dictionary = selected_partner
+1459:	var partner_id: String = str(partner.get("id", ""))
+1464:	var affinity_value := int(partner.get("affinity", 0))
+1465:	var aff_info: Dictionary = player.get_affinity_level_info(affinity_value)
+1466:	var affinity_text := "好感度：%s Lv.%d（%d）" % [aff_info.get("title", ""), aff_info.get("level", 1), affinity_value]
+1475:	var star_count := int(partner.get("star", 1))
+1476:	var star_text := "★".repeat(star_count) + "☆".repeat(maxi(0, PlayerData.MAX_PARTNER_STAR - star_count))
+1482:		var cost: Dictionary = PlayerData.STAR_UP_COSTS.get(star_count + 1, {})
+1487:	var stats: Dictionary = partner.get("stats", {})
+1488:	var effective_bonus: Dictionary = player.get_partner_effective_bonus(partner_id)
+1489:	var bonus_parts: Array[String] = []
+1491:		var bonus_value: int = int(effective_bonus[stat_key])
+1494:	var bonus_text := "、".join(bonus_parts) if not bonus_parts.is_empty() else "无"
+1505:	var slot_names := {"weapon": "武器", "armor": "防具", "accessory": "饰品"}
+1506:	var equipment: Dictionary = partner.get("equipment", {"weapon": "", "armor": "", "accessory": ""})
+1507:	var equip_parts: Array[String] = ["【装备】"]
+1509:		var item_id: String = equipment.get(slot, "")
+1513:			var item := DataManager.get_equipment_by_id(item_id)
+1518:	var skills: Array = partner.get("skills", [])
+1521:	var skill_parts: Array[String] = []
+1523:		var skill_id: String = skill_ref.get("id", "") if skill_ref is Dictionary else str(skill_ref)
+1524:		var skill_lv: int = skill_ref.get("level", 1) if skill_ref is Dictionary else 1
+1525:		var skill_name: String = skill_id
+1536:		var skill_ref: Dictionary = skills[i]
+1537:		var skill_id: String = skill_ref.get("id", "") if skill_ref is Dictionary else str(skill_ref)
+1538:		var skill_lv: int = skill_ref.get("level", 1) if skill_ref is Dictionary else 1
+1539:		var skill_name: String = skill_id
+1543:			var max_label := Label.new()
+1548:		var skill_cost: Dictionary = PlayerData.SKILL_UPGRADE_COSTS.get(skill_lv, {})
+1549:		var upgrade_button := Button.new()
+1558:func _on_partner_star_up_pressed() -> void:
+1561:	var partner_id: String = str(selected_partner.get("id", ""))
+1562:	var result: Dictionary = GameState.player.upgrade_partner_star(partner_id)
+1571:func _on_partner_equip_pressed(slot: String) -> void:
+1578:func _open_equipment_select_popup(slot: String) -> void:
+1579:	var player := GameState.player
+1584:	var partner := player.get_partner_by_id(str(selected_partner.get("id", "")))
+1586:	var equipment: Dictionary = partner.get("equipment", {})
+1587:	var equipped_item: String = equipment.get(slot, "")
+1589:	var title := Label.new()
+1596:		var unequip_button := Button.new()
+1597:		var equipped: Dictionary = DataManager.get_equipment_by_id(equipped_item)
+1605:	var available: Array = []
+1607:		var item: Dictionary = DataManager.equipment[equipment_id]
+1610:		var already_equipped := false
+1613:			var survivor_equipment: Dictionary = survivor.get("equipment", {})
+1621:		var empty_label := Label.new()
+1628:			var item_button := Button.new()
+1644:func _on_equipment_selected(item_id: String, slot: String) -> void:
+1647:	var result: Dictionary = GameState.player.equip_partner_item(str(selected_partner.get("id", "")), item_id)
+1649:		var item: Dictionary = result.get("item", {})
+1657:func _on_partner_unequip_pressed(slot: String) -> void:
+1660:	var result: Dictionary = GameState.player.unequip_partner_item(str(selected_partner.get("id", "")), slot)
+1669:func _on_partner_skill_upgrade_pressed(skill_index: int) -> void:
+1672:	var partner_id: String = str(selected_partner.get("id", ""))
+1673:	var result: Dictionary = GameState.player.upgrade_partner_skill(partner_id, skill_index)
+1681:func _refresh_explore() -> void:
+1688:func _clear_explore_container() -> void:
+1694:func _show_world_map() -> void:
+1695:	var player := GameState.player
+1699:	var map_data: Dictionary = DataManager.region_data.get("map", {})
+1700:	var map_header := HBoxContainer.new()
+1705:	var map_title := Label.new()
+1711:	var fit_mode_button := Button.new()
+1721:func _add_world_map_canvas() -> void:
+1722:	var sites := _get_region_world_sites()
+1723:	var texture_size := WORLD_MAP_TEXTURE.get_size()
+1724:	var map_width := texture_size.x
+1725:	var map_height := map_width * texture_size.y / maxf(1.0, texture_size.x)
+1726:	var map_size := Vector2(map_width, map_height)
+1732:	var map_viewport := Control.new()
+1742:	var scroll := ScrollContainer.new()
+1751:	var zoom_container := Control.new()
+1757:	var canvas := Control.new()
+1770:func _fit_world_map() -> void:
+1773:	var viewport_size := world_map_viewport.size
+1776:	var fit_zoom := maxf(
+1783:func _on_world_map_immersive_pressed() -> void:
+1787:func _on_world_map_input(event: InputEvent) -> void:
+1789:		var mouse_event: InputEventMouseButton = event
+1797:		var touch_event: InputEventScreenTouch = event
+1806:		var drag_event: InputEventScreenDrag = event
+1809:		var pinch_distance := _get_world_map_pinch_distance()
+1815:func _get_world_map_pinch_distance() -> float:
+1818:	var touch_positions: Array = world_map_touches.values()
+1822:func _set_world_map_zoom(value: float) -> void:
+1825:	var minimum_zoom := 0.18
+1833:	var scaled_size := world_map_base_size * world_map_zoom
+1842:func _rebuild_world_map_content(map_size: Vector2) -> void:
+1850:	var map_texture := TextureRect.new()
+1859:	var sites := _get_region_world_sites()
+1866:func _add_world_map_connections(canvas: Control, sites: Array, map_size: Vector2) -> void:
+1867:	var region_data: Dictionary = DataManager.region_data
+1868:	var connections: Array = region_data.get("connections", [])
+1872:	var site_by_id: Dictionary = {}
+1876:	var map_data: Dictionary = region_data.get("map", {})
+1877:	var coordinate_size: Dictionary = map_data.get("coordinate_size", {"x": 200, "y": 150})
+1878:	var max_x: float = maxf(1.0, float(coordinate_size.get("x", 200)))
+1879:	var max_y: float = maxf(1.0, float(coordinate_size.get("y", 150)))
+1881:	var connections_layer := WorldMapConnections.new()
+1888:		var from_id: String = connection.get("from", "")
+1889:		var to_id: String = connection.get("to", "")
+1893:		var from_site: Dictionary = site_by_id[from_id]
+1894:		var to_site: Dictionary = site_by_id[to_id]
+1895:		var from_pos: Dictionary = from_site.get("position", {})
+1896:		var to_pos: Dictionary = to_site.get("position", {})
+1898:		var from_normalized := Vector2(
+1902:		var to_normalized := Vector2(
+1917:func _add_world_map_region_button(canvas: Control, site: Dictionary, map_size: Vector2) -> void:
+1918:	var position_data: Dictionary = site.get("position", {})
+1919:	var map_data: Dictionary = DataManager.region_data.get("map", {})
+1920:	var coordinate_size: Dictionary = map_data.get("coordinate_size", {"x": 200, "y": 150})
+1921:	var max_x: float = maxf(1.0, float(coordinate_size.get("x", 200)))
+1922:	var max_y: float = maxf(1.0, float(coordinate_size.get("y", 150)))
+1923:	var normalized_x := float(position_data.get("x", 0)) / max_x
+1924:	var normalized_y := 1.0 - float(position_data.get("y", 0)) / max_y
+1926:	var button := Button.new()
+1932:	var button_width := clampf(map_size.x * 0.11, 110.0, 150.0)
+1933:	var button_height := 38.0
+1934:	var horizontal_padding := button_width * 0.5 + 18.0
+1935:	var vertical_padding := button_height * 0.5 + 18.0
+1948:func _get_region_world_sites() -> Array:
+1950:	var region_data: Dictionary = DataManager.region_data
+1951:	var regions: Array = region_data.get("regions", [])
+1955:	var sites: Array = []
+1962:func _region_to_world_site(region: Dictionary) -> Dictionary:
+1963:	var recommended_level: int = int(region.get("recommended_level", 1))
+1964:	var total_floors: int = 1
+1991:func _get_world_sites() -> Array:
+1992:	var sites: Array = [
+2026:		var realm_count := 0
+2045:func _add_world_site_button(site: Dictionary) -> void:
+2046:	var button := Button.new()
+2061:func _on_world_site_pressed(site: Dictionary) -> void:
+2077:func _generate_current_site_grid() -> void:
+2081:func _generate_site_grid(site: Dictionary, floor_num: int) -> Array:
+2082:	var rng := RandomNumberGenerator.new()
+2085:	var site_type: String = site.get("site_type", "resource")
+2086:	var size: int = clampi(int(site.get("grid_size", 6)) + int(floor_num / 3), 5, 8)
+2087:	var grid: Array = []
+2089:		var row: Array = []
+2111:	var start_pos := Vector2i(1, 1)
+2112:	var exit_pos := Vector2i(size - 2, size - 2)
+2117:	var obstacle_rate := 0.12
+2118:	var loot_count := 4
+2119:	var enemy_count := 1
+2120:	var special_count := 1
+2144:	var obstacle_count: int = int((size - 2) * (size - 2) * obstacle_rate)
+2146:		var pos := _find_site_position(grid, rng, [start_pos, exit_pos])
+2151:		var pos := _find_site_position(grid, rng, [start_pos, exit_pos])
+2157:		var pos := _find_site_position(grid, rng, [start_pos, exit_pos])
+2162:		var pos := _find_site_position(grid, rng, [start_pos, exit_pos])
+2169:func _find_site_position(grid: Array, rng: RandomNumberGenerator, excludes: Array = []) -> Vector2i:
+2170:	var size: int = grid.size()
+2172:		var pos := Vector2i(rng.randi_range(1, size - 2), rng.randi_range(1, size - 2))
+2180:func _select_site_loot(site: Dictionary, rng: RandomNumberGenerator) -> String:
+2181:	var site_id: String = site.get("id", "")
+2182:	var pool := ["food", "medicine", "cores"]
+2192:func _select_site_enemy(site: Dictionary, rng: RandomNumberGenerator) -> String:
+2193:	var pool := ["feral_rat", "mutated_cockroach", "crawler"]
+2201:func _select_site_special(site: Dictionary, rng: RandomNumberGenerator) -> String:
+2202:	var pool := ["cache", "rest", "trace"]
+2208:func _show_site_map() -> void:
+2210:	var site_name: String = current_world_site.get("name", "未知地点")
+2213:	var title := Label.new()
+2218:	var grid_panel := _make_panel_container()
+2220:	var grid_box := _make_panel_margin(grid_panel, 8)
+2222:	var grid_container := GridContainer.new()
+2229:		var row: Array = current_site_grid[r]
+2231:			var cell: Dictionary = row[c]
+2232:			var cell_button := Button.new()
+2243:	var move_row := HBoxContainer.new()
+2251:	var leave_button := Button.new()
+2260:func _add_site_move_button(parent: HBoxContainer, label: String, direction: Vector2i) -> void:
+2261:	var button := Button.new()
+2270:func _get_site_cell_text(cell: Dictionary, pos: Vector2i) -> String:
+2287:func _on_site_direction_pressed(direction: Vector2i) -> void:
+2291:func _on_site_cell_pressed(pos: Vector2i) -> void:
+2292:	var distance: int = absi(pos.x - current_site_position.x) + absi(pos.y - current_site_position.y)
+2299:func _try_move_site_player(target_pos: Vector2i) -> void:
+2303:	var target_row: Array = current_site_grid[target_pos.x]
+2307:	var target_cell: Dictionary = target_row[target_pos.y]
+2312:	var content: String = target_cell.get("content", "empty")
+2317:	var old_row: Array = current_site_grid[current_site_position.x]
+2318:	var old_cell: Dictionary = old_row[current_site_position.y]
+2319:	var previous_pos: Vector2i = current_site_position
+2327:		var battle_started: bool = _process_site_cell(target_cell)
+2342:func _process_site_cell(cell: Dictionary) -> bool:
+2345:			var item: String = cell.get("item", "food")
+2346:			var qty: int = int(cell.get("qty", 1))
+2351:			var enemy_id: String = cell.get("enemy_id", "")
+2365:func _process_site_special(special_type: String) -> void:
+2382:func _on_site_exit_reached() -> void:
+2398:func _leave_current_site() -> void:
+2406:func _format_resource_label(resource_id: String) -> String:
+2429:func _show_explore_nodes() -> void:
+2430:	var current_route: Dictionary = exploration_system.get_current_route()
+2431:	var node_index: int = exploration_system.get_current_node_index()
+2432:	var nodes: Array = current_route.get("nodes", [])
+2440:	var node: Dictionary = nodes[node_index]
+2441:	var node_type: String = node.get("type", "search")
+2442:	var node_title := Label.new()
+2450:			var battle_button := Button.new()
+2458:			var search_button := Button.new()
+2466:			var recruit_button := Button.new()
+2478:			var boss_button := Button.new()
+2486:	var back_button := Button.new()
+2495:func _show_branch_options(node: Dictionary) -> void:
+2496:	var options: Array = node.get("options", [])
+2498:		var option_button := Button.new()
+2507:func _show_shop_options(node: Dictionary) -> void:
+2508:	var trades: Array = node.get("trades", [])
+2510:		var cost_text := _format_resources(trade.get("cost", {}))
+2511:		var reward_text := _format_resources(trade.get("reward", {}))
+2512:		var trade_button := Button.new()
+2521:func _format_resources(resources: Dictionary) -> String:
+2522:	var parts: Array[String] = []
+2524:		var value: Variant = resources[key]
+2525:		var label: String = str(key)
+2557:func _on_route_clicked(route: Dictionary) -> void:
+2566:func _on_battle_node_clicked(node: Dictionary) -> void:
+2567:	var battle_id: String = node.get("battle_id", "")
+2578:func _on_search_node_clicked(node: Dictionary) -> void:
+2579:	var result: Dictionary = exploration_system.process_node(node, GameState.player)
+2580:	var reward_text := "搜索完成！"
+2581:	var effects: Dictionary = result.get("effects", {})
+2589:func _on_recruit_node_clicked(node: Dictionary) -> void:
+2590:	var result: Dictionary = exploration_system.process_node(node, GameState.player)
+2595:	var partner_id: String = result.get("join_partner", "")
+2607:func _on_branch_option_clicked(option: Dictionary) -> void:
+2608:	var result: Dictionary = exploration_system.process_branch_option(option, GameState.player)
+2609:	var result_type: String = result.get("type", "effect")
+2613:			var battle_id: String = result.get("battle_id", "")
+2627:			var text: String = result.get("text", "")
+2628:			var effects: Dictionary = result.get("effects", {})
+2637:func _on_shop_trade_clicked(trade: Dictionary) -> void:
+2638:	var result: Dictionary = exploration_system.process_shop_trade(trade, GameState.player)
+2640:		var reward: Dictionary = result.get("reward", {})
+2641:		var reward_text := "交易成功！"
+2650:func _on_boss_node_clicked(node: Dictionary) -> void:
+2651:	var battle_id: String = node.get("battle_id", "")
+2663:func _apply_node_effects(effects: Dictionary) -> void:
+2665:		var value: Variant = effects[key]
+2670:func _recruit_partner(partner_id: String, success_text: String = "招募成功！%s 加入了队伍（替补席）。") -> void:
+2688:func _on_abandon_exploration() -> void:
+2694:func _run_battle(beast_id: String) -> bool:
+2699:	var beast: Dictionary = DataManager.beasts[beast_id].duplicate(true)
+2700:	var player := GameState.player
+2701:	var party: Array = []
+2702:	var grid_indices: Array = []
+2704:		var sid: String = player.get_grid_survivor(i)
+2736:func _process_battle_turn() -> void:
+2744:	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+2761:		var actor: Dictionary = battle_data["units"][actor_id]
+2765:func _auto_execute_ai(actor_id: String) -> void:
+2766:	var action: Dictionary = BattleSystem.decide_ai_action(battle_data, actor_id)
+2774:func _auto_basic_decision(actor_id: String) -> void:
+2778:	var hp_ratio: float = BattleSystem.get_unit_hp_ratio(battle_data, actor_id)
+2782:		var alive_enemies: Array = BattleSystem.get_alive_team_units(battle_data, "enemy")
+2783:		var target_id: String = BattleSystem.get_team_lowest_hp_unit(battle_data, "enemy")
+2790:func _apply_battle_action(action: Dictionary) -> void:
+2793:	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+2796:	var action_type: String = str(action.get("action", "attack"))
+2797:	var target_id: String = str(action.get("target_id", ""))
+2798:	var target_ids: Array = [target_id] if target_id != "" else []
+2808:func _refresh_battle_ui() -> void:
+2813:	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+2815:		var actor: Dictionary = battle_data["units"][actor_id]
+2816:		var team_text := "我方" if actor.get("team", "") == "player" else "敌方"
+2827:	var enemy_alive: Array = BattleSystem.get_alive_team_units(battle_data, "enemy")
+2829:		var unit: Dictionary = battle_data["units"][enemy_id]
+2830:		var status_parts: Array[String] = []
+2833:		var status_text := ("  [%s]" % "、".join(status_parts)) if not status_parts.is_empty() else ""
+2834:		var enemy_label := Label.new()
+2840:	var status_text_all: String = BattleSystem.get_battle_status_text(battle_data)
+2853:		var unit: Dictionary = battle_data["units"][unit_id]
+2854:		var card := Label.new()
+2870:func _battle_log_line_to_bbcode(line: String) -> String:
+2884:func _update_battle_controls(enabled: bool) -> void:
+2896:func _on_battle_attack_pressed() -> void:
+2903:func _on_battle_skill_pressed() -> void:
+2909:func _on_battle_guard_pressed() -> void:
+2912:	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+2921:func _on_battle_item_pressed() -> void:
+2925:func _on_battle_mode_pressed(mode: String) -> void:
+2937:func _on_battle_close_pressed() -> void:
+2942:func _show_battle_overlay(kind: String) -> void:
+2945:	var border_color := COLOR_AMBER if kind == "skill" else COLOR_CYAN
+2951:func _hide_battle_overlay() -> void:
+2956:func _open_skill_popup() -> void:
+2959:	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+2963:	var vbox: VBoxContainer = battle_overlay_box
+2968:	var title := Label.new()
+2974:	var usable: Array = BattleSystem.get_usable_skills(battle_data, actor_id)
+2976:		var empty := Label.new()
+2983:			var skill: Dictionary = DataManager.skills.get(skill_id, {})
+2984:			var skill_btn := Button.new()
+2992:	var cancel := Button.new()
+3001:func _on_skill_selected(skill_id: String) -> void:
+3003:	var skill: Dictionary = DataManager.skills.get(skill_id, {})
+3004:	var type_text: String = str(skill.get("type", ""))
+3012:func _open_target_popup(team: String) -> void:
+3016:	var vbox: VBoxContainer = battle_overlay_box
+3021:	var title := Label.new()
+3027:	var targets: Array = BattleSystem.get_alive_team_units(battle_data, team)
+3029:		var unit: Dictionary = battle_data["units"][target_id]
+3030:		var target_btn := Button.new()
+3038:	var cancel := Button.new()
+3047:func _on_target_selected(target_id: String) -> void:
+3051:	var action_type: String = str(battle_pending_action.get("type", "attack"))
+3052:	var skill_id: String = str(battle_pending_action.get("skill_id", ""))
+3057:func _confirm_battle_action(action_type: String, skill_id: String, target_ids: Array) -> void:
+3060:	var actor_id: String = BattleSystem.get_current_actor(battle_data)
+3075:func _finish_battle(sync_hp: bool = true, is_retreat: bool = false) -> void:
+3082:	var victory: bool = battle_data.get("victory", false)
+3083:	var enemy_name := ""
+3084:	var enemy_base_id := ""
+3086:		var first_enemy_id: String = str(battle_data["enemy_party"][0])
+3097:		var defeated_beasts: Array = GameState.player.story_flags.get("defeated_beasts", [])
+3104:	var site_context: Dictionary = battle_site_context
+3134:	var callback := battle_callback
+3140:func _occupy_site_enemy_cell(context: Dictionary) -> void:
+3144:	var previous_pos: Vector2i = context.get("previous_pos", Vector2i.ZERO)
+3146:		var prev_row: Array = current_site_grid[previous_pos.x]
+3150:	var enemy_pos: Vector2i = context.get("enemy_pos", Vector2i.ZERO)
+3152:		var enemy_row: Array = current_site_grid[enemy_pos.x]
+3158:func _sync_battle_results() -> void:
+3162:		var unit: Dictionary = battle_data["units"][unit_id]
+3165:		var base_id: String = str(unit.get("base_id", ""))
+3173:func _refresh_inventory() -> void:
+3174:	var player := GameState.player
+3188:func _refresh_codex() -> void:
+3213:func _show_codex_categories() -> void:
+3217:		var player := GameState.player
+3218:		var defeated_beasts: Array = player.story_flags.get("defeated_beasts", [])
+3220:		var title := Label.new()
+3248:func _add_codex_category_button(category_id: String, title: String, description: String) -> void:
+3249:		var button := Button.new()
+3259:func _show_partner_codex_list() -> void:
+3262:		var player := GameState.player
+3263:		var summary := Label.new()
+3272:		var list: Array = player.survivors
+3279:			var partner_data: Dictionary = partner
+3280:			var raw_stats: Variant = partner_data.get("stats", {})
+3281:			var stats: Dictionary = {}
+3284:			var button := Button.new()
+3301:func _show_placeholder_codex(title_text: String, description: String) -> void:
+3304:		var title := Label.new()
+3310:		var label := Label.new()
+3317:func _add_codex_category_back_button() -> void:
+3318:		var back_button := Button.new()
+3327:func _show_beast_codex_list() -> void:
+3330:		var player := GameState.player
+3331:		var defeated_beasts: Array = player.story_flags.get("defeated_beasts", [])
+3333:		var summary := Label.new()
+3342:		var beast_ids: Array = DataManager.beasts.keys()
+3345:				var beast_id := str(beast_id_variant)
+3348:				var beast: Dictionary = DataManager.beasts[beast_id]
+3349:				var codex: Dictionary = _get_beast_codex_entry(beast_id)
+3350:				var threat := str(codex.get("threat_level", _threat_from_beast_type(str(beast.get("type", "")))))
+3351:				var button := Button.new()
+3366:func _show_beast_codex_detail(beast_id: String) -> void:
+3372:		var beast: Dictionary = DataManager.beasts[beast_id]
+3373:		var codex: Dictionary = _get_beast_codex_entry(beast_id)
+3374:		var asset: Dictionary = _get_beast_asset_entry(beast_id)
+3376:		var back_button := Button.new()
+3384:		var row := HBoxContainer.new()
+3389:		var image_button := Button.new()
+3390:		var display_texture := _get_beast_display_texture(beast_id)
+3401:		var info_box := VBoxContainer.new()
+3406:		var name_label := Label.new()
+3415:		var status_label := Label.new()
+3425:		var role_label := Label.new()
+3431:		var hint := Label.new()
+3436:		var brief := Label.new()
+3446:func _show_beast_codex_full_info(beast_id: String) -> void:
+3452:		var beast: Dictionary = DataManager.beasts[beast_id]
+3453:		var codex: Dictionary = _get_beast_codex_entry(beast_id)
+3454:		var asset: Dictionary = _get_beast_asset_entry(beast_id)
+3456:		var back_button := Button.new()
+3464:		var title := Label.new()
+3470:		var stats := Label.new()
+3484:		var detail := Label.new()
+3499:func _on_codex_category_pressed(category_id: String) -> void:
+3506:func _on_codex_back_to_categories_pressed() -> void:
+3513:func _on_codex_beast_pressed(beast_id: String) -> void:
+3519:func _on_codex_image_pressed(beast_id: String) -> void:
+3525:func _on_codex_back_to_list_pressed() -> void:
+3531:func _on_codex_back_to_detail_pressed(beast_id: String) -> void:
+3537:func _get_beast_asset_entry(beast_id: String) -> Dictionary:
+3538:		var raw_assets: Variant = DataManager.beast_assets.get("beasts", {})
+3541:		var assets: Dictionary = raw_assets
+3547:func _get_beast_codex_entry(beast_id: String) -> Dictionary:
+3548:		var raw_entries: Variant = DataManager.beast_codex.get("entries", {})
+3551:		var entries: Dictionary = raw_entries
+3557:func _get_beast_display_texture(beast_id: String) -> Texture2D:
+3558:		var asset := _get_beast_asset_entry(beast_id)
+3559:		var portrait_path := str(asset.get("portrait", ""))
+3560:		var portrait := _load_texture_or_null(portrait_path)
+3566:func _get_beast_avatar_texture(beast_id: String) -> Texture2D:
+3567:		var asset := _get_beast_asset_entry(beast_id)
+3568:		var raw_rect_data: Variant = asset.get("avatar_rect", [])
+3569:		var raw_sheet_data: Variant = DataManager.beast_assets.get("avatar_sheet", {})
+3572:		var rect_data: Array = raw_rect_data
+3573:		var sheet_data: Dictionary = raw_sheet_data
+3574:		var sheet_path := str(sheet_data.get("path", ""))
+3578:		var sheet := _load_texture_or_null(sheet_path)
+3582:		var atlas := AtlasTexture.new()
+3593:func _load_texture_or_null(path: String) -> Texture2D:
+3596:		var resource: Resource = load(path)
+3602:func _format_codex_values(values: Variant) -> String:
+3606:				var parts: Array[String] = []
+3610:		var text := str(values)
+3614:func _threat_from_beast_type(beast_type: String) -> String:
+3625:func _clear_container(container: Node) -> void:
+3631:func _refresh_codex_legacy_unused() -> void:
+3632:	var player := GameState.player
+3633:	var partner_count: int = player.survivors.size()
+3634:	var total_partners: int = DataManager.partners.size()
+3635:	var total_beasts: int = DataManager.beasts.size()
+3636:	var defeated_beasts: Array = player.story_flags.get("defeated_beasts", [])
+3644:func _on_heal_all_pressed() -> void:
+3645:	var player := GameState.player
+3646:	var healed := false
+3658:func _on_rest_pressed() -> void:
+3667:func _on_switch_formation_pressed() -> void:
+3668:	var player := GameState.player
+3669:	var formations := ["assault", "iron", "wind"]
+3670:	var current_index := formations.find(player.current_formation)
+3673:	var next_index := (current_index + 1) % formations.size()
+3682:func _format_formation_bonus(bonus: Dictionary) -> String:
+3683:	var parts: Array[String] = []
+3685:		var value: float = bonus[stat]
+3686:		var label: String = stat
+3698:func _on_settings_pressed() -> void:
+3702:func _make_separator() -> HSeparator:
+3703:	var sep := HSeparator.new()

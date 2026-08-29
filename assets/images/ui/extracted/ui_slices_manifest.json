@@ -1,0 +1,39 @@
+{
+  "source_dir": "D:/image",
+  "output_dir": "res://assets/images/ui/extracted",
+  "latest_source": "ChatGPT Image 2026年8月26日 22_54_48.png",
+  "backgrounds": {
+    "ruined_station": "res://assets/images/ui/extracted/latest_bg_ruined_station.png",
+    "city_small": "res://assets/images/ui/extracted/latest_bg_city_small.png",
+    "result_header": "res://assets/images/ui/extracted/latest_bg_result_header.png"
+  },
+  "screen_references": {
+    "main_full": "res://assets/images/ui/extracted/latest_phone_main_full.png",
+    "survival": "res://assets/images/ui/extracted/latest_panel_survival.png",
+    "explore": "res://assets/images/ui/extracted/latest_panel_explore.png",
+    "formation": "res://assets/images/ui/extracted/latest_panel_formation.png",
+    "base": "res://assets/images/ui/extracted/latest_panel_base.png",
+    "reincarnation": "res://assets/images/ui/extracted/latest_panel_reincarnation.png",
+    "battle": "res://assets/images/ui/extracted/latest_panel_battle.png",
+    "boss_info": "res://assets/images/ui/extracted/latest_panel_boss_info.png",
+    "bag": "res://assets/images/ui/extracted/latest_panel_bag.png",
+    "death_result": "res://assets/images/ui/extracted/latest_panel_death_result.png"
+  },
+  "component_samples": {
+    "top_status_bar": "res://assets/images/ui/extracted/latest_top_status_bar.png",
+    "mission_panel": "res://assets/images/ui/extracted/latest_mission_panel.png",
+    "bottom_nav": "res://assets/images/ui/extracted/latest_bottom_nav.png",
+    "right_menu": "res://assets/images/ui/extracted/latest_right_menu.png",
+    "icon_style": "res://assets/images/ui/extracted/latest_icon_style_samples.png",
+    "button_style": "res://assets/images/ui/extracted/latest_button_style_samples.png"
+  },
+  "clean_components": {
+    "button_dark": "res://assets/images/ui/extracted/component_button_dark_clean.png",
+    "button_amber": "res://assets/images/ui/extracted/component_button_amber_clean.png",
+    "button_red": "res://assets/images/ui/extracted/component_button_red_clean.png",
+    "panel_dark": "res://assets/images/ui/extracted/component_panel_dark_clean.png",
+    "unit_card": "res://assets/images/ui/extracted/component_unit_card_clean.png",
+    "hp_bar": "res://assets/images/ui/extracted/component_bar_hp_red.png",
+    "ep_bar": "res://assets/images/ui/extracted/component_bar_ep_blue.png"
+  }
+}

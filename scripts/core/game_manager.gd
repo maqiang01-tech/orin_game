@@ -8,22 +8,138 @@ extends Control
 const UI_FRAME_TEXTURE = preload("res://assets/images/ui/ui_frame_full.png")
 const UI_PANEL_CARD_TEXTURE = preload("res://assets/images/ui/ui_panel_card.png")
 const UI_ROUTE_CARD_TEXTURE = preload("res://assets/images/ui/ui_route_card.png")
+const UI_EFFECT_BUTTON_DARK_TEXTURE = preload("res://assets/images/ui/extracted/buttons/action_search.png")
+const UI_EFFECT_BUTTON_AMBER_TEXTURE = preload("res://assets/images/ui/extracted/buttons/primary_go.png")
+const UI_EFFECT_NAV_TEXTURE = preload("res://assets/images/ui/extracted/buttons/nav_explore_normal.png")
+const UI_EFFECT_NAV_SELECTED_TEXTURE = preload("res://assets/images/ui/extracted/buttons/nav_explore_selected.png")
+const UI_HOME_BG_TEXTURE = preload("res://assets/images/ui/extracted/backgrounds/subway_station.png")
+const UI_APP_BG_TEXTURE = preload("res://assets/images/ui/extracted/backgrounds/wide_ruined_city.png")
+const UI_EFFECT_PANEL_TEXTURE = preload("res://assets/images/ui/extracted/panels/panel_dark_thin.png")
+const UI_COMPONENT_PANEL_TEXTURE = preload("res://assets/images/ui/extracted/component_panel_dark_clean.png")
+const UI_COMPONENT_BUTTON_DARK_TEXTURE = preload("res://assets/images/ui/extracted/component_button_dark_clean.png")
+const UI_COMPONENT_BUTTON_AMBER_TEXTURE = preload("res://assets/images/ui/extracted/component_button_amber_clean.png")
+const UI_COMPONENT_BUTTON_RED_TEXTURE = preload("res://assets/images/ui/extracted/component_button_red_clean.png")
+const UI_LATEST_HOME_CARD_TEXTURE = preload("res://assets/images/ui/extracted/latest_bg_ruined_station.png")
+const UI_LATEST_PRIMARY_BUTTON_TEXTURE = preload("res://assets/images/ui/extracted/latest_button_primary_amber.png")
+const UI_LATEST_REINCARNATION_BUTTON_TEXTURE = preload("res://assets/images/ui/extracted/latest_button_reincarnation_red.png")
+const UI_LATEST_MISSION_PANEL_TEXTURE = preload("res://assets/images/ui/extracted/latest_mission_panel.png")
+const UI_HOME_SEARCH_TEXTURE = preload("res://assets/images/ui/extracted/buttons/action_search.png")
+const UI_HOME_REST_TEXTURE = preload("res://assets/images/ui/extracted/buttons/action_rest.png")
+const UI_HOME_LEAVE_TEXTURE = preload("res://assets/images/ui/extracted/buttons/action_leave.png")
+const UI_PROD_BG_CITY = preload("res://assets/images/ui/production/04_backgrounds/bg_city_ruins.png")
+const UI_PROD_BG_SUBWAY = preload("res://assets/images/ui/production/04_backgrounds/bg_subway_abandoned.png")
+const UI_PROD_BG_BASE = preload("res://assets/images/ui/production/04_backgrounds/bg_base_shelter.png")
+const UI_PROD_BG_REINCARNATION = preload("res://assets/images/ui/production/04_backgrounds/bg_reincarnation_hall.png")
+const UI_PROD_PANEL_SCENE = preload("res://assets/images/ui/production/07_panels/panel_scene.png")
+const UI_PROD_PANEL_MAIN_QUEST = preload("res://assets/images/ui/production/07_panels/panel_main_quest.png")
+const UI_PROD_PANEL_LOCATION_INFO = preload("res://assets/images/ui/production/07_panels/panel_location_info.png")
+const UI_PROD_PANEL_CHARACTER = preload("res://assets/images/ui/production/07_panels/panel_character.png")
+const UI_PROD_PANEL_RESOURCE = preload("res://assets/images/ui/production/07_panels/panel_resource.png")
+const UI_PROD_PANEL_BASE_FACILITY = preload("res://assets/images/ui/production/07_panels/panel_base_facility.png")
+const UI_PROD_PANEL_FORMATION = preload("res://assets/images/ui/production/07_panels/panel_formation.png")
+const UI_PROD_PANEL_TEAM_RATING = preload("res://assets/images/ui/production/07_panels/panel_team_rating.png")
+const UI_PROD_PANEL_BOSS = preload("res://assets/images/ui/production/07_panels/panel_boss.png")
+const UI_PROD_PROGRESS_TRACK = preload("res://assets/images/ui/production/09_progress_bars/progress_track_dark.png")
+const UI_PROD_PROGRESS_GOLD = preload("res://assets/images/ui/production/09_progress_bars/progress_fill_gold.png")
+const UI_PROD_PROGRESS_RED = preload("res://assets/images/ui/production/09_progress_bars/progress_fill_red.png")
+const UI_PROD_BOSS_WARDEN = preload("res://assets/images/ui/production/13_dedicated/boss/boss_warden_portrait.png")
+const UI_PROD_CTA_PRIMARY_NORMAL = preload("res://assets/images/ui/production/01_buttons/cta/btn_primary_normal.png")
+const UI_PROD_CTA_PRIMARY_HOVER = preload("res://assets/images/ui/production/01_buttons/cta/btn_primary_hover.png")
+const UI_PROD_CTA_PRIMARY_PRESSED = preload("res://assets/images/ui/production/01_buttons/cta/btn_primary_pressed.png")
+const UI_PROD_CTA_PRIMARY_DISABLED = preload("res://assets/images/ui/production/01_buttons/cta/btn_primary_disabled.png")
+const UI_PROD_CTA_DANGER_NORMAL = preload("res://assets/images/ui/production/01_buttons/cta/btn_danger_normal.png")
+const UI_PROD_CTA_DANGER_HOVER = preload("res://assets/images/ui/production/01_buttons/cta/btn_danger_hover.png")
+const UI_PROD_CTA_DANGER_PRESSED = preload("res://assets/images/ui/production/01_buttons/cta/btn_danger_pressed.png")
+const UI_PROD_CTA_DANGER_DISABLED = preload("res://assets/images/ui/production/01_buttons/cta/btn_danger_disabled.png")
+const UI_PROD_CTA_SECONDARY_NORMAL = preload("res://assets/images/ui/production/01_buttons/cta/btn_secondary_normal.png")
+const UI_PROD_CTA_SECONDARY_HOVER = preload("res://assets/images/ui/production/01_buttons/cta/btn_secondary_hover.png")
+const UI_PROD_CTA_SECONDARY_PRESSED = preload("res://assets/images/ui/production/01_buttons/cta/btn_secondary_pressed.png")
+const UI_PROD_CTA_SECONDARY_DISABLED = preload("res://assets/images/ui/production/01_buttons/cta/btn_secondary_disabled.png")
+const UI_PROD_BTN_SEARCH_NORMAL = preload("res://assets/images/ui/production/01_buttons/function/btn_search_normal.png")
+const UI_PROD_BTN_SEARCH_HOVER = preload("res://assets/images/ui/production/01_buttons/function/btn_search_hover.png")
+const UI_PROD_BTN_SEARCH_PRESSED = preload("res://assets/images/ui/production/01_buttons/function/btn_search_pressed.png")
+const UI_PROD_BTN_REST_NORMAL = preload("res://assets/images/ui/production/01_buttons/function/btn_rest_normal.png")
+const UI_PROD_BTN_REST_HOVER = preload("res://assets/images/ui/production/01_buttons/function/btn_rest_hover.png")
+const UI_PROD_BTN_REST_PRESSED = preload("res://assets/images/ui/production/01_buttons/function/btn_rest_pressed.png")
+const UI_PROD_BTN_LEAVE_NORMAL = preload("res://assets/images/ui/production/01_buttons/function/btn_leave_normal.png")
+const UI_PROD_BTN_LEAVE_HOVER = preload("res://assets/images/ui/production/01_buttons/function/btn_leave_hover.png")
+const UI_PROD_BTN_LEAVE_PRESSED = preload("res://assets/images/ui/production/01_buttons/function/btn_leave_pressed.png")
+const UI_PROD_BTN_ADJUST_NORMAL = preload("res://assets/images/ui/production/01_buttons/function/btn_adjust_team_normal.png")
+const UI_PROD_BTN_ADJUST_HOVER = preload("res://assets/images/ui/production/01_buttons/function/btn_adjust_team_hover.png")
+const UI_PROD_BTN_ADJUST_PRESSED = preload("res://assets/images/ui/production/01_buttons/function/btn_adjust_team_pressed.png")
+const UI_PROD_BTN_EQUIP_NORMAL = preload("res://assets/images/ui/production/01_buttons/function/btn_equipment_normal.png")
+const UI_PROD_BTN_EQUIP_HOVER = preload("res://assets/images/ui/production/01_buttons/function/btn_equipment_hover.png")
+const UI_PROD_BTN_EQUIP_PRESSED = preload("res://assets/images/ui/production/01_buttons/function/btn_equipment_pressed.png")
+const UI_PROD_BTN_SKILL_NORMAL = preload("res://assets/images/ui/production/01_buttons/function/btn_skill_normal.png")
+const UI_PROD_BTN_SKILL_HOVER = preload("res://assets/images/ui/production/01_buttons/function/btn_skill_hover.png")
+const UI_PROD_BTN_SKILL_PRESSED = preload("res://assets/images/ui/production/01_buttons/function/btn_skill_pressed.png")
+const UI_PROD_SYSTEM_NORMAL = preload("res://assets/images/ui/production/01_buttons/system/btn_system_normal.png")
+const UI_PROD_SYSTEM_PRESSED = preload("res://assets/images/ui/production/01_buttons/system/btn_system_pressed.png")
+const UI_PROD_SYSTEM_DISABLED = preload("res://assets/images/ui/production/01_buttons/system/btn_system_disabled.png")
+const UI_PROD_ICON_SETTINGS = preload("res://assets/images/ui/production/03_icons/system/icon_settings.png")
+const UI_PROD_ICON_QUESTION = preload("res://assets/images/ui/production/03_icons/system/icon_question.png")
+const UI_PROD_ICON_NOTIFICATION = preload("res://assets/images/ui/production/03_icons/system/icon_notification.png")
+const UI_PROD_SLOT_FORMATION_NORMAL = preload("res://assets/images/ui/production/10_slots/slot_formation_normal.png")
+const UI_PROD_SLOT_FORMATION_OCCUPIED = preload("res://assets/images/ui/production/10_slots/slot_formation_occupied.png")
+const UI_PROD_SLOT_FORMATION_SELECTED = preload("res://assets/images/ui/production/10_slots/slot_formation_selected.png")
+const UI_PROD_SLOT_PARTNER_NORMAL = preload("res://assets/images/ui/production/10_slots/slot_partner_normal.png")
+const UI_PROD_SLOT_PARTNER_SELECTED = preload("res://assets/images/ui/production/10_slots/slot_partner_selected.png")
+const UI_PROD_BOTTOM_NAV_BG = preload("res://assets/images/ui/production/11_bottom_navigation/bottom_nav_background.png")
+const UI_PROD_NAV_NORMAL_TEXTURES = [
+	preload("res://assets/images/ui/production/11_bottom_navigation/nav_survival_normal.png"),
+	preload("res://assets/images/ui/production/11_bottom_navigation/nav_explore_normal.png"),
+	preload("res://assets/images/ui/production/11_bottom_navigation/nav_team_normal.png"),
+	preload("res://assets/images/ui/production/11_bottom_navigation/nav_base_normal.png"),
+	preload("res://assets/images/ui/production/11_bottom_navigation/nav_reincarnation_normal.png")
+]
+const UI_PROD_NAV_SELECTED_TEXTURES = [
+	preload("res://assets/images/ui/production/11_bottom_navigation/nav_survival_selected.png"),
+	preload("res://assets/images/ui/production/11_bottom_navigation/nav_explore_selected.png"),
+	preload("res://assets/images/ui/production/11_bottom_navigation/nav_team_selected.png"),
+	preload("res://assets/images/ui/production/11_bottom_navigation/nav_base_selected.png"),
+	preload("res://assets/images/ui/production/11_bottom_navigation/nav_reincarnation_selected.png")
+]
+const UI_NAV_NORMAL_TEXTURES = [
+	preload("res://assets/images/ui/extracted/buttons/nav_survival_normal.png"),
+	preload("res://assets/images/ui/extracted/buttons/nav_explore_normal.png"),
+	preload("res://assets/images/ui/extracted/buttons/nav_formation_normal.png"),
+	preload("res://assets/images/ui/extracted/buttons/nav_base_normal.png"),
+	preload("res://assets/images/ui/extracted/buttons/nav_reincarnation_normal.png")
+]
+const UI_NAV_SELECTED_TEXTURES = [
+	preload("res://assets/images/ui/extracted/buttons/nav_survival_selected.png"),
+	preload("res://assets/images/ui/extracted/buttons/nav_explore_selected.png"),
+	preload("res://assets/images/ui/extracted/buttons/nav_formation_selected.png"),
+	preload("res://assets/images/ui/extracted/buttons/nav_base_selected.png"),
+	preload("res://assets/images/ui/extracted/buttons/nav_reincarnation_selected.png")
+]
 const WORLD_MAP_TEXTURE = preload("res://assets/images/exploration/world_map_wide_city_realm_v5_clean.png")
 
-const COLOR_TEXT = Color(0.88, 0.96, 1.0)
-const COLOR_MUTED = Color(0.58, 0.68, 0.72)
-const COLOR_CYAN = Color(0.0, 0.83, 1.0)
+const COLOR_TEXT = Color(0.88, 0.84, 0.76)
+const COLOR_MUTED = Color(0.58, 0.54, 0.48)
+const COLOR_CYAN = Color(0.82, 0.66, 0.43)
 const COLOR_AMBER = Color(0.96, 0.65, 0.14)
+
+# 永久天赋配置
+const TALENT_CONFIG: Array = [
+	{"id": "vitality", "name": "强健体魄", "direction": "生存", "desc": "初始HP上限 +5%/级", "max_level": 5, "cost": 1},
+	{"id": "endurance", "name": "充沛体力", "direction": "生存", "desc": "体力上限 +10%/级", "max_level": 5, "cost": 1},
+	{"id": "weapon_mastery", "name": "武器掌握", "direction": "战斗", "desc": "攻击 +5%/级", "max_level": 5, "cost": 1},
+	{"id": "combat_instinct", "name": "战斗技巧", "direction": "战斗", "desc": "暴击率 +2%/级", "max_level": 5, "cost": 1},
+	{"id": "past_memory", "name": "前世记忆", "direction": "命运", "desc": "解锁隐藏Boss情报", "max_level": 1, "cost": 2},
+	{"id": "truth_insight", "name": "真相洞察", "direction": "命运", "desc": "真相进度获取 +10%/级", "max_level": 5, "cost": 1}
+]
 
 # UI 引用
 var background_frame: TextureRect
-var status_bar: HBoxContainer
-var content_container: VBoxContainer
+var status_bar: Control
+var content_container: Control
+var bottom_tab_bar: Control
 var tab_pages: Dictionary = {}  # tab_id -> Control
 var tab_buttons: Dictionary = {}  # tab_id -> Button
 
 # 当前Tab
-var current_tab: String = "home"
+var current_tab: String = "camp"
 
 # 集结地界面引用
 var home_day_label: Label
@@ -33,6 +149,12 @@ var home_chapter_label: Label
 var home_status_panel: PanelContainer
 var home_status_label: Label
 var home_reincarnation_label: Label
+var scene_title_label: Label
+var scene_desc_label: Label
+var scene_hot_container: VBoxContainer
+var story_card_title_label: Label
+var story_card_text_label: Label
+var story_card_button_container: HBoxContainer
 
 # 编队界面引用
 var formation_label: Label
@@ -75,15 +197,37 @@ var current_site_position: Vector2i = Vector2i.ZERO
 var current_site_floor: int = 1
 var current_site_total_floors: int = 1
 var world_map_viewport: Control
+var world_map_scroll: ScrollContainer
 var world_map_canvas: Control
 var world_map_zoom_container: Control
 var world_map_base_size := Vector2.ZERO
 var world_map_zoom: float = 1.0
 var world_map_touches: Dictionary = {}
 var world_map_last_pinch_distance: float = 0.0
+var world_map_dragging: bool = false
+var world_map_drag_start := Vector2.ZERO
+var world_map_scroll_start := Vector2.ZERO
+var selected_world_site: Dictionary = {}
+var world_map_detail_title: Label
+var world_map_detail_info: Label
+var world_map_go_button: Button
 
 # 背包界面引用
 var inventory_label: Label
+var inventory_content_container: VBoxContainer
+var base_content_container: VBoxContainer
+var base_detail_label: Label
+var base_selected_facility: Dictionary = {}
+var base_upgrade_button: Button
+var reincarnation_content_container: VBoxContainer
+var codex_popup: PopupPanel
+var talent_popup: PopupPanel
+var talent_content_box: VBoxContainer
+var boss_preview_popup: PopupPanel
+var boss_preview_content_box: VBoxContainer
+var story_content_container: VBoxContainer
+var team_formation_view: Control
+var team_partner_view: Control
 
 # 图鉴界面引用
 var codex_label: Label
@@ -116,22 +260,42 @@ var battle_waiting_input: bool = false
 var battle_finished: bool = false
 var battle_callback: Callable = Callable()
 var battle_site_context: Dictionary = {}  # 小地图遇敌战斗上下文：记录敌人格/原位置，用于结算后处理
+var battle_scene_instance: Control
+const BATTLE_SCENE_PATH := "res://scenes/battle/battle_scene.tscn"
 
 # 轮回结算UI引用
 var reincarnation_popup: PopupPanel
 var reincarnation_confirm_label: Label
 var reincarnation_result_label: Label
+var reincarnation_rating_label: Label
 var reincarnation_cancel_button: Button
 var reincarnation_confirm_button: Button
 var reincarnation_close_button: Button
+
+# 剧情播放UI引用
+var story_popup: PopupPanel
+var story_title_label: Label
+var story_speaker_label: Label
+var story_text_label: Label
+var story_action_box: HBoxContainer
+var story_tutorial_label: Label
+var story_home_button: Button
+
+# 商城UI引用
+var store_popup: PopupPanel
+var store_content_box: VBoxContainer
+
+# 抽奖结果UI引用
+var gacha_result_popup: PopupPanel
+var gacha_result_label: Label
 
 
 class WorldMapConnections:
 	extends Control
 
 	var connection_points: Array = []
-	var line_color := Color(0.45, 0.85, 1.0, 0.55)
-	var label_color := Color(0.85, 0.95, 1.0, 0.85)
+	var line_color := Color(0.95, 0.64, 0.22, 0.42)
+	var label_color := Color(0.96, 0.86, 0.66, 0.9)
 
 	func _draw() -> void:
 		for connection in connection_points:
@@ -146,33 +310,39 @@ class WorldMapConnections:
 				var normal := Vector2(-direction.y, direction.x)
 				var mid := (from + to) * 0.5 + normal * 10.0
 				var label_position := mid - Vector2(label_size.x * 0.5, -label_size.y * 0.5)
-				draw_rect(Rect2(label_position - Vector2(3, label_size.y + 2), label_size + Vector2(6, 4)), Color(0.01, 0.04, 0.06, 0.82), true)
+				draw_rect(Rect2(label_position - Vector2(3, label_size.y + 2), label_size + Vector2(6, 4)), Color(0.06, 0.04, 0.02, 0.86), true)
 				draw_string(font, label_position, label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, label_color)
 
 
 func _ready() -> void:
 	GameState.ensure_initial_survivors()
 	_build_background_frame()
-	_build_status_bar()
+	_build_effect_status_bar()
 	_build_content_area()
 	_build_tab_navigation()
-	_build_battle_popup()
 	_build_reincarnation_popup()
+	_build_story_popup()
+	_build_gacha_result_popup()
+	_build_codex_popup()
+	_build_store_popup()
+	_build_talent_popup()
+	_build_boss_preview_popup()
 	exploration_system = ExplorationSystem.new()
 	exploration_system.player = GameState.player
 	exploration_system.data_manager = DataManager
 	dungeon_manager = DungeonManager.new()
-	_switch_tab("home")
+	_switch_tab("camp")
 	_refresh_all()
 
 
 func _build_background_frame() -> void:
 	background_frame = TextureRect.new()
 	background_frame.name = "BackgroundFrame"
-	background_frame.texture = UI_FRAME_TEXTURE
+	background_frame.texture = UI_PROD_BG_CITY
 	background_frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	background_frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	background_frame.stretch_mode = TextureRect.STRETCH_SCALE
+	background_frame.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	background_frame.modulate = Color(0.62, 0.58, 0.50, 0.48)
 	background_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(background_frame)
 
@@ -214,16 +384,117 @@ func _make_texture_style(
 	margin_left: int = 4,
 	margin_top: int = 4,
 	margin_right: int = 4,
-	margin_bottom: int = 4
+	margin_bottom: int = 4,
+	texture_margin_left: int = 0,
+	texture_margin_top: int = 0,
+	texture_margin_right: int = 0,
+	texture_margin_bottom: int = 0,
+	draw_center: bool = true
 ) -> StyleBoxTexture:
 	var style := StyleBoxTexture.new()
 	style.texture = texture
-	style.draw_center = true
+	style.draw_center = draw_center
+	style.texture_margin_left = texture_margin_left
+	style.texture_margin_top = texture_margin_top
+	style.texture_margin_right = texture_margin_right
+	style.texture_margin_bottom = texture_margin_bottom
 	style.content_margin_left = margin_left
 	style.content_margin_top = margin_top
 	style.content_margin_right = margin_right
 	style.content_margin_bottom = margin_bottom
 	return style
+
+
+func _make_effect_button_style(texture: Texture2D, content_margin: int = 8, texture_margin: int = 10) -> StyleBoxTexture:
+	return _make_texture_style(texture, content_margin, content_margin, content_margin, content_margin, texture_margin, texture_margin, texture_margin, texture_margin, false)
+
+
+func _make_component_style(texture: Texture2D, content_margin: int = 10, texture_margin: int = 18, draw_center: bool = true) -> StyleBoxTexture:
+	return _make_texture_style(texture, content_margin, content_margin, content_margin, content_margin, texture_margin, texture_margin, texture_margin, texture_margin, draw_center)
+
+
+func _make_ui_style(texture: Texture2D, margin: int = 16, slice: int = 28, draw_center: bool = true) -> StyleBoxTexture:
+	return _make_texture_style(texture, margin, margin, margin, margin, slice, slice, slice, slice, draw_center)
+
+
+func _place_control(control: Control, x: float, y: float, w: float, h: float) -> void:
+	control.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	control.position = Vector2(x, y)
+	control.size = Vector2(w, h)
+	control.custom_minimum_size = Vector2(w, h)
+
+
+func _add_page_background(page: Control, texture: Texture2D, tint: Color = Color(0.55, 0.52, 0.46, 0.34)) -> void:
+	var bg := TextureRect.new()
+	bg.texture = texture
+	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	bg.modulate = tint
+	bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	page.add_child(bg)
+
+
+func _apply_panel_texture(panel: PanelContainer, texture: Texture2D = UI_PROD_PANEL_SCENE, margin: int = 16) -> void:
+	panel.add_theme_stylebox_override("panel", _make_ui_style(texture, margin, 28, true))
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+
+func _apply_texture_button_skin(
+	button: Button,
+	normal_texture: Texture2D,
+	hover_texture: Texture2D,
+	pressed_texture: Texture2D,
+	disabled_texture: Texture2D = null,
+	content_margin: int = 12,
+	texture_margin: int = 24
+) -> void:
+	var disabled := disabled_texture if disabled_texture != null else normal_texture
+	button.add_theme_stylebox_override("normal", _make_texture_style(normal_texture, content_margin, content_margin, content_margin, content_margin, texture_margin, texture_margin, texture_margin, texture_margin, true))
+	button.add_theme_stylebox_override("hover", _make_texture_style(hover_texture, content_margin, content_margin, content_margin, content_margin, texture_margin, texture_margin, texture_margin, texture_margin, true))
+	button.add_theme_stylebox_override("pressed", _make_texture_style(pressed_texture, content_margin, content_margin, content_margin, content_margin, texture_margin, texture_margin, texture_margin, texture_margin, true))
+	button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	button.add_theme_stylebox_override("disabled", _make_texture_style(disabled, content_margin, content_margin, content_margin, content_margin, texture_margin, texture_margin, texture_margin, texture_margin, true))
+
+
+func _apply_system_icon_button(button: Button, icon_texture: Texture2D) -> void:
+	button.text = ""
+	button.icon = null
+	button.clip_contents = true
+	button.focus_mode = Control.FOCUS_ALL
+	_apply_texture_button_skin(button, UI_PROD_SYSTEM_NORMAL, UI_PROD_SYSTEM_PRESSED, UI_PROD_SYSTEM_PRESSED, UI_PROD_SYSTEM_DISABLED, 0, 18)
+
+	var icon := TextureRect.new()
+	icon.name = "ButtonIcon"
+	icon.texture = icon_texture
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	icon.anchor_left = 0.22
+	icon.anchor_top = 0.22
+	icon.anchor_right = 0.78
+	icon.anchor_bottom = 0.78
+	button.add_child(icon)
+
+
+func _apply_slot_button_skin(button: Button, normal_texture: Texture2D, selected_texture: Texture2D = null) -> void:
+	var selected := selected_texture if selected_texture != null else normal_texture
+	_apply_texture_button_skin(button, normal_texture, selected, selected, selected, 6, 16)
+	button.add_theme_color_override("font_color", COLOR_TEXT)
+	button.add_theme_color_override("font_hover_color", Color(1.0, 0.78, 0.30, 1.0))
+	button.add_theme_color_override("font_pressed_color", COLOR_AMBER)
+	button.add_theme_color_override("font_focus_color", COLOR_AMBER)
+	button.add_theme_color_override("font_outline_color", Color.BLACK)
+	button.add_theme_constant_override("outline_size", 2)
+
+
+func _make_section_title(text: String) -> Label:
+	var label := Label.new()
+	label.text = text
+	_apply_label_style(label, 15, COLOR_AMBER)
+	label.add_theme_color_override("font_outline_color", Color(0.02, 0.012, 0.006, 0.95))
+	label.add_theme_constant_override("outline_size", 2)
+	return label
 
 
 func _apply_tab_button_texture_style(button: Button, region: Rect2) -> void:
@@ -243,34 +514,89 @@ func _apply_tab_button_texture_style(button: Button, region: Rect2) -> void:
 	button.add_theme_font_size_override("font_size", 9)
 
 
-func _apply_route_card_texture_style(button: Button) -> void:
-	var normal := _make_texture_style(UI_ROUTE_CARD_TEXTURE, 14, 12, 14, 12)
-	var hover := _make_texture_style(UI_ROUTE_CARD_TEXTURE, 14, 12, 14, 12)
-	var pressed := _make_texture_style(UI_ROUTE_CARD_TEXTURE, 14, 12, 14, 12)
+func _apply_direct_texture_button_style(button: Button, normal_texture: Texture2D, pressed_texture: Texture2D, texture_margin: int = 18) -> void:
+	var normal := _make_texture_style(normal_texture, 0, 0, 0, 0, texture_margin, texture_margin, texture_margin, texture_margin, true)
+	var hover := _make_texture_style(pressed_texture, 0, 0, 0, 0, texture_margin, texture_margin, texture_margin, texture_margin, true)
+	var pressed := _make_texture_style(pressed_texture, 0, 0, 0, 0, texture_margin, texture_margin, texture_margin, texture_margin, true)
+	button.text = ""
+	button.icon = null
 	button.add_theme_stylebox_override("normal", normal)
 	button.add_theme_stylebox_override("hover", hover)
 	button.add_theme_stylebox_override("pressed", pressed)
 	button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+
+
+func _apply_image_button(button: Button, normal_texture: Texture2D, pressed_texture: Texture2D = null) -> void:
+	button.text = ""
+	button.icon = null
+	button.clip_contents = true
+	button.focus_mode = Control.FOCUS_ALL
+	button.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+	button.add_theme_stylebox_override("hover", StyleBoxEmpty.new())
+	button.add_theme_stylebox_override("pressed", StyleBoxEmpty.new())
+	button.add_theme_stylebox_override("disabled", StyleBoxEmpty.new())
+	button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	button.set_meta("normal_texture", normal_texture)
+	button.set_meta("pressed_texture", pressed_texture if pressed_texture != null else normal_texture)
+	button.set_meta("image_button_hovered", false)
+	button.mouse_entered.connect(_on_image_button_hover_changed.bind(button, true))
+	button.mouse_exited.connect(_on_image_button_hover_changed.bind(button, false))
+	button.focus_entered.connect(_on_image_button_focus_changed.bind(button, true))
+	button.focus_exited.connect(_on_image_button_focus_changed.bind(button, false))
+
+	var image := TextureRect.new()
+	image.name = "ButtonImage"
+	image.texture = normal_texture
+	image.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	image.stretch_mode = TextureRect.STRETCH_SCALE
+	image.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(image)
+
+
+func _update_image_button_texture(button: Button, selected: bool) -> void:
+	if not button.has_node("ButtonImage"):
+		return
+	var image := button.get_node("ButtonImage") as TextureRect
+	if image == null:
+		return
+	var highlighted := selected or button.has_focus() or bool(button.get_meta("image_button_hovered", false))
+	image.texture = button.get_meta("pressed_texture") if highlighted else button.get_meta("normal_texture")
+
+
+func _on_image_button_hover_changed(button: Button, hovered: bool) -> void:
+	button.set_meta("image_button_hovered", hovered)
+	_update_image_button_texture(button, button.button_pressed)
+
+
+func _on_image_button_focus_changed(button: Button, _focused: bool) -> void:
+	_update_image_button_texture(button, button.button_pressed)
+
+
+func _apply_route_card_texture_style(button: Button) -> void:
+	var normal := _make_effect_button_style(UI_EFFECT_BUTTON_DARK_TEXTURE, 14, 10)
+	var hover := _make_effect_button_style(UI_EFFECT_BUTTON_AMBER_TEXTURE, 14, 10)
+	var pressed := _make_effect_button_style(UI_EFFECT_BUTTON_AMBER_TEXTURE, 14, 10)
+	button.add_theme_stylebox_override("normal", normal)
+	button.add_theme_stylebox_override("hover", hover)
+	button.add_theme_stylebox_override("pressed", pressed)
+	button.add_theme_stylebox_override("focus", pressed)
 	button.add_theme_color_override("font_color", COLOR_TEXT)
-	button.add_theme_color_override("font_hover_color", COLOR_CYAN)
+	button.add_theme_color_override("font_hover_color", Color(1.0, 0.92, 0.72, 1.0))
 	button.add_theme_color_override("font_pressed_color", COLOR_AMBER)
+	button.add_theme_color_override("font_focus_color", Color(1.0, 0.92, 0.72, 1.0))
 	button.add_theme_color_override("font_outline_color", Color(0.0, 0.02, 0.03, 0.9))
 	button.add_theme_constant_override("outline_size", 2)
 	button.add_theme_font_size_override("font_size", 13)
 
 
 func _apply_map_region_style(button: Button) -> void:
-	var normal := _make_flat_style(Color(0.015, 0.045, 0.06, 0.94), Color(0.0, 0.72, 0.84, 0.9), 1, 4, 6)
-	var hover := _make_flat_style(Color(0.02, 0.14, 0.17, 0.97), COLOR_CYAN, 2, 4, 6)
-	var pressed := _make_flat_style(Color(0.12, 0.13, 0.08, 0.98), COLOR_AMBER, 2, 4, 6)
-	button.add_theme_stylebox_override("normal", normal)
-	button.add_theme_stylebox_override("hover", hover)
-	button.add_theme_stylebox_override("pressed", pressed)
-	button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	_apply_texture_button_skin(button, UI_PROD_CTA_SECONDARY_NORMAL, UI_PROD_CTA_SECONDARY_HOVER, UI_PROD_CTA_SECONDARY_PRESSED, UI_PROD_CTA_SECONDARY_DISABLED, 6, 34)
 	button.add_theme_color_override("font_color", COLOR_TEXT)
-	button.add_theme_color_override("font_hover_color", Color.WHITE)
+	button.add_theme_color_override("font_hover_color", Color(1.0, 0.92, 0.72, 1.0))
 	button.add_theme_color_override("font_pressed_color", COLOR_AMBER)
-	button.add_theme_color_override("font_outline_color", Color(0.0, 0.02, 0.03, 0.95))
+	button.add_theme_color_override("font_focus_color", Color(1.0, 0.92, 0.72, 1.0))
+	button.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 0.95))
 	button.add_theme_constant_override("outline_size", 2)
 	button.add_theme_font_size_override("font_size", 11)
 
@@ -281,44 +607,53 @@ func _apply_label_style(label: Label, font_size: int = 16, color: Color = COLOR_
 
 
 func _apply_button_style(button: Button, kind: String = "row") -> void:
-	var normal := _make_flat_style(Color(0.07, 0.10, 0.12, 0.86), Color(0.0, 0.62, 0.72, 0.85), 1, 4, 8)
-	var hover := _make_flat_style(Color(0.08, 0.16, 0.18, 0.92), COLOR_CYAN, 1, 4, 8)
-	var pressed := _make_flat_style(Color(0.10, 0.18, 0.18, 0.96), COLOR_AMBER, 1, 4, 8)
 	var font_size := 15
 	match kind:
 		"route":
-			normal = _make_flat_style(Color(0.07, 0.10, 0.12, 0.88), Color(0.0, 0.72, 0.84, 0.9), 1, 5, 10)
-			hover = _make_flat_style(Color(0.08, 0.16, 0.18, 0.94), COLOR_CYAN, 1, 5, 10)
-			pressed = _make_flat_style(Color(0.12, 0.18, 0.16, 0.96), COLOR_AMBER, 1, 5, 10)
+			_apply_texture_button_skin(button, UI_PROD_CTA_SECONDARY_NORMAL, UI_PROD_CTA_SECONDARY_HOVER, UI_PROD_CTA_SECONDARY_PRESSED, UI_PROD_CTA_SECONDARY_DISABLED, 10, 34)
 		"panel":
-			normal = _make_flat_style(Color(0.08, 0.10, 0.11, 0.88), Color(0.0, 0.64, 0.74, 0.8), 1, 4, 10)
-			hover = _make_flat_style(Color(0.10, 0.14, 0.15, 0.94), COLOR_CYAN, 1, 4, 10)
-			pressed = _make_flat_style(Color(0.12, 0.16, 0.14, 0.96), COLOR_AMBER, 1, 4, 10)
+			_apply_texture_button_skin(button, UI_PROD_CTA_SECONDARY_NORMAL, UI_PROD_CTA_SECONDARY_HOVER, UI_PROD_CTA_SECONDARY_PRESSED, UI_PROD_CTA_SECONDARY_DISABLED, 10, 34)
+		"primary":
+			_apply_texture_button_skin(button, UI_PROD_CTA_PRIMARY_NORMAL, UI_PROD_CTA_PRIMARY_HOVER, UI_PROD_CTA_PRIMARY_PRESSED, UI_PROD_CTA_PRIMARY_DISABLED, 12, 34)
+			font_size = 19
+		"danger":
+			_apply_texture_button_skin(button, UI_PROD_CTA_DANGER_NORMAL, UI_PROD_CTA_DANGER_HOVER, UI_PROD_CTA_DANGER_PRESSED, UI_PROD_CTA_DANGER_DISABLED, 12, 34)
+			font_size = 18
 		"tab":
-			button.add_theme_stylebox_override("normal", _make_flat_style(Color(0.02, 0.04, 0.05, 0.05), Color(0.0, 0.0, 0.0, 0.0), 0, 3, 4))
-			button.add_theme_stylebox_override("hover", _make_flat_style(Color(0.0, 0.45, 0.55, 0.18), Color(0.0, 0.80, 0.95, 0.45), 1, 3, 4))
-			button.add_theme_stylebox_override("pressed", _make_flat_style(Color(0.0, 0.70, 0.85, 0.26), COLOR_AMBER, 1, 3, 4))
-			button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+			_apply_texture_button_skin(button, UI_PROD_CTA_SECONDARY_NORMAL, UI_PROD_CTA_SECONDARY_HOVER, UI_PROD_CTA_SECONDARY_PRESSED, UI_PROD_CTA_SECONDARY_DISABLED, 4, 34)
 			button.add_theme_color_override("font_color", COLOR_MUTED)
-			button.add_theme_color_override("font_hover_color", COLOR_TEXT)
-			button.add_theme_color_override("font_pressed_color", COLOR_CYAN)
-			button.add_theme_font_size_override("font_size", 12)
+			button.add_theme_color_override("font_hover_color", Color(1.0, 0.82, 0.36, 1.0))
+			button.add_theme_color_override("font_pressed_color", Color(1.0, 0.78, 0.24, 1.0))
+			button.add_theme_color_override("font_focus_color", COLOR_AMBER)
+			button.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 0.9))
+			button.add_theme_constant_override("outline_size", 2)
+			button.add_theme_font_size_override("font_size", 13)
 			return
+		"search":
+			_apply_texture_button_skin(button, UI_PROD_BTN_SEARCH_NORMAL, UI_PROD_BTN_SEARCH_HOVER, UI_PROD_BTN_SEARCH_PRESSED, null, 10, 24)
+		"rest":
+			_apply_texture_button_skin(button, UI_PROD_BTN_REST_NORMAL, UI_PROD_BTN_REST_HOVER, UI_PROD_BTN_REST_PRESSED, null, 10, 24)
+		"leave":
+			_apply_texture_button_skin(button, UI_PROD_BTN_LEAVE_NORMAL, UI_PROD_BTN_LEAVE_HOVER, UI_PROD_BTN_LEAVE_PRESSED, null, 10, 24)
+		"adjust_team":
+			_apply_texture_button_skin(button, UI_PROD_BTN_ADJUST_NORMAL, UI_PROD_BTN_ADJUST_HOVER, UI_PROD_BTN_ADJUST_PRESSED, null, 10, 24)
+		"equipment":
+			_apply_texture_button_skin(button, UI_PROD_BTN_EQUIP_NORMAL, UI_PROD_BTN_EQUIP_HOVER, UI_PROD_BTN_EQUIP_PRESSED, null, 10, 24)
+		"skill":
+			_apply_texture_button_skin(button, UI_PROD_BTN_SKILL_NORMAL, UI_PROD_BTN_SKILL_HOVER, UI_PROD_BTN_SKILL_PRESSED, null, 10, 24)
+		_:
+			_apply_texture_button_skin(button, UI_PROD_CTA_SECONDARY_NORMAL, UI_PROD_CTA_SECONDARY_HOVER, UI_PROD_CTA_SECONDARY_PRESSED, UI_PROD_CTA_SECONDARY_DISABLED, 8, 34)
 
-	button.add_theme_stylebox_override("normal", normal)
-	button.add_theme_stylebox_override("hover", hover)
-	button.add_theme_stylebox_override("pressed", pressed)
-	button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	button.add_theme_color_override("font_color", COLOR_TEXT)
-	button.add_theme_color_override("font_hover_color", COLOR_CYAN)
+	button.add_theme_color_override("font_hover_color", Color(1.0, 0.92, 0.72, 1.0))
 	button.add_theme_color_override("font_pressed_color", COLOR_AMBER)
+	button.add_theme_color_override("font_focus_color", Color(1.0, 0.92, 0.72, 1.0))
 	button.add_theme_font_size_override("font_size", font_size)
 
 
 func _make_panel_container() -> PanelContainer:
 	var panel := PanelContainer.new()
-	panel.add_theme_stylebox_override("panel", _make_flat_style(Color(0.08, 0.10, 0.11, 0.84), Color(0.0, 0.62, 0.72, 0.86), 1, 4, 0))
-	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_panel_texture(panel)
 	return panel
 
 
@@ -347,80 +682,202 @@ func _set_home_status(text: String) -> void:
 # ============================================================
 # 第1步：顶部状态栏
 # ============================================================
+func _build_effect_status_bar() -> void:
+	status_bar = Control.new()
+	status_bar.name = "StatusBar"
+	_place_control(status_bar, 0, 0, 720, 154)
+	add_child(status_bar)
+
+	var day_label := Label.new()
+	day_label.name = "DayLabel"
+	day_label.text = "DAY 1 · 上午  陈末"
+	_apply_label_style(day_label, 17, Color(0.86, 0.66, 0.38, 1.0))
+	_place_control(day_label, 24, 22, 310, 28)
+	status_bar.add_child(day_label)
+
+	var name_label := Label.new()
+	name_label.name = "NameLabel"
+	name_label.visible = false
+	status_bar.add_child(name_label)
+
+	var weather_label := Label.new()
+	weather_label.name = "WeatherLabel"
+	weather_label.text = "☁ 黑雨"
+	_apply_label_style(weather_label, 12, COLOR_TEXT)
+	weather_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_place_control(weather_label, 486, 22, 58, 24)
+	status_bar.add_child(weather_label)
+
+	var notification_button := Button.new()
+	notification_button.name = "NotificationButton"
+	_place_control(notification_button, 552, 14, 40, 40)
+	_apply_system_icon_button(notification_button, UI_PROD_ICON_NOTIFICATION)
+	notification_button.tooltip_text = "消息"
+	notification_button.pressed.connect(func() -> void: _set_home_status("当前没有新的营地消息。"))
+	status_bar.add_child(notification_button)
+
+	var codex_button := Button.new()
+	codex_button.name = "CodexButton"
+	_place_control(codex_button, 604, 14, 40, 40)
+	_apply_system_icon_button(codex_button, UI_PROD_ICON_QUESTION)
+	codex_button.tooltip_text = "图鉴"
+	codex_button.pressed.connect(_on_codex_button_pressed)
+	status_bar.add_child(codex_button)
+
+	var settings_button := Button.new()
+	settings_button.name = "SettingsButton"
+	_place_control(settings_button, 656, 14, 40, 40)
+	_apply_system_icon_button(settings_button, UI_PROD_ICON_SETTINGS)
+	settings_button.pressed.connect(_on_settings_pressed)
+	status_bar.add_child(settings_button)
+
+	var hp_label := _make_status_value_label("❤ HP\n100/100", COLOR_TEXT)
+	hp_label.name = "HpLabel"
+	_place_control(hp_label, 24, 62, 126, 44)
+	status_bar.add_child(hp_label)
+
+	var stamina_label := _make_status_value_label("体力\n100/100", COLOR_AMBER)
+	stamina_label.name = "StaminaLabel"
+	_place_control(stamina_label, 176, 62, 126, 44)
+	status_bar.add_child(stamina_label)
+
+	var hunger_label := _make_status_value_label("饥饿\n100/100", COLOR_AMBER)
+	hunger_label.name = "HungerLabel"
+	_place_control(hunger_label, 328, 62, 126, 44)
+	status_bar.add_child(hunger_label)
+
+	var mutation_label := _make_status_value_label("感染\n0%", Color(0.86, 0.20, 0.18, 1.0))
+	mutation_label.name = "MutationLabel"
+	_place_control(mutation_label, 556, 62, 126, 44)
+	status_bar.add_child(mutation_label)
+
+	var thirst_label := Label.new()
+	thirst_label.name = "ThirstLabel"
+	_apply_label_style(thirst_label, 12, Color(0.35, 0.68, 0.88, 1.0))
+	thirst_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(thirst_label, 456, 62, 86, 44)
+	status_bar.add_child(thirst_label)
+
+
+func _make_status_value_label(text: String, color: Color) -> Label:
+	var label := Label.new()
+	label.text = text
+	_apply_label_style(label, 12, color)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	return label
+
+
 func _build_status_bar() -> void:
-	status_bar = HBoxContainer.new()
-	status_bar.add_theme_constant_override("separation", 12)
+	status_bar = VBoxContainer.new()
+	status_bar.add_theme_constant_override("separation", 3)
 	status_bar.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
 	status_bar.offset_top = 8
-	status_bar.offset_bottom = 48
+	status_bar.offset_bottom = 84
 	status_bar.offset_left = 16
 	status_bar.offset_right = -16
 	add_child(status_bar)
 
-	# 左上：天数
+	# 第一行：天数+时间 + 名称 + 天气 + 图鉴 + 设置
+	var row1 := HBoxContainer.new()
+	row1.name = "Row1"
+	row1.add_theme_constant_override("separation", 10)
+	status_bar.add_child(row1)
+
 	var day_label := Label.new()
 	day_label.name = "DayLabel"
-	day_label.text = "D1"
-	_apply_label_style(day_label, 18, COLOR_CYAN)
-	day_label.custom_minimum_size = Vector2(60, 0)
-	status_bar.add_child(day_label)
+	day_label.text = "DAY 1 · 上午"
+	_apply_label_style(day_label, 17, COLOR_CYAN)
+	row1.add_child(day_label)
 
-	# 左中：探索者名称
 	var name_label := Label.new()
 	name_label.name = "NameLabel"
 	name_label.text = "陈末"
-	_apply_label_style(name_label, 16)
+	_apply_label_style(name_label, 15)
 	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	status_bar.add_child(name_label)
+	row1.add_child(name_label)
 
-	# 右中：补给券
-	var ticket_label := Label.new()
-	ticket_label.name = "TicketLabel"
-	ticket_label.text = "🎫 0"
-	_apply_label_style(ticket_label, 14, COLOR_AMBER)
-	status_bar.add_child(ticket_label)
+	var weather_label := Label.new()
+	weather_label.name = "WeatherLabel"
+	weather_label.text = "☁ 黑雨"
+	_apply_label_style(weather_label, 14, COLOR_MUTED)
+	row1.add_child(weather_label)
 
-	# 右上：灵能水晶
-	var crystal_label := Label.new()
-	crystal_label.name = "CrystalLabel"
-	crystal_label.text = "💎 0"
-	_apply_label_style(crystal_label, 14, COLOR_CYAN)
-	status_bar.add_child(crystal_label)
+	var codex_button := Button.new()
+	codex_button.name = "CodexButton"
+	codex_button.text = "📖"
+	codex_button.custom_minimum_size = Vector2(32, 32)
+	_apply_button_style(codex_button, "tab")
+	codex_button.tooltip_text = "图鉴"
+	codex_button.pressed.connect(_on_codex_button_pressed)
+	row1.add_child(codex_button)
 
-	# 右下：设置按钮
 	var settings_button := Button.new()
 	settings_button.name = "SettingsButton"
 	settings_button.text = "⚙️"
-	settings_button.custom_minimum_size = Vector2(36, 36)
+	settings_button.custom_minimum_size = Vector2(32, 32)
 	_apply_button_style(settings_button, "tab")
 	settings_button.pressed.connect(_on_settings_pressed)
-	status_bar.add_child(settings_button)
+	row1.add_child(settings_button)
+
+	# 第二行：HP + 饥饿 + 水分 + 体力 + 变异值
+	var row2 := HBoxContainer.new()
+	row2.name = "Row2"
+	row2.add_theme_constant_override("separation", 14)
+	status_bar.add_child(row2)
+
+	var hp_label := Label.new()
+	hp_label.name = "HpLabel"
+	hp_label.text = "❤️ 100%"
+	_apply_label_style(hp_label, 14, COLOR_TEXT)
+	row2.add_child(hp_label)
+
+	var hunger_label := Label.new()
+	hunger_label.name = "HungerLabel"
+	hunger_label.text = "🍖 100"
+	_apply_label_style(hunger_label, 14, COLOR_AMBER)
+	row2.add_child(hunger_label)
+
+	var thirst_label := Label.new()
+	thirst_label.name = "ThirstLabel"
+	thirst_label.text = "💧 100"
+	_apply_label_style(thirst_label, 14, COLOR_CYAN)
+	row2.add_child(thirst_label)
+
+	var stamina_label := Label.new()
+	stamina_label.name = "StaminaLabel"
+	stamina_label.text = "⚡ 100"
+	_apply_label_style(stamina_label, 14, COLOR_AMBER)
+	row2.add_child(stamina_label)
+
+	var mutation_label := Label.new()
+	mutation_label.name = "MutationLabel"
+	mutation_label.text = "☣ 0%"
+	_apply_label_style(mutation_label, 14, COLOR_MUTED)
+	mutation_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	mutation_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	row2.add_child(mutation_label)
 
 
 # ============================================================
 # 第2步：中间内容区（6个Tab页面）
 # ============================================================
 func _build_content_area() -> void:
-	content_container = VBoxContainer.new()
+	content_container = Control.new()
 	content_container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	content_container.offset_top = 58
-	content_container.offset_bottom = -154
-	content_container.offset_left = 14
-	content_container.offset_right = -14
-	content_container.add_theme_constant_override("separation", 4)
 	add_child(content_container)
 
-	# 创建6个Tab页面
-	tab_pages["home"] = _build_home_page()
-	tab_pages["formation"] = _build_formation_page()
-	tab_pages["partners"] = _build_partners_page()
+	# 创建5个Tab页面
+	tab_pages["camp"] = _build_effect_home_page()
 	tab_pages["explore"] = _build_explore_page()
-	tab_pages["inventory"] = _build_inventory_page()
-	tab_pages["codex"] = _build_codex_page()
+	tab_pages["team"] = _build_team_page()
+	tab_pages["base"] = _build_base_page()
+	tab_pages["reincarnation"] = _build_reincarnation_page()
 
 	# 默认全部隐藏
 	for page in tab_pages.values():
 		page.visible = false
+		page.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		content_container.add_child(page)
 
 
@@ -432,92 +889,60 @@ func _build_home_page() -> Control:
 	page.name = "HomePage"
 	page.add_theme_constant_override("separation", 6)
 
-	# 天数标题
-	var title := Label.new()
-	title.text = "第 1 天 · 上午"
-	_apply_label_style(title, 22, COLOR_CYAN)
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	page.add_child(title)
+	# 主场景区域（背景 + 交互热点）
+	var scene_panel := _make_panel_container()
+	scene_panel.custom_minimum_size = Vector2(0, 250)
+	page.add_child(scene_panel)
+	var scene_box := _make_panel_margin(scene_panel, 12)
 
-	# 小队状态
-	home_team_label = Label.new()
-	home_team_label.text = "小队状态：0/3 出战 · 0 未上阵"
-	_apply_label_style(home_team_label, 13, COLOR_MUTED)
-	home_team_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	page.add_child(home_team_label)
+	scene_title_label = Label.new()
+	scene_title_label.text = "🏥 废弃医院"
+	_apply_label_style(scene_title_label, 18, COLOR_CYAN)
+	scene_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	scene_box.add_child(scene_title_label)
 
-	# 事件通知
-	var event_panel := _make_panel_container()
-	page.add_child(event_panel)
-	var event_box := _make_panel_margin(event_panel, 12)
+	scene_desc_label = Label.new()
+	scene_desc_label.text = "昏暗的走廊，消毒水味弥漫。"
+	_apply_label_style(scene_desc_label, 13, COLOR_MUTED)
+	scene_desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	scene_box.add_child(scene_desc_label)
 
-	var event_title := Label.new()
-	event_title.text = "【事件通知】"
-	_apply_label_style(event_title, 16, COLOR_AMBER)
-	event_box.add_child(event_title)
+	scene_hot_container = VBoxContainer.new()
+	scene_hot_container.add_theme_constant_override("separation", 6)
+	scene_box.add_child(scene_hot_container)
 
-	home_event_label = Label.new()
-	home_event_label.text = "暂无新事件。"
-	_apply_label_style(home_event_label, 13)
-	home_event_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	event_box.add_child(home_event_label)
+	# 剧情/事件卡片
+	var story_card := _make_panel_container()
+	story_card.custom_minimum_size = Vector2(0, 150)
+	page.add_child(story_card)
+	var story_box := _make_panel_margin(story_card, 12)
 
-	# 主线进度
-	var chapter_panel := _make_panel_container()
-	page.add_child(chapter_panel)
-	var chapter_box := _make_panel_margin(chapter_panel, 12)
+	story_card_title_label = Label.new()
+	story_card_title_label.text = "主线 · 第1章"
+	_apply_label_style(story_card_title_label, 16, COLOR_AMBER)
+	story_box.add_child(story_card_title_label)
 
-	var chapter_title := Label.new()
-	chapter_title.text = "【主线进度】"
-	_apply_label_style(chapter_title, 16, COLOR_AMBER)
-	chapter_box.add_child(chapter_title)
+	story_card_text_label = Label.new()
+	story_card_text_label.text = "从废墟中醒来……"
+	_apply_label_style(story_card_text_label, 13)
+	story_card_text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	story_box.add_child(story_card_text_label)
 
-	home_chapter_label = Label.new()
-	home_chapter_label.text = "第 1 章 · 灵潮之日"
-	_apply_label_style(home_chapter_label, 13)
-	home_chapter_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	chapter_box.add_child(home_chapter_label)
-
-	# 轮回信息
-	var reincarnation_panel := _make_panel_container()
-	page.add_child(reincarnation_panel)
-	var reincarnation_box := _make_panel_margin(reincarnation_panel, 12)
-
-	var reincarnation_title := Label.new()
-	reincarnation_title.text = "【轮回进度】"
-	_apply_label_style(reincarnation_title, 16, COLOR_AMBER)
-	reincarnation_box.add_child(reincarnation_title)
-
-	home_reincarnation_label = Label.new()
-	home_reincarnation_label.text = "第 1 轮 · 真相进度 0%"
-	_apply_label_style(home_reincarnation_label, 13)
-	home_reincarnation_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	reincarnation_box.add_child(home_reincarnation_label)
-
-	var reincarnation_button := Button.new()
-	reincarnation_button.text = "🔄 主动轮回（结算本轮成就）"
-	reincarnation_button.custom_minimum_size = Vector2(0, 38)
-	reincarnation_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_apply_button_style(reincarnation_button, "panel")
-	reincarnation_button.pressed.connect(_on_reincarnation_pressed)
-	reincarnation_box.add_child(reincarnation_button)
+	story_card_button_container = HBoxContainer.new()
+	story_card_button_container.add_theme_constant_override("separation", 8)
+	story_box.add_child(story_card_button_container)
 
 	# 快速操作
 	var quick_panel := _make_panel_container()
 	page.add_child(quick_panel)
 	var quick_box := _make_panel_margin(quick_panel, 12)
 
-	var quick_title := Label.new()
-	quick_title.text = "【快速操作】"
-	_apply_label_style(quick_title, 16, COLOR_AMBER)
-	quick_box.add_child(quick_title)
-
 	var quick_row := HBoxContainer.new()
 	quick_row.add_theme_constant_override("separation", 8)
 	quick_box.add_child(quick_row)
 
 	var heal_button := Button.new()
-	heal_button.text = "治疗全体"
+	heal_button.text = "治疗"
 	heal_button.custom_minimum_size = Vector2(0, 34)
 	heal_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_apply_button_style(heal_button)
@@ -531,6 +956,42 @@ func _build_home_page() -> Control:
 	_apply_button_style(rest_button)
 	rest_button.pressed.connect(_on_rest_pressed)
 	quick_row.add_child(rest_button)
+
+	var save_button := Button.new()
+	save_button.text = "保存"
+	save_button.custom_minimum_size = Vector2(0, 34)
+	save_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(save_button)
+	save_button.pressed.connect(_on_save_pressed)
+	quick_row.add_child(save_button)
+
+	var store_button := Button.new()
+	store_button.text = "商城"
+	store_button.custom_minimum_size = Vector2(0, 34)
+	store_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(store_button)
+	store_button.pressed.connect(_on_store_pressed)
+	quick_row.add_child(store_button)
+
+	var quick_row2 := HBoxContainer.new()
+	quick_row2.add_theme_constant_override("separation", 8)
+	quick_box.add_child(quick_row2)
+
+	var talent_button := Button.new()
+	talent_button.text = "天赋"
+	talent_button.custom_minimum_size = Vector2(0, 34)
+	talent_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(talent_button)
+	talent_button.pressed.connect(_on_talent_pressed)
+	quick_row2.add_child(talent_button)
+
+	var reincarnation_button := Button.new()
+	reincarnation_button.text = "轮回"
+	reincarnation_button.custom_minimum_size = Vector2(0, 34)
+	reincarnation_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(reincarnation_button)
+	reincarnation_button.pressed.connect(_on_reincarnation_pressed)
+	quick_row2.add_child(reincarnation_button)
 
 	# 状态提示
 	home_status_panel = _make_panel_container()
@@ -550,40 +1011,226 @@ func _build_home_page() -> Control:
 # ============================================================
 # 编队界面
 # ============================================================
-func _build_formation_page() -> Control:
-	var page := VBoxContainer.new()
-	page.name = "FormationPage"
-	page.add_theme_constant_override("separation", 6)
-	page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	page.size_flags_vertical = Control.SIZE_EXPAND_FILL
+func _build_effect_home_page() -> Control:
+	var page := Control.new()
+	page.name = "HomePage"
+
+	var location_card := PanelContainer.new()
+	_place_control(location_card, 18, 155, 684, 584)
+	location_card.add_theme_stylebox_override("panel", _make_ui_style(UI_PROD_PANEL_SCENE, 0, 28, true))
+	page.add_child(location_card)
+
+	var location_layer := Control.new()
+	location_layer.clip_contents = true
+	location_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	location_card.add_child(location_layer)
+
+	var location_bg := TextureRect.new()
+	location_bg.texture = UI_PROD_BG_SUBWAY
+	location_bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	location_bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	location_bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	location_bg.modulate = Color(0.92, 0.86, 0.72, 0.82)
+	location_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	location_layer.add_child(location_bg)
+
+	var location_shade := ColorRect.new()
+	location_shade.color = Color(0.0, 0.0, 0.0, 0.32)
+	location_shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	location_shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	location_layer.add_child(location_shade)
+
+	var area_detail_button := Button.new()
+	area_detail_button.text = "区域详情"
+	_place_control(area_detail_button, 528, 22, 128, 42)
+	_apply_button_style(area_detail_button, "panel")
+	area_detail_button.pressed.connect(func() -> void: _set_home_status("废弃地铁站 · 危险等级 2 · 已探索 18%。"))
+	location_layer.add_child(area_detail_button)
+
+	scene_title_label = Label.new()
+	scene_title_label.text = "废弃地铁站"
+	_apply_label_style(scene_title_label, 34, Color(0.96, 0.92, 0.84, 1.0))
+	scene_title_label.add_theme_constant_override("outline_size", 3)
+	scene_title_label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 0.9))
+	_place_control(scene_title_label, 34, 34, 430, 54)
+	location_layer.add_child(scene_title_label)
+
+	scene_desc_label = Label.new()
+	scene_desc_label.text = "黑暗中传来金属摩擦声。你握紧手中的武器，小心翼翼地向前移动。"
+	_apply_label_style(scene_desc_label, 17, Color(0.88, 0.86, 0.78, 1.0))
+	scene_desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_place_control(scene_desc_label, 34, 120, 360, 180)
+	location_layer.add_child(scene_desc_label)
+
+	scene_hot_container = VBoxContainer.new()
+	scene_hot_container.add_theme_constant_override("separation", 6)
+	scene_hot_container.visible = false
+	_place_control(scene_hot_container, 34, 300, 360, 120)
+	location_layer.add_child(scene_hot_container)
+
+	var continue_button := Button.new()
+	continue_button.text = "继续探索  >"
+	_place_control(continue_button, 170, 608, 380, 84)
+	continue_button.focus_mode = Control.FOCUS_ALL
+	_apply_button_style(continue_button, "primary")
+	continue_button.add_theme_color_override("font_color", Color(0.05, 0.035, 0.02, 1.0))
+	continue_button.add_theme_color_override("font_hover_color", Color(0.0, 0.0, 0.0, 1.0))
+	continue_button.add_theme_font_size_override("font_size", 34)
+	continue_button.pressed.connect(func() -> void: _switch_tab("explore"))
+	page.add_child(continue_button)
+
+	var mission_panel := PanelContainer.new()
+	_place_control(mission_panel, 24, 760, 672, 190)
+	mission_panel.add_theme_stylebox_override("panel", _make_ui_style(UI_PROD_PANEL_MAIN_QUEST, 12, 28, true))
+	page.add_child(mission_panel)
+
+	var mission_layer := Control.new()
+	mission_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	mission_panel.add_child(mission_layer)
+
+	story_card_title_label = Label.new()
+	story_card_title_label.text = "主线任务"
+	_apply_label_style(story_card_title_label, 24, Color(0.95, 0.32, 0.24, 1.0))
+	_place_control(story_card_title_label, 36, 22, 220, 34)
+	mission_layer.add_child(story_card_title_label)
+
+	var mission_icon_frame := PanelContainer.new()
+	_place_control(mission_icon_frame, 34, 66, 70, 70)
+	mission_icon_frame.add_theme_stylebox_override("panel", _make_ui_style(UI_PROD_SLOT_FORMATION_SELECTED, 4, 16, true))
+	mission_layer.add_child(mission_icon_frame)
+	var mission_icon := TextureRect.new()
+	mission_icon.texture = UI_PROD_ICON_NOTIFICATION
+	mission_icon.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	mission_icon.offset_left = 12
+	mission_icon.offset_top = 12
+	mission_icon.offset_right = -12
+	mission_icon.offset_bottom = -12
+	mission_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	mission_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	mission_icon.modulate = Color(0.92, 0.22, 0.18, 1.0)
+	mission_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	mission_icon_frame.add_child(mission_icon)
+
+	story_card_text_label = Label.new()
+	story_card_text_label.text = "第 12 章：失联基地\n前往失联基地核心区，寻找信号源并确认幸存者下落。"
+	_apply_label_style(story_card_text_label, 17, COLOR_TEXT)
+	story_card_text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_place_control(story_card_text_label, 120, 64, 500, 70)
+	mission_layer.add_child(story_card_text_label)
+
+	var progress := TextureProgressBar.new()
+	_place_control(progress, 120, 142, 470, 12)
+	progress.max_value = 1.0
+	progress.value = 0.0
+	progress.texture_under = UI_PROD_PROGRESS_TRACK
+	progress.texture_progress = UI_PROD_PROGRESS_RED
+	mission_layer.add_child(progress)
+
+	var progress_text := Label.new()
+	progress_text.text = "0/1"
+	_apply_label_style(progress_text, 13, COLOR_AMBER)
+	progress_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_place_control(progress_text, 590, 132, 48, 24)
+	mission_layer.add_child(progress_text)
+
+	story_card_button_container = HBoxContainer.new()
+	story_card_button_container.visible = false
+	mission_layer.add_child(story_card_button_container)
+
+	var search_button := _make_home_action_button("搜索\n搜寻资源", "search")
+	_place_control(search_button, 24, 976, 212, 130)
+	search_button.pressed.connect(func() -> void: _switch_tab("explore"))
+	page.add_child(search_button)
+
+	var rest_button := _make_home_action_button("休息\n恢复状态", "rest")
+	_place_control(rest_button, 254, 976, 212, 130)
+	rest_button.pressed.connect(_on_rest_pressed)
+	page.add_child(rest_button)
+
+	var leave_button := _make_home_action_button("撤离\n离开当前区域", "leave")
+	_place_control(leave_button, 484, 976, 212, 130)
+	leave_button.pressed.connect(func() -> void: _set_home_status("当前区域暂未开放撤离结算。"))
+	page.add_child(leave_button)
+
+	home_status_panel = _make_panel_container()
+	home_status_panel.visible = false
+	_place_control(home_status_panel, 24, 1112, 672, 54)
+	page.add_child(home_status_panel)
+
+	var status_box := _make_panel_margin(home_status_panel, 10)
+	home_status_label = Label.new()
+	home_status_label.text = ""
+	_apply_label_style(home_status_label, 13, COLOR_TEXT)
+	home_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	status_box.add_child(home_status_label)
+
+	return page
+
+
+func _make_home_action_button(text: String, style_kind: String = "panel") -> Button:
+	var button := Button.new()
+	button.text = ""
+	button.focus_mode = Control.FOCUS_ALL
+	button.clip_contents = true
+	_apply_button_style(button, style_kind)
+	var lines := text.split("\n")
 
 	var title := Label.new()
-	title.text = "编队 · 强攻阵"
-	_apply_label_style(title, 20, COLOR_CYAN)
+	title.text = str(lines[0])
+	_apply_label_style(title, 22, COLOR_TEXT)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	page.add_child(title)
+	title.add_theme_constant_override("outline_size", 2)
+	title.add_theme_color_override("font_outline_color", Color.BLACK)
+	_place_control(title, 86, 36, 112, 28)
+	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(title)
 
-	var formation_switch := Button.new()
-	formation_switch.text = "[切换阵型]"
-	formation_switch.custom_minimum_size = Vector2(0, 32)
-	_apply_button_style(formation_switch)
-	formation_switch.pressed.connect(_on_switch_formation_pressed)
-	page.add_child(formation_switch)
+	var subtitle := Label.new()
+	subtitle.text = str(lines[1]) if lines.size() > 1 else ""
+	_apply_label_style(subtitle, 16, COLOR_MUTED)
+	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	subtitle.add_theme_constant_override("outline_size", 2)
+	subtitle.add_theme_color_override("font_outline_color", Color.BLACK)
+	_place_control(subtitle, 80, 66, 126, 24)
+	subtitle.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(subtitle)
+	return button
 
-	var grid_panel := _make_panel_container()
+
+func _build_formation_page() -> Control:
+	var page := Control.new()
+	page.name = "FormationPage"
+
+	formation_label = Label.new()
+	formation_label.text = "编队 · 强攻阵"
+	_apply_label_style(formation_label, 24, COLOR_TEXT)
+	formation_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(formation_label, 0, 0, 672, 40)
+	page.add_child(formation_label)
+
+	var card_row := HBoxContainer.new()
+	card_row.add_theme_constant_override("separation", 4)
+	_place_control(card_row, 0, 48, 672, 300)
+	page.add_child(card_row)
+	for survivor in _get_formation_showcase_survivors():
+		card_row.add_child(_make_formation_character_card(survivor))
+
+	var grid_panel := PanelContainer.new()
+	_place_control(grid_panel, 0, 360, 362, 300)
+	_apply_panel_texture(grid_panel, UI_PROD_PANEL_FORMATION, 14)
 	page.add_child(grid_panel)
 	var grid_box := _make_panel_margin(grid_panel, 10)
 
 	var grid_title := Label.new()
-	grid_title.text = "【九宫格编队】"
+	grid_title.text = "编队阵型（3×3）"
 	_apply_label_style(grid_title, 15, COLOR_AMBER)
 	grid_box.add_child(grid_title)
 
 	# 九宫格编队网格
 	formation_grid_container = GridContainer.new()
 	formation_grid_container.columns = 3
-	formation_grid_container.add_theme_constant_override("h_separation", 4)
-	formation_grid_container.add_theme_constant_override("v_separation", 4)
+	formation_grid_container.add_theme_constant_override("h_separation", 6)
+	formation_grid_container.add_theme_constant_override("v_separation", 6)
 	formation_grid_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	grid_box.add_child(formation_grid_container)
 
@@ -591,40 +1238,56 @@ func _build_formation_page() -> Control:
 	formation_grid_buttons = []
 	for i in range(9):
 		var grid_button := Button.new()
-		grid_button.custom_minimum_size = Vector2(0, 38)
+		grid_button.custom_minimum_size = Vector2(106, 62)
 		grid_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		_apply_button_style(grid_button)
+		_apply_slot_button_skin(grid_button, UI_PROD_SLOT_FORMATION_NORMAL, UI_PROD_SLOT_FORMATION_SELECTED)
 		grid_button.pressed.connect(_on_grid_cell_pressed.bind(i))
 		formation_grid_container.add_child(grid_button)
 		formation_grid_buttons.append(grid_button)
 
-	# 选择提示
+	var rating_panel := PanelContainer.new()
+	_place_control(rating_panel, 374, 360, 298, 300)
+	_apply_panel_texture(rating_panel, UI_PROD_PANEL_TEAM_RATING, 14)
+	page.add_child(rating_panel)
+	var rating_box := _make_panel_margin(rating_panel, 14)
+	var rating_title := Label.new()
+	rating_title.text = "队伍能力评估"
+	_apply_label_style(rating_title, 16, COLOR_AMBER)
+	rating_box.add_child(rating_title)
+	for line in ["输出  B", "生存  A", "控制  C", "治疗  C", "AOE   B"]:
+		var rating_line := Label.new()
+		rating_line.text = line
+		_apply_label_style(rating_line, 15, COLOR_TEXT)
+		rating_box.add_child(rating_line)
+
 	formation_selection_label = Label.new()
-	formation_selection_label.text = "① 点击选择一名伙伴 ② 再点击九宫格位置放置"
+	formation_selection_label.text = "点击伙伴，再点击阵位上阵；点击已有阵位可下阵"
 	_apply_label_style(formation_selection_label, 13, COLOR_MUTED)
 	formation_selection_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(formation_selection_label, 0, 666, 672, 24)
 	page.add_child(formation_selection_label)
 
-	var survivor_panel := _make_panel_container()
-	survivor_panel.custom_minimum_size = Vector2(0, 170)
-	survivor_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	var survivor_panel := PanelContainer.new()
+	_place_control(survivor_panel, 0, 690, 672, 98)
+	_apply_panel_texture(survivor_panel, UI_PROD_PANEL_LOCATION_INFO, 14)
 	page.add_child(survivor_panel)
-	var survivor_box := _make_panel_margin(survivor_panel, 10)
+	var survivor_box := _make_panel_margin(survivor_panel, 8)
 
 	var survivor_title := Label.new()
-	survivor_title.text = "【所有伙伴】"
+	survivor_title.text = "所有伙伴"
 	_apply_label_style(survivor_title, 15, COLOR_AMBER)
 	survivor_box.add_child(survivor_title)
 
 	formation_debug_label = Label.new()
 	formation_debug_label.text = ""
+	formation_debug_label.visible = false
 	_apply_label_style(formation_debug_label, 12, COLOR_MUTED)
 	formation_debug_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	survivor_box.add_child(formation_debug_label)
 
 	# 伙伴列表滚动区域
 	var scroll := ScrollContainer.new()
-	scroll.custom_minimum_size = Vector2(0, 96)
+	scroll.custom_minimum_size = Vector2(0, 46)
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -636,7 +1299,105 @@ func _build_formation_page() -> Control:
 	formation_survivor_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.add_child(formation_survivor_container)
 
+	var adjust_button := Button.new()
+	adjust_button.text = "调整编队"
+	_place_control(adjust_button, 0, 800, 218, 78)
+	_apply_button_style(adjust_button, "adjust_team")
+	adjust_button.pressed.connect(_on_switch_formation_pressed)
+	page.add_child(adjust_button)
+
+	var equip_button := Button.new()
+	equip_button.text = "装备"
+	_place_control(equip_button, 227, 800, 218, 78)
+	_apply_button_style(equip_button, "equipment")
+	equip_button.pressed.connect(func() -> void: _set_home_status("装备页待接入角色装备快捷入口。"))
+	page.add_child(equip_button)
+
+	var skill_button := Button.new()
+	skill_button.text = "技能"
+	_place_control(skill_button, 454, 800, 218, 78)
+	_apply_button_style(skill_button, "skill")
+	skill_button.pressed.connect(func() -> void: _set_home_status("技能页待接入角色技能强化入口。"))
+	page.add_child(skill_button)
+
 	return page
+
+
+func _get_formation_showcase_survivors() -> Array:
+	var result: Array = []
+	var used_ids: Array[String] = []
+	for survivor in GameState.player.survivors:
+		result.append(survivor)
+		used_ids.append(str(survivor.get("id", "")))
+		if result.size() >= 5:
+			return result
+	for partner in DataManager.partners:
+		var partner_id := str(partner.get("id", ""))
+		if partner_id in used_ids:
+			continue
+		result.append(partner)
+		used_ids.append(partner_id)
+		if result.size() >= 5:
+			break
+	return result
+
+
+func _make_formation_character_card(survivor: Dictionary) -> Control:
+	var card := PanelContainer.new()
+	card.custom_minimum_size = Vector2(130, 300)
+	_apply_panel_texture(card, UI_PROD_PANEL_CHARACTER, 8)
+
+	var layer := Control.new()
+	layer.clip_contents = true
+	layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	card.add_child(layer)
+
+	var character := TextureRect.new()
+	character.texture = _get_production_character_texture(str(survivor.get("id", "")))
+	character.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	character.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	_place_control(character, 8, 8, 114, 238)
+	character.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(character)
+
+	var shade := ColorRect.new()
+	shade.color = Color(0.0, 0.0, 0.0, 0.34)
+	_place_control(shade, 6, 238, 118, 56)
+	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(shade)
+
+	var name := Label.new()
+	name.text = str(survivor.get("name", "伙伴"))
+	_apply_label_style(name, 15, COLOR_TEXT)
+	name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(name, 8, 242, 114, 24)
+	name.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(name)
+
+	var info := Label.new()
+	info.text = "Lv.%d\n%s" % [int(survivor.get("level", 1)), str(survivor.get("profession", ""))]
+	_apply_label_style(info, 11, COLOR_AMBER)
+	info.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(info, 8, 266, 114, 30)
+	info.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(info)
+	return card
+
+
+func _get_production_character_texture(survivor_id: String) -> Texture2D:
+	var asset_id := survivor_id
+	match survivor_id:
+		"player_chenmo":
+			asset_id = "chen_mo"
+		"old_zhou":
+			asset_id = "lao_zhou"
+	var path := "res://assets/images/ui/production/12_characters/full/char_%s_full.png" % asset_id
+	if ResourceLoader.exists(path):
+		return load(path) as Texture2D
+	var portrait_path := "res://assets/images/ui/production/12_characters/portraits/portrait_%s.png" % asset_id
+	if ResourceLoader.exists(portrait_path):
+		return load(portrait_path) as Texture2D
+	return UI_PROD_BG_SUBWAY
 
 
 # ============================================================
@@ -645,21 +1406,29 @@ func _build_formation_page() -> Control:
 func _build_partners_page() -> Control:
 	var page := VBoxContainer.new()
 	page.name = "PartnersPage"
-	page.add_theme_constant_override("separation", 6)
+	page.add_theme_constant_override("separation", 10)
 
 	var title := Label.new()
-	title.text = "伙伴"
-	_apply_label_style(title, 20, COLOR_CYAN)
+	title.text = "所有伙伴 · 状态与培养"
+	_apply_label_style(title, 22, COLOR_TEXT)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.custom_minimum_size = Vector2(0, 42)
 	page.add_child(title)
+
+	var hint := Label.new()
+	hint.text = "点击伙伴查看属性、装备、技能与好感度"
+	_apply_label_style(hint, 13, COLOR_MUTED)
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	page.add_child(hint)
 
 	# 滚动容器
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	page.add_child(scroll)
 
 	partner_list_container = VBoxContainer.new()
-	partner_list_container.add_theme_constant_override("separation", 3)
+	partner_list_container.add_theme_constant_override("separation", 8)
 	partner_list_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(partner_list_container)
 
@@ -975,45 +1744,44 @@ func _build_battle_popup() -> void:
 # 探索界面
 # ============================================================
 func _build_explore_page() -> Control:
-	var page := VBoxContainer.new()
+	var page := Control.new()
 	page.name = "ExplorePage"
-	page.add_theme_constant_override("separation", 6)
-	page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	page.size_flags_vertical = Control.SIZE_EXPAND_FILL
 
 	var title := Label.new()
-	title.text = "探索"
-	_apply_label_style(title, 20, COLOR_CYAN)
+	title.text = "废土城区地图"
+	_apply_label_style(title, 32, Color(0.86, 0.66, 0.38, 1.0))
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(title, 185, 92, 350, 48)
 	page.add_child(title)
 
 	explore_status_label = Label.new()
 	explore_status_label.text = "消耗：半天（上午）"
-	_apply_label_style(explore_status_label, 13, COLOR_MUTED)
+	_apply_label_style(explore_status_label, 14, COLOR_TEXT)
 	explore_status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(explore_status_label, 180, 132, 360, 26)
 	page.add_child(explore_status_label)
 
 	var route_title := Label.new()
-	route_title.text = "请选择路线："
-	_apply_label_style(route_title, 15, COLOR_AMBER)
-	route_title.text = "大地图地点"
+	route_title.text = "区域探索"
+	_apply_label_style(route_title, 18, COLOR_AMBER)
+	_place_control(route_title, 36, 162, 200, 34)
 	page.add_child(route_title)
 
 	var map_panel := PanelContainer.new()
-	map_panel.add_theme_stylebox_override("panel", _make_texture_style(UI_PANEL_CARD_TEXTURE, 12, 12, 12, 12))
-	map_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	map_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_place_control(map_panel, 24, 190, 672, 890)
+	_apply_panel_texture(map_panel, UI_PROD_PANEL_SCENE, 0)
 	page.add_child(map_panel)
 
 	var map_margin := MarginContainer.new()
-	map_margin.add_theme_constant_override("margin_left", 4)
-	map_margin.add_theme_constant_override("margin_top", 8)
-	map_margin.add_theme_constant_override("margin_right", 4)
-	map_margin.add_theme_constant_override("margin_bottom", 8)
+	map_margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	map_margin.add_theme_constant_override("margin_left", 24)
+	map_margin.add_theme_constant_override("margin_top", 24)
+	map_margin.add_theme_constant_override("margin_right", 24)
+	map_margin.add_theme_constant_override("margin_bottom", 24)
 	map_panel.add_child(map_margin)
 
 	explore_route_container = VBoxContainer.new()
-	explore_route_container.add_theme_constant_override("separation", 7)
+	explore_route_container.add_theme_constant_override("separation", 8)
 	explore_route_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	explore_route_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	map_margin.add_child(explore_route_container)
@@ -1028,110 +1796,308 @@ func _build_inventory_page() -> Control:
 	var page := VBoxContainer.new()
 	page.name = "InventoryPage"
 	page.add_theme_constant_override("separation", 6)
-
-	var title := Label.new()
-	title.text = "背包"
-	_apply_label_style(title, 20, COLOR_CYAN)
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	page.add_child(title)
-
-	var inventory_panel := _make_panel_container()
-	inventory_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	page.add_child(inventory_panel)
-	var inventory_box := _make_panel_margin(inventory_panel, 12)
-
-	inventory_label = Label.new()
-	_apply_label_style(inventory_label, 14)
-	inventory_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	inventory_box.add_child(inventory_label)
-
-	return page
-
-
-# ============================================================
-# 图鉴界面
-# ============================================================
-func _build_codex_page() -> Control:
-	var page := VBoxContainer.new()
-	page.name = "CodexPage"
-	page.add_theme_constant_override("separation", 6)
-	page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	page.size_flags_vertical = Control.SIZE_EXPAND_FILL
 
 	var title := Label.new()
-	title.text = "图鉴"
+	title.text = "🎒 背包"
 	_apply_label_style(title, 20, COLOR_CYAN)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	page.add_child(title)
-
-	var codex_panel := _make_panel_container()
-	codex_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	page.add_child(codex_panel)
-	var codex_box := _make_panel_margin(codex_panel, 12)
-	codex_box.size_flags_vertical = Control.SIZE_EXPAND_FILL
-
-	codex_label = Label.new()
-	_apply_label_style(codex_label, 14)
-	codex_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	codex_label.visible = false
-	codex_box.add_child(codex_label)
 
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	codex_box.add_child(scroll)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	page.add_child(scroll)
 
-	codex_content_container = VBoxContainer.new()
-	codex_content_container.add_theme_constant_override("separation", 8)
-	codex_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(codex_content_container)
+	inventory_content_container = VBoxContainer.new()
+	inventory_content_container.add_theme_constant_override("separation", 8)
+	inventory_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(inventory_content_container)
 
 	return page
+
+
+func _build_base_page() -> Control:
+	var page := Control.new()
+	page.name = "BasePage"
+	_add_page_background(page, UI_PROD_BG_BASE, Color(0.55, 0.48, 0.36, 0.30))
+
+	var header := HBoxContainer.new()
+	header.add_theme_constant_override("separation", 8)
+	_place_control(header, 24, 155, 672, 72)
+	page.add_child(header)
+
+	var title := Label.new()
+	title.text = "避难所"
+	_apply_label_style(title, 22, COLOR_TEXT)
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	header.add_child(title)
+
+	var upgrade_button := Button.new()
+	base_upgrade_button = upgrade_button
+	upgrade_button.text = "升级设施"
+	upgrade_button.custom_minimum_size = Vector2(160, 56)
+	_apply_button_style(upgrade_button, "primary")
+	upgrade_button.pressed.connect(_on_base_upgrade_pressed)
+	header.add_child(upgrade_button)
+
+	var scroll := ScrollContainer.new()
+	_place_control(scroll, 24, 250, 672, 858)
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	page.add_child(scroll)
+
+	base_content_container = VBoxContainer.new()
+	base_content_container.add_theme_constant_override("separation", 8)
+	base_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(base_content_container)
+	inventory_content_container = base_content_container
+
+	return page
+
+
+func _build_reincarnation_page() -> Control:
+	var page := Control.new()
+	page.name = "ReincarnationPage"
+	_add_page_background(page, UI_PROD_BG_REINCARNATION, Color(0.50, 0.42, 0.36, 0.28))
+
+	var title := Label.new()
+	title.text = "轮回殿堂"
+	_apply_label_style(title, 32, COLOR_TEXT)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(title, 185, 155, 350, 56)
+	page.add_child(title)
+
+	var scroll := ScrollContainer.new()
+	_place_control(scroll, 35, 230, 650, 838)
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	page.add_child(scroll)
+
+	reincarnation_content_container = VBoxContainer.new()
+	reincarnation_content_container.add_theme_constant_override("separation", 8)
+	reincarnation_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(reincarnation_content_container)
+
+	var action_button := Button.new()
+	action_button.text = "主动轮回"
+	_place_control(action_button, 79, 1083, 562, 86)
+	action_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(action_button, "danger")
+	action_button.pressed.connect(_on_reincarnation_pressed)
+	page.add_child(action_button)
+
+	return page
+
+
+# ============================================================
+# 主线页面
+# ============================================================
+func _build_story_page() -> Control:
+	var page := VBoxContainer.new()
+	page.name = "StoryPage"
+	page.add_theme_constant_override("separation", 6)
+	page.size_flags_vertical = Control.SIZE_EXPAND_FILL
+
+	var title := Label.new()
+	title.text = "📜 主线"
+	_apply_label_style(title, 20, COLOR_CYAN)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	page.add_child(title)
+
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	page.add_child(scroll)
+
+	story_content_container = VBoxContainer.new()
+	story_content_container.add_theme_constant_override("separation", 8)
+	story_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(story_content_container)
+
+	return page
+
+
+func _refresh_story() -> void:
+	var player := GameState.player
+	if story_content_container == null:
+		return
+	_clear_container(story_content_container)
+
+	var acts: Array = DataManager.main_story.get("acts", [])
+	var chapters: Array = DataManager.main_story.get("chapters", [])
+	for act in acts:
+		var act_id := int(act.get("act_id", 0))
+		var act_name := str(act.get("name", ""))
+		var act_label := Label.new()
+		act_label.text = "【第%d篇 · %s】" % [act_id, act_name]
+		_apply_label_style(act_label, 16, COLOR_AMBER)
+		story_content_container.add_child(act_label)
+		for ch in chapters:
+			if int(ch.get("act", 0)) != act_id:
+				continue
+			var ch_id := int(ch.get("id", 0))
+			var ch_name := str(ch.get("name", ""))
+			var ch_level := int(ch.get("level", 0))
+			var is_boss := str(ch.get("boss_id", "")) != ""
+			var is_current := ch_id == player.story_chapter
+			var button := Button.new()
+			var mark := "👹" if is_boss else "●"
+			var current_mark := " ▶" if is_current else ""
+			button.text = "%s 第%d章 %s（LV%d）%s" % [mark, ch_id, ch_name, ch_level, current_mark]
+			button.custom_minimum_size = Vector2(0, 42)
+			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+			_apply_button_style(button)
+			button.pressed.connect(_on_story_chapter_pressed.bind(ch_id))
+			story_content_container.add_child(button)
+
+
+func _on_story_chapter_pressed(ch_id: int) -> void:
+	var player := GameState.player
+	# Boss 章节：弹出战前界面
+	var boss_id := _get_chapter_boss_id(ch_id)
+	if boss_id != "":
+		_show_boss_preview(boss_id, ch_id)
+		return
+	if ch_id >= 1 and ch_id <= 8:
+		player.story_chapter = ch_id
+		player.story_step = 0
+		_on_story_enter_pressed()
+	else:
+		_set_home_status("第%d章剧情内容待补充" % ch_id)
+
+
+func _get_chapter_boss_id(ch_id: int) -> String:
+	var chapters: Array = DataManager.main_story.get("chapters", [])
+	for ch in chapters:
+		if int(ch.get("id", 0)) == ch_id:
+			return str(ch.get("boss_id", ""))
+	return ""
+
+
+# ============================================================
+# 队伍页面（合并编队 + 伙伴）
+# ============================================================
+func _build_team_page() -> Control:
+	var page := Control.new()
+	page.name = "TeamPage"
+
+	var sub_tab_row := HBoxContainer.new()
+	sub_tab_row.add_theme_constant_override("separation", 6)
+	_place_control(sub_tab_row, 24, 155, 672, 52)
+	page.add_child(sub_tab_row)
+
+	var formation_tab := Button.new()
+	formation_tab.text = "编队"
+	formation_tab.custom_minimum_size = Vector2(0, 38)
+	formation_tab.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(formation_tab, "panel")
+	formation_tab.pressed.connect(_on_team_sub_tab_pressed.bind("formation"))
+	sub_tab_row.add_child(formation_tab)
+
+	var partner_tab := Button.new()
+	partner_tab.text = "伙伴"
+	partner_tab.custom_minimum_size = Vector2(0, 38)
+	partner_tab.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(partner_tab, "panel")
+	partner_tab.pressed.connect(_on_team_sub_tab_pressed.bind("partners"))
+	sub_tab_row.add_child(partner_tab)
+
+	team_formation_view = _build_formation_page()
+	_place_control(team_formation_view, 24, 218, 672, 890)
+	page.add_child(team_formation_view)
+
+	team_partner_view = _build_partners_page()
+	_place_control(team_partner_view, 24, 218, 672, 890)
+	team_partner_view.visible = false
+	page.add_child(team_partner_view)
+
+	return page
+
+
+func _on_team_sub_tab_pressed(mode: String) -> void:
+	if team_formation_view != null:
+		team_formation_view.visible = (mode == "formation")
+	if team_partner_view != null:
+		team_partner_view.visible = (mode == "partners")
 
 
 # ============================================================
 # 第1步：底部Tab导航
 # ============================================================
 func _build_tab_navigation() -> void:
-	var tab_bar := HBoxContainer.new()
+	var tab_bar := Control.new()
+	bottom_tab_bar = tab_bar
 	tab_bar.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	tab_bar.offset_top = -142
-	tab_bar.offset_bottom = -16
-	tab_bar.offset_left = 26
-	tab_bar.offset_right = -26
-	tab_bar.add_theme_constant_override("separation", 0)
+	tab_bar.offset_top = -141
+	tab_bar.offset_bottom = 0
+	tab_bar.offset_left = 0
+	tab_bar.offset_right = 0
+	# Selected assets contain a soft outer glow. Keep it inside the 141 px nav safe area.
+	tab_bar.clip_contents = true
+	tab_bar.resized.connect(_layout_tab_navigation)
 	add_child(tab_bar)
 
-	var tabs := [
-		{"id": "home", "label": "🏠\n集结地"},
-		{"id": "formation", "label": "⚔️\n编队"},
-		{"id": "partners", "label": "👥\n伙伴"},
-		{"id": "explore", "label": "🗺️\n探索"},
-		{"id": "inventory", "label": "🎒\n背包"},
-		{"id": "codex", "label": "📖\n图鉴"}
-	]
+	var nav_bg := NinePatchRect.new()
+	nav_bg.name = "BottomNavBackground"
+	nav_bg.texture = UI_PROD_BOTTOM_NAV_BG
+	nav_bg.patch_margin_left = 30
+	nav_bg.patch_margin_top = 20
+	nav_bg.patch_margin_right = 30
+	nav_bg.patch_margin_bottom = 20
+	nav_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	tab_bar.add_child(nav_bg)
 
-	var tab_regions := [
-		Rect2(42, 1450, 136, 184),
-		Rect2(187, 1450, 136, 184),
-		Rect2(332, 1450, 136, 184),
-		Rect2(477, 1450, 136, 184),
-		Rect2(622, 1450, 136, 184),
-		Rect2(767, 1450, 136, 184)
+	var tabs := [
+		{"id": "camp", "label": "生存"},
+		{"id": "explore", "label": "探索"},
+		{"id": "team", "label": "编队"},
+		{"id": "base", "label": "基地"},
+		{"id": "reincarnation", "label": "轮回"}
 	]
 
 	for i in range(tabs.size()):
 		var tab: Dictionary = tabs[i]
 		var button := Button.new()
-		button.text = tab["label"]
-		button.custom_minimum_size = Vector2(0, 126)
-		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		button.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		button.tooltip_text = str(tab["label"])
+		button.custom_minimum_size = Vector2(144, 96)
 		button.toggle_mode = true
-		_apply_tab_button_texture_style(button, tab_regions[i])
+		button.set_meta("nav_index", i)
+		_apply_image_button(button, UI_PROD_NAV_NORMAL_TEXTURES[i], UI_PROD_NAV_SELECTED_TEXTURES[i])
 		button.pressed.connect(_on_tab_pressed.bind(tab["id"]))
 		tab_bar.add_child(button)
 		tab_buttons[tab["id"]] = button
+	call_deferred("_layout_tab_navigation")
+
+
+func _layout_tab_navigation() -> void:
+	if bottom_tab_bar == null:
+		return
+	var available_w := bottom_tab_bar.size.x
+	if available_w <= 0.0:
+		available_w = get_viewport_rect().size.x
+	var scale := available_w / 720.0
+	var button_w := 144.0 * scale
+	var button_h := 96.0 * scale
+	var total_w := button_w * 5.0
+	var start_x := roundf((available_w - total_w) * 0.5)
+	var start_y := roundf((bottom_tab_bar.size.y - button_h) * 0.5)
+
+	var nav_bg := bottom_tab_bar.get_node_or_null("BottomNavBackground") as NinePatchRect
+	if nav_bg != null:
+		nav_bg.position = Vector2(0, maxf(0.0, start_y + 2.0 * scale))
+		nav_bg.size = Vector2(available_w, minf(bottom_tab_bar.size.y - nav_bg.position.y, 92.0 * scale))
+
+	for id in tab_buttons:
+		var button: Button = tab_buttons[id]
+		var index := int(button.get_meta("nav_index", 0))
+		button.position = Vector2(start_x + float(index) * button_w, start_y)
+		button.size = Vector2(button_w, button_h)
 
 
 # ============================================================
@@ -1146,7 +2112,9 @@ func _switch_tab(tab_id: String) -> void:
 
 	# 更新按钮状态
 	for id in tab_buttons:
-		tab_buttons[id].button_pressed = (id == tab_id)
+		var selected: bool = (id == tab_id)
+		tab_buttons[id].button_pressed = selected
+		_update_image_button_texture(tab_buttons[id], selected)
 
 	# 更新页面可见性
 	for id in tab_pages:
@@ -1154,83 +2122,191 @@ func _switch_tab(tab_id: String) -> void:
 
 	# 切换时刷新对应页面
 	match tab_id:
-		"home":
+		"camp":
 			_refresh_home()
-		"formation":
-			_refresh_formation()
-		"partners":
-			_refresh_partners()
 		"explore":
 			_refresh_explore()
-		"inventory":
-			_refresh_inventory()
-		"codex":
-			_refresh_codex()
+		"team":
+			_refresh_formation()
+			_refresh_partners()
+		"base":
+			_refresh_base_page()
+		"reincarnation":
+			_refresh_reincarnation_page()
 
 
 # ============================================================
 # 刷新所有界面
 # ============================================================
 func _refresh_all() -> void:
-	_refresh_status_bar()
+	_refresh_effect_status_bar()
 	_refresh_home()
 	_refresh_formation()
 	_refresh_partners()
 	_refresh_explore()
+	_refresh_story()
 	_refresh_inventory()
-	_refresh_codex()
+	_refresh_base_page()
+	_refresh_reincarnation_page()
+
+
+func _refresh_effect_status_bar() -> void:
+	var player := GameState.player
+	if status_bar == null:
+		return
+	var day_label: Label = status_bar.find_child("DayLabel", true, false)
+	var name_label: Label = status_bar.find_child("NameLabel", true, false)
+	var weather_label: Label = status_bar.find_child("WeatherLabel", true, false)
+	var hp_label: Label = status_bar.find_child("HpLabel", true, false)
+	var hunger_label: Label = status_bar.find_child("HungerLabel", true, false)
+	var thirst_label: Label = status_bar.find_child("ThirstLabel", true, false)
+	var stamina_label: Label = status_bar.find_child("StaminaLabel", true, false)
+	var mutation_label: Label = status_bar.find_child("MutationLabel", true, false)
+
+	var weather_text := _get_effect_weather_label(player.day)
+	if day_label != null:
+		day_label.text = "第 %d 轮 · 第 %d 天 · %s · %s" % [int(player.reincarnation), player.day, player.get_time_label(), weather_text]
+	if name_label != null:
+		name_label.text = player.player_name
+	if weather_label != null:
+		weather_label.text = "☁"
+
+	var hp_total := 0
+	var hp_max_total := 0
+	for survivor in player.survivors:
+		hp_total += int(survivor.get("hp", 0))
+		hp_max_total += int(survivor.get("max_hp", 1))
+	if hp_label != null:
+		hp_label.text = "❤ HP\n%d/%d" % [hp_total, hp_max_total]
+	if stamina_label != null:
+		stamina_label.text = "体力\n%d/100" % player.stamina
+	if hunger_label != null:
+		hunger_label.text = "饥饿\n%d/100" % player.hunger
+	if thirst_label != null:
+		thirst_label.text = "水分\n%d/100" % player.thirst
+	if mutation_label != null:
+		mutation_label.text = "感染\n%d%%" % player.mutation
+
+
+func _get_effect_weather_label(day: int) -> String:
+	var weathers := ["阴", "黑雨", "灰霾", "暴雨", "极夜"]
+	return weathers[(day - 1) % weathers.size()]
 
 
 func _refresh_status_bar() -> void:
 	var player := GameState.player
-	var day_label: Label = status_bar.get_node("DayLabel")
-	var name_label: Label = status_bar.get_node("NameLabel")
-	var ticket_label: Label = status_bar.get_node("TicketLabel")
-	var crystal_label: Label = status_bar.get_node("CrystalLabel")
+	var day_label: Label = status_bar.find_child("DayLabel", true, false)
+	var name_label: Label = status_bar.find_child("NameLabel", true, false)
+	var weather_label: Label = status_bar.find_child("WeatherLabel", true, false)
+	var hp_label: Label = status_bar.find_child("HpLabel", true, false)
+	var hunger_label: Label = status_bar.find_child("HungerLabel", true, false)
+	var thirst_label: Label = status_bar.find_child("ThirstLabel", true, false)
+	var stamina_label: Label = status_bar.find_child("StaminaLabel", true, false)
+	var mutation_label: Label = status_bar.find_child("MutationLabel", true, false)
 
-	day_label.text = "D%d" % player.day
+	day_label.text = "DAY %d · %s" % [player.day, player.get_time_label()]
 	name_label.text = player.player_name
-	ticket_label.text = "🎫 %d" % player.materials.get("tickets", 0)
-	crystal_label.text = "💎 %d" % player.materials.get("crystals", 0)
+	weather_label.text = _get_weather_label(player.day)
+
+	var hp_total := 0
+	var hp_max_total := 0
+	for survivor in player.survivors:
+		hp_total += int(survivor.get("hp", 0))
+		hp_max_total += int(survivor.get("max_hp", 1))
+	var hp_ratio := 100 if hp_max_total == 0 else int(float(hp_total) / float(hp_max_total) * 100.0)
+	hp_label.text = "❤️ %d%%" % hp_ratio
+	hunger_label.text = "🍖 %d" % player.hunger
+	thirst_label.text = "💧 %d" % player.thirst
+	stamina_label.text = "⚡ %d" % player.stamina
+	mutation_label.text = "☣ %d%%" % player.mutation
+
+
+func _get_weather_label(day: int) -> String:
+	var weathers := ["☁ 黑雨", "🌫 灰霾", "☀ 放晴", "🌧 暴雨", "🌑 极夜"]
+	return weathers[(day - 1) % weathers.size()]
 
 
 func _refresh_home() -> void:
 	var player := GameState.player
-	var title: Label = tab_pages["home"].get_child(0)
-	title.text = "第 %d 天 · %s" % [player.day, player.get_time_label()]
+	_refresh_scene_area(player)
+	_refresh_story_card(player)
 
-	var active_count := player.active_survivor_ids.size()
-	var reserve_count := player.reserve_survivor_ids.size()
-	home_team_label.text = "小队状态：%d/3 出战 · %d 未上阵" % [active_count, reserve_count]
 
-	# 主线进度（V2.0 48章配置）
-	home_chapter_label.text = _get_chapter_display_name(player.chapter_id)
+func _refresh_scene_area(player: PlayerData) -> void:
+	var chapter := player.get_current_story_chapter()
+	if chapter.is_empty():
+		scene_title_label.text = "安全屋"
+		scene_desc_label.text = "临时的庇护所。"
+		_clear_container(scene_hot_container)
+		return
+	var locations: Array = chapter.get("locations", [])
+	var scene_name := str(chapter.get("name", "废弃地铁站"))
+	if not locations.is_empty():
+		scene_name = str((locations[0] as Dictionary).get("name", scene_name))
+	scene_title_label.text = scene_name
+	scene_desc_label.text = "黑暗中传来金属摩擦声。你握紧手中的武器，小心翼翼地向前移动。\n%s" % str(chapter.get("goal", "探索当前区域。"))
+	_clear_container(scene_hot_container)
+	for i in range(mini(3, locations.size())):
+		var loc: Dictionary = locations[i]
+		var hot_button := Button.new()
+		hot_button.text = "🔍 %s" % str(loc.get("name", ""))
+		hot_button.custom_minimum_size = Vector2(0, 32)
+		hot_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		hot_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		_apply_button_style(hot_button)
+		hot_button.pressed.connect(_on_scene_hot_pressed.bind(loc))
+		scene_hot_container.add_child(hot_button)
 
-	# 轮回进度
-	var progress: Dictionary = player.get_reincarnation_progress()
-	var best_rating: String = str(progress.get("best_rating", ""))
-	var best_text := ""
-	if best_rating != "":
-		best_text = " · 最佳评价 %s" % best_rating
-	home_reincarnation_label.text = "第 %d 轮 · 主线 %d/%d 章 · 真相 %d%%\n轮回印记 ×%d · 天赋点 ×%d%s" % [
-		int(progress.get("reincarnation", 1)),
-		int(progress.get("highest_chapter_all_time", 1)),
-		int(progress.get("total_chapters", 48)),
-		int(float(progress.get("truth_progress", 0.0)) * 100.0),
-		int(progress.get("reincarnation_marks", 0)),
-		int(progress.get("talent_points", 0)),
-		best_text
-	]
 
-	# 事件通知（含轮回记忆）
+func _refresh_story_card(player: PlayerData) -> void:
+	var chapter := player.get_current_story_chapter()
+	# 轮回记忆事件优先显示
 	var memory_event: Dictionary = player.try_trigger_reincarnation_event()
 	if bool(memory_event.get("triggered", false)):
-		home_event_label.text = "💭 轮回记忆：" + str(memory_event.get("text", ""))
-	elif DataManager.events.size() > 0:
-		var first_event: Dictionary = DataManager.events[0]
-		home_event_label.text = first_event.get("description", "暂无新事件。")
+		story_card_title_label.text = "💭 轮回记忆"
+		story_card_text_label.text = str(memory_event.get("text", ""))
+		_clear_container(story_card_button_container)
+		_add_story_card_button("▶ 继续", _on_story_enter_pressed)
+		return
+	if chapter.is_empty():
+		story_card_title_label.text = "暂无主线任务"
+		story_card_text_label.text = "前往「主线」页推进剧情。"
+		_clear_container(story_card_button_container)
+		return
+	story_card_title_label.text = "主线 · 第%d章《%s》" % [player.story_chapter, str(chapter.get("name", ""))]
+	var story: Array = chapter.get("story", [])
+	var preview_text := ""
+	for step in story:
+		var t := str(step.get("text", ""))
+		if t != "":
+			preview_text = t
+			break
+	if preview_text == "":
+		preview_text = str(chapter.get("goal", ""))
+	story_card_text_label.text = preview_text
+	_clear_container(story_card_button_container)
+	_add_story_card_button("▶ 进入剧情", _on_story_enter_pressed)
+
+
+func _add_story_card_button(text: String, callback: Callable) -> void:
+	var button := Button.new()
+	button.text = text
+	button.custom_minimum_size = Vector2(0, 36)
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(button, "panel")
+	button.pressed.connect(callback)
+	story_card_button_container.add_child(button)
+
+
+func _on_scene_hot_pressed(loc: Dictionary) -> void:
+	var items: Array = loc.get("items", [])
+	var result: String = str(loc.get("result", ""))
+	if not items.is_empty():
+		_set_home_status("获得：%s" % "、".join(items))
+	elif result != "":
+		_set_home_status(result)
 	else:
-		home_event_label.text = "暂无新事件。"
+		_set_home_status("探索：%s" % str(loc.get("name", "")))
 
 
 # 获取章节显示名（V2.0 48章配置）
@@ -1248,9 +2324,9 @@ func _refresh_formation() -> void:
 	_ensure_formation_survivors_exist()
 	_update_formation_debug_label()
 
-	# 更新阵型标题
-	var title: Label = tab_pages["formation"].get_child(0)
-	title.text = "编队 · %s" % player.get_formation_name()
+	# 更新阵型标题（显示当前出战人数）
+	if formation_label != null:
+		formation_label.text = "编队 · %s（%d/5出战）" % [player.get_formation_name(), player.get_active_count()]
 
 	# 更新九宫格按钮
 	for i in range(9):
@@ -1263,8 +2339,10 @@ func _refresh_formation() -> void:
 					survivor_name = survivor["name"]
 					break
 			grid_button.text = "%s\n%s" % [survivor_name, player.get_grid_position_label(i)]
+			_apply_slot_button_skin(grid_button, UI_PROD_SLOT_FORMATION_OCCUPIED, UI_PROD_SLOT_FORMATION_SELECTED)
 		else:
 			grid_button.text = "[空]\n%s" % player.get_grid_position_label(i)
+			_apply_slot_button_skin(grid_button, UI_PROD_SLOT_FORMATION_NORMAL, UI_PROD_SLOT_FORMATION_SELECTED)
 
 	# 更新伙伴列表（所有伙伴统一显示，每个伙伴一个小方格，方格内显示状态）
 	for child in formation_survivor_container.get_children():
@@ -1357,19 +2435,17 @@ func _add_formation_survivor_button(survivor: Dictionary) -> void:
 		status_color = COLOR_CYAN
 
 	var button := Button.new()
-	button.text = "%s    %s Lv.%d    %s" % [survivor["name"], survivor["profession"], survivor["level"], status_text]
+	button.text = "%s  Lv.%d  ·  %s  ·  %s" % [survivor["name"], int(survivor["level"]), survivor["profession"], status_text]
 	button.custom_minimum_size = Vector2(0, 44)
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.alignment = HORIZONTAL_ALIGNMENT_CENTER
-	button.add_theme_font_size_override("font_size", 12)
+	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	button.add_theme_font_size_override("font_size", 13)
 	# 已选中的伙伴高亮显示
 	if survivor_id == selected_formation_survivor_id:
-		button.add_theme_stylebox_override("normal", _make_flat_style(Color(0.10, 0.20, 0.18, 0.96), COLOR_AMBER, 2, 4, 8))
-		button.add_theme_stylebox_override("hover", _make_flat_style(Color(0.12, 0.24, 0.20, 0.98), COLOR_AMBER, 2, 4, 8))
-		button.add_theme_stylebox_override("pressed", _make_flat_style(Color(0.14, 0.28, 0.22, 1.0), COLOR_AMBER, 2, 4, 8))
+		_apply_slot_button_skin(button, UI_PROD_SLOT_PARTNER_SELECTED, UI_PROD_SLOT_PARTNER_SELECTED)
 		button.add_theme_color_override("font_color", COLOR_AMBER)
 	else:
-		_apply_button_style(button)
+		_apply_slot_button_skin(button, UI_PROD_SLOT_PARTNER_NORMAL, UI_PROD_SLOT_PARTNER_SELECTED)
 		# 状态颜色：已上阵=青色，未上阵=灰色
 		button.add_theme_color_override("font_color", status_color)
 	button.pressed.connect(_on_survivor_selected.bind(survivor_id))
@@ -1399,6 +2475,12 @@ func _on_grid_cell_pressed(grid_index: int) -> void:
 
 	# 场景3：先选伙伴再点九宫格。空格直接上阵，占用格替换原伙伴。
 	var survivor_name := _get_survivor_name(selected_formation_survivor_id)
+	# 5人出战上限：新增上阵（非移动）且已满员时拒绝
+	if _find_survivor_grid_position(selected_formation_survivor_id) < 0 and player.is_formation_full():
+		_set_home_status("出战人数已达上限（5人），请先下阵一名伙伴。")
+		selected_formation_survivor_id = ""
+		_refresh_formation()
+		return
 	var replaced_name := _get_survivor_name(current_survivor_id) if current_survivor_id != "" else ""
 	player.place_survivor_on_grid(selected_formation_survivor_id, grid_index)
 	selected_formation_survivor_id = ""
@@ -1435,7 +2517,7 @@ func _find_survivor_grid_position(survivor_id: String) -> int:
 # 更新选择提示文字
 func _update_formation_selection_label() -> void:
 	if selected_formation_survivor_id == "":
-		formation_selection_label.text = "① 点击选择一名伙伴 ② 再点击九宫格位置放置"
+		formation_selection_label.text = "点击伙伴，再点击阵位上阵；点击已有阵位可下阵"
 		formation_selection_label.add_theme_color_override("font_color", COLOR_MUTED)
 	else:
 		var survivor_name := _get_survivor_name(selected_formation_survivor_id)
@@ -1461,16 +2543,50 @@ func _refresh_partners() -> void:
 		player._ensure_partner_training_fields(survivor)
 		var affinity_title: String = str(player.get_affinity_level_info(int(survivor.get("affinity", 0))).get("title", "初识"))
 		var button := Button.new()
-		button.text = "%s  %s  Lv.%d  %s\n好感：%s" % [
-			survivor["name"],
-			"★".repeat(survivor.get("star", 1)),
-			survivor["level"],
-			survivor.get("rarity", ""),
-			affinity_title
-		]
-		button.custom_minimum_size = Vector2(0, 48)
+		button.text = ""
+		button.custom_minimum_size = Vector2(0, 128)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		_apply_button_style(button)
+		button.clip_contents = true
+		_apply_texture_button_skin(button, UI_PROD_PANEL_LOCATION_INFO, UI_PROD_CTA_SECONDARY_HOVER, UI_PROD_CTA_SECONDARY_PRESSED, UI_PROD_CTA_SECONDARY_DISABLED, 0, 28)
+
+		var portrait := TextureRect.new()
+		portrait.texture = _get_production_character_texture(str(survivor.get("id", "")))
+		portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		_place_control(portrait, 20, 12, 92, 104)
+		portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		button.add_child(portrait)
+
+		var name_label := Label.new()
+		name_label.text = "%s  %s" % [survivor.get("name", "伙伴"), "★".repeat(int(survivor.get("star", 1)))]
+		_apply_label_style(name_label, 18, COLOR_TEXT)
+		_place_control(name_label, 132, 20, 400, 28)
+		name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		button.add_child(name_label)
+
+		var state_label := Label.new()
+		var grid_index := _find_survivor_grid_position(str(survivor.get("id", "")))
+		var formation_state := "已上阵 · %s" % player.get_grid_position_label(grid_index) if grid_index >= 0 else "未上阵"
+		state_label.text = "Lv.%d  ·  %s  ·  %s  ·  %s" % [
+			int(survivor.get("level", 1)),
+			str(survivor.get("profession", "")),
+			affinity_title,
+			formation_state
+		]
+		_apply_label_style(state_label, 14, COLOR_AMBER if grid_index >= 0 else COLOR_MUTED)
+		_place_control(state_label, 132, 54, 500, 26)
+		state_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		button.add_child(state_label)
+
+		var stats_label := Label.new()
+		stats_label.text = "HP %d/%d  ·  能量 %d/%d  ·  点击查看详情" % [
+			int(survivor.get("hp", 0)), int(survivor.get("max_hp", 0)),
+			int(survivor.get("energy", 0)), int(survivor.get("max_energy", 0))
+		]
+		_apply_label_style(stats_label, 12, COLOR_TEXT)
+		_place_control(stats_label, 132, 86, 500, 24)
+		stats_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		button.add_child(stats_label)
 		button.pressed.connect(_on_partner_clicked.bind(survivor))
 		partner_list_container.add_child(button)
 
@@ -1753,6 +2869,9 @@ func _show_world_map() -> void:
 	var player := GameState.player
 	explore_status_label.text = "大地图 · %s · 口粮 %d" % [player.get_time_label(), player.supplies.get("food", 0)]
 	_clear_explore_container()
+	var sites := _get_region_world_sites()
+	if selected_world_site.is_empty() and not sites.is_empty():
+		selected_world_site = sites[0].duplicate(true)
 
 	var map_data: Dictionary = DataManager.region_data.get("map", {})
 	var map_header := HBoxContainer.new()
@@ -1767,13 +2886,87 @@ func _show_world_map() -> void:
 	map_header.add_child(map_title)
 
 	var fit_mode_button := Button.new()
-	fit_mode_button.text = "沉浸查看"
-	fit_mode_button.custom_minimum_size = Vector2(96, 30)
+	fit_mode_button.text = "重置视野"
+	fit_mode_button.tooltip_text = "恢复地图缩放并定位到当前地点"
+	fit_mode_button.custom_minimum_size = Vector2(96, 34)
 	_apply_button_style(fit_mode_button)
 	fit_mode_button.pressed.connect(_on_world_map_immersive_pressed)
 	map_header.add_child(fit_mode_button)
 
+	var drag_hint := Label.new()
+	drag_hint.text = "按住拖动 · 滚轮缩放"
+	_apply_label_style(drag_hint, 11, COLOR_MUTED)
+	drag_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	drag_hint.custom_minimum_size = Vector2(142, 34)
+	map_header.add_child(drag_hint)
+
 	_add_world_map_canvas()
+	_add_world_map_detail_card()
+
+
+func _add_world_map_detail_card() -> void:
+	var sites := _get_region_world_sites()
+	if sites.is_empty():
+		return
+	if selected_world_site.is_empty():
+		selected_world_site = sites[0].duplicate(true)
+	var panel := _make_panel_container()
+	_apply_panel_texture(panel, UI_PROD_PANEL_LOCATION_INFO, 14)
+	panel.custom_minimum_size = Vector2(0, 168)
+	explore_route_container.add_child(panel)
+	var box := _make_panel_margin(panel, 12)
+
+	var title := Label.new()
+	world_map_detail_title = title
+	_apply_label_style(title, 18, COLOR_TEXT)
+	box.add_child(title)
+
+	var info := Label.new()
+	world_map_detail_info = info
+	_apply_label_style(info, 13, COLOR_MUTED)
+	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	box.add_child(info)
+
+	var go_button := Button.new()
+	world_map_go_button = go_button
+	go_button.text = "前往"
+	go_button.custom_minimum_size = Vector2(0, 46)
+	go_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(go_button, "primary")
+	go_button.pressed.connect(_enter_selected_world_site)
+	box.add_child(go_button)
+	_update_world_map_detail()
+
+
+func _select_world_site(site: Dictionary) -> void:
+	selected_world_site = site.duplicate(true)
+	_update_world_map_detail()
+	if world_map_canvas == null:
+		return
+	for child in world_map_canvas.get_children():
+		if child is Button and child.has_meta("world_site_id"):
+			var site_button := child as Button
+			site_button.button_pressed = str(site_button.get_meta("world_site_id")) == str(selected_world_site.get("id", ""))
+
+
+func _update_world_map_detail() -> void:
+	if selected_world_site.is_empty():
+		return
+	if world_map_detail_title != null:
+		world_map_detail_title.text = str(selected_world_site.get("name", "未知地点"))
+	if world_map_detail_info != null:
+		world_map_detail_info.text = "危险等级：%d  |  距离：1.2 km  |  体力消耗：20\n%s" % [
+			int(selected_world_site.get("danger", 1)),
+			str(selected_world_site.get("desc", "探索当前区域。"))
+		]
+	if world_map_go_button != null:
+		world_map_go_button.disabled = GameState.player.supplies.get("food", 0) <= 0
+
+
+func _enter_selected_world_site() -> void:
+	if selected_world_site.is_empty():
+		return
+	_on_world_site_pressed(selected_world_site)
 
 
 func _add_world_map_canvas() -> void:
@@ -1790,7 +2983,7 @@ func _add_world_map_canvas() -> void:
 	var map_viewport := Control.new()
 	map_viewport.name = "WorldMapViewport"
 	world_map_viewport = map_viewport
-	map_viewport.custom_minimum_size = Vector2(0, 640)
+	map_viewport.custom_minimum_size = Vector2(0, 620)
 	map_viewport.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	map_viewport.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	map_viewport.clip_contents = true
@@ -1798,25 +2991,28 @@ func _add_world_map_canvas() -> void:
 	explore_route_container.add_child(map_viewport)
 
 	var scroll := ScrollContainer.new()
+	world_map_scroll = scroll
 	scroll.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
 	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
 	scroll.scroll_deadzone = 12
+	scroll.gui_input.connect(_on_world_map_input)
 	map_viewport.add_child(scroll)
 
 	var zoom_container := Control.new()
 	world_map_zoom_container = zoom_container
 	zoom_container.custom_minimum_size = map_size
 	zoom_container.size = map_size
+	zoom_container.mouse_filter = Control.MOUSE_FILTER_PASS
 	scroll.add_child(zoom_container)
 
 	var canvas := Control.new()
 	world_map_canvas = canvas
 	canvas.custom_minimum_size = map_size
 	canvas.size = map_size
-	canvas.mouse_filter = Control.MOUSE_FILTER_STOP
+	canvas.mouse_filter = Control.MOUSE_FILTER_PASS
 	canvas.gui_input.connect(_on_world_map_input)
 	zoom_container.add_child(canvas)
 
@@ -1831,11 +3027,11 @@ func _fit_world_map() -> void:
 	var viewport_size := world_map_viewport.size
 	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
 		return
-	var fit_zoom := maxf(
-		viewport_size.x / world_map_base_size.x,
-		viewport_size.y / world_map_base_size.y
-	)
-	_set_world_map_zoom(fit_zoom)
+	var height_fit_zoom := viewport_size.y / world_map_base_size.y
+	# Deliberately keep a readable canvas larger than the viewport so routes do not collapse together.
+	var readable_zoom := maxf(height_fit_zoom, 0.62)
+	_set_world_map_zoom(readable_zoom)
+	call_deferred("_center_world_map_on_selected")
 
 
 func _on_world_map_immersive_pressed() -> void:
@@ -1849,6 +3045,18 @@ func _on_world_map_input(event: InputEvent) -> void:
 			_set_world_map_zoom(world_map_zoom + 0.1)
 		elif mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			_set_world_map_zoom(world_map_zoom - 0.1)
+		elif mouse_event.button_index == MOUSE_BUTTON_LEFT:
+			world_map_dragging = mouse_event.pressed
+			if mouse_event.pressed and world_map_scroll != null:
+				world_map_drag_start = mouse_event.position
+				world_map_scroll_start = Vector2(world_map_scroll.scroll_horizontal, world_map_scroll.scroll_vertical)
+		return
+
+	if event is InputEventMouseMotion and world_map_dragging and world_map_scroll != null:
+		var motion_event := event as InputEventMouseMotion
+		var drag_delta := motion_event.position - world_map_drag_start
+		world_map_scroll.scroll_horizontal = maxi(0, int(world_map_scroll_start.x - drag_delta.x))
+		world_map_scroll.scroll_vertical = maxi(0, int(world_map_scroll_start.y - drag_delta.y))
 		return
 
 	if event is InputEventScreenTouch:
@@ -1867,7 +3075,25 @@ func _on_world_map_input(event: InputEvent) -> void:
 		var pinch_distance := _get_world_map_pinch_distance()
 		if world_map_touches.size() >= 2 and world_map_last_pinch_distance > 0.0 and pinch_distance > 0.0:
 			_set_world_map_zoom(world_map_zoom * pinch_distance / world_map_last_pinch_distance)
+		elif world_map_touches.size() == 1 and world_map_scroll != null:
+			world_map_scroll.scroll_horizontal = maxi(0, world_map_scroll.scroll_horizontal - int(drag_event.relative.x))
+			world_map_scroll.scroll_vertical = maxi(0, world_map_scroll.scroll_vertical - int(drag_event.relative.y))
 		world_map_last_pinch_distance = pinch_distance
+
+
+func _center_world_map_on_selected() -> void:
+	if world_map_scroll == null or selected_world_site.is_empty() or world_map_base_size == Vector2.ZERO:
+		return
+	var map_data: Dictionary = DataManager.region_data.get("map", {})
+	var coordinate_size: Dictionary = map_data.get("coordinate_size", {"x": 200, "y": 150})
+	var position_data: Dictionary = selected_world_site.get("position", {})
+	var normalized := Vector2(
+		float(position_data.get("x", 0)) / maxf(1.0, float(coordinate_size.get("x", 200))),
+		1.0 - float(position_data.get("y", 0)) / maxf(1.0, float(coordinate_size.get("y", 150)))
+	)
+	var scaled_size := world_map_base_size * world_map_zoom
+	world_map_scroll.scroll_horizontal = maxi(0, int(normalized.x * scaled_size.x - world_map_scroll.size.x * 0.5))
+	world_map_scroll.scroll_vertical = maxi(0, int(normalized.y * scaled_size.y - world_map_scroll.size.y * 0.5))
 
 
 func _get_world_map_pinch_distance() -> float:
@@ -1882,11 +3108,10 @@ func _set_world_map_zoom(value: float) -> void:
 		return
 	var minimum_zoom := 0.18
 	if world_map_viewport != null and world_map_viewport.size.x > 0.0 and world_map_viewport.size.y > 0.0:
-		minimum_zoom = minf(
+		minimum_zoom = maxf(0.18, minf(
 			world_map_viewport.size.x / world_map_base_size.x,
 			world_map_viewport.size.y / world_map_base_size.y
-		)
-		minimum_zoom = maxf(0.18, minimum_zoom)
+		))
 	world_map_zoom = clampf(value, minimum_zoom, 2.0)
 	var scaled_size := world_map_base_size * world_map_zoom
 	world_map_zoom_container.scale = Vector2.ONE
@@ -1998,8 +3223,11 @@ func _add_world_map_region_button(canvas: Control, site: Dictionary, map_size: V
 		clampf(normalized_y * map_size.y - button_height * 0.5, vertical_padding - button_height * 0.5, map_size.y - vertical_padding - button_height * 0.5)
 	)
 	button.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	button.toggle_mode = true
+	button.set_meta("world_site_id", str(site.get("id", "")))
+	button.button_pressed = str(site.get("id", "")) == str(selected_world_site.get("id", ""))
 	_apply_map_region_style(button)
-	button.pressed.connect(_on_world_site_pressed.bind(site))
+	button.pressed.connect(_select_world_site.bind(site))
 	canvas.add_child(button)
 
 
@@ -2782,13 +4010,40 @@ func _run_battle(beast_id: String) -> bool:
 	battle_finished = false
 	battle_waiting_input = false
 	battle_data["mode"] = battle_auto_mode
-	for mode in battle_mode_buttons:
-		battle_mode_buttons[mode].button_pressed = (mode == "manual")
-
-	battle_popup.popup_centered()
-	_refresh_battle_ui()
-	_process_battle_turn()
+	if not _open_battle_scene():
+		battle_data = {}
+		battle_site_context = {}
+		return false
 	return true
+
+
+func _open_battle_scene() -> bool:
+	if battle_scene_instance != null and is_instance_valid(battle_scene_instance):
+		battle_scene_instance.queue_free()
+		battle_scene_instance = null
+	var packed: PackedScene = load(BATTLE_SCENE_PATH)
+	if packed == null:
+		_set_home_status("战斗场景加载失败。")
+		return false
+	battle_scene_instance = packed.instantiate()
+	battle_scene_instance.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	if battle_scene_instance.has_signal("battle_finished"):
+		battle_scene_instance.battle_finished.connect(_on_battle_scene_finished)
+	if battle_scene_instance.has_method("setup_existing_battle"):
+		battle_scene_instance.setup_existing_battle(battle_data)
+	add_child(battle_scene_instance)
+	battle_scene_instance.move_to_front()
+	return true
+
+
+func _on_battle_scene_finished(result: Dictionary) -> void:
+	if result.has("battle") and result["battle"] is Dictionary:
+		battle_data = result["battle"]
+	var retreat := bool(result.get("retreat", false))
+	if battle_scene_instance != null and is_instance_valid(battle_scene_instance):
+		battle_scene_instance.queue_free()
+	battle_scene_instance = null
+	_finish_battle(true, retreat)
 
 
 # 应用Boss动态公式与轮回词缀
@@ -2977,6 +4232,8 @@ func _battle_log_line_to_bbcode(line: String) -> String:
 
 
 func _update_battle_controls(enabled: bool) -> void:
+	if battle_action_bar == null:
+		return
 	for child in battle_action_bar.get_children():
 		child.disabled = not enabled
 	if battle_flee_button != null:
@@ -3175,6 +4432,7 @@ func _finish_battle(sync_hp: bool = true, is_retreat: bool = false) -> void:
 	_update_battle_controls(false)
 
 	var victory: bool = battle_data.get("victory", false)
+	var rewards: Dictionary = battle_data.get("rewards", {})
 	var enemy_name := ""
 	var enemy_base_id := ""
 	if not battle_data.is_empty() and not battle_data["enemy_party"].is_empty():
@@ -3185,8 +4443,11 @@ func _finish_battle(sync_hp: bool = true, is_retreat: bool = false) -> void:
 
 	if sync_hp and not battle_data.is_empty():
 		_sync_battle_results()
+	if sync_hp and victory and not rewards.is_empty():
+		_apply_battle_rewards(rewards)
 
-	battle_popup.hide()
+	if battle_popup != null:
+		battle_popup.hide()
 	_hide_battle_overlay()
 	if sync_hp and victory and enemy_base_id != "":
 		var defeated_beasts: Array = GameState.player.story_flags.get("defeated_beasts", [])
@@ -3211,7 +4472,11 @@ func _finish_battle(sync_hp: bool = true, is_retreat: bool = false) -> void:
 
 	if sync_hp:
 		if victory:
-			_set_home_status("战斗胜利！%s 已被击败。" % enemy_name)
+			var reward_text := BattleSystem.format_rewards(rewards)
+			if reward_text != "":
+				_set_home_status("战斗胜利！%s 已被击败。\n获得：%s" % [enemy_name, reward_text])
+			else:
+				_set_home_status("战斗胜利！%s 已被击败。" % enemy_name)
 		elif is_retreat:
 			if not site_context.is_empty():
 				_set_home_status("已撤离战斗，队员伤势已同步，返回大地图。")
@@ -3230,6 +4495,49 @@ func _finish_battle(sync_hp: bool = true, is_retreat: bool = false) -> void:
 	battle_callback = Callable()
 	if sync_hp and victory and callback.is_valid():
 		callback.call()
+
+
+func _apply_battle_rewards(rewards: Dictionary) -> void:
+	var player := GameState.player
+	if player == null:
+		return
+	var exp_total := int(rewards.get("exp", 0))
+	if exp_total > 0 and not battle_data.is_empty():
+		var party_ids: Array = battle_data.get("player_party", [])
+		var exp_each := int(ceil(float(exp_total) / maxf(1.0, float(party_ids.size()))))
+		for unit_id in party_ids:
+			var unit: Dictionary = battle_data["units"].get(unit_id, {})
+			var base_id := str(unit.get("base_id", ""))
+			for survivor in player.survivors:
+				if str(survivor.get("id", "")) == base_id:
+					survivor["exp"] = int(survivor.get("exp", 0)) + exp_each
+					break
+	var gold := int(rewards.get("gold", 0))
+	if gold > 0:
+		_add_player_loot_resource("gold", gold)
+	var resources: Dictionary = rewards.get("resources", {})
+	for resource_id in resources:
+		_add_player_loot_resource(str(resource_id), int(resources[resource_id]))
+	for drop in rewards.get("drops", []):
+		if drop is Dictionary:
+			var item_id := str(drop.get("id", ""))
+			var count := int(drop.get("count", 1))
+			if item_id != "":
+				player.story_flags["drop_" + item_id] = int(player.story_flags.get("drop_" + item_id, 0)) + count
+
+
+func _add_player_loot_resource(resource_id: String, amount: int) -> void:
+	if amount == 0 or GameState.player == null:
+		return
+	var player := GameState.player
+	if resource_id in player.supplies or resource_id in player.materials:
+		if not player.resource_caps.has(resource_id):
+			player.resource_caps[resource_id] = 999999
+		player.add_resource(resource_id, amount)
+		return
+	player.materials[resource_id] = int(player.materials.get(resource_id, 0)) + amount
+	if not player.resource_caps.has(resource_id):
+		player.resource_caps[resource_id] = 999999
 
 
 func _occupy_site_enemy_cell(context: Dictionary) -> void:
@@ -3265,19 +4573,334 @@ func _sync_battle_results() -> void:
 				break
 
 
+func _add_info_card(container: VBoxContainer, title: String, body: String, accent: Color = COLOR_AMBER) -> PanelContainer:
+	var panel := _make_panel_container()
+	panel.custom_minimum_size = Vector2(0, 82)
+	container.add_child(panel)
+	var box := _make_panel_margin(panel, 12)
+
+	var title_label := Label.new()
+	title_label.text = title
+	_apply_label_style(title_label, 15, accent)
+	box.add_child(title_label)
+
+	var body_label := Label.new()
+	body_label.name = "BodyLabel"
+	body_label.text = body
+	_apply_label_style(body_label, 13, COLOR_TEXT)
+	body_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	box.add_child(body_label)
+	return panel
+
+
+func _refresh_base_page() -> void:
+	if base_content_container == null:
+		return
+	var player := GameState.player
+	_clear_container(base_content_container)
+
+	_add_info_card(base_content_container, "避难所等级 Lv.%d" % player.base_level, "安全度 82%%  |  食物 %d  |  水 %d  |  电力 %d" % [
+		int(player.supplies.get("food", 0)),
+		int(player.supplies.get("water", player.thirst)),
+		int(player.materials.get("spirit_battery", 0))
+	])
+
+	var grid := GridContainer.new()
+	grid.columns = 2
+	grid.add_theme_constant_override("h_separation", 8)
+	grid.add_theme_constant_override("v_separation", 8)
+	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	base_content_container.add_child(grid)
+
+	var facilities := [
+		{"id": "workbench", "name": "工作台", "level": player.get_base_facility_level("workbench"), "desc": "打造与改造装备", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_workbench.png"},
+		{"id": "storage", "name": "仓库", "level": player.get_base_facility_level("storage"), "desc": "存储物资与材料", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_storage.png"},
+		{"id": "bed", "name": "床铺", "level": player.get_base_facility_level("bed"), "desc": "增加休息恢复量", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_bed.png"},
+		{"id": "medical", "name": "医疗台", "level": player.get_base_facility_level("medical"), "desc": "治疗与研究药品", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_medical_station.png"},
+		{"id": "kitchen", "name": "厨房", "level": player.get_base_facility_level("kitchen"), "desc": "制作食物料理", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_kitchen.png"},
+		{"id": "generator", "name": "发电机", "level": player.get_base_facility_level("generator"), "desc": "提供基地电力", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_generator.png"}
+	]
+	for facility in facilities:
+		var button := _make_facility_button(facility)
+		var facility_data: Dictionary = facility.duplicate(true)
+		button.pressed.connect(_select_base_facility.bind(facility_data))
+		grid.add_child(button)
+
+	var detail_panel := _add_info_card(base_content_container, "设施详情", "点击任意设施查看功能、升级方向和维护状态。")
+	base_detail_label = detail_panel.find_child("BodyLabel", true, false) as Label
+	if base_selected_facility.is_empty() and not facilities.is_empty():
+		base_selected_facility = facilities[2].duplicate(true)
+	if not base_selected_facility.is_empty():
+		base_selected_facility["level"] = player.get_base_facility_level(str(base_selected_facility.get("id", "")))
+		_show_base_facility_detail(base_selected_facility)
+
+	_add_info_card(base_content_container, "资源计数器", "晶核 %d  |  记忆碎片 %d  |  补给券 %d  |  金币 %d" % [
+		int(player.materials.get("cores", 0)),
+		int(player.materials.get("memory_shards", 0)),
+		int(player.materials.get("tickets", 0)),
+		int(player.materials.get("gold", 0))
+	], COLOR_TEXT)
+
+
+func _select_base_facility(facility: Dictionary) -> void:
+	base_selected_facility = facility.duplicate(true)
+	_show_base_facility_detail(base_selected_facility)
+
+
+func _show_base_facility_detail(facility: Dictionary) -> void:
+	if base_detail_label == null:
+		return
+	var facility_id := str(facility.get("id", ""))
+	var level := GameState.player.get_base_facility_level(facility_id)
+	var cost := GameState.player.get_base_facility_upgrade_cost(facility_id)
+	base_detail_label.text = "%s Lv.%d\n%s\n维护状态：稳定  |  下级消耗：晶核 %d、电池 %d" % [
+		str(facility.get("name", "设施")),
+		level,
+		str(facility.get("desc", "")),
+		int(cost.get("cores", 0)),
+		int(cost.get("spirit_battery", 0))
+	]
+	if base_upgrade_button != null:
+		base_upgrade_button.disabled = level >= GameState.player.base_level
+		base_upgrade_button.text = "已达上限" if base_upgrade_button.disabled else "升级设施"
+
+
+func _on_base_upgrade_pressed() -> void:
+	if base_selected_facility.is_empty():
+		_set_home_status("请先选择一项设施。")
+		return
+	var result := GameState.player.upgrade_base_facility(str(base_selected_facility.get("id", "")))
+	if bool(result.get("success", false)):
+		_set_home_status("%s 已升级至 Lv.%d。" % [base_selected_facility.get("name", "设施"), int(result.get("level", 1))])
+	else:
+		_set_home_status(str(result.get("reason", "升级失败。")))
+	_refresh_base_page()
+
+
+func _make_facility_button(facility: Dictionary) -> Button:
+	var button := Button.new()
+	button.text = ""
+	button.custom_minimum_size = Vector2(0, 132)
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	button.clip_contents = true
+	button.focus_mode = Control.FOCUS_ALL
+	_apply_texture_button_skin(button, UI_PROD_CTA_SECONDARY_NORMAL, UI_PROD_CTA_SECONDARY_HOVER, UI_PROD_CTA_SECONDARY_PRESSED, UI_PROD_CTA_SECONDARY_DISABLED, 0, 34)
+
+	var image := TextureRect.new()
+	image.texture = load(str(facility.get("image", ""))) as Texture2D
+	image.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	image.modulate = Color(0.72, 0.66, 0.55, 0.78)
+	image.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(image)
+
+	var shade := ColorRect.new()
+	shade.color = Color(0.0, 0.0, 0.0, 0.38)
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(shade)
+
+	var title := Label.new()
+	title.text = "%s  Lv.%d" % [str(facility.get("name", "")), int(facility.get("level", 1))]
+	_apply_label_style(title, 16, Color(1.0, 0.74, 0.33, 1.0))
+	title.add_theme_constant_override("outline_size", 2)
+	title.add_theme_color_override("font_outline_color", Color.BLACK)
+	_place_control(title, 18, 78, 280, 26)
+	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(title)
+
+	var desc := Label.new()
+	desc.text = str(facility.get("desc", ""))
+	_apply_label_style(desc, 12, COLOR_TEXT)
+	_place_control(desc, 18, 103, 280, 22)
+	desc.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(desc)
+	return button
+
+
+func _refresh_reincarnation_page() -> void:
+	if reincarnation_content_container == null:
+		return
+	var player := GameState.player
+	_clear_container(reincarnation_content_container)
+
+	var progress := int(clampf(maxf(player.truth_progress, float(player.highest_chapter_all_time) / 48.0), 0.0, 1.0) * 100.0)
+	_add_info_card(reincarnation_content_container, "当前轮回", "%d 轮\n本轮存活：%d 天" % [
+		int(player.reincarnation),
+		int(player.day)
+	], Color(0.86, 0.24, 0.20, 1.0))
+	_add_info_card(reincarnation_content_container, "最高章节", "第 %d 章 · %s" % [
+		int(player.highest_chapter_all_time),
+		_get_chapter_display_name(int(player.highest_chapter_all_time))
+	])
+	_add_reincarnation_progress_card(progress)
+	_add_info_card(reincarnation_content_container, "轮回印记", "%d\n可用于永久天赋和轮回强化。" % int(player.reincarnation_marks), Color(0.86, 0.24, 0.20, 1.0))
+	_add_reincarnation_talent_card()
+	_add_reincarnation_boss_card()
+	_add_info_card(reincarnation_content_container, "本轮结算奖励", "轮回印记 +%d  |  天赋点 +%d" % [
+		maxi(1, int(player.day / 3)),
+		maxi(1, int(player.highest_chapter_all_time / 6))
+	])
+
+
+func _add_reincarnation_progress_card(progress: int) -> void:
+	var panel := _make_panel_container()
+	panel.custom_minimum_size = Vector2(0, 116)
+	reincarnation_content_container.add_child(panel)
+	var box := _make_panel_margin(panel, 12)
+	var title := Label.new()
+	title.text = "真相进度  %d%%" % progress
+	_apply_label_style(title, 15, COLOR_AMBER)
+	box.add_child(title)
+	var bar := TextureProgressBar.new()
+	bar.texture_under = UI_PROD_PROGRESS_TRACK
+	bar.texture_progress = UI_PROD_PROGRESS_GOLD
+	bar.value = progress
+	bar.max_value = 100
+	bar.custom_minimum_size = Vector2(0, 24)
+	bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_child(bar)
+	var hint := Label.new()
+	hint.text = "推进主线、击败首领并触发轮回记忆可揭开真相。"
+	_apply_label_style(hint, 12, COLOR_MUTED)
+	box.add_child(hint)
+
+
+func _add_reincarnation_talent_card() -> void:
+	var panel := _make_panel_container()
+	panel.custom_minimum_size = Vector2(0, 150)
+	reincarnation_content_container.add_child(panel)
+	var box := _make_panel_margin(panel, 12)
+	var title := Label.new()
+	title.text = "永久天赋  ·  可用点数 %d" % GameState.player.talent_points
+	_apply_label_style(title, 15, COLOR_AMBER)
+	box.add_child(title)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 10)
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	box.add_child(row)
+	for i in range(5):
+		var talent_button := Button.new()
+		talent_button.text = ""
+		talent_button.custom_minimum_size = Vector2(82, 82)
+		_apply_slot_button_skin(talent_button, UI_PROD_SLOT_FORMATION_NORMAL, UI_PROD_SLOT_FORMATION_SELECTED)
+		var icon := TextureRect.new()
+		icon.texture = load("res://assets/images/ui/production/13_dedicated/talents/talent_%02d.png" % (i + 1)) as Texture2D
+		icon.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT, Control.PRESET_MODE_MINSIZE, 8)
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		talent_button.add_child(icon)
+		talent_button.tooltip_text = "打开永久天赋"
+		talent_button.pressed.connect(_on_talent_pressed)
+		row.add_child(talent_button)
+
+
+func _add_reincarnation_boss_card() -> void:
+	var panel := PanelContainer.new()
+	panel.custom_minimum_size = Vector2(0, 154)
+	_apply_panel_texture(panel, UI_PROD_PANEL_BOSS, 12)
+	reincarnation_content_container.add_child(panel)
+	var layer := Control.new()
+	layer.custom_minimum_size = Vector2(0, 130)
+	panel.add_child(layer)
+	var portrait := TextureRect.new()
+	portrait.texture = UI_PROD_BOSS_WARDEN
+	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	_place_control(portrait, 18, 14, 190, 108)
+	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(portrait)
+	var title := Label.new()
+	title.text = "BOSS 情报"
+	_apply_label_style(title, 17, Color(0.90, 0.25, 0.20, 1.0))
+	_place_control(title, 226, 18, 230, 28)
+	layer.add_child(title)
+	var info := Label.new()
+	info.text = "已发现情报：%d\n腐化看守 · 情报尚未完整" % _get_boss_intel_count(GameState.player)
+	_apply_label_style(info, 13, COLOR_TEXT)
+	_place_control(info, 226, 50, 250, 54)
+	layer.add_child(info)
+	var button := Button.new()
+	button.text = "查看图鉴"
+	_place_control(button, 500, 38, 132, 58)
+	_apply_button_style(button, "panel")
+	button.pressed.connect(_on_codex_button_pressed)
+	layer.add_child(button)
+
+
 func _refresh_inventory() -> void:
 	var player := GameState.player
-	inventory_label.text = "【消耗品】\n口粮 ×%d/%d\n药品 ×%d/%d\n\n【材料】\n晶核 ×%d\n记忆碎片 ×%d\n补给券 ×%d\n灵能电池 ×%d\n弹药 ×%d\n稀有材料 ×%d\n灵核 ×%d" % [
-		player.supplies.get("food", 0), player.resource_caps.get("food", 99),
-		player.supplies.get("medicine", 0), player.resource_caps.get("medicine", 99),
-		player.materials.get("cores", 0),
-		player.materials.get("memory_shards", 0),
-		player.materials.get("tickets", 0),
-		player.materials.get("spirit_battery", 0),
-		player.materials.get("ammo", 0),
-		player.materials.get("rare_material", 0),
-		player.materials.get("spirit_core", 0)
-	]
+	if inventory_content_container == null:
+		return
+	_clear_container(inventory_content_container)
+
+	# 消耗品
+	var consumable_title := Label.new()
+	consumable_title.text = "【消耗品】"
+	_apply_label_style(consumable_title, 16, COLOR_AMBER)
+	inventory_content_container.add_child(consumable_title)
+	_add_inventory_item("口粮", "food", int(player.supplies.get("food", 0)), int(player.resource_caps.get("food", 99)), false)
+	_add_inventory_item("药品", "medicine", int(player.supplies.get("medicine", 0)), int(player.resource_caps.get("medicine", 99)), true)
+
+	# 材料
+	var material_title := Label.new()
+	material_title.text = "【材料】"
+	_apply_label_style(material_title, 16, COLOR_AMBER)
+	inventory_content_container.add_child(material_title)
+	var material_names := {"cores": "晶核", "memory_shards": "记忆碎片", "tickets": "补给券", "spirit_battery": "灵能电池", "ammo": "弹药", "rare_material": "稀有材料", "spirit_core": "灵核"}
+	for mat_id in material_names:
+		_add_inventory_item(str(material_names[mat_id]), mat_id, int(player.materials.get(mat_id, 0)), int(player.resource_caps.get(mat_id, 999)), false)
+
+	# 装备
+	var equip_title := Label.new()
+	equip_title.text = "【装备】（%d 件）" % player.owned_equipment.size()
+	_apply_label_style(equip_title, 16, COLOR_AMBER)
+	inventory_content_container.add_child(equip_title)
+	if player.owned_equipment.is_empty():
+		var empty_label := Label.new()
+		empty_label.text = "暂无装备。探索或锻造可获得。"
+		_apply_label_style(empty_label, 13, COLOR_MUTED)
+		inventory_content_container.add_child(empty_label)
+	else:
+		for equip_id in player.owned_equipment:
+			var item := DataManager.get_equipment_by_id(str(equip_id))
+			var item_label := Label.new()
+			var slot_name: String = {"weapon": "武器", "armor": "防具", "accessory": "饰品"}.get(str(item.get("slot", "")), str(item.get("slot", "")))
+			item_label.text = "%s · %s（稀有度 %d）" % [str(item.get("name", equip_id)), slot_name, int(item.get("rarity", 1))]
+			_apply_label_style(item_label, 13)
+			inventory_content_container.add_child(item_label)
+
+
+# 添加背包物品条目
+func _add_inventory_item(display_name: String, item_id: String, count: int, cap: int, usable: bool) -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 8)
+	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+	var label := Label.new()
+	label.text = "%s ×%d/%d" % [display_name, count, cap]
+	_apply_label_style(label, 13)
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	row.add_child(label)
+
+	if usable:
+		var use_button := Button.new()
+		use_button.text = "使用"
+		use_button.custom_minimum_size = Vector2(60, 30)
+		_apply_button_style(use_button)
+		use_button.pressed.connect(_on_inventory_use_pressed.bind(item_id))
+		row.add_child(use_button)
+
+	inventory_content_container.add_child(row)
+
+
+# 使用背包物品
+func _on_inventory_use_pressed(item_id: String) -> void:
+	var result: Dictionary = GameState.player.use_consumable(item_id)
+	_set_home_status(str(result.get("text", "")))
+	_refresh_all()
 
 
 func _refresh_codex() -> void:
@@ -3878,6 +5501,12 @@ func _on_rest_pressed() -> void:
 	_refresh_all()
 
 
+func _on_save_pressed() -> void:
+	SaveManager.save_all(GameState.player)
+	_set_home_status("游戏已保存（当前轮 + 永久进度）。")
+	_refresh_all()
+
+
 func _on_switch_formation_pressed() -> void:
 	var player := GameState.player
 	var formations := ["assault", "iron", "wind"]
@@ -3901,16 +5530,322 @@ func _format_formation_bonus(bonus: Dictionary) -> String:
 		match stat:
 			"attack":
 				label = "攻击"
+			"spirit":
+				label = "灵能"
 			"defense":
 				label = "防御"
+			"resistance":
+				label = "灵抗"
 			"speed":
 				label = "速度"
+			"ep_start":
+				label = "首回合EP"
 		parts.append("%s%+.0f%%" % [label, value * 100.0])
 	return "、".join(parts)
 
 
 func _on_settings_pressed() -> void:
 	_set_home_status("设置功能开发中……")
+
+
+# ============================================================
+# 图鉴弹窗
+# ============================================================
+func _build_codex_popup() -> void:
+	codex_popup = PopupPanel.new()
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 16)
+	margin.add_theme_constant_override("margin_top", 16)
+	margin.add_theme_constant_override("margin_right", 16)
+	margin.add_theme_constant_override("margin_bottom", 16)
+	codex_popup.add_child(margin)
+
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 8)
+	box.custom_minimum_size = Vector2(320, 0)
+	margin.add_child(box)
+
+	var title := Label.new()
+	title.text = "📖 图鉴"
+	_apply_label_style(title, 20, COLOR_CYAN)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(title)
+
+	var scroll := ScrollContainer.new()
+	scroll.custom_minimum_size = Vector2(0, 360)
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	box.add_child(scroll)
+
+	codex_content_container = VBoxContainer.new()
+	codex_content_container.add_theme_constant_override("separation", 8)
+	codex_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(codex_content_container)
+
+	var close_button := Button.new()
+	close_button.text = "关闭"
+	close_button.custom_minimum_size = Vector2(0, 38)
+	close_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(close_button)
+	close_button.pressed.connect(func() -> void: codex_popup.hide())
+	box.add_child(close_button)
+
+	add_child(codex_popup)
+
+
+func _on_codex_button_pressed() -> void:
+	codex_view_mode = "categories"
+	selected_codex_category = ""
+	selected_codex_beast_id = ""
+	selected_codex_boss_id = ""
+	_refresh_codex()
+	codex_popup.popup_centered()
+
+
+# ============================================================
+# 永久天赋弹窗
+# ============================================================
+func _build_talent_popup() -> void:
+	talent_popup = PopupPanel.new()
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 16)
+	margin.add_theme_constant_override("margin_top", 16)
+	margin.add_theme_constant_override("margin_right", 16)
+	margin.add_theme_constant_override("margin_bottom", 16)
+	talent_popup.add_child(margin)
+
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 8)
+	box.custom_minimum_size = Vector2(320, 0)
+	margin.add_child(box)
+
+	var title := Label.new()
+	title.text = "✨ 永久天赋"
+	_apply_label_style(title, 20, COLOR_CYAN)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(title)
+
+	var scroll := ScrollContainer.new()
+	scroll.custom_minimum_size = Vector2(0, 360)
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	box.add_child(scroll)
+
+	talent_content_box = VBoxContainer.new()
+	talent_content_box.add_theme_constant_override("separation", 8)
+	talent_content_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(talent_content_box)
+
+	var close_button := Button.new()
+	close_button.text = "关闭"
+	close_button.custom_minimum_size = Vector2(0, 38)
+	close_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(close_button)
+	close_button.pressed.connect(func() -> void: talent_popup.hide())
+	box.add_child(close_button)
+
+	add_child(talent_popup)
+
+
+func _on_talent_pressed() -> void:
+	_refresh_talent_popup()
+	talent_popup.popup_centered()
+
+
+func _refresh_talent_popup() -> void:
+	var player := GameState.player
+	if talent_content_box == null:
+		return
+	_clear_container(talent_content_box)
+
+	var point_label := Label.new()
+	point_label.text = "天赋点：%d" % player.talent_points
+	_apply_label_style(point_label, 16, COLOR_AMBER)
+	point_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	talent_content_box.add_child(point_label)
+
+	var directions := {"生存": [], "战斗": [], "命运": []}
+	for talent in TALENT_CONFIG:
+		var direction := str(talent.get("direction", ""))
+		if directions.has(direction):
+			directions[direction].append(talent)
+
+	for direction in ["生存", "战斗", "命运"]:
+		var dir_label := Label.new()
+		dir_label.text = "【%s】" % direction
+		_apply_label_style(dir_label, 16, COLOR_AMBER)
+		talent_content_box.add_child(dir_label)
+		for talent in directions[direction]:
+			var talent_id := str(talent.get("id", ""))
+			var talent_name := str(talent.get("name", ""))
+			var talent_desc := str(talent.get("desc", ""))
+			var max_level := int(talent.get("max_level", 1))
+			var cost := int(talent.get("cost", 1))
+			var level := player.get_talent_level(talent_id)
+			var level_text := "%d/%d" % [level, max_level]
+			if level >= max_level:
+				level_text = "MAX"
+			var button := Button.new()
+			button.text = "%s  Lv.%s\n%s（消耗%d点）" % [talent_name, level_text, talent_desc, cost]
+			button.custom_minimum_size = Vector2(0, 58)
+			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+			_apply_button_style(button)
+			button.pressed.connect(_on_talent_upgrade_pressed.bind(talent_id, max_level, cost))
+			talent_content_box.add_child(button)
+
+
+func _on_talent_upgrade_pressed(talent_id: String, max_level: int, cost: int) -> void:
+	var player := GameState.player
+	var result: Dictionary = player.upgrade_talent(talent_id, max_level, cost)
+	_set_home_status(str(result.get("text", "")))
+	_refresh_talent_popup()
+	_refresh_all()
+
+
+# ============================================================
+# Boss 战前界面
+# ============================================================
+func _build_boss_preview_popup() -> void:
+	boss_preview_popup = PopupPanel.new()
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 16)
+	margin.add_theme_constant_override("margin_top", 16)
+	margin.add_theme_constant_override("margin_right", 16)
+	margin.add_theme_constant_override("margin_bottom", 16)
+	boss_preview_popup.add_child(margin)
+
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 8)
+	box.custom_minimum_size = Vector2(320, 0)
+	margin.add_child(box)
+
+	boss_preview_content_box = VBoxContainer.new()
+	boss_preview_content_box.add_theme_constant_override("separation", 8)
+	boss_preview_content_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_child(boss_preview_content_box)
+
+	add_child(boss_preview_popup)
+
+
+func _show_boss_preview(boss_id: String, chapter_id: int) -> void:
+	_refresh_boss_preview(boss_id, chapter_id)
+	boss_preview_popup.popup_centered()
+
+
+func _refresh_boss_preview(boss_id: String, chapter_id: int) -> void:
+	var player := GameState.player
+	if boss_preview_content_box == null:
+		return
+	_clear_container(boss_preview_content_box)
+
+	var boss := player.get_boss_config(boss_id)
+	if boss.is_empty():
+		return
+	var boss_name := str(boss.get("name", boss_id))
+	var recommend_level := int(boss.get("recommended_level", 0))
+	var team_level := _get_team_level(player)
+	var danger := _get_danger_level(team_level, recommend_level)
+
+	var title := Label.new()
+	title.text = "👹 %s" % boss_name
+	_apply_label_style(title, 20, COLOR_AMBER)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	boss_preview_content_box.add_child(title)
+
+	var level_info := Label.new()
+	level_info.text = "推荐：LV%d\n你的队伍：LV%d\n\n危险等级：%s" % [recommend_level, team_level, danger]
+	_apply_label_style(level_info, 14)
+	level_info.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	boss_preview_content_box.add_child(level_info)
+
+	var unlocked: Array = player.get_boss_unlocked_intel(boss_id)
+	var intel_text := "【已知情报】\n"
+	if unlocked.is_empty():
+		intel_text += "尚未解锁任何情报。\n"
+	else:
+		for item in unlocked:
+			intel_text += "✔ %s：%s\n" % [str(item.get("label", "")), str(item.get("value", ""))]
+	var intel: Dictionary = boss.get("intel", {})
+	for info in intel.get("weakness_info", []):
+		if info is Dictionary and not bool(info.get("confirmed", false)):
+			intel_text += "??? 待发现\n"
+	var intel_label := Label.new()
+	intel_label.text = intel_text
+	_apply_label_style(intel_label, 13, COLOR_MUTED)
+	intel_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	boss_preview_content_box.add_child(intel_label)
+
+	var roles := _check_team_roles(player)
+	var role_text := "【队伍建议】\n"
+	for role_name in ["坦克", "治疗", "输出"]:
+		var ok := bool(roles.get(role_name, false))
+		role_text += "%s  %s\n" % [role_name, "✔" if ok else "✘"]
+	var role_label := Label.new()
+	role_label.text = role_text
+	_apply_label_style(role_label, 13)
+	boss_preview_content_box.add_child(role_label)
+
+	var button_row := HBoxContainer.new()
+	button_row.add_theme_constant_override("separation", 8)
+	boss_preview_content_box.add_child(button_row)
+
+	var adjust_button := Button.new()
+	adjust_button.text = "调整队伍"
+	adjust_button.custom_minimum_size = Vector2(0, 38)
+	adjust_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(adjust_button)
+	adjust_button.pressed.connect(func() -> void:
+		boss_preview_popup.hide()
+		_switch_tab("team")
+	)
+	button_row.add_child(adjust_button)
+
+	var challenge_button := Button.new()
+	challenge_button.text = "挑战"
+	challenge_button.custom_minimum_size = Vector2(0, 38)
+	challenge_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(challenge_button, "panel")
+	challenge_button.pressed.connect(func() -> void:
+		boss_preview_popup.hide()
+		player.story_chapter = chapter_id
+		player.story_step = 0
+		_on_story_enter_pressed()
+	)
+	button_row.add_child(challenge_button)
+
+
+func _get_team_level(player: PlayerData) -> int:
+	var total := 0
+	var count := 0
+	for survivor in player.survivors:
+		total += int(survivor.get("level", 1))
+		count += 1
+	return 1 if count == 0 else int(float(total) / float(count))
+
+
+func _get_danger_level(player_level: int, recommend_level: int) -> String:
+	var diff := player_level - recommend_level
+	if diff >= 0:
+		return "⚠"
+	elif diff >= -2:
+		return "⚠⚠"
+	elif diff >= -4:
+		return "⚠⚠⚠"
+	return "⚠⚠⚠⚠⚠"
+
+
+func _check_team_roles(player: PlayerData) -> Dictionary:
+	var roles := {"坦克": false, "治疗": false, "输出": false}
+	for survivor in player.survivors:
+		var profession := str(survivor.get("profession", ""))
+		if profession == "先锋":
+			roles["坦克"] = true
+		elif profession == "支援者":
+			roles["治疗"] = true
+		elif profession == "游侠" or profession == "灵能者":
+			roles["输出"] = true
+	return roles
 
 
 # ============================================================
@@ -3941,6 +5876,13 @@ func _build_reincarnation_popup() -> void:
 	_apply_label_style(reincarnation_confirm_label, 14)
 	reincarnation_confirm_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	box.add_child(reincarnation_confirm_label)
+
+	reincarnation_rating_label = Label.new()
+	reincarnation_rating_label.text = ""
+	_apply_label_style(reincarnation_rating_label, 48, COLOR_AMBER)
+	reincarnation_rating_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	reincarnation_rating_label.visible = false
+	box.add_child(reincarnation_rating_label)
 
 	reincarnation_result_label = Label.new()
 	reincarnation_result_label.text = ""
@@ -3995,6 +5937,7 @@ func _on_reincarnation_pressed() -> void:
 	]
 	reincarnation_result_label.visible = false
 	reincarnation_result_label.text = ""
+	reincarnation_rating_label.visible = false
 	reincarnation_cancel_button.visible = true
 	reincarnation_confirm_button.visible = true
 	reincarnation_close_button.visible = false
@@ -4013,19 +5956,28 @@ func _boss_kill_total() -> int:
 # 执行主动轮回结算
 func _do_reincarnation() -> void:
 	var player := GameState.player
+	# 结算前统计（perform_reincarnation 会重置临时数据）
+	var survival_text := _get_survival_time_text(player)
+	var highest_chapter := int(player.highest_chapter_all_time)
+	var highest_level := _get_highest_level(player)
+	var intel_count := _get_boss_intel_count(player)
 	var result: Dictionary = player.perform_reincarnation()
 	var rating: String = str(result.get("rating", "C"))
 	var marks: int = int(result.get("marks", 0))
 	var talent: int = int(result.get("talent_points", 0))
 	var killed: int = int(result.get("killed_bosses", 0))
 	var total_bosses: int = int(result.get("total_bosses", 0))
-	var ratio: float = float(result.get("chapter_ratio", 0.0))
+
+	reincarnation_rating_label.visible = true
+	reincarnation_rating_label.text = rating
+
 	reincarnation_result_label.visible = true
-	reincarnation_result_label.text = "━━━━ 轮回结算 ━━━━\n评级：%s\n主线进度：%d%%（击杀 Boss %d/%d）\n获得轮回印记 ×%d\n获得天赋点 ×%d\n\n软死亡：等级/装备/资源/地图进度已重置\n保留：图鉴 / Boss情报 / 天赋 / 印记\n\n进入第 %d 轮。" % [
-		rating,
-		int(ratio * 100.0),
-		killed,
-		total_bosses,
+	reincarnation_result_label.text = "━━━━━━━━━━━━━━\n存活：%s\n主线：第%d章\n最高等级：LV%d\n击败Boss：%d/%d\n发现Boss情报：%d\n━━━━━━━━━━━━━━\n获得\n轮回印记 +%d\n天赋点 +%d\n━━━━━━━━━━━━━━\n进入第 %d 轮" % [
+		survival_text,
+		highest_chapter,
+		highest_level,
+		killed, total_bosses,
+		intel_count,
 		marks,
 		talent,
 		int(player.reincarnation)
@@ -4034,6 +5986,440 @@ func _do_reincarnation() -> void:
 	reincarnation_cancel_button.visible = false
 	reincarnation_confirm_button.visible = false
 	reincarnation_close_button.visible = true
+	reincarnation_close_button.text = "进入下一轮"
+
+
+func _get_survival_time_text(player: PlayerData) -> String:
+	var hours := player.time_slot * 8
+	return "%d天 %d小时" % [player.day, hours]
+
+
+func _get_highest_level(player: PlayerData) -> int:
+	var highest := 1
+	for survivor in player.survivors:
+		var lv := int(survivor.get("level", 1))
+		if lv > highest:
+			highest = lv
+	return highest
+
+
+func _get_boss_intel_count(player: PlayerData) -> int:
+	var count := 0
+	for boss_id in player.boss_intel:
+		var state: Dictionary = player.boss_intel[boss_id]
+		if bool(state.get("encountered", false)):
+			count += 1
+	return count
+
+
+# ============================================================
+# 主线剧情播放系统
+# ============================================================
+func _build_story_popup() -> void:
+	story_popup = PopupPanel.new()
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 18)
+	margin.add_theme_constant_override("margin_top", 18)
+	margin.add_theme_constant_override("margin_right", 18)
+	margin.add_theme_constant_override("margin_bottom", 18)
+	story_popup.add_child(margin)
+
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 8)
+	box.custom_minimum_size = Vector2(320, 0)
+	margin.add_child(box)
+
+	story_title_label = Label.new()
+	story_title_label.text = ""
+	_apply_label_style(story_title_label, 18, COLOR_AMBER)
+	story_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(story_title_label)
+
+	story_speaker_label = Label.new()
+	story_speaker_label.text = ""
+	_apply_label_style(story_speaker_label, 15, COLOR_CYAN)
+	box.add_child(story_speaker_label)
+
+	story_text_label = Label.new()
+	story_text_label.text = ""
+	_apply_label_style(story_text_label, 14)
+	story_text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	story_text_label.custom_minimum_size = Vector2(0, 120)
+	box.add_child(story_text_label)
+
+	story_tutorial_label = Label.new()
+	story_tutorial_label.text = ""
+	_apply_label_style(story_tutorial_label, 13, COLOR_MUTED)
+	story_tutorial_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	story_tutorial_label.visible = false
+	box.add_child(story_tutorial_label)
+
+	story_action_box = HBoxContainer.new()
+	story_action_box.add_theme_constant_override("separation", 8)
+	box.add_child(story_action_box)
+
+	add_child(story_popup)
+
+
+# 进入主线剧情
+func _on_story_enter_pressed() -> void:
+	var player := GameState.player
+	if player.get_current_story_chapter().is_empty():
+		_set_home_status("暂无可用剧情章节。")
+		return
+	story_popup.popup_centered()
+	_play_story_step()
+
+
+# 播放当前剧情步骤
+func _play_story_step() -> void:
+	var player := GameState.player
+	var chapter := player.get_current_story_chapter()
+	var step := player.get_current_story_step()
+
+	story_title_label.text = "第%d章 · %s" % [player.story_chapter, str(chapter.get("name", ""))]
+	story_tutorial_label.visible = false
+	story_tutorial_label.text = ""
+	_clear_story_actions()
+
+	if step.is_empty():
+		_finish_story_chapter()
+		return
+
+	var step_type: String = str(step.get("type", "dialogue"))
+	var speaker: String = str(step.get("speaker", ""))
+	var text: String = str(step.get("text", ""))
+
+	match step_type:
+		"narration":
+			story_speaker_label.text = "【旁白】"
+			story_text_label.text = text
+			_add_story_continue_button()
+		"monologue":
+			story_speaker_label.text = "%s（独白）" % speaker
+			story_text_label.text = text
+			_add_story_continue_button()
+		"scene":
+			story_speaker_label.text = "【场景】"
+			story_text_label.text = "—— %s ——" % str(step.get("name", ""))
+			_add_story_continue_button()
+		"system":
+			story_speaker_label.text = "【系统】"
+			story_text_label.text = text
+			_add_story_continue_button()
+		"tutorial":
+			story_speaker_label.text = "📖 教学"
+			story_text_label.text = str(step.get("title", ""))
+			story_tutorial_label.visible = true
+			story_tutorial_label.text = text
+			_add_story_continue_button()
+		"interaction":
+			_play_interaction_step(step)
+		"choice":
+			_play_choice_step(step)
+		"battle":
+			_play_battle_step(step)
+		"battle_result":
+			_play_battle_result_step(step)
+		"boss_phase":
+			story_speaker_label.text = "⚔️ Boss阶段"
+			story_text_label.text = text
+			_add_story_continue_button()
+		_:
+			story_speaker_label.text = speaker if speaker != "" else "【叙述】"
+			story_text_label.text = text
+			_add_story_continue_button()
+
+
+func _clear_story_actions() -> void:
+	for child in story_action_box.get_children():
+		story_action_box.remove_child(child)
+		child.queue_free()
+
+
+func _add_story_continue_button() -> void:
+	var button := Button.new()
+	button.text = "继续 ▶"
+	button.custom_minimum_size = Vector2(0, 40)
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(button, "panel")
+	button.pressed.connect(_on_story_continue_pressed)
+	story_action_box.add_child(button)
+
+
+func _on_story_continue_pressed() -> void:
+	GameState.player.advance_story_step()
+	_play_story_step()
+
+
+func _play_interaction_step(step: Dictionary) -> void:
+	var name: String = str(step.get("name", "物体"))
+	var action: String = str(step.get("action", "调查"))
+	var result: String = str(step.get("result", ""))
+	var items: Array = step.get("items", [])
+	var note: String = str(step.get("note", ""))
+	story_speaker_label.text = "🔍 可交互：%s" % name
+	var text := ""
+	if not items.is_empty():
+		text = "%s → 获得 %s" % [action, "、".join(items)]
+		if note != "":
+			text += "\n%s" % note
+	elif result != "":
+		text = "%s → %s" % [action, result]
+	else:
+		text = action
+	story_text_label.text = text
+	_add_story_continue_button()
+
+
+func _play_choice_step(step: Dictionary) -> void:
+	var options: Array = step.get("options", [])
+	story_speaker_label.text = "【选择】"
+	story_text_label.text = "请做出选择："
+	for i in range(options.size()):
+		var button := Button.new()
+		button.text = str(options[i])
+		button.custom_minimum_size = Vector2(0, 40)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_apply_button_style(button)
+		button.pressed.connect(_on_story_choice_pressed.bind(i, str(options[i])))
+		story_action_box.add_child(button)
+
+
+func _on_story_choice_pressed(index: int, choice_text: String) -> void:
+	var player := GameState.player
+	player.story_flags["story_choice_%d_%d" % [player.story_chapter, player.story_step]] = choice_text
+	player.advance_story_step()
+	_play_story_step()
+
+
+func _play_battle_step(step: Dictionary) -> void:
+	var enemies: Array = step.get("enemies", [])
+	var note: String = str(step.get("note", ""))
+	story_speaker_label.text = "⚔️ 战斗"
+	var enemies_text := "、".join(enemies) if not enemies.is_empty() else "敌人"
+	var text := "遭遇敌人：%s" % enemies_text
+	if note != "":
+		text += "\n提示：%s" % note
+	story_text_label.text = text
+	_add_story_continue_button()
+
+
+func _play_battle_result_step(step: Dictionary) -> void:
+	var enemies: String = str(step.get("enemies", ""))
+	var exp: int = int(step.get("exp", 0))
+	var items: Array = step.get("items", [])
+	var note: String = str(step.get("note", ""))
+	story_speaker_label.text = "✅ 战斗胜利"
+	var text := "击败：%s" % enemies
+	if exp > 0:
+		text += "\n获得经验：%d" % exp
+	if not items.is_empty():
+		text += "\n获得：%s" % "、".join(items)
+	if note != "":
+		text += "\n%s" % note
+	story_text_label.text = text
+	_add_story_continue_button()
+
+
+func _finish_story_chapter() -> void:
+	var player := GameState.player
+	var settlement: Dictionary = player.complete_story_chapter()
+	var exp: int = int(settlement.get("exp", 0))
+	var items: Array = settlement.get("items", [])
+	var unlock: Array = settlement.get("unlock", [])
+	story_speaker_label.text = "🎉 章节完成"
+	var text := "第%d章完成！" % (player.story_chapter - 1)
+	if exp > 0:
+		text += "\n获得经验：%d" % exp
+	if not items.is_empty():
+		text += "\n获得：%s" % "、".join(items)
+	if not unlock.is_empty():
+		text += "\n解锁：%s" % "、".join(unlock)
+	story_text_label.text = text
+	var button := Button.new()
+	button.text = "完成（返回）"
+	button.custom_minimum_size = Vector2(0, 40)
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(button, "panel")
+	button.pressed.connect(func() -> void:
+		story_popup.hide()
+		_refresh_all()
+	)
+	story_action_box.add_child(button)
+
+
+# ============================================================
+# 商城系统 UI
+# ============================================================
+func _build_store_popup() -> void:
+	store_popup = PopupPanel.new()
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 16)
+	margin.add_theme_constant_override("margin_top", 16)
+	margin.add_theme_constant_override("margin_right", 16)
+	margin.add_theme_constant_override("margin_bottom", 16)
+	store_popup.add_child(margin)
+
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 8)
+	box.custom_minimum_size = Vector2(320, 0)
+	margin.add_child(box)
+
+	var title := Label.new()
+	title.text = "🏪 商城"
+	_apply_label_style(title, 20, COLOR_CYAN)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(title)
+
+	var scroll := ScrollContainer.new()
+	scroll.custom_minimum_size = Vector2(0, 300)
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	box.add_child(scroll)
+
+	store_content_box = VBoxContainer.new()
+	store_content_box.add_theme_constant_override("separation", 8)
+	store_content_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(store_content_box)
+
+	var close_button := Button.new()
+	close_button.text = "关闭"
+	close_button.custom_minimum_size = Vector2(0, 38)
+	close_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(close_button)
+	close_button.pressed.connect(func() -> void: store_popup.hide())
+	box.add_child(close_button)
+
+	add_child(store_popup)
+
+
+func _on_store_pressed() -> void:
+	_refresh_store_page()
+	store_popup.popup_centered()
+
+
+func _refresh_store_page() -> void:
+	var player := GameState.player
+	if store_content_box == null:
+		return
+	_clear_container(store_content_box)
+
+	var currency_label := Label.new()
+	currency_label.text = "💎 水晶 %d  |  🪙 金币 %d  |  🎫 补给券 %d" % [
+		int(player.materials.get("crystal", 0)),
+		int(player.materials.get("gold", 0)),
+		int(player.materials.get("tickets", 0))
+	]
+	_apply_label_style(currency_label, 14, COLOR_AMBER)
+	currency_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	store_content_box.add_child(currency_label)
+
+	# 抽奖按钮
+	var gacha_row := HBoxContainer.new()
+	gacha_row.add_theme_constant_override("separation", 8)
+	store_content_box.add_child(gacha_row)
+
+	var gacha1_button := Button.new()
+	gacha1_button.text = "🎟️ 抽一次（券×1）"
+	gacha1_button.custom_minimum_size = Vector2(0, 40)
+	gacha1_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(gacha1_button, "panel")
+	gacha1_button.pressed.connect(_on_gacha_pressed.bind(1))
+	gacha_row.add_child(gacha1_button)
+
+	var gacha10_button := Button.new()
+	gacha10_button.text = "🎟️ 十连（券×10）"
+	gacha10_button.custom_minimum_size = Vector2(0, 40)
+	gacha10_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(gacha10_button, "panel")
+	gacha10_button.pressed.connect(_on_gacha_pressed.bind(10))
+	gacha_row.add_child(gacha10_button)
+
+	var tabs: Array = DataManager.store_items.get("tabs", [])
+	for tab in tabs:
+		var tab_title := Label.new()
+		tab_title.text = "【%s】" % str(tab.get("name", ""))
+		_apply_label_style(tab_title, 16, COLOR_AMBER)
+		store_content_box.add_child(tab_title)
+		for item in tab.get("items", []):
+			var item_id := str(item.get("id", ""))
+			var item_name := str(item.get("name", ""))
+			var item_desc := str(item.get("description", ""))
+			var price_text: String = StoreSystem.format_price(item.get("price", {}))
+			var item_button := Button.new()
+			item_button.text = "%s\n%s\n价格：%s" % [item_name, item_desc, price_text]
+			item_button.custom_minimum_size = Vector2(0, 64)
+			item_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			item_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+			_apply_button_style(item_button)
+			item_button.pressed.connect(_on_store_buy_pressed.bind(item_id))
+			store_content_box.add_child(item_button)
+
+
+func _on_store_buy_pressed(item_id: String) -> void:
+	var result: Dictionary = StoreSystem.purchase_item(GameState.player, item_id)
+	_set_home_status(str(result.get("text", "")))
+	_refresh_store_page()
+	_refresh_all()
+
+
+func _build_gacha_result_popup() -> void:
+	gacha_result_popup = PopupPanel.new()
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 18)
+	margin.add_theme_constant_override("margin_top", 18)
+	margin.add_theme_constant_override("margin_right", 18)
+	margin.add_theme_constant_override("margin_bottom", 18)
+	gacha_result_popup.add_child(margin)
+
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 8)
+	box.custom_minimum_size = Vector2(300, 0)
+	margin.add_child(box)
+
+	var title := Label.new()
+	title.text = "🎉 抽奖结果"
+	_apply_label_style(title, 20, COLOR_CYAN)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(title)
+
+	gacha_result_label = Label.new()
+	gacha_result_label.text = ""
+	_apply_label_style(gacha_result_label, 14)
+	gacha_result_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	box.add_child(gacha_result_label)
+
+	var close_button := Button.new()
+	close_button.text = "确定"
+	close_button.custom_minimum_size = Vector2(0, 38)
+	close_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(close_button, "panel")
+	close_button.pressed.connect(func() -> void: gacha_result_popup.hide())
+	box.add_child(close_button)
+
+	add_child(gacha_result_popup)
+
+
+func _on_gacha_pressed(times: int) -> void:
+	var result: Dictionary = StoreSystem.do_gacha(GameState.player, times)
+	if not result.get("success", false):
+		_set_home_status(str(result.get("text", "")))
+		return
+	_show_gacha_result(result)
+	_refresh_store_page()
+
+
+func _show_gacha_result(result: Dictionary) -> void:
+	var results: Array = result.get("results", [])
+	var lines: Array[String] = []
+	for r in results:
+		var rarity := str(r.get("rarity", ""))
+		var name := str(r.get("name", ""))
+		var mark := "🆕" if bool(r.get("is_new", false)) else ""
+		lines.append("[%s] %s %s" % [rarity, name, mark])
+	gacha_result_label.text = "本次获得：\n" + ("\n".join(lines) if not lines.is_empty() else "无")
+	gacha_result_popup.popup_centered()
 
 
 func _make_separator() -> HSeparator:

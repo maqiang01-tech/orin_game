@@ -18,6 +18,7 @@ var exploration_events: Array = []
 var equipment: Dictionary = {}  # id -> equipment dict
 var main_story: Dictionary = {}  # id -> 48章主线配置
 var act_01_story: Dictionary = {}  # 第一篇章详细剧情剧本（8章）
+var store_items: Dictionary = {}  # 商城商品配置
 var configs_loaded: bool = false
 
 
@@ -92,6 +93,11 @@ func ensure_loaded() -> void:
 	var act_01_data: Variant = load_json_file("res://data/configs/act_01_story.json")
 	if act_01_data is Dictionary:
 		act_01_story = act_01_data
+
+	# 加载商城商品配置
+	var store_data: Variant = load_json_file("res://data/configs/store_items.json")
+	if store_data is Dictionary:
+		store_items = store_data
 
 	configs_loaded = true
 	print("Loaded survivors: ", survivors.size(), " / beasts: ", beasts.size(), " / routes: ", exploration_routes.size())

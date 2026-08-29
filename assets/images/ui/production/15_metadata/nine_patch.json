@@ -1,0 +1,692 @@
+{
+  "01_buttons/cta/btn_primary_normal.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_primary_hover.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_primary_pressed.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_primary_disabled.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_secondary_normal.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_secondary_hover.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_secondary_pressed.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_secondary_disabled.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_danger_normal.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_danger_hover.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_danger_pressed.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/cta/btn_danger_disabled.png": {
+    "left": 34,
+    "top": 24,
+    "right": 34,
+    "bottom": 24
+  },
+  "01_buttons/function/btn_search_normal.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_search_hover.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_search_pressed.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_search_disabled.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_rest_normal.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_rest_hover.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_rest_pressed.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_rest_disabled.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_leave_normal.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_leave_hover.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_leave_pressed.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_leave_disabled.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_adjust_team_normal.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_adjust_team_hover.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_adjust_team_pressed.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_adjust_team_disabled.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_equipment_normal.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_equipment_hover.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_equipment_pressed.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_equipment_disabled.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_skill_normal.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_skill_hover.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_skill_pressed.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_skill_disabled.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_bag_normal.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_bag_hover.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_bag_pressed.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_bag_disabled.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_medical_normal.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_medical_hover.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_medical_pressed.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_medical_disabled.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_reward_normal.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_reward_hover.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_reward_pressed.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_reward_disabled.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_settings_normal.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_settings_hover.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_settings_pressed.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/function/btn_settings_disabled.png": {
+    "left": 24,
+    "top": 22,
+    "right": 24,
+    "bottom": 22
+  },
+  "01_buttons/system/btn_system_normal.png": {
+    "left": 18,
+    "top": 18,
+    "right": 18,
+    "bottom": 18
+  },
+  "01_buttons/system/btn_system_pressed.png": {
+    "left": 18,
+    "top": 18,
+    "right": 18,
+    "bottom": 18
+  },
+  "01_buttons/system/btn_system_disabled.png": {
+    "left": 18,
+    "top": 18,
+    "right": 18,
+    "bottom": 18
+  },
+  "11_bottom_navigation/bottom_nav_background.png": {
+    "left": 30,
+    "top": 20,
+    "right": 30,
+    "bottom": 20
+  },
+  "05_windows/window_full.png": {
+    "left": 30,
+    "top": 34,
+    "right": 30,
+    "bottom": 28
+  },
+  "05_windows/window_large.png": {
+    "left": 30,
+    "top": 34,
+    "right": 30,
+    "bottom": 28
+  },
+  "05_windows/popup_boss_info.png": {
+    "left": 30,
+    "top": 34,
+    "right": 30,
+    "bottom": 28
+  },
+  "05_windows/popup_reward.png": {
+    "left": 30,
+    "top": 34,
+    "right": 30,
+    "bottom": 28
+  },
+  "05_windows/window_medium.png": {
+    "left": 30,
+    "top": 34,
+    "right": 30,
+    "bottom": 28
+  },
+  "05_windows/popup_confirm.png": {
+    "left": 30,
+    "top": 34,
+    "right": 30,
+    "bottom": 28
+  },
+  "05_windows/popup_story.png": {
+    "left": 30,
+    "top": 34,
+    "right": 30,
+    "bottom": 28
+  },
+  "05_windows/window_title_bar.png": {
+    "left": 30,
+    "top": 34,
+    "right": 30,
+    "bottom": 28
+  },
+  "06_textboxes/textbox_single_normal.png": {
+    "left": 22,
+    "top": 18,
+    "right": 22,
+    "bottom": 18
+  },
+  "06_textboxes/textbox_single_focus.png": {
+    "left": 22,
+    "top": 18,
+    "right": 22,
+    "bottom": 18
+  },
+  "06_textboxes/textbox_single_disabled.png": {
+    "left": 22,
+    "top": 18,
+    "right": 22,
+    "bottom": 18
+  },
+  "06_textboxes/textbox_multiline_normal.png": {
+    "left": 22,
+    "top": 18,
+    "right": 22,
+    "bottom": 18
+  },
+  "06_textboxes/textbox_multiline_focus.png": {
+    "left": 22,
+    "top": 18,
+    "right": 22,
+    "bottom": 18
+  },
+  "06_textboxes/textbox_multiline_disabled.png": {
+    "left": 22,
+    "top": 18,
+    "right": 22,
+    "bottom": 18
+  },
+  "06_textboxes/textbox_search_normal.png": {
+    "left": 22,
+    "top": 18,
+    "right": 22,
+    "bottom": 18
+  },
+  "06_textboxes/textbox_search_focus.png": {
+    "left": 22,
+    "top": 18,
+    "right": 22,
+    "bottom": 18
+  },
+  "06_textboxes/textbox_numeric_normal.png": {
+    "left": 22,
+    "top": 18,
+    "right": 22,
+    "bottom": 18
+  },
+  "06_textboxes/textbox_numeric_focus.png": {
+    "left": 22,
+    "top": 18,
+    "right": 22,
+    "bottom": 18
+  },
+  "06_textboxes/textbox_title.png": {
+    "left": 22,
+    "top": 16,
+    "right": 22,
+    "bottom": 16
+  },
+  "06_textboxes/textbox_tooltip.png": {
+    "left": 22,
+    "top": 22,
+    "right": 22,
+    "bottom": 22
+  },
+  "07_panels/panel_scene.png": {
+    "left": 28,
+    "top": 28,
+    "right": 28,
+    "bottom": 28
+  },
+  "07_panels/panel_main_quest.png": {
+    "left": 28,
+    "top": 28,
+    "right": 28,
+    "bottom": 28
+  },
+  "07_panels/panel_location_info.png": {
+    "left": 28,
+    "top": 28,
+    "right": 28,
+    "bottom": 28
+  },
+  "07_panels/panel_character.png": {
+    "left": 28,
+    "top": 28,
+    "right": 28,
+    "bottom": 28
+  },
+  "07_panels/panel_boss.png": {
+    "left": 28,
+    "top": 28,
+    "right": 28,
+    "bottom": 28
+  },
+  "07_panels/panel_resource.png": {
+    "left": 28,
+    "top": 28,
+    "right": 28,
+    "bottom": 28
+  },
+  "07_panels/panel_base_facility.png": {
+    "left": 28,
+    "top": 28,
+    "right": 28,
+    "bottom": 28
+  },
+  "07_panels/panel_team_rating.png": {
+    "left": 28,
+    "top": 28,
+    "right": 28,
+    "bottom": 28
+  },
+  "07_panels/panel_formation.png": {
+    "left": 28,
+    "top": 28,
+    "right": 28,
+    "bottom": 28
+  },
+  "07_panels/panel_inventory.png": {
+    "left": 28,
+    "top": 28,
+    "right": 28,
+    "bottom": 28
+  },
+  "08_frames/frame_gold_thin.png": {
+    "left": 30,
+    "top": 30,
+    "right": 30,
+    "bottom": 30
+  },
+  "08_frames/frame_gold_heavy.png": {
+    "left": 30,
+    "top": 30,
+    "right": 30,
+    "bottom": 30
+  },
+  "08_frames/frame_gray.png": {
+    "left": 30,
+    "top": 30,
+    "right": 30,
+    "bottom": 30
+  },
+  "08_frames/frame_red_warning.png": {
+    "left": 30,
+    "top": 30,
+    "right": 30,
+    "bottom": 30
+  },
+  "08_frames/frame_selected_glow.png": {
+    "left": 30,
+    "top": 30,
+    "right": 30,
+    "bottom": 30
+  },
+  "08_frames/frame_portrait.png": {
+    "left": 30,
+    "top": 30,
+    "right": 30,
+    "bottom": 30
+  },
+  "09_progress_bars/progress_fill_red.png": {
+    "left": 12,
+    "top": 8,
+    "right": 12,
+    "bottom": 8
+  },
+  "09_progress_bars/progress_fill_blue.png": {
+    "left": 12,
+    "top": 8,
+    "right": 12,
+    "bottom": 8
+  },
+  "09_progress_bars/progress_fill_gold.png": {
+    "left": 12,
+    "top": 8,
+    "right": 12,
+    "bottom": 8
+  },
+  "09_progress_bars/progress_fill_purple.png": {
+    "left": 12,
+    "top": 8,
+    "right": 12,
+    "bottom": 8
+  },
+  "09_progress_bars/progress_fill_green.png": {
+    "left": 12,
+    "top": 8,
+    "right": 12,
+    "bottom": 8
+  },
+  "10_slots/slot_item_normal.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_item_selected.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_item_locked.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_item_new.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_equipment_normal.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_equipment_selected.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_equipment_locked.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_skill_normal.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_skill_selected.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_skill_cooldown.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_skill_locked.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_partner_normal.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_partner_selected.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_partner_empty.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_formation_normal.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_formation_selected.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_formation_occupied.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  },
+  "10_slots/slot_formation_locked.png": {
+    "left": 16,
+    "top": 16,
+    "right": 16,
+    "bottom": 16
+  }
+}

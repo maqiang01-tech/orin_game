@@ -1,0 +1,176 @@
+{
+  "survival.area_detail_button": {
+    "x": 540,
+    "y": 172,
+    "width": 140,
+    "height": 54
+  },
+  "survival.continue_button": {
+    "x": 164,
+    "y": 602,
+    "width": 392,
+    "height": 96
+  },
+  "survival.bottom_nav": {
+    "x": 0,
+    "y": 1133,
+    "width": 720,
+    "height": 147
+  },
+  "explore.node_hospital": {
+    "x": 286,
+    "y": 117,
+    "width": 172,
+    "height": 188
+  },
+  "explore.node_supermarket": {
+    "x": 80,
+    "y": 265,
+    "width": 158,
+    "height": 182
+  },
+  "explore.node_subway": {
+    "x": 484,
+    "y": 265,
+    "width": 160,
+    "height": 182
+  },
+  "explore.node_safehouse": {
+    "x": 286,
+    "y": 424,
+    "width": 170,
+    "height": 188
+  },
+  "explore.node_unknown": {
+    "x": 510,
+    "y": 426,
+    "width": 154,
+    "height": 186
+  },
+  "explore.go_button": {
+    "x": 104,
+    "y": 1008,
+    "width": 512,
+    "height": 104
+  },
+  "explore.bottom_nav": {
+    "x": 0,
+    "y": 1133,
+    "width": 720,
+    "height": 147
+  },
+  "formation.character_chen_mo": {
+    "x": 6,
+    "y": 154,
+    "width": 150,
+    "height": 372
+  },
+  "formation.character_lin_mei": {
+    "x": 144,
+    "y": 154,
+    "width": 150,
+    "height": 372
+  },
+  "formation.character_lao_zhou": {
+    "x": 282,
+    "y": 154,
+    "width": 150,
+    "height": 372
+  },
+  "formation.character_chen_feng": {
+    "x": 420,
+    "y": 154,
+    "width": 150,
+    "height": 372
+  },
+  "formation.character_su_xiao": {
+    "x": 558,
+    "y": 154,
+    "width": 156,
+    "height": 372
+  },
+  "formation.adjust_team_button": {
+    "x": 18,
+    "y": 1048,
+    "width": 230,
+    "height": 90
+  },
+  "formation.equipment_button": {
+    "x": 246,
+    "y": 1048,
+    "width": 228,
+    "height": 90
+  },
+  "formation.skill_button": {
+    "x": 472,
+    "y": 1048,
+    "width": 230,
+    "height": 90
+  },
+  "formation.bottom_nav": {
+    "x": 0,
+    "y": 1133,
+    "width": 720,
+    "height": 147
+  },
+  "base.upgrade_button": {
+    "x": 511,
+    "y": 174,
+    "width": 184,
+    "height": 76
+  },
+  "base.facility_workbench": {
+    "x": 18,
+    "y": 404,
+    "width": 338,
+    "height": 256
+  },
+  "base.facility_storage": {
+    "x": 364,
+    "y": 404,
+    "width": 338,
+    "height": 256
+  },
+  "base.facility_bed": {
+    "x": 18,
+    "y": 666,
+    "width": 338,
+    "height": 256
+  },
+  "base.facility_medical": {
+    "x": 364,
+    "y": 666,
+    "width": 338,
+    "height": 256
+  },
+  "base.facility_kitchen": {
+    "x": 18,
+    "y": 928,
+    "width": 338,
+    "height": 256
+  },
+  "base.facility_generator": {
+    "x": 364,
+    "y": 928,
+    "width": 338,
+    "height": 256
+  },
+  "base.bottom_nav": {
+    "x": 0,
+    "y": 1133,
+    "width": 720,
+    "height": 147
+  },
+  "reincarnation.reincarnate_button": {
+    "x": 73,
+    "y": 1077,
+    "width": 574,
+    "height": 98
+  },
+  "reincarnation.bottom_nav": {
+    "x": 0,
+    "y": 1154,
+    "width": 720,
+    "height": 126
+  }
+}

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bcxstvdd6x5sm"
+
+[deps]
+
+files=["res://assets/images/ui/production/15_metadata/ui_layout_720x1280.element.translation", "res://assets/images/ui/production/15_metadata/ui_layout_720x1280.x.translation", "res://assets/images/ui/production/15_metadata/ui_layout_720x1280.y.translation", "res://assets/images/ui/production/15_metadata/ui_layout_720x1280.width.translation", "res://assets/images/ui/production/15_metadata/ui_layout_720x1280.height.translation", "res://assets/images/ui/production/15_metadata/ui_layout_720x1280.asset.translation"]
+
+source_file="res://assets/images/ui/production/15_metadata/ui_layout_720x1280.csv"
+dest_files=["res://assets/images/ui/production/15_metadata/ui_layout_720x1280.element.translation", "res://assets/images/ui/production/15_metadata/ui_layout_720x1280.x.translation", "res://assets/images/ui/production/15_metadata/ui_layout_720x1280.y.translation", "res://assets/images/ui/production/15_metadata/ui_layout_720x1280.width.translation", "res://assets/images/ui/production/15_metadata/ui_layout_720x1280.height.translation", "res://assets/images/ui/production/15_metadata/ui_layout_720x1280.asset.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

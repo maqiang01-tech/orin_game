@@ -1,0 +1,216 @@
+﻿file,status,reason
+05_windows/window_full.png,REPLACED,原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup
+05_windows/window_large.png,REPLACED,原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup
+05_windows/window_medium.png,REPLACED,原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup
+05_windows/window_title_bar.png,REPLACED,原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup
+05_windows/popup_confirm.png,REPLACED,原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup
+05_windows/popup_reward.png,REPLACED,原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup
+05_windows/popup_story.png,REPLACED,原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup
+05_windows/popup_boss_info.png,REPLACED,原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup
+06_textboxes/textbox_multiline_disabled.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_multiline_focus.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_multiline_normal.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_numeric_focus.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_numeric_normal.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_search_focus.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_search_normal.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_single_disabled.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_single_focus.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_single_normal.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_title.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+06_textboxes/textbox_tooltip.png,REPLACED,原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框
+07_panels/panel_base_facility.png,REPLACED,原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制
+07_panels/panel_boss.png,REPLACED,原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制
+07_panels/panel_character.png,REPLACED,原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制
+07_panels/panel_formation.png,REPLACED,原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制
+07_panels/panel_inventory.png,REPLACED,原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制
+07_panels/panel_location_info.png,REPLACED,原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制
+07_panels/panel_main_quest.png,REPLACED,原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制
+07_panels/panel_resource.png,REPLACED,原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制
+07_panels/panel_scene.png,REPLACED,原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制
+07_panels/panel_team_rating.png,REPLACED,原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制
+08_frames/frame_gold_heavy.png,REPLACED,原文件仅剩左右边缘，属于残缺边框；重制为完整四边
+08_frames/frame_gold_thin.png,REPLACED,原文件仅剩左右边缘，属于残缺边框；重制为完整四边
+08_frames/frame_gray.png,REPLACED,原文件仅剩左右边缘，属于残缺边框；重制为完整四边
+08_frames/frame_portrait.png,REPLACED,原文件仅剩左右边缘，属于残缺边框；重制为完整四边
+08_frames/frame_red_warning.png,REPLACED,原文件仅剩左右边缘，属于残缺边框；重制为完整四边
+08_frames/frame_selected_glow.png,REPLACED,原文件仅剩左右边缘，属于残缺边框；重制为完整四边
+10_slots/slot_equipment_locked.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_equipment_normal.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_equipment_selected.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_formation_locked.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_formation_normal.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_formation_occupied.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_formation_selected.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_item_locked.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_item_new.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_item_normal.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_item_selected.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_partner_empty.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_partner_normal.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_partner_selected.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_skill_cooldown.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_skill_locked.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_skill_normal.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+10_slots/slot_skill_selected.png,REPLACED,原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位
+01_buttons/system/btn_system_normal.png,REPLACED,原文件从横向按钮缩放，实际视觉仍是细横条；重制为72x72方形系统按钮
+01_buttons/system/btn_system_pressed.png,REPLACED,原文件从横向按钮缩放，实际视觉仍是细横条；重制为72x72方形系统按钮
+01_buttons/system/btn_system_disabled.png,REPLACED,原文件从横向按钮缩放，实际视觉仍是细横条；重制为72x72方形系统按钮
+03_icons/system/icon_defense.png,REPLACED,原盾牌图标透明度过低，缩略图几乎不可见；重画为清晰金属盾牌
+11_bottom_navigation/bottom_nav_background.png,REPLACED,原底栏主体过薄，仅剩一条线；重制为完整底栏
+11_bottom_navigation/badge_red_dot.png,REPLACED,原 badge 带相邻素材残影/黑条；重制为独立圆形 badge
+11_bottom_navigation/badge_red_glow.png,REPLACED,原 badge 带相邻素材残影/黑条；重制为独立圆形 badge
+11_bottom_navigation/badge_red_ring.png,REPLACED,原 badge 带相邻素材残影/黑条；重制为独立圆形 badge
+02_map_nodes/node_hospital_danger.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_hospital_locked.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_hospital_normal.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_hospital_selected.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_safehouse_danger.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_safehouse_locked.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_safehouse_normal.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_safehouse_selected.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_subway_danger.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_subway_locked.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_subway_normal.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_subway_selected.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_supermarket_danger.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_supermarket_locked.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_supermarket_normal.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_supermarket_selected.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_unknown_danger.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_unknown_locked.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_unknown_normal.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+02_map_nodes/node_unknown_selected.png,REPLACED,统一 normal/selected/danger/locked 的视觉占位与比例
+12_characters/full/char_chen_mo_full.png,REPLACED,原角色文件含相邻角色残片；按原始透明图 alpha 组件重新分离
+12_characters/portraits/portrait_chen_mo.png,REPLACED,由重新分离的干净单人立绘生成 portrait
+12_characters/full/char_lin_mei_full.png,REPLACED,原角色文件含相邻角色残片；按原始透明图 alpha 组件重新分离
+12_characters/portraits/portrait_lin_mei.png,REPLACED,由重新分离的干净单人立绘生成 portrait
+12_characters/full/char_lao_zhou_full.png,REPLACED,原角色文件含相邻角色残片；按原始透明图 alpha 组件重新分离
+12_characters/portraits/portrait_lao_zhou.png,REPLACED,由重新分离的干净单人立绘生成 portrait
+12_characters/full/char_chen_feng_full.png,REPLACED,原角色文件含相邻角色残片；按原始透明图 alpha 组件重新分离
+12_characters/portraits/portrait_chen_feng.png,REPLACED,由重新分离的干净单人立绘生成 portrait
+12_characters/full/char_su_xiao_full.png,REPLACED,原角色文件含相邻角色残片；按原始透明图 alpha 组件重新分离
+12_characters/portraits/portrait_su_xiao.png,REPLACED,由重新分离的干净单人立绘生成 portrait
+13_dedicated/facilities/facility_bed.png,REPLACED,原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明
+13_dedicated/facilities/facility_generator.png,REPLACED,原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明
+13_dedicated/facilities/facility_kitchen.png,REPLACED,原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明
+13_dedicated/facilities/facility_medical_station.png,REPLACED,原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明
+13_dedicated/facilities/facility_storage.png,REPLACED,原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明
+13_dedicated/facilities/facility_workbench.png,REPLACED,原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明
+13_dedicated/items/item_medicine.png,REPLACED,原 item 自动抠图有顶部/边缘残片；改为完整独立物品 tile
+13_dedicated/items/item_bandage.png,REPLACED,原 item 自动抠图有顶部/边缘残片；改为完整独立物品 tile
+13_dedicated/items/item_battery.png,REPLACED,原 item 自动抠图有顶部/边缘残片；改为完整独立物品 tile
+13_dedicated/items/item_mechanical_parts.png,REPLACED,原 item 自动抠图有顶部/边缘残片；改为完整独立物品 tile
+13_dedicated/items/item_old_archive.png,REPLACED,原 item 自动抠图有顶部/边缘残片；改为完整独立物品 tile
+13_dedicated/talents/talent_01.png,REPLACED,原天赋图标带右侧/下方邻接残片；使用菱形遮罩重新提取
+13_dedicated/talents/talent_02.png,REPLACED,原天赋图标带右侧/下方邻接残片；使用菱形遮罩重新提取
+13_dedicated/talents/talent_03.png,REPLACED,原天赋图标带右侧/下方邻接残片；使用菱形遮罩重新提取
+13_dedicated/talents/talent_04.png,REPLACED,原天赋图标带右侧/下方邻接残片；使用菱形遮罩重新提取
+13_dedicated/talents/talent_05.png,REPLACED,原天赋图标带右侧/下方邻接残片；使用菱形遮罩重新提取
+13_dedicated/roles/role_main_dps.png,REPLACED,原职业标记风格不统一/部分过淡；重画为清晰独立职业徽记
+13_dedicated/roles/role_healer.png,REPLACED,原职业标记风格不统一/部分过淡；重画为清晰独立职业徽记
+13_dedicated/roles/role_tank.png,REPLACED,原职业标记风格不统一/部分过淡；重画为清晰独立职业徽记
+13_dedicated/roles/role_control.png,REPLACED,原职业标记风格不统一/部分过淡；重画为清晰独立职业徽记
+13_dedicated/roles/role_ranged_dps.png,REPLACED,原职业标记风格不统一/部分过淡；重画为清晰独立职业徽记
+01_buttons/cta/btn_danger_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_danger_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_danger_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_danger_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_primary_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_primary_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_primary_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_primary_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_secondary_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_secondary_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_secondary_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/cta/btn_secondary_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_adjust_team_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_adjust_team_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_adjust_team_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_adjust_team_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_bag_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_bag_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_bag_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_bag_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_equipment_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_equipment_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_equipment_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_equipment_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_leave_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_leave_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_leave_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_leave_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_medical_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_medical_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_medical_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_medical_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_rest_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_rest_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_rest_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_rest_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_reward_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_reward_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_reward_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_reward_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_search_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_search_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_search_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_search_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_settings_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_settings_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_settings_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_settings_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_skill_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_skill_hover.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_skill_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+01_buttons/function/btn_skill_pressed.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_add.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_arrow_left.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_arrow_right.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_attack.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_back.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_close.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_heal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_lock.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_minus.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_notification.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_question.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_settings.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+03_icons/system/icon_unlock.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+04_backgrounds/bg_aurora_lab.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+04_backgrounds/bg_base_shelter.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+04_backgrounds/bg_city_night.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+04_backgrounds/bg_city_ruins.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+04_backgrounds/bg_hospital_exterior.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+04_backgrounds/bg_military_base.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+04_backgrounds/bg_reincarnation_hall.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+04_backgrounds/bg_subway_abandoned.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+04_backgrounds/bg_supermarket.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+04_backgrounds/bg_wasteland.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+09_progress_bars/progress_fill_blue.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+09_progress_bars/progress_fill_gold.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+09_progress_bars/progress_fill_green.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+09_progress_bars/progress_fill_purple.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+09_progress_bars/progress_fill_red.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+09_progress_bars/progress_track_dark.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_base_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_base_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_base_selected.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_explore_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_explore_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_explore_selected.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_reincarnation_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_reincarnation_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_reincarnation_selected.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_survival_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_survival_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_survival_selected.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_team_disabled.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_team_normal.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+11_bottom_navigation/nav_team_selected.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+13_dedicated/boss/boss_warden_portrait.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+14_page_mockups/mockup_base_720x1280.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+14_page_mockups/mockup_explore_720x1280.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+14_page_mockups/mockup_formation_720x1280.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+14_page_mockups/mockup_reincarnation_720x1280.png,OK,未发现裁图残片、明显比例错误或相邻素材残留
+14_page_mockups/mockup_survival_720x1280.png,OK,未发现裁图残片、明显比例错误或相邻素材残留

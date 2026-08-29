@@ -5,6 +5,10 @@ var player: PlayerData
 
 func _ready() -> void:
     player = PlayerData.new()
+    # 尝试加载存档（当前轮 + 永久合并）
+    var save_data: Dictionary = SaveManager.load_all()
+    if not save_data.is_empty():
+        player = PlayerData.from_dict(save_data)
     ensure_initial_survivors()
     print("GameState initialized for ", player.player_name)
 

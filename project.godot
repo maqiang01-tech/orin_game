@@ -18,7 +18,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 DataManager="*uid://d1oknyd5ekexd"
+SaveManager="*res://scripts/core/save_manager.gd"
 GameState="*res://scripts/core/game_state.gd"
+SceneManager="*res://scripts/core/scene_manager.gd"
+AudioManager="*res://scripts/core/audio_manager.gd"
 
 [display]
 
@@ -27,7 +30,6 @@ window/size/viewport_height=1280
 window/size/window_width_override=360
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [physics]

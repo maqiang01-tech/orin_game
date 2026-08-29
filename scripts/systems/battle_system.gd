@@ -43,24 +43,32 @@ const STATUS_DESCRIPTIONS: Dictionary = {
 	"defense_up": "防御提升"
 }
 
-# 站位行加成: 0=前排 1=中排 2=后排
+# 站位行加成（V3.0）: 0=前排 1=中排 2=后排
+# 前排: 受击概率+30% / DEF+10% / 近战伤害+5%
+# 中排: ATK+5% / SPI+5%
+# 后排: 受近战伤害-15% / 治疗+10% / 辅助+10%
 const POSITION_BONUS: Dictionary = {
-	0: {"incoming": 0.30, "defense": 0.10},
-	1: {},
-	2: {"incoming": -0.20, "attack": 0.05}
+	0: {"incoming": 0.30, "defense": 0.10, "melee": 0.05},
+	1: {"attack": 0.05, "spirit": 0.05},
+	2: {"incoming_melee": -0.15, "heal": 0.10, "support": 0.10}
 }
 
-const MAX_PARTY_SIZE: int = 3
+const MAX_PARTY_SIZE: int = 5
 const BASIC_ATTACK_ID: String = "skill_basic_shot"
 const GUARD_DAMAGE_REDUCTION: float = 0.5
 const GUARD_DEFENSE_BONUS: float = 0.30
 const ENERGY_REGEN_PERCENT: float = 0.20
 const CHARGE_MULTIPLIER: float = 2.5
+const RESOURCE_REWARD_KEYS: Array[String] = ["food", "medicine", "cores", "memory_shards", "tickets", "spirit_battery", "ammo", "rare_material", "spirit_core"]
+const DAMAGE_TYPE_LABELS: Dictionary = {
+	"physical": "物理",
+	"spirit": "灵能"
+}
 
 
 # ============================================================
 # 创建战斗
-# party: Array[Dictionary] 玩家出战伙伴（最多3人）
+# party: Array[Dictionary] 玩家出战伙伴（最多5人）
 # enemies: Array[Dictionary] 敌方异兽
 # formation_bonus: Dictionary 阵型加成 {attack, defense, speed}
 # grid_indices: Array[int] 每个玩家对应的九宫格位置
@@ -82,6 +90,7 @@ static func create_battle(
 		"battle_over": false,
 		"victory": false,
 		"rewards": {},
+		"result_applied": false,
 		"player_party": [],
 		"enemy_party": []
 	}
@@ -112,6 +121,34 @@ static func create_battle(
 	return battle
 
 
+static func create_battle_from_encounter(
+	party: Array,
+	encounter: Dictionary,
+	formation_bonus: Dictionary = {},
+	grid_indices: Array = []
+) -> Dictionary:
+	var enemies: Array = []
+	for enemy_ref in encounter.get("enemies", []):
+		var enemy_id := str(enemy_ref.get("id", "")) if enemy_ref is Dictionary else str(enemy_ref)
+		if enemy_id == "" or not DataManager.beasts.has(enemy_id):
+			continue
+		var enemy: Dictionary = DataManager.beasts[enemy_id].duplicate(true)
+		if enemy_ref is Dictionary:
+			for key in enemy_ref:
+				if key != "id":
+					enemy[key] = enemy_ref[key]
+		enemies.append(enemy)
+	if enemies.is_empty():
+		var fallback_id := str(encounter.get("beast_id", ""))
+		if fallback_id != "" and DataManager.beasts.has(fallback_id):
+			enemies.append(DataManager.beasts[fallback_id].duplicate(true))
+	var battle := create_battle(party, enemies, formation_bonus, grid_indices)
+	battle["encounter_id"] = str(encounter.get("id", ""))
+	battle["stage_id"] = str(encounter.get("stage", ""))
+	battle["encounter_rewards"] = encounter.get("rewards", {})
+	return battle
+
+
 static func _grid_index_to_row(grid_index: int) -> int:
 	if grid_index >= 0 and grid_index <= 2:
 		return 0
@@ -130,23 +167,35 @@ static func _build_player_unit(survivor: Dictionary, formation_bonus: Dictionary
 		"speed": float(stats.get("speed", 10))
 	}
 
-	# 阵型加成
+	# 阵型加成（V3.0：attack/spirit/defense/resistance/speed/ep_start）
 	var formation_attack: float = float(formation_bonus.get("attack", 0.0))
+	var formation_spirit: float = float(formation_bonus.get("spirit", 0.0))
 	var formation_defense: float = float(formation_bonus.get("defense", 0.0))
+	var formation_resistance: float = float(formation_bonus.get("resistance", 0.0))
 	var formation_speed: float = float(formation_bonus.get("speed", 0.0))
+	var formation_ep_start: float = float(formation_bonus.get("ep_start", 0.0))
 
-	# 站位加成
+	# 站位加成（前排/中排/后排）
 	var position: Dictionary = POSITION_BONUS.get(row, {})
 	var position_attack: float = float(position.get("attack", 0.0))
+	var position_spirit: float = float(position.get("spirit", 0.0))
 	var position_defense: float = float(position.get("defense", 0.0))
+	var position_resistance: float = float(position.get("resistance", 0.0))
 
 	var computed_stats := {
 		"attack": base_stats["attack"] * (1.0 + formation_attack + position_attack),
 		"defense": base_stats["defense"] * (1.0 + formation_defense + position_defense),
-		"spirit": base_stats["spirit"] * (1.0 + formation_attack),
-		"resistance": base_stats["resistance"] * (1.0 + formation_defense),
+		"spirit": base_stats["spirit"] * (1.0 + formation_spirit + position_spirit),
+		"resistance": base_stats["resistance"] * (1.0 + formation_resistance + position_resistance),
 		"speed": base_stats["speed"] * (1.0 + formation_speed)
 	}
+
+	# 疾风阵：首回合 EP +20%
+	var base_max_energy: float = float(survivor.get("max_energy", survivor.get("energy", 100)))
+	var base_energy: float = float(survivor.get("energy", survivor.get("max_energy", 100)))
+	var start_energy: float = base_energy
+	if formation_ep_start > 0.0:
+		start_energy = minf(base_max_energy, base_energy + base_max_energy * formation_ep_start)
 
 	# 技能列表
 	var skill_ids: Array[String] = []
@@ -167,11 +216,12 @@ static func _build_player_unit(survivor: Dictionary, formation_bonus: Dictionary
 		"name": str(survivor.get("name", "伙伴")),
 		"team": "player",
 		"row": row,
+		"position_bonus": position,
 		"type": str(survivor.get("profession", "")),
 		"level": int(survivor.get("level", 1)),
 		"hp": float(survivor.get("hp", survivor.get("max_hp", 100))),
 		"max_hp": float(survivor.get("max_hp", survivor.get("hp", 100))),
-		"energy": float(survivor.get("energy", survivor.get("max_energy", 100))),
+		"energy": start_energy,
 		"max_energy": float(survivor.get("max_energy", survivor.get("energy", 100))),
 		"base_stats": base_stats,
 		"stats": computed_stats,
@@ -359,11 +409,32 @@ static func _get_final_defense(unit: Dictionary, damage_type: String) -> float:
 # ============================================================
 static func affinity_modifier(damage_type: String, defender: Dictionary) -> float:
 	var weaknesses: Array = defender.get("weakness", [])
-	var type_label := "物理" if damage_type == "physical" else "灵能"
+	var type_label := _get_damage_type_label(damage_type)
 	for w in weaknesses:
 		if str(w) == type_label:
 			return 1.3
 	return 1.0
+
+
+static func _get_damage_type(skill: Dictionary) -> String:
+	var type_text: String = str(skill.get("type", "物理·单体"))
+	if type_text.begins_with("灵能"):
+		return "spirit"
+	return "physical"
+
+
+static func _get_damage_type_label(damage_type: String) -> String:
+	return str(DAMAGE_TYPE_LABELS.get(damage_type, damage_type))
+
+
+static func get_affinity_label(skill: Dictionary, defender: Dictionary) -> String:
+	var damage_type := _get_damage_type(skill)
+	var modifier := affinity_modifier(damage_type, defender)
+	if modifier > 1.01:
+		return "克制"
+	if modifier < 0.99:
+		return "抵抗"
+	return ""
 
 
 static func calculate_damage(
@@ -373,10 +444,7 @@ static func calculate_damage(
 	critical: bool = false,
 	guard: bool = false
 ) -> int:
-	var type_text: String = str(skill.get("type", "物理·单体"))
-	var damage_type: String = "physical"
-	if type_text.begins_with("灵能"):
-		damage_type = "spirit"
+	var damage_type := _get_damage_type(skill)
 
 	var multiplier: float = float(skill.get("multiplier", 1.0))
 	var attack_value: float = _get_final_attack(attacker, damage_type)
@@ -517,6 +585,11 @@ static func perform_action(
 		"attack":
 			if target_ids.is_empty():
 				target_ids = [_select_optimal_target(battle, actor_id)]
+			target_ids = _filter_alive_targets(battle, target_ids)
+			if target_ids.is_empty():
+				_add_log(battle, "%s 找不到可攻击目标。" % actor["name"])
+				advance_turn(battle)
+				return
 			var target_id: String = str(target_ids[0])
 			_resolve_attack(battle, actor_id, target_id, DataManager.skills.get(BASIC_ATTACK_ID, {}), true)
 		"skill":
@@ -542,13 +615,14 @@ static func _resolve_attack(battle: Dictionary, attacker_id: String, target_id: 
 		return
 	var attacker: Dictionary = units[attacker_id]
 	var defender: Dictionary = units[target_id]
-	if defender.get("defeated", false):
+	if attacker.get("defeated", false) or defender.get("defeated", false):
 		return
 
 	var skill_name: String = str(skill.get("name", "攻击"))
 	var hits: int = maxi(1, int(skill.get("hits", 1)))
 	var total_damage: int = 0
 	var hits_text: Array[String] = []
+	var affinity_text := get_affinity_label(skill, defender)
 
 	for h in range(hits):
 		var critical := _calculate_critical(attacker)
@@ -578,10 +652,11 @@ static func _resolve_attack(battle: Dictionary, attacker_id: String, target_id: 
 			_add_log(battle, "%s 被击败！" % defender["name"])
 			break
 
+	var suffix := "（%s）" % affinity_text if affinity_text != "" else ""
 	if is_basic:
-		_add_log(battle, "%s 发起攻击 → %s 受到 %s 点伤害。" % [attacker["name"], defender["name"], "、".join(hits_text)])
+		_add_log(battle, "%s 发起攻击 → %s 受到 %s 点伤害%s。" % [attacker["name"], defender["name"], "、".join(hits_text), suffix])
 	else:
-		_add_log(battle, "%s 使用[%s] → %s 受到 %s 点伤害。" % [attacker["name"], skill_name, defender["name"], "、".join(hits_text)])
+		_add_log(battle, "%s 使用[%s] → %s 受到 %s 点伤害%s。" % [attacker["name"], skill_name, defender["name"], "、".join(hits_text), suffix])
 
 	# 词缀：毒血（攻击附带中毒）
 	if _has_affix(attacker, "poison_blood") and not defender.get("defeated", false):
@@ -603,6 +678,22 @@ static func _resolve_attack(battle: Dictionary, attacker_id: String, target_id: 
 static func _check_counter(battle: Dictionary, attacker_id: String, target_id: String, damage: int, skill: Dictionary, is_basic: bool) -> void:
 	# 反击由被动技能处理（简化：暂无被动反击数据，保留扩展）
 	pass
+
+
+static func _filter_alive_targets(battle: Dictionary, target_ids: Array) -> Array:
+	var result: Array = []
+	var units: Dictionary = battle.get("units", {})
+	for target_ref in target_ids:
+		var target_id := str(target_ref)
+		if target_id == "":
+			continue
+		if not units.has(target_id):
+			continue
+		var target: Dictionary = units[target_id]
+		if target.get("defeated", false):
+			continue
+		result.append(target_id)
+	return result
 
 
 static func _execute_skill(battle: Dictionary, actor_id: String, skill: Dictionary, target_ids: Array) -> void:
@@ -635,7 +726,7 @@ static func _execute_skill(battle: Dictionary, actor_id: String, skill: Dictiona
 
 	# 确定目标集合
 	var targets: Array = []
-	if type_text.find("全体") >= 0:
+	if type_text.find("全体") >= 0 or type_text.find("全队") >= 0:
 		var target_team := "enemy" if actor["team"] == "player" else "player"
 		# 辅助全体 -> 自己方
 		if type_text.begins_with("辅助"):
@@ -644,10 +735,16 @@ static func _execute_skill(battle: Dictionary, actor_id: String, skill: Dictiona
 		# 平局防御目标选择
 		if targets.is_empty():
 			return
+	elif type_text.find("自身") >= 0:
+		targets = [actor_id]
 	elif not target_ids.is_empty():
 		targets = [str(target_ids[0])]
 	else:
 		targets = [_select_optimal_target(battle, actor_id)]
+	targets = _filter_alive_targets(battle, targets)
+	if targets.is_empty():
+		_add_log(battle, "%s 的[%s]没有可用目标。" % [actor["name"], skill.get("name", skill_id)])
+		return
 
 	# 伤害类技能
 	if type_text.begins_with("物理") or type_text.begins_with("灵能"):
@@ -676,7 +773,9 @@ static func _execute_skill(battle: Dictionary, actor_id: String, skill: Dictiona
 					target["defeated"] = true
 					break
 			var damage_text := "%d(暴击%d)" % [total_damage, critical_hits] if critical_hits > 0 else "%d" % total_damage
-			_add_log(battle, "%s 使用[%s] → %s 受到 %s 点伤害。" % [actor["name"], skill.get("name", ""), target["name"], damage_text])
+			var affinity_text := get_affinity_label(skill, target)
+			var suffix := "（%s）" % affinity_text if affinity_text != "" else ""
+			_add_log(battle, "%s 使用[%s] → %s 受到 %s 点伤害%s。" % [actor["name"], skill.get("name", ""), target["name"], damage_text, suffix])
 			if target.get("defeated", false):
 				_add_log(battle, "%s 被击败！" % target["name"])
 			_apply_skill_status_effects(battle, actor, target, skill)
@@ -978,6 +1077,7 @@ static func check_battle_over(battle: Dictionary) -> bool:
 			return false
 		battle["battle_over"] = true
 		battle["victory"] = true
+		battle["rewards"] = calculate_rewards(battle)
 		_add_log(battle, "🎉 战斗胜利！")
 		return true
 
@@ -988,6 +1088,123 @@ static func check_battle_over(battle: Dictionary) -> bool:
 		return true
 
 	return false
+
+
+static func calculate_rewards(battle: Dictionary) -> Dictionary:
+	var rewards := {
+		"exp": 0,
+		"gold": 0,
+		"resources": {},
+		"drops": []
+	}
+	var units: Dictionary = battle.get("units", {})
+	for enemy_id in battle.get("enemy_party", []):
+		if not units.has(enemy_id):
+			continue
+		var unit: Dictionary = units[enemy_id]
+		var beast: Dictionary = unit.get("base_id_ref", {})
+		var level := maxi(1, int(unit.get("level", beast.get("level", 1))))
+		var max_hp := maxi(1, int(unit.get("max_hp", beast.get("hp", 1))))
+		var type_text := str(unit.get("type", beast.get("type", "普通")))
+		var type_mult := 1.0
+		if type_text == "精英":
+			type_mult = 1.6
+		elif type_text == "BOSS":
+			type_mult = 3.0
+
+		rewards["exp"] = int(rewards["exp"]) + int(round((level * 8 + max_hp * 0.08) * type_mult))
+		rewards["gold"] = int(rewards["gold"]) + int(round((level * 3 + max_hp * 0.03) * type_mult))
+		_add_reward_resource(rewards["resources"], "cores", maxi(1, int(ceil(float(level) / 6.0))))
+		if type_text == "精英" or type_text == "BOSS":
+			_add_reward_resource(rewards["resources"], "rare_material", maxi(1, int(ceil(float(level) / 12.0))))
+		if type_text == "BOSS":
+			_add_reward_resource(rewards["resources"], "spirit_core", maxi(1, int(ceil(float(level) / 18.0))))
+
+		var fixed_rewards: Dictionary = beast.get("rewards", {})
+		for key in fixed_rewards:
+			if str(key) == "exp":
+				rewards["exp"] = int(rewards["exp"]) + int(fixed_rewards[key])
+			elif str(key) == "gold":
+				rewards["gold"] = int(rewards["gold"]) + int(fixed_rewards[key])
+			elif str(key) in RESOURCE_REWARD_KEYS:
+				_add_reward_resource(rewards["resources"], str(key), int(fixed_rewards[key]))
+
+		for drop in beast.get("drops", []):
+			if not (drop is Dictionary):
+				continue
+			var rate := float(drop.get("rate", 1.0))
+			if randf() > rate:
+				continue
+			var min_count := int(drop.get("min", drop.get("qty", 1)))
+			var max_count := int(drop.get("max", min_count))
+			var count := randi_range(min_count, max_count)
+			var item_id := str(drop.get("id", drop.get("item", "")))
+			if item_id == "":
+				continue
+			var item_name := str(drop.get("name", item_id))
+			if item_id in RESOURCE_REWARD_KEYS:
+				_add_reward_resource(rewards["resources"], item_id, count)
+			else:
+				rewards["drops"].append({"id": item_id, "name": item_name, "count": count})
+	var encounter_rewards: Dictionary = battle.get("encounter_rewards", {})
+	if not encounter_rewards.is_empty():
+		rewards["exp"] = int(rewards["exp"]) + int(encounter_rewards.get("exp", 0))
+		rewards["gold"] = int(rewards["gold"]) + int(encounter_rewards.get("gold", 0))
+		var encounter_resources: Dictionary = encounter_rewards.get("resources", {})
+		for resource_id in encounter_resources:
+			_add_reward_resource(rewards["resources"], str(resource_id), int(encounter_resources[resource_id]))
+		for drop in encounter_rewards.get("drops", []):
+			if drop is Dictionary:
+				rewards["drops"].append(drop.duplicate(true))
+	return rewards
+
+
+static func _add_reward_resource(resources: Dictionary, resource_id: String, amount: int) -> void:
+	if amount == 0:
+		return
+	resources[resource_id] = int(resources.get(resource_id, 0)) + amount
+
+
+static func format_rewards(rewards: Dictionary) -> String:
+	var parts: Array[String] = []
+	var exp := int(rewards.get("exp", 0))
+	var gold := int(rewards.get("gold", 0))
+	if exp > 0:
+		parts.append("经验×%d" % exp)
+	if gold > 0:
+		parts.append("金币×%d" % gold)
+	var resources: Dictionary = rewards.get("resources", {})
+	for key in resources:
+		var amount := int(resources[key])
+		if amount > 0:
+			parts.append("%s×%d" % [_format_reward_resource_name(str(key)), amount])
+	for drop in rewards.get("drops", []):
+		if drop is Dictionary:
+			parts.append("%s×%d" % [drop.get("name", drop.get("id", "掉落物")), int(drop.get("count", 1))])
+	return "、".join(parts)
+
+
+static func _format_reward_resource_name(resource_id: String) -> String:
+	match resource_id:
+		"food":
+			return "口粮"
+		"medicine":
+			return "药品"
+		"cores":
+			return "晶核"
+		"memory_shards":
+			return "记忆碎片"
+		"tickets":
+			return "补给券"
+		"spirit_battery":
+			return "灵能电池"
+		"ammo":
+			return "弹药"
+		"rare_material":
+			return "稀有材料"
+		"spirit_core":
+			return "灵核"
+	return resource_id
 
 
 # ============================================================
@@ -1126,6 +1343,43 @@ static func get_usable_skills(battle: Dictionary, actor_id: String) -> Array:
 	return result
 
 
+static func get_skill_cooldown(unit: Dictionary, skill_id: String) -> int:
+	var cooldowns: Dictionary = unit.get("cooldowns", {})
+	return int(cooldowns.get(skill_id, 0))
+
+
+static func get_unit_status_entries(unit: Dictionary) -> Array:
+	var result: Array = []
+	var statuses: Dictionary = unit.get("statuses", {})
+	for status_id in statuses:
+		var status: Dictionary = statuses[status_id] if statuses[status_id] is Dictionary else {}
+		var label: String = str(STATUS_NAMES.get(status_id, str(status_id)))
+		var duration := int(status.get("duration", 0))
+		var value_text := ""
+		if status_id == "shield":
+			value_text = str(int(status.get("value", 0)))
+		elif status.has("value"):
+			value_text = str(int(status.get("value", 0))) + "%"
+		result.append({
+			"id": str(status_id),
+			"name": label,
+			"duration": duration,
+			"value": value_text,
+			"kind": _get_status_kind(str(status_id))
+		})
+	if unit.get("guard", false):
+		result.append({"id": "guard", "name": "防御", "duration": 1, "value": "", "kind": "buff"})
+	return result
+
+
+static func _get_status_kind(status_id: String) -> String:
+	if status_id in ["shield", "speed_up", "attack_up", "defense_up", "guard"]:
+		return "buff"
+	if status_id in ["burn", "freeze", "poison", "confusion", "speed_down"]:
+		return "debuff"
+	return "neutral"
+
+
 static func get_battle_status_text(battle: Dictionary) -> String:
 	var parts: Array[String] = []
 	var enemy_alive: Array = get_alive_team_units(battle, "enemy")
@@ -1179,9 +1433,15 @@ static func format_formation_bonus_text(bonus: Dictionary) -> String:
 		match stat:
 			"attack":
 				label = "攻击"
+			"spirit":
+				label = "灵能"
 			"defense":
 				label = "防御"
+			"resistance":
+				label = "灵抗"
 			"speed":
 				label = "速度"
+			"ep_start":
+				label = "首回合EP"
 		parts.append("%s%+.0f%%" % [label, value * 100.0])
 	return "、".join(parts)

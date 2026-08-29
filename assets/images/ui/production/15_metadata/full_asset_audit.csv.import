@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://t84pwlf03n2m"
+
+[deps]
+
+files=["res://assets/images/ui/production/15_metadata/full_asset_audit.status.translation", "res://assets/images/ui/production/15_metadata/full_asset_audit.reason.translation"]
+
+source_file="res://assets/images/ui/production/15_metadata/full_asset_audit.csv"
+dest_files=["res://assets/images/ui/production/15_metadata/full_asset_audit.status.translation", "res://assets/images/ui/production/15_metadata/full_asset_audit.reason.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

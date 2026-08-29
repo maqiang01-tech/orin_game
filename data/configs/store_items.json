@@ -1,0 +1,25 @@
+{
+  "currency": {
+    "crystal": {"name": "灵能水晶", "icon": "💎"},
+    "gold": {"name": "金币", "icon": "🪙"},
+    "ticket": {"name": "补给券", "icon": "🎫"}
+  },
+  "tabs": [
+    {
+      "id": "gacha",
+      "name": "补给",
+      "items": [
+        {"id": "ticket_1", "name": "补给券×1", "description": "用于招募伙伴的补给券", "price": {"crystal": 60}, "reward": {"ticket": 1}},
+        {"id": "ticket_10", "name": "补给券×10", "description": "十连招募，更划算", "price": {"crystal": 540}, "reward": {"ticket": 10}}
+      ]
+    },
+    {
+      "id": "packages",
+      "name": "礼包",
+      "items": [
+        {"id": "starter_pack", "name": "新手礼包", "description": "口粮/药品/补给券组合", "price": {"crystal": 6}, "reward": {"food": 30, "medicine": 10, "ticket": 5}, "limit": "once"},
+        {"id": "survival_pack", "name": "生存物资包", "description": "基础生存物资", "price": {"gold": 500}, "reward": {"food": 20, "medicine": 5}}
+      ]
+    }
+  ]
+}

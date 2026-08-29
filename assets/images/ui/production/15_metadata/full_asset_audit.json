@@ -1,0 +1,1116 @@
+{
+  "source_package": "异变纪元_UI_Production_Assets_V1_1_Clean.zip",
+  "png_count": 215,
+  "replaced_count": 113,
+  "exact_duplicate_groups": [
+    [
+      "06_textboxes/textbox_search_focus.png",
+      "06_textboxes/textbox_single_focus.png"
+    ],
+    [
+      "06_textboxes/textbox_search_normal.png",
+      "06_textboxes/textbox_single_normal.png"
+    ],
+    [
+      "10_slots/slot_equipment_locked.png",
+      "10_slots/slot_item_locked.png",
+      "10_slots/slot_skill_locked.png"
+    ],
+    [
+      "10_slots/slot_equipment_normal.png",
+      "10_slots/slot_item_normal.png",
+      "10_slots/slot_skill_normal.png"
+    ],
+    [
+      "10_slots/slot_equipment_selected.png",
+      "10_slots/slot_item_selected.png",
+      "10_slots/slot_skill_selected.png"
+    ],
+    [
+      "10_slots/slot_formation_normal.png",
+      "10_slots/slot_formation_occupied.png",
+      "10_slots/slot_partner_normal.png"
+    ],
+    [
+      "10_slots/slot_formation_selected.png",
+      "10_slots/slot_partner_selected.png"
+    ]
+  ],
+  "audit": [
+    {
+      "file": "05_windows/window_full.png",
+      "status": "REPLACED",
+      "reason": "原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup"
+    },
+    {
+      "file": "05_windows/window_large.png",
+      "status": "REPLACED",
+      "reason": "原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup"
+    },
+    {
+      "file": "05_windows/window_medium.png",
+      "status": "REPLACED",
+      "reason": "原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup"
+    },
+    {
+      "file": "05_windows/window_title_bar.png",
+      "status": "REPLACED",
+      "reason": "原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup"
+    },
+    {
+      "file": "05_windows/popup_confirm.png",
+      "status": "REPLACED",
+      "reason": "原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup"
+    },
+    {
+      "file": "05_windows/popup_reward.png",
+      "status": "REPLACED",
+      "reason": "原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup"
+    },
+    {
+      "file": "05_windows/popup_story.png",
+      "status": "REPLACED",
+      "reason": "原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup"
+    },
+    {
+      "file": "05_windows/popup_boss_info.png",
+      "status": "REPLACED",
+      "reason": "原文件存在裁图残留/烘焙内容；改为完整空底 Window/Popup"
+    },
+    {
+      "file": "06_textboxes/textbox_multiline_disabled.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_multiline_focus.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_multiline_normal.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_numeric_focus.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_numeric_normal.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_search_focus.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_search_normal.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_single_disabled.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_single_focus.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_single_normal.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_title.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "06_textboxes/textbox_tooltip.png",
+      "status": "REPLACED",
+      "reason": "原文件包含搜索图标/邻接残影或比例不统一；改为完整空文本框"
+    },
+    {
+      "file": "07_panels/panel_base_facility.png",
+      "status": "REPLACED",
+      "reason": "原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制"
+    },
+    {
+      "file": "07_panels/panel_boss.png",
+      "status": "REPLACED",
+      "reason": "原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制"
+    },
+    {
+      "file": "07_panels/panel_character.png",
+      "status": "REPLACED",
+      "reason": "原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制"
+    },
+    {
+      "file": "07_panels/panel_formation.png",
+      "status": "REPLACED",
+      "reason": "原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制"
+    },
+    {
+      "file": "07_panels/panel_inventory.png",
+      "status": "REPLACED",
+      "reason": "原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制"
+    },
+    {
+      "file": "07_panels/panel_location_info.png",
+      "status": "REPLACED",
+      "reason": "原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制"
+    },
+    {
+      "file": "07_panels/panel_main_quest.png",
+      "status": "REPLACED",
+      "reason": "原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制"
+    },
+    {
+      "file": "07_panels/panel_resource.png",
+      "status": "REPLACED",
+      "reason": "原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制"
+    },
+    {
+      "file": "07_panels/panel_scene.png",
+      "status": "REPLACED",
+      "reason": "原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制"
+    },
+    {
+      "file": "07_panels/panel_team_rating.png",
+      "status": "REPLACED",
+      "reason": "原文件保持源图长宽比导致面板缩成细条/比例错误；按目标尺寸重制"
+    },
+    {
+      "file": "08_frames/frame_gold_heavy.png",
+      "status": "REPLACED",
+      "reason": "原文件仅剩左右边缘，属于残缺边框；重制为完整四边"
+    },
+    {
+      "file": "08_frames/frame_gold_thin.png",
+      "status": "REPLACED",
+      "reason": "原文件仅剩左右边缘，属于残缺边框；重制为完整四边"
+    },
+    {
+      "file": "08_frames/frame_gray.png",
+      "status": "REPLACED",
+      "reason": "原文件仅剩左右边缘，属于残缺边框；重制为完整四边"
+    },
+    {
+      "file": "08_frames/frame_portrait.png",
+      "status": "REPLACED",
+      "reason": "原文件仅剩左右边缘，属于残缺边框；重制为完整四边"
+    },
+    {
+      "file": "08_frames/frame_red_warning.png",
+      "status": "REPLACED",
+      "reason": "原文件仅剩左右边缘，属于残缺边框；重制为完整四边"
+    },
+    {
+      "file": "08_frames/frame_selected_glow.png",
+      "status": "REPLACED",
+      "reason": "原文件仅剩左右边缘，属于残缺边框；重制为完整四边"
+    },
+    {
+      "file": "10_slots/slot_equipment_locked.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_equipment_normal.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_equipment_selected.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_formation_locked.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_formation_normal.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_formation_occupied.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_formation_selected.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_item_locked.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_item_new.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_item_normal.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_item_selected.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_partner_empty.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_partner_normal.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_partner_selected.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_skill_cooldown.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_skill_locked.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_skill_normal.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "10_slots/slot_skill_selected.png",
+      "status": "REPLACED",
+      "reason": "原文件上方带有另一块按钮/槽位残片；完全重制为单一独立槽位"
+    },
+    {
+      "file": "01_buttons/system/btn_system_normal.png",
+      "status": "REPLACED",
+      "reason": "原文件从横向按钮缩放，实际视觉仍是细横条；重制为72x72方形系统按钮"
+    },
+    {
+      "file": "01_buttons/system/btn_system_pressed.png",
+      "status": "REPLACED",
+      "reason": "原文件从横向按钮缩放，实际视觉仍是细横条；重制为72x72方形系统按钮"
+    },
+    {
+      "file": "01_buttons/system/btn_system_disabled.png",
+      "status": "REPLACED",
+      "reason": "原文件从横向按钮缩放，实际视觉仍是细横条；重制为72x72方形系统按钮"
+    },
+    {
+      "file": "03_icons/system/icon_defense.png",
+      "status": "REPLACED",
+      "reason": "原盾牌图标透明度过低，缩略图几乎不可见；重画为清晰金属盾牌"
+    },
+    {
+      "file": "11_bottom_navigation/bottom_nav_background.png",
+      "status": "REPLACED",
+      "reason": "原底栏主体过薄，仅剩一条线；重制为完整底栏"
+    },
+    {
+      "file": "11_bottom_navigation/badge_red_dot.png",
+      "status": "REPLACED",
+      "reason": "原 badge 带相邻素材残影/黑条；重制为独立圆形 badge"
+    },
+    {
+      "file": "11_bottom_navigation/badge_red_glow.png",
+      "status": "REPLACED",
+      "reason": "原 badge 带相邻素材残影/黑条；重制为独立圆形 badge"
+    },
+    {
+      "file": "11_bottom_navigation/badge_red_ring.png",
+      "status": "REPLACED",
+      "reason": "原 badge 带相邻素材残影/黑条；重制为独立圆形 badge"
+    },
+    {
+      "file": "02_map_nodes/node_hospital_danger.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_hospital_locked.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_hospital_normal.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_hospital_selected.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_safehouse_danger.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_safehouse_locked.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_safehouse_normal.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_safehouse_selected.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_subway_danger.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_subway_locked.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_subway_normal.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_subway_selected.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_supermarket_danger.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_supermarket_locked.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_supermarket_normal.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_supermarket_selected.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_unknown_danger.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_unknown_locked.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_unknown_normal.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "02_map_nodes/node_unknown_selected.png",
+      "status": "REPLACED",
+      "reason": "统一 normal/selected/danger/locked 的视觉占位与比例"
+    },
+    {
+      "file": "12_characters/full/char_chen_mo_full.png",
+      "status": "REPLACED",
+      "reason": "原角色文件含相邻角色残片；按原始透明图 alpha 组件重新分离"
+    },
+    {
+      "file": "12_characters/portraits/portrait_chen_mo.png",
+      "status": "REPLACED",
+      "reason": "由重新分离的干净单人立绘生成 portrait"
+    },
+    {
+      "file": "12_characters/full/char_lin_mei_full.png",
+      "status": "REPLACED",
+      "reason": "原角色文件含相邻角色残片；按原始透明图 alpha 组件重新分离"
+    },
+    {
+      "file": "12_characters/portraits/portrait_lin_mei.png",
+      "status": "REPLACED",
+      "reason": "由重新分离的干净单人立绘生成 portrait"
+    },
+    {
+      "file": "12_characters/full/char_lao_zhou_full.png",
+      "status": "REPLACED",
+      "reason": "原角色文件含相邻角色残片；按原始透明图 alpha 组件重新分离"
+    },
+    {
+      "file": "12_characters/portraits/portrait_lao_zhou.png",
+      "status": "REPLACED",
+      "reason": "由重新分离的干净单人立绘生成 portrait"
+    },
+    {
+      "file": "12_characters/full/char_chen_feng_full.png",
+      "status": "REPLACED",
+      "reason": "原角色文件含相邻角色残片；按原始透明图 alpha 组件重新分离"
+    },
+    {
+      "file": "12_characters/portraits/portrait_chen_feng.png",
+      "status": "REPLACED",
+      "reason": "由重新分离的干净单人立绘生成 portrait"
+    },
+    {
+      "file": "12_characters/full/char_su_xiao_full.png",
+      "status": "REPLACED",
+      "reason": "原角色文件含相邻角色残片；按原始透明图 alpha 组件重新分离"
+    },
+    {
+      "file": "12_characters/portraits/portrait_su_xiao.png",
+      "status": "REPLACED",
+      "reason": "由重新分离的干净单人立绘生成 portrait"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_bed.png",
+      "status": "REPLACED",
+      "reason": "原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_generator.png",
+      "status": "REPLACED",
+      "reason": "原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_kitchen.png",
+      "status": "REPLACED",
+      "reason": "原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_medical_station.png",
+      "status": "REPLACED",
+      "reason": "原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_storage.png",
+      "status": "REPLACED",
+      "reason": "原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明"
+    },
+    {
+      "file": "13_dedicated/facilities/facility_workbench.png",
+      "status": "REPLACED",
+      "reason": "原设施图来自自动抠图，出现桌腿/工具/边缘缺失与碎片；改为完整独立设施缩略图，不再抠透明"
+    },
+    {
+      "file": "13_dedicated/items/item_medicine.png",
+      "status": "REPLACED",
+      "reason": "原 item 自动抠图有顶部/边缘残片；改为完整独立物品 tile"
+    },
+    {
+      "file": "13_dedicated/items/item_bandage.png",
+      "status": "REPLACED",
+      "reason": "原 item 自动抠图有顶部/边缘残片；改为完整独立物品 tile"
+    },
+    {
+      "file": "13_dedicated/items/item_battery.png",
+      "status": "REPLACED",
+      "reason": "原 item 自动抠图有顶部/边缘残片；改为完整独立物品 tile"
+    },
+    {
+      "file": "13_dedicated/items/item_mechanical_parts.png",
+      "status": "REPLACED",
+      "reason": "原 item 自动抠图有顶部/边缘残片；改为完整独立物品 tile"
+    },
+    {
+      "file": "13_dedicated/items/item_old_archive.png",
+      "status": "REPLACED",
+      "reason": "原 item 自动抠图有顶部/边缘残片；改为完整独立物品 tile"
+    },
+    {
+      "file": "13_dedicated/talents/talent_01.png",
+      "status": "REPLACED",
+      "reason": "原天赋图标带右侧/下方邻接残片；使用菱形遮罩重新提取"
+    },
+    {
+      "file": "13_dedicated/talents/talent_02.png",
+      "status": "REPLACED",
+      "reason": "原天赋图标带右侧/下方邻接残片；使用菱形遮罩重新提取"
+    },
+    {
+      "file": "13_dedicated/talents/talent_03.png",
+      "status": "REPLACED",
+      "reason": "原天赋图标带右侧/下方邻接残片；使用菱形遮罩重新提取"
+    },
+    {
+      "file": "13_dedicated/talents/talent_04.png",
+      "status": "REPLACED",
+      "reason": "原天赋图标带右侧/下方邻接残片；使用菱形遮罩重新提取"
+    },
+    {
+      "file": "13_dedicated/talents/talent_05.png",
+      "status": "REPLACED",
+      "reason": "原天赋图标带右侧/下方邻接残片；使用菱形遮罩重新提取"
+    },
+    {
+      "file": "13_dedicated/roles/role_main_dps.png",
+      "status": "REPLACED",
+      "reason": "原职业标记风格不统一/部分过淡；重画为清晰独立职业徽记"
+    },
+    {
+      "file": "13_dedicated/roles/role_healer.png",
+      "status": "REPLACED",
+      "reason": "原职业标记风格不统一/部分过淡；重画为清晰独立职业徽记"
+    },
+    {
+      "file": "13_dedicated/roles/role_tank.png",
+      "status": "REPLACED",
+      "reason": "原职业标记风格不统一/部分过淡；重画为清晰独立职业徽记"
+    },
+    {
+      "file": "13_dedicated/roles/role_control.png",
+      "status": "REPLACED",
+      "reason": "原职业标记风格不统一/部分过淡；重画为清晰独立职业徽记"
+    },
+    {
+      "file": "13_dedicated/roles/role_ranged_dps.png",
+      "status": "REPLACED",
+      "reason": "原职业标记风格不统一/部分过淡；重画为清晰独立职业徽记"
+    },
+    {
+      "file": "01_buttons/cta/btn_danger_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_danger_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_danger_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_danger_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_primary_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_primary_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_primary_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_primary_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_secondary_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_secondary_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_secondary_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/cta/btn_secondary_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_adjust_team_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_adjust_team_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_adjust_team_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_adjust_team_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_bag_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_bag_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_bag_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_bag_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_equipment_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_equipment_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_equipment_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_equipment_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_leave_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_leave_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_leave_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_leave_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_medical_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_medical_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_medical_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_medical_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_rest_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_rest_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_rest_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_rest_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_reward_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_reward_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_reward_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_reward_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_search_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_search_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_search_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_search_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_settings_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_settings_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_settings_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_settings_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_skill_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_skill_hover.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_skill_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "01_buttons/function/btn_skill_pressed.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_add.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_arrow_left.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_arrow_right.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_attack.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_back.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_close.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_heal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_lock.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_minus.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_notification.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_question.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_settings.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "03_icons/system/icon_unlock.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "04_backgrounds/bg_aurora_lab.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "04_backgrounds/bg_base_shelter.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "04_backgrounds/bg_city_night.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "04_backgrounds/bg_city_ruins.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "04_backgrounds/bg_hospital_exterior.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "04_backgrounds/bg_military_base.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "04_backgrounds/bg_reincarnation_hall.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "04_backgrounds/bg_subway_abandoned.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "04_backgrounds/bg_supermarket.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "04_backgrounds/bg_wasteland.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "09_progress_bars/progress_fill_blue.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "09_progress_bars/progress_fill_gold.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "09_progress_bars/progress_fill_green.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "09_progress_bars/progress_fill_purple.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "09_progress_bars/progress_fill_red.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "09_progress_bars/progress_track_dark.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_base_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_base_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_base_selected.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_explore_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_explore_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_explore_selected.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_reincarnation_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_reincarnation_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_reincarnation_selected.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_survival_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_survival_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_survival_selected.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_team_disabled.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_team_normal.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "11_bottom_navigation/nav_team_selected.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "13_dedicated/boss/boss_warden_portrait.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "14_page_mockups/mockup_base_720x1280.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "14_page_mockups/mockup_explore_720x1280.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "14_page_mockups/mockup_formation_720x1280.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "14_page_mockups/mockup_reincarnation_720x1280.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    },
+    {
+      "file": "14_page_mockups/mockup_survival_720x1280.png",
+      "status": "OK",
+      "reason": "未发现裁图残片、明显比例错误或相邻素材残留"
+    }
+  ]
+}
