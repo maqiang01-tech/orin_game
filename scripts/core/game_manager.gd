@@ -34,14 +34,22 @@ const UI_PROD_PANEL_SCENE = preload("res://assets/images/ui/production/07_panels
 const UI_PROD_PANEL_MAIN_QUEST = preload("res://assets/images/ui/production/07_panels/panel_main_quest.png")
 const UI_PROD_PANEL_LOCATION_INFO = preload("res://assets/images/ui/production/07_panels/panel_location_info.png")
 const UI_PROD_PANEL_CHARACTER = preload("res://assets/images/ui/production/07_panels/panel_character.png")
-const UI_PROD_PANEL_RESOURCE = preload("res://assets/images/ui/production/07_panels/panel_resource.png")
 const UI_PROD_PANEL_BASE_FACILITY = preload("res://assets/images/ui/production/07_panels/panel_base_facility.png")
 const UI_PROD_PANEL_FORMATION = preload("res://assets/images/ui/production/07_panels/panel_formation.png")
 const UI_PROD_PANEL_TEAM_RATING = preload("res://assets/images/ui/production/07_panels/panel_team_rating.png")
 const UI_PROD_PANEL_BOSS = preload("res://assets/images/ui/production/07_panels/panel_boss.png")
+const UI_PROD_FRAME_GRAY = preload("res://assets/images/ui/production/08_frames/frame_gray.png")
+const UI_PROD_FRAME_SELECTED_GLOW = preload("res://assets/images/ui/production/08_frames/frame_selected_glow.png")
 const UI_PROD_PROGRESS_TRACK = preload("res://assets/images/ui/production/09_progress_bars/progress_track_dark.png")
 const UI_PROD_PROGRESS_GOLD = preload("res://assets/images/ui/production/09_progress_bars/progress_fill_gold.png")
 const UI_PROD_PROGRESS_RED = preload("res://assets/images/ui/production/09_progress_bars/progress_fill_red.png")
+const UI_PROD_PROGRESS_BLUE = preload("res://assets/images/ui/production/09_progress_bars/progress_fill_blue.png")
+const UI_PROD_PROGRESS_GREEN = preload("res://assets/images/ui/production/09_progress_bars/progress_fill_green.png")
+const UI_PROD_PROGRESS_PURPLE = preload("res://assets/images/ui/production/09_progress_bars/progress_fill_purple.png")
+const UI_PROD_SLOT_EQUIPMENT = preload("res://assets/images/ui/production/10_slots/slot_equipment_normal.png")
+const UI_PROD_ITEM_BANDAGE = preload("res://assets/images/ui/production/13_dedicated/items/item_bandage.png")
+const UI_PROD_ITEM_BATTERY = preload("res://assets/images/ui/production/13_dedicated/items/item_battery.png")
+const UI_PROD_ITEM_PARTS = preload("res://assets/images/ui/production/13_dedicated/items/item_mechanical_parts.png")
 const UI_PROD_BOSS_WARDEN = preload("res://assets/images/ui/production/13_dedicated/boss/boss_warden_portrait.png")
 const UI_PROD_CTA_PRIMARY_NORMAL = preload("res://assets/images/ui/production/01_buttons/cta/btn_primary_normal.png")
 const UI_PROD_CTA_PRIMARY_HOVER = preload("res://assets/images/ui/production/01_buttons/cta/btn_primary_hover.png")
@@ -79,12 +87,31 @@ const UI_PROD_SYSTEM_DISABLED = preload("res://assets/images/ui/production/01_bu
 const UI_PROD_ICON_SETTINGS = preload("res://assets/images/ui/production/03_icons/system/icon_settings.png")
 const UI_PROD_ICON_QUESTION = preload("res://assets/images/ui/production/03_icons/system/icon_question.png")
 const UI_PROD_ICON_NOTIFICATION = preload("res://assets/images/ui/production/03_icons/system/icon_notification.png")
+const UI_PROD_ICON_CLOSE = preload("res://assets/images/ui/production/03_icons/system/icon_close.png")
+const UI_PROD_PANEL_RESOURCE = preload("res://assets/images/ui/production/07_panels/panel_resource.png")
+const UI_GLOBAL_BG_BLACK_IRON = preload("res://assets/images/ui/production/17_generated/bg_global_subway_black_iron.png")
+const UI_BASE_COMPOSITE = preload("res://assets/images/ui/production/17_generated/bg_base_facilities_composite.png")
+const UI_CHARACTER_STATUS_FRAME = preload("res://assets/images/ui/production/17_generated/frame_character_status_empty_v2.png")
+const UI_HOME_SURVIVAL_MASTER = preload("res://assets/images/ui/production/17_generated/home_survival_master_complete.png")
+const UI_SUPPLEMENT_BOTTOM_NAV_BLACK_IRON = preload("res://assets/images/ui/production/16_supplement/bottom_nav_black_iron.png")
+const UI_SUPPLEMENT_STATUS_BAR_BLACK_IRON = preload("res://assets/images/ui/production/16_supplement/status_bar_black_iron.png")
+const UI_PROD_WINDOW_MEDIUM = preload("res://assets/images/ui/production/05_windows/window_medium.png")
+const UI_PROD_WINDOW_LARGE = preload("res://assets/images/ui/production/05_windows/window_large.png")
+const UI_PROD_NODE_HOSPITAL = preload("res://assets/images/ui/production/02_map_nodes/node_hospital_normal.png")
+const UI_PROD_NODE_HOSPITAL_SELECTED = preload("res://assets/images/ui/production/02_map_nodes/node_hospital_selected.png")
+const UI_PROD_NODE_SUPERMARKET = preload("res://assets/images/ui/production/02_map_nodes/node_supermarket_normal.png")
+const UI_PROD_NODE_SUPERMARKET_SELECTED = preload("res://assets/images/ui/production/02_map_nodes/node_supermarket_selected.png")
+const UI_PROD_NODE_SUBWAY = preload("res://assets/images/ui/production/02_map_nodes/node_subway_normal.png")
+const UI_PROD_NODE_SUBWAY_DANGER = preload("res://assets/images/ui/production/02_map_nodes/node_subway_danger.png")
+const UI_PROD_NODE_SAFEHOUSE = preload("res://assets/images/ui/production/02_map_nodes/node_safehouse_normal.png")
+const UI_PROD_NODE_SAFEHOUSE_SELECTED = preload("res://assets/images/ui/production/02_map_nodes/node_safehouse_selected.png")
+const UI_PROD_NODE_UNKNOWN = preload("res://assets/images/ui/production/02_map_nodes/node_unknown_normal.png")
+const UI_PROD_NODE_UNKNOWN_LOCKED = preload("res://assets/images/ui/production/02_map_nodes/node_unknown_locked.png")
 const UI_PROD_SLOT_FORMATION_NORMAL = preload("res://assets/images/ui/production/10_slots/slot_formation_normal.png")
 const UI_PROD_SLOT_FORMATION_OCCUPIED = preload("res://assets/images/ui/production/10_slots/slot_formation_occupied.png")
 const UI_PROD_SLOT_FORMATION_SELECTED = preload("res://assets/images/ui/production/10_slots/slot_formation_selected.png")
 const UI_PROD_SLOT_PARTNER_NORMAL = preload("res://assets/images/ui/production/10_slots/slot_partner_normal.png")
 const UI_PROD_SLOT_PARTNER_SELECTED = preload("res://assets/images/ui/production/10_slots/slot_partner_selected.png")
-const UI_PROD_BOTTOM_NAV_BG = preload("res://assets/images/ui/production/11_bottom_navigation/bottom_nav_background.png")
 const UI_PROD_NAV_NORMAL_TEXTURES = [
 	preload("res://assets/images/ui/production/11_bottom_navigation/nav_survival_normal.png"),
 	preload("res://assets/images/ui/production/11_bottom_navigation/nav_explore_normal.png"),
@@ -170,6 +197,7 @@ var selected_formation_survivor_id: String = ""
 # 伙伴界面引用
 var partner_list_container: VBoxContainer
 var partner_detail_popup: PopupPanel
+var partner_select_popup: PopupPanel
 var partner_detail_name: Label
 var partner_detail_affinity: Label
 var partner_detail_star: Label
@@ -211,6 +239,8 @@ var selected_world_site: Dictionary = {}
 var world_map_detail_title: Label
 var world_map_detail_info: Label
 var world_map_go_button: Button
+var world_map_fit_button: Button
+var world_map_overview_mode: bool = true
 
 # 背包界面引用
 var inventory_label: Label
@@ -219,6 +249,8 @@ var base_content_container: VBoxContainer
 var base_detail_label: Label
 var base_selected_facility: Dictionary = {}
 var base_upgrade_button: Button
+var base_facility_buttons: Dictionary = {}
+var base_detail_panel: PanelContainer
 var reincarnation_content_container: VBoxContainer
 var codex_popup: PopupPanel
 var talent_popup: PopupPanel
@@ -314,6 +346,48 @@ class WorldMapConnections:
 				draw_string(font, label_position, label, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, label_color)
 
 
+class TeamRadarChart:
+	extends Control
+
+	var values := PackedFloat32Array([0.72, 0.86, 0.44, 0.38, 0.68, 0.76])
+	var labels := PackedStringArray(["输出", "生存", "控制", "治疗", "AOE", "速度"])
+
+	func _ready() -> void:
+		queue_redraw()
+
+	func _draw() -> void:
+		var center := Vector2(size.x * 0.5, size.y * 0.5 + 4.0)
+		var radius := minf(size.x, size.y) * 0.34
+		var font := ThemeDB.fallback_font
+		for ring in range(1, 5):
+			var ring_points := PackedVector2Array()
+			for i in range(7):
+				var angle := -PI * 0.5 + TAU * float(i % 6) / 6.0
+				ring_points.append(center + Vector2(cos(angle), sin(angle)) * radius * float(ring) / 4.0)
+			draw_polyline(ring_points, Color(0.52, 0.48, 0.40, 0.45), 1.0, true)
+
+		var value_points := PackedVector2Array()
+		for i in range(6):
+			var angle := -PI * 0.5 + TAU * float(i) / 6.0
+			var direction := Vector2(cos(angle), sin(angle))
+			var outer := center + direction * radius
+			draw_line(center, outer, Color(0.48, 0.45, 0.38, 0.42), 1.0, true)
+			value_points.append(center + direction * radius * clampf(values[i], 0.0, 1.0))
+
+		if value_points.size() >= 3:
+			draw_colored_polygon(value_points, Color(0.86, 0.49, 0.12, 0.30))
+			var outline := value_points.duplicate()
+			outline.append(value_points[0])
+			draw_polyline(outline, Color(1.0, 0.66, 0.20, 0.92), 2.0, true)
+
+		for i in range(6):
+			var angle := -PI * 0.5 + TAU * float(i) / 6.0
+			var direction := Vector2(cos(angle), sin(angle))
+			var text_size := font.get_string_size(labels[i], HORIZONTAL_ALIGNMENT_LEFT, -1, 13)
+			var text_pos := center + direction * (radius + 22.0) - Vector2(text_size.x * 0.5, -text_size.y * 0.35)
+			draw_string(font, text_pos, labels[i], HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(0.88, 0.84, 0.76, 1.0))
+
+
 func _ready() -> void:
 	GameState.ensure_initial_survivors()
 	_build_background_frame()
@@ -338,11 +412,11 @@ func _ready() -> void:
 func _build_background_frame() -> void:
 	background_frame = TextureRect.new()
 	background_frame.name = "BackgroundFrame"
-	background_frame.texture = UI_PROD_BG_CITY
+	background_frame.texture = UI_GLOBAL_BG_BLACK_IRON
 	background_frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	background_frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	background_frame.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	background_frame.modulate = Color(0.62, 0.58, 0.50, 0.48)
+	background_frame.stretch_mode = TextureRect.STRETCH_SCALE
+	background_frame.modulate = Color.WHITE
 	background_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(background_frame)
 
@@ -435,9 +509,36 @@ func _add_page_background(page: Control, texture: Texture2D, tint: Color = Color
 	page.add_child(bg)
 
 
-func _apply_panel_texture(panel: PanelContainer, texture: Texture2D = UI_PROD_PANEL_SCENE, margin: int = 16) -> void:
+func _apply_panel_texture(panel: PanelContainer, texture: Texture2D = UI_PROD_PANEL_LOCATION_INFO, margin: int = 16) -> void:
 	panel.add_theme_stylebox_override("panel", _make_ui_style(texture, margin, 28, true))
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+
+func _apply_tinted_panel_texture(
+	panel: PanelContainer,
+	texture: Texture2D,
+	tint: Color = Color(0.60, 0.56, 0.48, 1.0),
+	margin: int = 16,
+	slice: int = 28
+) -> void:
+	var empty := StyleBoxEmpty.new()
+	empty.content_margin_left = margin
+	empty.content_margin_top = margin
+	empty.content_margin_right = margin
+	empty.content_margin_bottom = margin
+	panel.add_theme_stylebox_override("panel", empty)
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var frame := NinePatchRect.new()
+	frame.name = "BlackIronFrame"
+	frame.texture = texture
+	frame.patch_margin_left = slice
+	frame.patch_margin_top = slice
+	frame.patch_margin_right = slice
+	frame.patch_margin_bottom = slice
+	frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	frame.modulate = tint
+	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_child(frame)
 
 
 func _apply_texture_button_skin(
@@ -617,7 +718,9 @@ func _apply_button_style(button: Button, kind: String = "row") -> void:
 			_apply_texture_button_skin(button, UI_PROD_CTA_PRIMARY_NORMAL, UI_PROD_CTA_PRIMARY_HOVER, UI_PROD_CTA_PRIMARY_PRESSED, UI_PROD_CTA_PRIMARY_DISABLED, 12, 34)
 			font_size = 19
 		"danger":
-			_apply_texture_button_skin(button, UI_PROD_CTA_DANGER_NORMAL, UI_PROD_CTA_DANGER_HOVER, UI_PROD_CTA_DANGER_PRESSED, UI_PROD_CTA_DANGER_DISABLED, 12, 34)
+			# The generated hover/pressed bitmaps have different transparent padding.
+			# Keep the normal frame for all active states so the button never appears to shrink.
+			_apply_texture_button_skin(button, UI_PROD_CTA_DANGER_NORMAL, UI_PROD_CTA_DANGER_NORMAL, UI_PROD_CTA_DANGER_NORMAL, UI_PROD_CTA_DANGER_DISABLED, 12, 34)
 			font_size = 18
 		"tab":
 			_apply_texture_button_skin(button, UI_PROD_CTA_SECONDARY_NORMAL, UI_PROD_CTA_SECONDARY_HOVER, UI_PROD_CTA_SECONDARY_PRESSED, UI_PROD_CTA_SECONDARY_DISABLED, 4, 34)
@@ -688,11 +791,20 @@ func _build_effect_status_bar() -> void:
 	_place_control(status_bar, 0, 0, 720, 154)
 	add_child(status_bar)
 
+	var resource_frame := TextureRect.new()
+	resource_frame.name = "StatusResourceFrame"
+	resource_frame.texture = UI_SUPPLEMENT_STATUS_BAR_BLACK_IRON
+	resource_frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	resource_frame.stretch_mode = TextureRect.STRETCH_SCALE
+	_place_control(resource_frame, 12, 54, 696, 74)
+	resource_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	status_bar.add_child(resource_frame)
+
 	var day_label := Label.new()
 	day_label.name = "DayLabel"
-	day_label.text = "DAY 1 · 上午  陈末"
-	_apply_label_style(day_label, 17, Color(0.86, 0.66, 0.38, 1.0))
-	_place_control(day_label, 24, 22, 310, 28)
+	day_label.text = "第 1 轮 · 第 1 天 · 上午 · 阴"
+	_apply_label_style(day_label, 18, Color(0.84, 0.72, 0.56, 1.0))
+	_place_control(day_label, 24, 16, 380, 32)
 	status_bar.add_child(day_label)
 
 	var name_label := Label.new()
@@ -731,39 +843,40 @@ func _build_effect_status_bar() -> void:
 	settings_button.pressed.connect(_on_settings_pressed)
 	status_bar.add_child(settings_button)
 
-	var hp_label := _make_status_value_label("❤ HP\n100/100", COLOR_TEXT)
+	var hp_label := _make_status_value_label("❤  HP\n100/100", Color(0.90, 0.30, 0.25, 1.0))
 	hp_label.name = "HpLabel"
-	_place_control(hp_label, 24, 62, 126, 44)
+	_place_control(hp_label, 18, 66, 132, 50)
 	status_bar.add_child(hp_label)
 
-	var stamina_label := _make_status_value_label("体力\n100/100", COLOR_AMBER)
+	var stamina_label := _make_status_value_label("⚡  体力\n100/100", COLOR_AMBER)
 	stamina_label.name = "StaminaLabel"
-	_place_control(stamina_label, 176, 62, 126, 44)
+	_place_control(stamina_label, 156, 66, 132, 50)
 	status_bar.add_child(stamina_label)
 
-	var hunger_label := _make_status_value_label("饥饿\n100/100", COLOR_AMBER)
+	var hunger_label := _make_status_value_label("●  饥饿\n100/100", Color(0.78, 0.58, 0.32, 1.0))
 	hunger_label.name = "HungerLabel"
-	_place_control(hunger_label, 328, 62, 126, 44)
+	_place_control(hunger_label, 294, 66, 132, 50)
 	status_bar.add_child(hunger_label)
 
-	var mutation_label := _make_status_value_label("感染\n0%", Color(0.86, 0.20, 0.18, 1.0))
+	var mutation_label := _make_status_value_label("☣  感染\n0%", Color(0.86, 0.20, 0.18, 1.0))
 	mutation_label.name = "MutationLabel"
-	_place_control(mutation_label, 556, 62, 126, 44)
+	_place_control(mutation_label, 570, 66, 132, 50)
 	status_bar.add_child(mutation_label)
 
-	var thirst_label := Label.new()
+	var thirst_label := _make_status_value_label("◆  水分\n100/100", Color(0.35, 0.68, 0.88, 1.0))
 	thirst_label.name = "ThirstLabel"
-	_apply_label_style(thirst_label, 12, Color(0.35, 0.68, 0.88, 1.0))
-	thirst_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(thirst_label, 456, 62, 86, 44)
+	_place_control(thirst_label, 432, 66, 132, 50)
 	status_bar.add_child(thirst_label)
 
 
 func _make_status_value_label(text: String, color: Color) -> Label:
 	var label := Label.new()
 	label.text = text
-	_apply_label_style(label, 12, color)
+	_apply_label_style(label, 14, color)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 0.92))
+	label.add_theme_constant_override("outline_size", 2)
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	return label
 
@@ -1014,74 +1127,90 @@ func _build_home_page() -> Control:
 func _build_effect_home_page() -> Control:
 	var page := Control.new()
 	page.name = "HomePage"
+	page.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	var location_card := PanelContainer.new()
-	_place_control(location_card, 18, 155, 684, 584)
-	location_card.add_theme_stylebox_override("panel", _make_ui_style(UI_PROD_PANEL_SCENE, 0, 28, true))
-	page.add_child(location_card)
+	var master := TextureRect.new()
+	master.name = "HomeMasterBackground"
+	master.texture = UI_HOME_SURVIVAL_MASTER
+	master.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	master.stretch_mode = TextureRect.STRETCH_SCALE
+	master.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	master.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	page.add_child(master)
+
+	# The master image owns the complete frame. Runtime values and actions stay as controls.
+	var date_back := ColorRect.new()
+	date_back.color = Color(0.015, 0.014, 0.012, 0.94)
+	_place_control(date_back, 188, 20, 360, 40)
+	date_back.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	page.add_child(date_back)
+	var home_date := Label.new()
+	home_date.name = "HomeDateValue"
+	_apply_label_style(home_date, 18, Color(0.82, 0.74, 0.64, 1.0))
+	home_date.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	home_date.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_place_control(home_date, 188, 20, 360, 40)
+	home_date.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	page.add_child(home_date)
+
+	var status_value_specs := [
+		["HomeHpValue", 39, Color(0.91, 0.33, 0.28, 1.0)],
+		["HomeStaminaValue", 181, COLOR_AMBER],
+		["HomeHungerValue", 323, Color(0.78, 0.58, 0.32, 1.0)],
+		["HomeThirstValue", 465, Color(0.35, 0.68, 0.88, 1.0)],
+		["HomeMutationValue", 607, Color(0.86, 0.20, 0.18, 1.0)]
+	]
+	for spec in status_value_specs:
+		var value_label := Label.new()
+		value_label.name = str(spec[0])
+		var value_color: Color = spec[2]
+		_apply_label_style(value_label, 11, value_color)
+		value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		value_label.add_theme_color_override("font_outline_color", Color.BLACK)
+		value_label.add_theme_constant_override("outline_size", 2)
+		_place_control(value_label, float(spec[1]), 119, 108, 24)
+		value_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		page.add_child(value_label)
 
 	var location_layer := Control.new()
+	location_layer.name = "HomeLocationCard"
 	location_layer.clip_contents = true
-	location_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	location_card.add_child(location_layer)
-
-	var location_bg := TextureRect.new()
-	location_bg.texture = UI_PROD_BG_SUBWAY
-	location_bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	location_bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	location_bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	location_bg.modulate = Color(0.92, 0.86, 0.72, 0.82)
-	location_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	location_layer.add_child(location_bg)
-
-	var location_shade := ColorRect.new()
-	location_shade.color = Color(0.0, 0.0, 0.0, 0.32)
-	location_shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	location_shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	location_layer.add_child(location_shade)
-
-	var area_detail_button := Button.new()
-	area_detail_button.text = "区域详情"
-	_place_control(area_detail_button, 528, 22, 128, 42)
-	_apply_button_style(area_detail_button, "panel")
-	area_detail_button.pressed.connect(func() -> void: _set_home_status("废弃地铁站 · 危险等级 2 · 已探索 18%。"))
-	location_layer.add_child(area_detail_button)
+	_place_control(location_layer, 24, 160, 672, 604)
+	page.add_child(location_layer)
 
 	scene_title_label = Label.new()
 	scene_title_label.text = "废弃地铁站"
 	_apply_label_style(scene_title_label, 34, Color(0.96, 0.92, 0.84, 1.0))
 	scene_title_label.add_theme_constant_override("outline_size", 3)
 	scene_title_label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 0.9))
-	_place_control(scene_title_label, 34, 34, 430, 54)
+	_place_control(scene_title_label, 30, 34, 430, 54)
 	location_layer.add_child(scene_title_label)
 
 	scene_desc_label = Label.new()
 	scene_desc_label.text = "黑暗中传来金属摩擦声。你握紧手中的武器，小心翼翼地向前移动。"
 	_apply_label_style(scene_desc_label, 17, Color(0.88, 0.86, 0.78, 1.0))
 	scene_desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_place_control(scene_desc_label, 34, 120, 360, 180)
+	_place_control(scene_desc_label, 30, 104, 390, 180)
 	location_layer.add_child(scene_desc_label)
 
 	scene_hot_container = VBoxContainer.new()
 	scene_hot_container.add_theme_constant_override("separation", 6)
 	scene_hot_container.visible = false
-	_place_control(scene_hot_container, 34, 300, 360, 120)
+	_place_control(scene_hot_container, 30, 292, 390, 120)
 	location_layer.add_child(scene_hot_container)
 
 	var continue_button := Button.new()
-	continue_button.text = "继续探索  >"
-	_place_control(continue_button, 170, 608, 380, 84)
+	continue_button.name = "ContinueExploreButton"
+	continue_button.text = ""
+	_place_control(continue_button, 174, 624, 372, 104)
 	continue_button.focus_mode = Control.FOCUS_ALL
-	_apply_button_style(continue_button, "primary")
-	continue_button.add_theme_color_override("font_color", Color(0.05, 0.035, 0.02, 1.0))
-	continue_button.add_theme_color_override("font_hover_color", Color(0.0, 0.0, 0.0, 1.0))
-	continue_button.add_theme_font_size_override("font_size", 34)
+	_apply_transparent_hotspot_skin(continue_button)
 	continue_button.pressed.connect(func() -> void: _switch_tab("explore"))
 	page.add_child(continue_button)
 
-	var mission_panel := PanelContainer.new()
-	_place_control(mission_panel, 24, 760, 672, 190)
-	mission_panel.add_theme_stylebox_override("panel", _make_ui_style(UI_PROD_PANEL_MAIN_QUEST, 12, 28, true))
+	var mission_panel := Control.new()
+	mission_panel.name = "MainMissionPanel"
+	_place_control(mission_panel, 26, 778, 668, 190)
 	page.add_child(mission_panel)
 
 	var mission_layer := Control.new()
@@ -1089,37 +1218,18 @@ func _build_effect_home_page() -> Control:
 	mission_panel.add_child(mission_layer)
 
 	story_card_title_label = Label.new()
-	story_card_title_label.text = "主线任务"
-	_apply_label_style(story_card_title_label, 24, Color(0.95, 0.32, 0.24, 1.0))
-	_place_control(story_card_title_label, 36, 22, 220, 34)
+	story_card_title_label.visible = false
 	mission_layer.add_child(story_card_title_label)
-
-	var mission_icon_frame := PanelContainer.new()
-	_place_control(mission_icon_frame, 34, 66, 70, 70)
-	mission_icon_frame.add_theme_stylebox_override("panel", _make_ui_style(UI_PROD_SLOT_FORMATION_SELECTED, 4, 16, true))
-	mission_layer.add_child(mission_icon_frame)
-	var mission_icon := TextureRect.new()
-	mission_icon.texture = UI_PROD_ICON_NOTIFICATION
-	mission_icon.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	mission_icon.offset_left = 12
-	mission_icon.offset_top = 12
-	mission_icon.offset_right = -12
-	mission_icon.offset_bottom = -12
-	mission_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	mission_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	mission_icon.modulate = Color(0.92, 0.22, 0.18, 1.0)
-	mission_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	mission_icon_frame.add_child(mission_icon)
 
 	story_card_text_label = Label.new()
 	story_card_text_label.text = "第 12 章：失联基地\n前往失联基地核心区，寻找信号源并确认幸存者下落。"
-	_apply_label_style(story_card_text_label, 17, COLOR_TEXT)
+	_apply_label_style(story_card_text_label, 16, COLOR_TEXT)
 	story_card_text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_place_control(story_card_text_label, 120, 64, 500, 70)
+	_place_control(story_card_text_label, 118, 62, 510, 76)
 	mission_layer.add_child(story_card_text_label)
 
 	var progress := TextureProgressBar.new()
-	_place_control(progress, 120, 142, 470, 12)
+	_place_control(progress, 118, 144, 470, 12)
 	progress.max_value = 1.0
 	progress.value = 0.0
 	progress.texture_under = UI_PROD_PROGRESS_TRACK
@@ -1130,31 +1240,37 @@ func _build_effect_home_page() -> Control:
 	progress_text.text = "0/1"
 	_apply_label_style(progress_text, 13, COLOR_AMBER)
 	progress_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_place_control(progress_text, 590, 132, 48, 24)
+	_place_control(progress_text, 590, 134, 48, 24)
 	mission_layer.add_child(progress_text)
 
 	story_card_button_container = HBoxContainer.new()
 	story_card_button_container.visible = false
 	mission_layer.add_child(story_card_button_container)
 
-	var search_button := _make_home_action_button("搜索\n搜寻资源", "search")
-	_place_control(search_button, 24, 976, 212, 130)
+	var search_button := Button.new()
+	search_button.name = "HomeSearchButton"
+	_place_control(search_button, 24, 990, 216, 144)
+	_apply_transparent_hotspot_skin(search_button)
 	search_button.pressed.connect(func() -> void: _switch_tab("explore"))
 	page.add_child(search_button)
 
-	var rest_button := _make_home_action_button("休息\n恢复状态", "rest")
-	_place_control(rest_button, 254, 976, 212, 130)
+	var rest_button := Button.new()
+	rest_button.name = "HomeRestButton"
+	_place_control(rest_button, 252, 990, 216, 144)
+	_apply_transparent_hotspot_skin(rest_button)
 	rest_button.pressed.connect(_on_rest_pressed)
 	page.add_child(rest_button)
 
-	var leave_button := _make_home_action_button("撤离\n离开当前区域", "leave")
-	_place_control(leave_button, 484, 976, 212, 130)
+	var leave_button := Button.new()
+	leave_button.name = "HomeLeaveButton"
+	_place_control(leave_button, 480, 990, 216, 144)
+	_apply_transparent_hotspot_skin(leave_button)
 	leave_button.pressed.connect(func() -> void: _set_home_status("当前区域暂未开放撤离结算。"))
 	page.add_child(leave_button)
 
 	home_status_panel = _make_panel_container()
 	home_status_panel.visible = false
-	_place_control(home_status_panel, 24, 1112, 672, 54)
+	_place_control(home_status_panel, 54, 722, 612, 50)
 	page.add_child(home_status_panel)
 
 	var status_box := _make_panel_margin(home_status_panel, 10)
@@ -1203,21 +1319,28 @@ func _build_formation_page() -> Control:
 
 	formation_label = Label.new()
 	formation_label.text = "编队 · 强攻阵"
-	_apply_label_style(formation_label, 24, COLOR_TEXT)
+	_apply_label_style(formation_label, 32, COLOR_TEXT)
 	formation_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(formation_label, 0, 0, 672, 40)
+	_place_control(formation_label, 0, 20, 720, 52)
 	page.add_child(formation_label)
 
+	var power_row := Label.new()
+	power_row.text = "队伍战力  %d" % (_get_team_level(GameState.player) * 1000)
+	_apply_label_style(power_row, 29, COLOR_AMBER)
+	power_row.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(power_row, 0, 91, 720, 48)
+	page.add_child(power_row)
+
 	var card_row := HBoxContainer.new()
-	card_row.add_theme_constant_override("separation", 4)
-	_place_control(card_row, 0, 48, 672, 300)
+	card_row.add_theme_constant_override("separation", 0)
+	_place_control(card_row, 12, 160, 696, 360)
 	page.add_child(card_row)
 	for survivor in _get_formation_showcase_survivors():
 		card_row.add_child(_make_formation_character_card(survivor))
 
 	var grid_panel := PanelContainer.new()
-	_place_control(grid_panel, 0, 360, 362, 300)
-	_apply_panel_texture(grid_panel, UI_PROD_PANEL_FORMATION, 14)
+	_place_control(grid_panel, 24, 540, 362, 440)
+	_apply_tinted_panel_texture(grid_panel, UI_PROD_PANEL_FORMATION, Color(0.56, 0.51, 0.42, 1.0), 14)
 	page.add_child(grid_panel)
 	var grid_box := _make_panel_margin(grid_panel, 10)
 
@@ -1238,7 +1361,7 @@ func _build_formation_page() -> Control:
 	formation_grid_buttons = []
 	for i in range(9):
 		var grid_button := Button.new()
-		grid_button.custom_minimum_size = Vector2(106, 62)
+		grid_button.custom_minimum_size = Vector2(96, 92)
 		grid_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		_apply_slot_button_skin(grid_button, UI_PROD_SLOT_FORMATION_NORMAL, UI_PROD_SLOT_FORMATION_SELECTED)
 		grid_button.pressed.connect(_on_grid_cell_pressed.bind(i))
@@ -1246,76 +1369,51 @@ func _build_formation_page() -> Control:
 		formation_grid_buttons.append(grid_button)
 
 	var rating_panel := PanelContainer.new()
-	_place_control(rating_panel, 374, 360, 298, 300)
-	_apply_panel_texture(rating_panel, UI_PROD_PANEL_TEAM_RATING, 14)
+	_place_control(rating_panel, 398, 540, 298, 440)
+	_apply_tinted_panel_texture(rating_panel, UI_PROD_PANEL_TEAM_RATING, Color(0.56, 0.51, 0.42, 1.0), 14)
 	page.add_child(rating_panel)
 	var rating_box := _make_panel_margin(rating_panel, 14)
 	var rating_title := Label.new()
 	rating_title.text = "队伍能力评估"
 	_apply_label_style(rating_title, 16, COLOR_AMBER)
 	rating_box.add_child(rating_title)
-	for line in ["输出  B", "生存  A", "控制  C", "治疗  C", "AOE   B"]:
-		var rating_line := Label.new()
-		rating_line.text = line
-		_apply_label_style(rating_line, 15, COLOR_TEXT)
-		rating_box.add_child(rating_line)
+	var radar := TeamRadarChart.new()
+	radar.name = "TeamRadar"
+	radar.custom_minimum_size = Vector2(250, 322)
+	radar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	radar.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	rating_box.add_child(radar)
+	var rating_summary := Label.new()
+	rating_summary.text = "综合评价  B  ·  生存能力突出"
+	_apply_label_style(rating_summary, 13, COLOR_TEXT)
+	rating_summary.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	rating_box.add_child(rating_summary)
 
 	formation_selection_label = Label.new()
-	formation_selection_label.text = "点击伙伴，再点击阵位上阵；点击已有阵位可下阵"
+	formation_selection_label.text = "点击「调整编队」选择伙伴，再点击阵位放置"
 	_apply_label_style(formation_selection_label, 13, COLOR_MUTED)
 	formation_selection_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(formation_selection_label, 0, 666, 672, 24)
+	_place_control(formation_selection_label, 24, 988, 672, 22)
 	page.add_child(formation_selection_label)
 
-	var survivor_panel := PanelContainer.new()
-	_place_control(survivor_panel, 0, 690, 672, 98)
-	_apply_panel_texture(survivor_panel, UI_PROD_PANEL_LOCATION_INFO, 14)
-	page.add_child(survivor_panel)
-	var survivor_box := _make_panel_margin(survivor_panel, 8)
-
-	var survivor_title := Label.new()
-	survivor_title.text = "所有伙伴"
-	_apply_label_style(survivor_title, 15, COLOR_AMBER)
-	survivor_box.add_child(survivor_title)
-
-	formation_debug_label = Label.new()
-	formation_debug_label.text = ""
-	formation_debug_label.visible = false
-	_apply_label_style(formation_debug_label, 12, COLOR_MUTED)
-	formation_debug_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	survivor_box.add_child(formation_debug_label)
-
-	# 伙伴列表滚动区域
-	var scroll := ScrollContainer.new()
-	scroll.custom_minimum_size = Vector2(0, 46)
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	survivor_box.add_child(scroll)
-
-	formation_survivor_container = VBoxContainer.new()
-	formation_survivor_container.add_theme_constant_override("separation", 4)
-	formation_survivor_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	formation_survivor_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scroll.add_child(formation_survivor_container)
 
 	var adjust_button := Button.new()
 	adjust_button.text = "调整编队"
-	_place_control(adjust_button, 0, 800, 218, 78)
+	_place_control(adjust_button, 24, 1018, 208, 112)
 	_apply_button_style(adjust_button, "adjust_team")
-	adjust_button.pressed.connect(_on_switch_formation_pressed)
+	adjust_button.pressed.connect(_on_adjust_team_pressed)
 	page.add_child(adjust_button)
 
 	var equip_button := Button.new()
 	equip_button.text = "装备"
-	_place_control(equip_button, 227, 800, 218, 78)
+	_place_control(equip_button, 256, 1018, 208, 112)
 	_apply_button_style(equip_button, "equipment")
 	equip_button.pressed.connect(func() -> void: _set_home_status("装备页待接入角色装备快捷入口。"))
 	page.add_child(equip_button)
 
 	var skill_button := Button.new()
 	skill_button.text = "技能"
-	_place_control(skill_button, 454, 800, 218, 78)
+	_place_control(skill_button, 488, 1018, 208, 112)
 	_apply_button_style(skill_button, "skill")
 	skill_button.pressed.connect(func() -> void: _set_home_status("技能页待接入角色技能强化入口。"))
 	page.add_child(skill_button)
@@ -1344,43 +1442,124 @@ func _get_formation_showcase_survivors() -> Array:
 
 func _make_formation_character_card(survivor: Dictionary) -> Control:
 	var card := PanelContainer.new()
-	card.custom_minimum_size = Vector2(130, 300)
-	_apply_panel_texture(card, UI_PROD_PANEL_CHARACTER, 8)
+	card.custom_minimum_size = Vector2(138, 360)
+	card.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+
+	var survivor_id := str(survivor.get("id", ""))
+	var role_name := "输出"
+	var role_color := Color(0.84, 0.35, 0.22, 1.0)
+	var hp_texture: Texture2D = UI_PROD_PROGRESS_RED
+	match survivor_id:
+		"lin_mei":
+			role_name = "治疗"
+			role_color = Color(0.48, 0.67, 0.30, 1.0)
+			hp_texture = UI_PROD_PROGRESS_GREEN
+		"old_zhou", "lao_zhou":
+			role_name = "坦克"
+			role_color = Color(0.35, 0.61, 0.72, 1.0)
+			hp_texture = UI_PROD_PROGRESS_BLUE
+		"chen_feng":
+			role_name = "控制"
+			role_color = Color(0.58, 0.39, 0.69, 1.0)
+			hp_texture = UI_PROD_PROGRESS_PURPLE
+		"su_xiao":
+			role_name = "输出"
+			role_color = Color(0.82, 0.57, 0.24, 1.0)
+			hp_texture = UI_PROD_PROGRESS_GOLD
+
+	var frame := TextureRect.new()
+	frame.texture = UI_CHARACTER_STATUS_FRAME
+	frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	frame.stretch_mode = TextureRect.STRETCH_SCALE
+	frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	card.add_child(frame)
 
 	var layer := Control.new()
 	layer.clip_contents = true
 	layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	card.add_child(layer)
 
+	var name := Label.new()
+	name.text = str(survivor.get("name", "伙伴"))
+	_apply_label_style(name, 16, COLOR_TEXT)
+	_place_control(name, 10, 10, 116, 24)
+	name.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(name)
+
+	var role := Label.new()
+	role.text = role_name
+	_apply_label_style(role, 12, role_color)
+	_place_control(role, 10, 34, 70, 20)
+	role.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(role)
+
 	var character := TextureRect.new()
-	character.texture = _get_production_character_texture(str(survivor.get("id", "")))
+	character.texture = _get_production_character_texture(survivor_id)
 	character.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	character.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	_place_control(character, 8, 8, 114, 238)
+	_place_control(character, 8, 50, 122, 214)
 	character.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(character)
 
 	var shade := ColorRect.new()
-	shade.color = Color(0.0, 0.0, 0.0, 0.34)
-	_place_control(shade, 6, 238, 118, 56)
+	shade.color = Color(0.015, 0.018, 0.018, 0.82)
+	_place_control(shade, 7, 260, 124, 94)
 	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(shade)
 
-	var name := Label.new()
-	name.text = str(survivor.get("name", "伙伴"))
-	_apply_label_style(name, 15, COLOR_TEXT)
-	name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(name, 8, 242, 114, 24)
-	name.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	layer.add_child(name)
+	var level := Label.new()
+	level.text = "Lv.%d" % int(survivor.get("level", 1))
+	_apply_label_style(level, 13, COLOR_TEXT)
+	_place_control(level, 10, 266, 55, 20)
+	level.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(level)
 
-	var info := Label.new()
-	info.text = "Lv.%d\n%s" % [int(survivor.get("level", 1)), str(survivor.get("profession", ""))]
-	_apply_label_style(info, 11, COLOR_AMBER)
-	info.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(info, 8, 266, 114, 30)
-	info.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	layer.add_child(info)
+	var hp := TextureProgressBar.new()
+	hp.texture_under = UI_PROD_PROGRESS_TRACK
+	hp.texture_progress = hp_texture
+	hp.value = clampf(float(survivor.get("hp", 100.0)), 0.0, float(survivor.get("max_hp", 100.0)))
+	hp.max_value = maxf(1.0, float(survivor.get("max_hp", 100.0)))
+	_place_control(hp, 9, 288, 120, 12)
+	hp.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(hp)
+
+	var hp_text := Label.new()
+	hp_text.text = "%d/%d" % [int(survivor.get("hp", 100)), int(survivor.get("max_hp", 100))]
+	_apply_label_style(hp_text, 10, COLOR_MUTED)
+	hp_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(hp_text, 10, 299, 118, 16)
+	hp_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(hp_text)
+
+	var item_textures: Array[Texture2D] = [UI_PROD_ITEM_PARTS, UI_PROD_ITEM_BATTERY, UI_PROD_ITEM_BANDAGE]
+	for i in range(3):
+		var slot := NinePatchRect.new()
+		slot.texture = UI_PROD_SLOT_EQUIPMENT
+		slot.patch_margin_left = 16
+		slot.patch_margin_top = 16
+		slot.patch_margin_right = 16
+		slot.patch_margin_bottom = 16
+		_place_control(slot, 9 + i * 41, 316, 38, 36)
+		slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		layer.add_child(slot)
+		var item := TextureRect.new()
+		item.texture = item_textures[i]
+		item.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		item.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		_place_control(item, 14 + i * 41, 320, 28, 28)
+		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		layer.add_child(item)
+
+	var click := Button.new()
+	click.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	click.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+	click.add_theme_stylebox_override("hover", _make_ui_style(UI_PROD_FRAME_SELECTED_GLOW, 0, 30, false))
+	click.add_theme_stylebox_override("pressed", _make_ui_style(UI_PROD_FRAME_SELECTED_GLOW, 0, 30, false))
+	click.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	click.pressed.connect(_on_partner_clicked.bind(survivor))
+	card.add_child(click)
+
 	return card
 
 
@@ -1393,7 +1572,20 @@ func _get_production_character_texture(survivor_id: String) -> Texture2D:
 			asset_id = "lao_zhou"
 	var path := "res://assets/images/ui/production/12_characters/full/char_%s_full.png" % asset_id
 	if ResourceLoader.exists(path):
-		return load(path) as Texture2D
+		var source := load(path) as Texture2D
+		var crop_regions := {
+			"chen_mo": Rect2(120, 18, 540, 1116),
+			"lin_mei": Rect2(150, 18, 468, 1116),
+			"lao_zhou": Rect2(100, 18, 568, 1116),
+			"chen_feng": Rect2(160, 18, 460, 1116),
+			"su_xiao": Rect2(130, 18, 508, 1116)
+		}
+		if crop_regions.has(asset_id):
+			var cropped := AtlasTexture.new()
+			cropped.atlas = source
+			cropped.region = crop_regions[asset_id]
+			return cropped
+		return source
 	var portrait_path := "res://assets/images/ui/production/12_characters/portraits/portrait_%s.png" % asset_id
 	if ResourceLoader.exists(portrait_path):
 		return load(portrait_path) as Texture2D
@@ -1436,6 +1628,70 @@ func _build_partners_page() -> Control:
 	_build_partner_detail_popup()
 
 	return page
+
+
+# 打开伙伴选择弹窗（调整编队）
+func _on_adjust_team_pressed() -> void:
+	if partner_select_popup == null:
+		_build_partner_select_popup()
+	_refresh_formation()
+	partner_select_popup.popup_centered()
+
+
+# ============================================================
+# 伙伴选择弹窗（调整编队）
+# ============================================================
+func _build_partner_select_popup() -> void:
+	partner_select_popup = PopupPanel.new()
+	partner_select_popup.size = Vector2(640, 860)
+	partner_select_popup.add_theme_stylebox_override("panel", _make_ui_style(UI_PROD_WINDOW_MEDIUM, 16, 28, true))
+	add_child(partner_select_popup)
+
+	var layer := Control.new()
+	layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	partner_select_popup.add_child(layer)
+
+	var title := Label.new()
+	title.text = "调整编队 · 选择伙伴"
+	_apply_label_style(title, 24, COLOR_TEXT)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(title, 20, 18, 600, 40)
+	layer.add_child(title)
+
+	var hint := Label.new()
+	hint.text = "点击伙伴选中，再点击阵位上阵；点击已有阵位可下阵"
+	_apply_label_style(hint, 13, COLOR_MUTED)
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(hint, 20, 60, 600, 24)
+	layer.add_child(hint)
+
+	formation_debug_label = Label.new()
+	formation_debug_label.text = ""
+	formation_debug_label.visible = false
+	_apply_label_style(formation_debug_label, 12, COLOR_MUTED)
+	formation_debug_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_place_control(formation_debug_label, 20, 86, 600, 18)
+	layer.add_child(formation_debug_label)
+
+	var scroll := ScrollContainer.new()
+	_place_control(scroll, 20, 108, 600, 660)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	layer.add_child(scroll)
+
+	formation_survivor_container = VBoxContainer.new()
+	formation_survivor_container.add_theme_constant_override("separation", 6)
+	formation_survivor_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	formation_survivor_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.add_child(formation_survivor_container)
+
+	var close_button := Button.new()
+	close_button.text = "关闭"
+	_place_control(close_button, 220, 780, 200, 56)
+	_apply_button_style(close_button, "panel")
+	close_button.pressed.connect(func() -> void: partner_select_popup.hide())
+	layer.add_child(close_button)
 
 
 func _build_partner_detail_popup() -> void:
@@ -1769,7 +2025,7 @@ func _build_explore_page() -> Control:
 
 	var map_panel := PanelContainer.new()
 	_place_control(map_panel, 24, 190, 672, 890)
-	_apply_panel_texture(map_panel, UI_PROD_PANEL_SCENE, 0)
+	_apply_panel_texture(map_panel, UI_PROD_PANEL_LOCATION_INFO, 0)
 	page.add_child(map_panel)
 
 	var map_margin := MarginContainer.new()
@@ -1821,47 +2077,95 @@ func _build_inventory_page() -> Control:
 func _build_base_page() -> Control:
 	var page := Control.new()
 	page.name = "BasePage"
-	_add_page_background(page, UI_PROD_BG_BASE, Color(0.55, 0.48, 0.36, 0.30))
-
-	var header := HBoxContainer.new()
-	header.add_theme_constant_override("separation", 8)
-	_place_control(header, 24, 155, 672, 72)
-	page.add_child(header)
-
-	var title := Label.new()
-	title.text = "避难所"
-	_apply_label_style(title, 22, COLOR_TEXT)
-	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	header.add_child(title)
-
-	var upgrade_button := Button.new()
-	base_upgrade_button = upgrade_button
-	upgrade_button.text = "升级设施"
-	upgrade_button.custom_minimum_size = Vector2(160, 56)
-	_apply_button_style(upgrade_button, "primary")
-	upgrade_button.pressed.connect(_on_base_upgrade_pressed)
-	header.add_child(upgrade_button)
 
 	var scroll := ScrollContainer.new()
-	_place_control(scroll, 24, 250, 672, 858)
+	scroll.name = "BaseCompositeScroll"
+	_place_control(scroll, 12, 140, 696, 999)
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	page.add_child(scroll)
 
-	base_content_container = VBoxContainer.new()
-	base_content_container.add_theme_constant_override("separation", 8)
-	base_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(base_content_container)
-	inventory_content_container = base_content_container
+	var composite_layer := Control.new()
+	composite_layer.name = "BaseCompositeLayer"
+	composite_layer.custom_minimum_size = Vector2(696, 1237)
+	scroll.add_child(composite_layer)
+
+	var composite := TextureRect.new()
+	composite.texture = UI_BASE_COMPOSITE
+	composite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	composite.stretch_mode = TextureRect.STRETCH_SCALE
+	_place_control(composite, 0, 0, 696, 1237)
+	composite.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	composite_layer.add_child(composite)
+
+	base_facility_buttons.clear()
+	var facilities := _get_base_facility_definitions()
+	var regions := [
+		Rect2(20, 424, 318, 258), Rect2(354, 424, 320, 258),
+		Rect2(20, 703, 318, 251), Rect2(354, 703, 320, 251),
+		Rect2(20, 979, 318, 242), Rect2(354, 979, 320, 242)
+	]
+	for i in range(facilities.size()):
+		var facility: Dictionary = facilities[i]
+		var button := _make_transparent_facility_hotspot(facility, regions[i])
+		composite_layer.add_child(button)
+		base_facility_buttons[str(facility.get("id", ""))] = button
+
+	base_detail_panel = PanelContainer.new()
+	base_detail_panel.name = "BaseFacilityDetail"
+	_place_control(base_detail_panel, 70, 790, 580, 246)
+	_apply_panel_texture(base_detail_panel, UI_PROD_WINDOW_MEDIUM, 18)
+	base_detail_panel.visible = false
+	page.add_child(base_detail_panel)
+	var detail_box := _make_panel_margin(base_detail_panel, 20)
+
+	var detail_title := Label.new()
+	detail_title.text = "设施详情"
+	_apply_label_style(detail_title, 20, COLOR_AMBER)
+	detail_box.add_child(detail_title)
+
+	base_detail_label = Label.new()
+	base_detail_label.name = "BodyLabel"
+	_apply_label_style(base_detail_label, 14, COLOR_TEXT)
+	base_detail_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	base_detail_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	detail_box.add_child(base_detail_label)
+
+	var action_row := HBoxContainer.new()
+	action_row.add_theme_constant_override("separation", 12)
+	detail_box.add_child(action_row)
+	base_upgrade_button = Button.new()
+	base_upgrade_button.text = "升级设施"
+	base_upgrade_button.custom_minimum_size = Vector2(330, 58)
+	base_upgrade_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_button_style(base_upgrade_button, "primary")
+	base_upgrade_button.pressed.connect(_on_base_upgrade_pressed)
+	action_row.add_child(base_upgrade_button)
+	var close_button := Button.new()
+	close_button.text = "关闭"
+	close_button.custom_minimum_size = Vector2(140, 58)
+	_apply_button_style(close_button, "secondary")
+	close_button.pressed.connect(func() -> void: base_detail_panel.visible = false)
+	action_row.add_child(close_button)
 
 	return page
+
+
+func _apply_transparent_hotspot_skin(button: Button) -> void:
+	button.text = ""
+	button.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+	var hover := _make_flat_style(Color(1.0, 0.52, 0.08, 0.08), Color(0.96, 0.58, 0.14, 0.82), 2, 2, 0)
+	var pressed := _make_flat_style(Color(1.0, 0.44, 0.04, 0.15), Color(1.0, 0.66, 0.18, 1.0), 2, 2, 0)
+	button.add_theme_stylebox_override("hover", hover)
+	button.add_theme_stylebox_override("pressed", pressed)
+	button.add_theme_stylebox_override("focus", hover)
+	button.add_theme_stylebox_override("disabled", StyleBoxEmpty.new())
 
 
 func _build_reincarnation_page() -> Control:
 	var page := Control.new()
 	page.name = "ReincarnationPage"
-	_add_page_background(page, UI_PROD_BG_REINCARNATION, Color(0.50, 0.42, 0.36, 0.28))
 
 	var title := Label.new()
 	title.text = "轮回殿堂"
@@ -1883,6 +2187,7 @@ func _build_reincarnation_page() -> Control:
 	scroll.add_child(reincarnation_content_container)
 
 	var action_button := Button.new()
+	action_button.name = "ReincarnateButton"
 	action_button.text = "主动轮回"
 	_place_control(action_button, 79, 1083, 562, 86)
 	action_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -1987,35 +2292,15 @@ func _build_team_page() -> Control:
 	var page := Control.new()
 	page.name = "TeamPage"
 
-	var sub_tab_row := HBoxContainer.new()
-	sub_tab_row.add_theme_constant_override("separation", 6)
-	_place_control(sub_tab_row, 24, 155, 672, 52)
-	page.add_child(sub_tab_row)
-
-	var formation_tab := Button.new()
-	formation_tab.text = "编队"
-	formation_tab.custom_minimum_size = Vector2(0, 38)
-	formation_tab.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_apply_button_style(formation_tab, "panel")
-	formation_tab.pressed.connect(_on_team_sub_tab_pressed.bind("formation"))
-	sub_tab_row.add_child(formation_tab)
-
-	var partner_tab := Button.new()
-	partner_tab.text = "伙伴"
-	partner_tab.custom_minimum_size = Vector2(0, 38)
-	partner_tab.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_apply_button_style(partner_tab, "panel")
-	partner_tab.pressed.connect(_on_team_sub_tab_pressed.bind("partners"))
-	sub_tab_row.add_child(partner_tab)
+	# 编队页直接铺满（对齐效果图），不再使用「编队/伙伴」子标签
 
 	team_formation_view = _build_formation_page()
-	_place_control(team_formation_view, 24, 218, 672, 890)
+	team_formation_view.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	page.add_child(team_formation_view)
 
-	team_partner_view = _build_partners_page()
-	_place_control(team_partner_view, 24, 218, 672, 890)
-	team_partner_view.visible = false
-	page.add_child(team_partner_view)
+	# 由编队页触发的弹窗：伙伴详情 + 伙伴选择
+	_build_partner_detail_popup()
+	_build_partner_select_popup()
 
 	return page
 
@@ -2043,13 +2328,11 @@ func _build_tab_navigation() -> void:
 	tab_bar.resized.connect(_layout_tab_navigation)
 	add_child(tab_bar)
 
-	var nav_bg := NinePatchRect.new()
+	var nav_bg := TextureRect.new()
 	nav_bg.name = "BottomNavBackground"
-	nav_bg.texture = UI_PROD_BOTTOM_NAV_BG
-	nav_bg.patch_margin_left = 30
-	nav_bg.patch_margin_top = 20
-	nav_bg.patch_margin_right = 30
-	nav_bg.patch_margin_bottom = 20
+	nav_bg.texture = UI_SUPPLEMENT_BOTTOM_NAV_BLACK_IRON
+	nav_bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	nav_bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	nav_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	tab_bar.add_child(nav_bg)
 
@@ -2088,10 +2371,11 @@ func _layout_tab_navigation() -> void:
 	var start_x := roundf((available_w - total_w) * 0.5)
 	var start_y := roundf((bottom_tab_bar.size.y - button_h) * 0.5)
 
-	var nav_bg := bottom_tab_bar.get_node_or_null("BottomNavBackground") as NinePatchRect
+	var nav_bg := bottom_tab_bar.get_node_or_null("BottomNavBackground") as TextureRect
 	if nav_bg != null:
-		nav_bg.position = Vector2(0, maxf(0.0, start_y + 2.0 * scale))
-		nav_bg.size = Vector2(available_w, minf(bottom_tab_bar.size.y - nav_bg.position.y, 92.0 * scale))
+		var shell_h := minf(bottom_tab_bar.size.y, available_w * 349.0 / 2146.0)
+		nav_bg.position = Vector2(0, roundf((bottom_tab_bar.size.y - shell_h) * 0.5))
+		nav_bg.size = Vector2(available_w, shell_h)
 
 	for id in tab_buttons:
 		var button: Button = tab_buttons[id]
@@ -2109,6 +2393,10 @@ func _on_tab_pressed(tab_id: String) -> void:
 
 func _switch_tab(tab_id: String) -> void:
 	current_tab = tab_id
+	# The formation page owns its full title/power header, matching the production mockup.
+	# Hide the persistent survival status bar there so the two headers never overlap.
+	if status_bar != null:
+		status_bar.visible = tab_id != "team"
 
 	# 更新按钮状态
 	for id in tab_buttons:
@@ -2204,7 +2492,7 @@ func _refresh_status_bar() -> void:
 	var stamina_label: Label = status_bar.find_child("StaminaLabel", true, false)
 	var mutation_label: Label = status_bar.find_child("MutationLabel", true, false)
 
-	day_label.text = "DAY %d · %s" % [player.day, player.get_time_label()]
+	day_label.text = "第 %d 轮 · 第 %d 天 · %s · 阴" % [player.reincarnation, player.day, player.get_time_label()]
 	name_label.text = player.player_name
 	weather_label.text = _get_weather_label(player.day)
 
@@ -2213,12 +2501,11 @@ func _refresh_status_bar() -> void:
 	for survivor in player.survivors:
 		hp_total += int(survivor.get("hp", 0))
 		hp_max_total += int(survivor.get("max_hp", 1))
-	var hp_ratio := 100 if hp_max_total == 0 else int(float(hp_total) / float(hp_max_total) * 100.0)
-	hp_label.text = "❤️ %d%%" % hp_ratio
-	hunger_label.text = "🍖 %d" % player.hunger
-	thirst_label.text = "💧 %d" % player.thirst
-	stamina_label.text = "⚡ %d" % player.stamina
-	mutation_label.text = "☣ %d%%" % player.mutation
+	hp_label.text = "❤  HP\n%d/%d" % [hp_total, hp_max_total]
+	hunger_label.text = "●  饥饿\n%d/100" % player.hunger
+	thirst_label.text = "◆  水分\n%d/100" % player.thirst
+	stamina_label.text = "⚡  体力\n%d/100" % player.stamina
+	mutation_label.text = "☣  感染\n%d%%" % player.mutation
 
 
 func _get_weather_label(day: int) -> String:
@@ -2228,8 +2515,34 @@ func _get_weather_label(day: int) -> String:
 
 func _refresh_home() -> void:
 	var player := GameState.player
+	_refresh_home_master_status(player)
 	_refresh_scene_area(player)
 	_refresh_story_card(player)
+
+
+func _refresh_home_master_status(player: PlayerData) -> void:
+	var page := tab_pages.get("camp") as Control
+	if page == null:
+		return
+	var date_label := page.find_child("HomeDateValue", true, false) as Label
+	if date_label != null:
+		date_label.text = "第 %d 轮 · 第 %d 天 · %s · 阴" % [player.reincarnation, player.day, player.get_time_label()]
+	var hp_total := 0
+	var hp_max_total := 0
+	for survivor in player.survivors:
+		hp_total += int(survivor.get("hp", 0))
+		hp_max_total += int(survivor.get("max_hp", 1))
+	var values := {
+		"HomeHpValue": "%d/%d" % [hp_total, hp_max_total],
+		"HomeStaminaValue": "%d/100" % player.stamina,
+		"HomeHungerValue": "%d/100" % player.hunger,
+		"HomeThirstValue": "%d/100" % player.thirst,
+		"HomeMutationValue": "%d%%" % player.mutation
+	}
+	for label_name in values:
+		var value_label := page.find_child(str(label_name), true, false) as Label
+		if value_label != null:
+			value_label.text = str(values[label_name])
 
 
 func _refresh_scene_area(player: PlayerData) -> void:
@@ -2517,7 +2830,7 @@ func _find_survivor_grid_position(survivor_id: String) -> int:
 # 更新选择提示文字
 func _update_formation_selection_label() -> void:
 	if selected_formation_survivor_id == "":
-		formation_selection_label.text = "点击伙伴，再点击阵位上阵；点击已有阵位可下阵"
+		formation_selection_label.text = "点击「调整编队」选择伙伴，再点击阵位放置"
 		formation_selection_label.add_theme_color_override("font_color", COLOR_MUTED)
 	else:
 		var survivor_name := _get_survivor_name(selected_formation_survivor_id)
@@ -2534,6 +2847,8 @@ func _get_survivor_name(survivor_id: String) -> String:
 
 func _refresh_partners() -> void:
 	# 清空列表
+	if partner_list_container == null:
+		return
 	for child in partner_list_container.get_children():
 		partner_list_container.remove_child(child)
 		child.queue_free()
@@ -2886,8 +3201,10 @@ func _show_world_map() -> void:
 	map_header.add_child(map_title)
 
 	var fit_mode_button := Button.new()
-	fit_mode_button.text = "重置视野"
-	fit_mode_button.tooltip_text = "恢复地图缩放并定位到当前地点"
+	world_map_fit_button = fit_mode_button
+	world_map_overview_mode = true
+	fit_mode_button.text = "放大探索"
+	fit_mode_button.tooltip_text = "在完整全图与可拖拽细节视图之间切换"
 	fit_mode_button.custom_minimum_size = Vector2(96, 34)
 	_apply_button_style(fit_mode_button)
 	fit_mode_button.pressed.connect(_on_world_map_immersive_pressed)
@@ -2912,7 +3229,7 @@ func _add_world_map_detail_card() -> void:
 		selected_world_site = sites[0].duplicate(true)
 	var panel := _make_panel_container()
 	_apply_panel_texture(panel, UI_PROD_PANEL_LOCATION_INFO, 14)
-	panel.custom_minimum_size = Vector2(0, 168)
+	panel.custom_minimum_size = Vector2(0, 200)
 	explore_route_container.add_child(panel)
 	var box := _make_panel_margin(panel, 12)
 
@@ -2930,7 +3247,7 @@ func _add_world_map_detail_card() -> void:
 	var go_button := Button.new()
 	world_map_go_button = go_button
 	go_button.text = "前往"
-	go_button.custom_minimum_size = Vector2(0, 46)
+	go_button.custom_minimum_size = Vector2(0, 84)
 	go_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_apply_button_style(go_button, "primary")
 	go_button.pressed.connect(_enter_selected_world_site)
@@ -3027,23 +3344,39 @@ func _fit_world_map() -> void:
 	var viewport_size := world_map_viewport.size
 	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
 		return
-	var height_fit_zoom := viewport_size.y / world_map_base_size.y
-	# Deliberately keep a readable canvas larger than the viewport so routes do not collapse together.
-	var readable_zoom := maxf(height_fit_zoom, 0.62)
-	_set_world_map_zoom(readable_zoom)
-	call_deferred("_center_world_map_on_selected")
+	var full_map_zoom := minf(
+		viewport_size.x / world_map_base_size.x,
+		viewport_size.y / world_map_base_size.y
+	)
+	world_map_overview_mode = true
+	_set_world_map_zoom(full_map_zoom)
+	if world_map_fit_button != null:
+		world_map_fit_button.text = "放大探索"
+	if world_map_scroll != null:
+		world_map_scroll.scroll_horizontal = 0
+		world_map_scroll.scroll_vertical = 0
 
 
 func _on_world_map_immersive_pressed() -> void:
-	_fit_world_map()
+	if world_map_overview_mode:
+		var readable_zoom := maxf(world_map_viewport.size.y / world_map_base_size.y, 0.62)
+		world_map_overview_mode = false
+		_set_world_map_zoom(readable_zoom)
+		if world_map_fit_button != null:
+			world_map_fit_button.text = "完整全图"
+		call_deferred("_center_world_map_on_selected")
+	else:
+		_fit_world_map()
 
 
 func _on_world_map_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event
 		if mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			world_map_overview_mode = false
 			_set_world_map_zoom(world_map_zoom + 0.1)
 		elif mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			world_map_overview_mode = false
 			_set_world_map_zoom(world_map_zoom - 0.1)
 		elif mouse_event.button_index == MOUSE_BUTTON_LEFT:
 			world_map_dragging = mouse_event.pressed
@@ -3212,8 +3545,8 @@ func _add_world_map_region_button(canvas: Control, site: Dictionary, map_size: V
 		site.get("name", "未知地点"),
 		int(site.get("danger", 1))
 	]
-	var button_width := clampf(map_size.x * 0.11, 110.0, 150.0)
-	var button_height := 38.0
+	var button_width := clampf(map_size.x * 0.11, 74.0, 150.0)
+	var button_height := 34.0 if map_size.x < 900.0 else 38.0
 	var horizontal_padding := button_width * 0.5 + 18.0
 	var vertical_padding := button_height * 0.5 + 18.0
 	button.custom_minimum_size = Vector2(button_width, button_height)
@@ -3227,6 +3560,7 @@ func _add_world_map_region_button(canvas: Control, site: Dictionary, map_size: V
 	button.set_meta("world_site_id", str(site.get("id", "")))
 	button.button_pressed = str(site.get("id", "")) == str(selected_world_site.get("id", ""))
 	_apply_map_region_style(button)
+	button.add_theme_font_size_override("font_size", 9 if map_size.x < 900.0 else 11)
 	button.pressed.connect(_select_world_site.bind(site))
 	canvas.add_child(button)
 
@@ -4574,7 +4908,8 @@ func _sync_battle_results() -> void:
 
 
 func _add_info_card(container: VBoxContainer, title: String, body: String, accent: Color = COLOR_AMBER) -> PanelContainer:
-	var panel := _make_panel_container()
+	var panel := PanelContainer.new()
+	_apply_tinted_panel_texture(panel, UI_PROD_PANEL_LOCATION_INFO, Color(0.62, 0.58, 0.50, 1.0), 12)
 	panel.custom_minimum_size = Vector2(0, 82)
 	container.add_child(panel)
 	var box := _make_panel_margin(panel, 12)
@@ -4594,56 +4929,78 @@ func _add_info_card(container: VBoxContainer, title: String, body: String, accen
 
 
 func _refresh_base_page() -> void:
-	if base_content_container == null:
-		return
 	var player := GameState.player
-	_clear_container(base_content_container)
-
-	_add_info_card(base_content_container, "避难所等级 Lv.%d" % player.base_level, "安全度 82%%  |  食物 %d  |  水 %d  |  电力 %d" % [
-		int(player.supplies.get("food", 0)),
-		int(player.supplies.get("water", player.thirst)),
-		int(player.materials.get("spirit_battery", 0))
-	])
-
-	var grid := GridContainer.new()
-	grid.columns = 2
-	grid.add_theme_constant_override("h_separation", 8)
-	grid.add_theme_constant_override("v_separation", 8)
-	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	base_content_container.add_child(grid)
-
-	var facilities := [
-		{"id": "workbench", "name": "工作台", "level": player.get_base_facility_level("workbench"), "desc": "打造与改造装备", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_workbench.png"},
-		{"id": "storage", "name": "仓库", "level": player.get_base_facility_level("storage"), "desc": "存储物资与材料", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_storage.png"},
-		{"id": "bed", "name": "床铺", "level": player.get_base_facility_level("bed"), "desc": "增加休息恢复量", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_bed.png"},
-		{"id": "medical", "name": "医疗台", "level": player.get_base_facility_level("medical"), "desc": "治疗与研究药品", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_medical_station.png"},
-		{"id": "kitchen", "name": "厨房", "level": player.get_base_facility_level("kitchen"), "desc": "制作食物料理", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_kitchen.png"},
-		{"id": "generator", "name": "发电机", "level": player.get_base_facility_level("generator"), "desc": "提供基地电力", "image": "res://assets/images/ui/production/13_dedicated/facilities/facility_generator.png"}
-	]
-	for facility in facilities:
-		var button := _make_facility_button(facility)
-		var facility_data: Dictionary = facility.duplicate(true)
-		button.pressed.connect(_select_base_facility.bind(facility_data))
-		grid.add_child(button)
-
-	var detail_panel := _add_info_card(base_content_container, "设施详情", "点击任意设施查看功能、升级方向和维护状态。")
-	base_detail_label = detail_panel.find_child("BodyLabel", true, false) as Label
+	var facilities := _get_base_facility_definitions()
 	if base_selected_facility.is_empty() and not facilities.is_empty():
 		base_selected_facility = facilities[2].duplicate(true)
+	for facility in facilities:
+		var facility_id := str(facility.get("id", ""))
+		var button := base_facility_buttons.get(facility_id) as Button
+		if button == null:
+			continue
+		button.tooltip_text = "%s Lv.%d · 点击查看详情" % [str(facility.get("name", "设施")), player.get_base_facility_level(facility_id)]
+		var selected := facility_id == str(base_selected_facility.get("id", "")) and base_detail_panel != null and base_detail_panel.visible
+		button.set_pressed_no_signal(selected)
+		var selection_frame := button.get_node_or_null("SelectionFrame") as NinePatchRect
+		if selection_frame != null:
+			selection_frame.visible = selected
 	if not base_selected_facility.is_empty():
 		base_selected_facility["level"] = player.get_base_facility_level(str(base_selected_facility.get("id", "")))
 		_show_base_facility_detail(base_selected_facility)
 
-	_add_info_card(base_content_container, "资源计数器", "晶核 %d  |  记忆碎片 %d  |  补给券 %d  |  金币 %d" % [
-		int(player.materials.get("cores", 0)),
-		int(player.materials.get("memory_shards", 0)),
-		int(player.materials.get("tickets", 0)),
-		int(player.materials.get("gold", 0))
-	], COLOR_TEXT)
+
+func _get_base_facility_definitions() -> Array[Dictionary]:
+	var player := GameState.player
+	return [
+		{"id": "workbench", "name": "工作台", "level": player.get_base_facility_level("workbench"), "desc": "制造工具、武器与装备，提升幸存者战斗力。"},
+		{"id": "storage", "name": "仓库", "level": player.get_base_facility_level("storage"), "desc": "存储资源与物资，提升避难所储存上限。"},
+		{"id": "bed", "name": "床铺", "level": player.get_base_facility_level("bed"), "desc": "提供休息场所，恢复幸存者体力与状态。"},
+		{"id": "medical", "name": "医疗台", "level": player.get_base_facility_level("medical"), "desc": "治疗伤病，研究医疗技术并制作药品。"},
+		{"id": "kitchen", "name": "厨房", "level": player.get_base_facility_level("kitchen"), "desc": "烹饪食物，提升食物效果与制作效率。"},
+		{"id": "generator", "name": "发电机", "level": player.get_base_facility_level("generator"), "desc": "提供稳定电力，支撑避难所设施运转。"}
+	]
+
+
+func _make_transparent_facility_hotspot(facility: Dictionary, region: Rect2) -> Button:
+	var button := Button.new()
+	button.name = "Facility_%s" % str(facility.get("id", "unknown"))
+	button.text = ""
+	button.toggle_mode = true
+	button.focus_mode = Control.FOCUS_ALL
+	_place_control(button, region.position.x, region.position.y, region.size.x, region.size.y)
+	for state in ["normal", "hover", "pressed", "focus", "disabled"]:
+		button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
+	var selection_frame := NinePatchRect.new()
+	selection_frame.name = "SelectionFrame"
+	selection_frame.texture = UI_PROD_FRAME_SELECTED_GLOW
+	selection_frame.patch_margin_left = 30
+	selection_frame.patch_margin_top = 30
+	selection_frame.patch_margin_right = 30
+	selection_frame.patch_margin_bottom = 30
+	selection_frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	selection_frame.draw_center = false
+	selection_frame.modulate = Color(0.78, 0.48, 0.16, 0.64)
+	selection_frame.visible = false
+	selection_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(selection_frame)
+	button.mouse_entered.connect(func() -> void: selection_frame.visible = true)
+	button.mouse_exited.connect(func() -> void: selection_frame.visible = button.button_pressed)
+	var facility_data := facility.duplicate(true)
+	button.pressed.connect(_select_base_facility.bind(facility_data))
+	return button
 
 
 func _select_base_facility(facility: Dictionary) -> void:
 	base_selected_facility = facility.duplicate(true)
+	if base_detail_panel != null:
+		base_detail_panel.visible = true
+	for facility_id in base_facility_buttons:
+		var button := base_facility_buttons[facility_id] as Button
+		if button != null:
+			button.set_pressed_no_signal(str(facility_id) == str(facility.get("id", "")))
+			var selection_frame := button.get_node_or_null("SelectionFrame") as NinePatchRect
+			if selection_frame != null:
+				selection_frame.visible = button.button_pressed
 	_show_base_facility_detail(base_selected_facility)
 
 
@@ -4680,42 +5037,86 @@ func _on_base_upgrade_pressed() -> void:
 func _make_facility_button(facility: Dictionary) -> Button:
 	var button := Button.new()
 	button.text = ""
-	button.custom_minimum_size = Vector2(0, 132)
+	button.custom_minimum_size = Vector2(0, 244)
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.clip_contents = true
 	button.focus_mode = Control.FOCUS_ALL
-	_apply_texture_button_skin(button, UI_PROD_CTA_SECONDARY_NORMAL, UI_PROD_CTA_SECONDARY_HOVER, UI_PROD_CTA_SECONDARY_PRESSED, UI_PROD_CTA_SECONDARY_DISABLED, 0, 34)
+	button.toggle_mode = true
+	button.set_pressed_no_signal(str(facility.get("id", "")) == str(base_selected_facility.get("id", "")))
+	_apply_texture_button_skin(button, UI_PROD_PANEL_BASE_FACILITY, UI_PROD_PANEL_BASE_FACILITY, UI_PROD_PANEL_BASE_FACILITY, UI_PROD_PANEL_BASE_FACILITY, 0, 28)
 
 	var image := TextureRect.new()
 	image.texture = load(str(facility.get("image", ""))) as Texture2D
-	image.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	image.modulate = Color(0.72, 0.66, 0.55, 0.78)
+	image.modulate = Color(0.72, 0.67, 0.58, 0.88)
+	_place_control(image, 14, 24, 142, 174)
 	image.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(image)
 
 	var shade := ColorRect.new()
-	shade.color = Color(0.0, 0.0, 0.0, 0.38)
-	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	shade.color = Color(0.0, 0.0, 0.0, 0.18)
+	_place_control(shade, 14, 24, 142, 174)
 	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(shade)
 
+	var level_badge := Label.new()
+	level_badge.text = "Lv.%d" % int(facility.get("level", 1))
+	_apply_label_style(level_badge, 15, COLOR_AMBER)
+	level_badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	level_badge.add_theme_stylebox_override("normal", _make_ui_style(UI_PROD_SLOT_EQUIPMENT, 4, 16, true))
+	_place_control(level_badge, 174, 30, 72, 36)
+	level_badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(level_badge)
+
 	var title := Label.new()
-	title.text = "%s  Lv.%d" % [str(facility.get("name", "")), int(facility.get("level", 1))]
-	_apply_label_style(title, 16, Color(1.0, 0.74, 0.33, 1.0))
+	title.text = str(facility.get("name", ""))
+	_apply_label_style(title, 20, COLOR_TEXT)
 	title.add_theme_constant_override("outline_size", 2)
 	title.add_theme_color_override("font_outline_color", Color.BLACK)
-	_place_control(title, 18, 78, 280, 26)
+	_place_control(title, 174, 76, 130, 30)
 	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(title)
 
 	var desc := Label.new()
 	desc.text = str(facility.get("desc", ""))
-	_apply_label_style(desc, 12, COLOR_TEXT)
-	_place_control(desc, 18, 103, 280, 22)
+	_apply_label_style(desc, 13, COLOR_MUTED)
+	desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_place_control(desc, 174, 112, 126, 62)
 	desc.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(desc)
+
+	var arrow := Label.new()
+	arrow.text = "›"
+	_apply_label_style(arrow, 32, Color(0.70, 0.54, 0.34, 1.0))
+	arrow.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_place_control(arrow, 292, 148, 26, 42)
+	arrow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(arrow)
+
+	var level := int(facility.get("level", 1))
+	for i in range(5):
+		var segment := ColorRect.new()
+		segment.color = Color(0.74, 0.45, 0.14, 0.95) if i < level else Color(0.22, 0.22, 0.20, 0.72)
+		_place_control(segment, 20 + i * 58, 216, 46, 5)
+		segment.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		button.add_child(segment)
+
+	var selection_frame := NinePatchRect.new()
+	selection_frame.name = "SelectionFrame"
+	selection_frame.texture = UI_PROD_FRAME_SELECTED_GLOW
+	selection_frame.patch_margin_left = 30
+	selection_frame.patch_margin_top = 30
+	selection_frame.patch_margin_right = 30
+	selection_frame.patch_margin_bottom = 30
+	selection_frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	selection_frame.draw_center = false
+	selection_frame.modulate = Color(0.82, 0.52, 0.18, 0.72)
+	selection_frame.visible = button.button_pressed
+	selection_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(selection_frame)
+	button.mouse_entered.connect(func() -> void: selection_frame.visible = true)
+	button.mouse_exited.connect(func() -> void: selection_frame.visible = button.button_pressed)
 	return button
 
 
@@ -4745,7 +5146,8 @@ func _refresh_reincarnation_page() -> void:
 
 
 func _add_reincarnation_progress_card(progress: int) -> void:
-	var panel := _make_panel_container()
+	var panel := PanelContainer.new()
+	_apply_tinted_panel_texture(panel, UI_PROD_PANEL_LOCATION_INFO, Color(0.62, 0.58, 0.50, 1.0), 12)
 	panel.custom_minimum_size = Vector2(0, 116)
 	reincarnation_content_container.add_child(panel)
 	var box := _make_panel_margin(panel, 12)
@@ -4768,7 +5170,8 @@ func _add_reincarnation_progress_card(progress: int) -> void:
 
 
 func _add_reincarnation_talent_card() -> void:
-	var panel := _make_panel_container()
+	var panel := PanelContainer.new()
+	_apply_tinted_panel_texture(panel, UI_PROD_PANEL_LOCATION_INFO, Color(0.62, 0.58, 0.50, 1.0), 12)
 	panel.custom_minimum_size = Vector2(0, 150)
 	reincarnation_content_container.add_child(panel)
 	var box := _make_panel_margin(panel, 12)

@@ -15,6 +15,7 @@ func _initialize() -> void:
 	await _verify_world_map(scene)
 	await _verify_formation(scene)
 	await _verify_base(scene)
+	await _verify_reincarnation(scene)
 
 	if failures.is_empty():
 		print("UI interaction verification: PASS")
@@ -46,7 +47,10 @@ func _verify_world_map(scene: Node) -> void:
 	_check(scroll != null and zoom_container != null, "World map scroll controls were not created.")
 	if scroll == null or zoom_container == null:
 		return
-	_check(zoom_container.size.x > scroll.size.x, "World map is still squeezed to viewport width.")
+	_check(zoom_container.size.x <= scroll.size.x + 2.0 and zoom_container.size.y <= scroll.size.y + 2.0, "World map overview does not show the complete image.")
+	scene.call("_on_world_map_immersive_pressed")
+	await process_frame
+	_check(zoom_container.size.x > scroll.size.x, "World map detail mode did not expand into a draggable canvas.")
 
 	scroll.scroll_horizontal = 0
 	var press := InputEventMouseButton.new()
@@ -77,6 +81,7 @@ func _verify_world_map(scene: Node) -> void:
 func _verify_formation(scene: Node) -> void:
 	scene.call("_switch_tab", "team")
 	await process_frame
+	_check(scene.find_child("TeamRadar", true, false) != null, "Formation six-axis radar chart is missing.")
 	var occupied_index := -1
 	var player = _player()
 	for i in range(player.formation_grid.size()):
@@ -100,6 +105,24 @@ func _verify_formation(scene: Node) -> void:
 func _verify_base(scene: Node) -> void:
 	scene.call("_switch_tab", "base")
 	await process_frame
+	var composite_scroll := scene.find_child("BaseCompositeScroll", true, false) as ScrollContainer
+	_check(composite_scroll != null, "Base composite scroll view is missing.")
+	var facility_buttons: Dictionary = scene.get("base_facility_buttons")
+	_check(facility_buttons.size() == 6, "Base composite must expose six facility hotspots.")
+	for button_value in facility_buttons.values():
+		var hotspot := button_value as Button
+		_check(hotspot != null, "Base facility hotspot is not a Button control.")
+		if hotspot != null:
+			_check(hotspot.get_theme_stylebox("normal") is StyleBoxEmpty, "Base facility hotspot must remain visually transparent.")
+	var bed_hotspot := facility_buttons.get("bed") as Button
+	_check(bed_hotspot != null, "Bed facility hotspot is missing.")
+	if bed_hotspot != null:
+		bed_hotspot.pressed.emit()
+		await process_frame
+		var detail_panel := scene.find_child("BaseFacilityDetail", true, false) as PanelContainer
+		_check(detail_panel != null and detail_panel.visible, "Facility hotspot did not open the detail panel.")
+		var detail_label := detail_panel.find_child("BodyLabel", true, false) as Label if detail_panel != null else null
+		_check(detail_label != null and "床铺" in detail_label.text, "Facility hotspot opened the wrong detail content.")
 	var player = _player()
 	player.materials["cores"] = 999
 	player.materials["spirit_battery"] = 99
@@ -109,6 +132,21 @@ func _verify_base(scene: Node) -> void:
 	scene.set("base_selected_facility", {"id": "bed", "name": "床铺", "desc": "增加休息恢复量"})
 	scene.call("_on_base_upgrade_pressed")
 	_check(player.get_base_facility_level("bed") == before_level + 1, "Base facility upgrade did not persist in player state.")
+
+
+func _verify_reincarnation(scene: Node) -> void:
+	scene.call("_switch_tab", "reincarnation")
+	await process_frame
+	var button := scene.find_child("ReincarnateButton", true, false) as Button
+	_check(button != null, "Reincarnation action button is missing.")
+	if button == null:
+		return
+	var normal := button.get_theme_stylebox("normal") as StyleBoxTexture
+	var hover := button.get_theme_stylebox("hover") as StyleBoxTexture
+	var pressed := button.get_theme_stylebox("pressed") as StyleBoxTexture
+	_check(normal != null and hover != null and pressed != null, "Reincarnation button state skins are incomplete.")
+	if normal != null and hover != null and pressed != null:
+		_check(normal.texture == hover.texture and normal.texture == pressed.texture, "Reincarnation button active states use mismatched visual bounds.")
 
 
 func _check(condition: bool, message: String) -> void:
