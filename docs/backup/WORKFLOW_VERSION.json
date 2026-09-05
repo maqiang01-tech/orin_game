@@ -3,10 +3,10 @@
   "recorded_date": "2026-09-06",
   "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
   "branch": "main",
-  "commit": "b7505dcbac04ac5922d99c37af96db330857744c",
+  "commit": "c67203c9f402e53c46dbcee4cc9e5712d54bc453",
   "local_checkout": ".workflow-repository",
   "backup_manifest": "BACKUP_MANIFEST.json",
-  "source_files_hash_verified": 2115,
+  "source_files_hash_verified": 2116,
   "purpose": "recovery_checkpoint_not_runtime_dependency_or_activation",
   "workflow": {
     "engineering_version": "V4.1 Stage 1.3-R1",
@@ -41,5 +41,11 @@
     "automatic_policy_adoption": false,
     "production_routing_changes": false,
     "game_business_resumed": false
+  },
+  "phased_plan_archive": {
+    "path": "reports/planning/S_PHASED_PLAN_B7505DC_20260906.md",
+    "sha256": "7357ebb1c87c4225bf32b3ca47c1536d58804c7732cb323b96fd1e52230332fd",
+    "implementation_baseline": "b7505dcbac04ac5922d99c37af96db330857744c",
+    "scope": "plan_archive_only_not_dispatch_approval_or_activation"
   }
 }
