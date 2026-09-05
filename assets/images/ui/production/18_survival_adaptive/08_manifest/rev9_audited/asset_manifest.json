@@ -1,0 +1,409 @@
+[
+  {
+    "file": "05_primary_buttons/btn_continue_disabled.png",
+    "width": 512,
+    "height": 112,
+    "visible_bbox": [
+      90,
+      5,
+      423,
+      108
+    ]
+  },
+  {
+    "file": "05_primary_buttons/btn_continue_normal.png",
+    "width": 512,
+    "height": 112,
+    "visible_bbox": [
+      90,
+      5,
+      423,
+      108
+    ]
+  },
+  {
+    "file": "05_primary_buttons/btn_continue_pressed.png",
+    "width": 512,
+    "height": 112,
+    "visible_bbox": [
+      64,
+      7,
+      449,
+      106
+    ]
+  },
+  {
+    "file": "05_primary_buttons/btn_continue_selected.png",
+    "width": 512,
+    "height": 112,
+    "visible_bbox": [
+      64,
+      7,
+      449,
+      106
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_leave_disabled.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      23,
+      5,
+      185,
+      108
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_leave_normal.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      22,
+      4,
+      185,
+      108
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_leave_pressed.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      13,
+      0,
+      195,
+      112
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_leave_selected.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      13,
+      0,
+      195,
+      112
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_rest_disabled.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      23,
+      5,
+      185,
+      108
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_rest_normal.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      22,
+      4,
+      185,
+      108
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_rest_pressed.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      13,
+      0,
+      195,
+      112
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_rest_selected.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      13,
+      0,
+      195,
+      112
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_search_disabled.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      23,
+      5,
+      185,
+      108
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_search_normal.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      22,
+      4,
+      185,
+      108
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_search_pressed.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      13,
+      0,
+      195,
+      112
+    ]
+  },
+  {
+    "file": "06_action_buttons/btn_search_selected.png",
+    "width": 208,
+    "height": 112,
+    "visible_bbox": [
+      13,
+      0,
+      195,
+      112
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_bar.png",
+    "width": 684,
+    "height": 146,
+    "visible_bbox": [
+      3,
+      3,
+      682,
+      144
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_base_disabled.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      9,
+      3,
+      135,
+      125
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_base_normal.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      9,
+      3,
+      135,
+      125
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_base_pressed.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      0,
+      0,
+      144,
+      128
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_base_selected.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      0,
+      0,
+      144,
+      128
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_explore_disabled.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      9,
+      3,
+      135,
+      125
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_explore_normal.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      9,
+      3,
+      135,
+      125
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_explore_pressed.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      0,
+      0,
+      144,
+      128
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_explore_selected.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      0,
+      0,
+      144,
+      128
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_reincarnation_disabled.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      9,
+      3,
+      136,
+      126
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_reincarnation_normal.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      9,
+      2,
+      136,
+      126
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_reincarnation_pressed.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      0,
+      0,
+      144,
+      128
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_reincarnation_selected.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      0,
+      0,
+      144,
+      128
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_survival_disabled.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      8,
+      3,
+      136,
+      126
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_survival_normal.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      8,
+      3,
+      136,
+      126
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_survival_pressed.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      8,
+      3,
+      136,
+      126
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_survival_selected.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      8,
+      3,
+      136,
+      126
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_team_disabled.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      9,
+      3,
+      135,
+      125
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_team_normal.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      9,
+      3,
+      135,
+      125
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_team_pressed.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      0,
+      0,
+      144,
+      128
+    ]
+  },
+  {
+    "file": "07_bottom_nav/nav_team_selected.png",
+    "width": 144,
+    "height": 128,
+    "visible_bbox": [
+      0,
+      0,
+      144,
+      128
+    ]
+  }
+]

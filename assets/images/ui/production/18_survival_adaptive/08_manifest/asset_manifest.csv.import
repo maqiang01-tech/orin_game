@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cl6y3w4evovds"
+
+[deps]
+
+files=["res://assets/images/ui/production/18_survival_adaptive/08_manifest/asset_manifest.width.translation", "res://assets/images/ui/production/18_survival_adaptive/08_manifest/asset_manifest.height.translation", "res://assets/images/ui/production/18_survival_adaptive/08_manifest/asset_manifest.source.translation", "res://assets/images/ui/production/18_survival_adaptive/08_manifest/asset_manifest.notes.translation"]
+
+source_file="res://assets/images/ui/production/18_survival_adaptive/08_manifest/asset_manifest.csv"
+dest_files=["res://assets/images/ui/production/18_survival_adaptive/08_manifest/asset_manifest.width.translation", "res://assets/images/ui/production/18_survival_adaptive/08_manifest/asset_manifest.height.translation", "res://assets/images/ui/production/18_survival_adaptive/08_manifest/asset_manifest.source.translation", "res://assets/images/ui/production/18_survival_adaptive/08_manifest/asset_manifest.notes.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

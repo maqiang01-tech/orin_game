@@ -6,7 +6,15 @@ var failures: Array[String] = []
 func _initialize() -> void:
 	root.size = Vector2i(720, 1280)
 	var packed_scene := load("res://scenes/main/main.tscn") as PackedScene
+	if packed_scene == null:
+		push_error("Main scene could not be loaded.")
+		quit(1)
+		return
 	var scene := packed_scene.instantiate()
+	if scene.get_script() == null or not scene.has_method("_switch_tab"):
+		push_error("Main scene script did not load; interaction verification cannot run.")
+		quit(1)
+		return
 	root.add_child(scene)
 	await process_frame
 	await process_frame
@@ -29,47 +37,58 @@ func _initialize() -> void:
 func _verify_navigation(scene: Node) -> void:
 	var buttons: Dictionary = scene.get("tab_buttons")
 	_check(buttons.size() == 5, "Bottom navigation must contain five buttons.")
-	var expected_size := Vector2(144, 96)
+	var expected_home_size := Vector2(136.8, 128)
+	var selected_home_count := 0
 	for button in buttons.values():
 		var nav_button := button as Button
-		_check(nav_button.size.is_equal_approx(expected_size), "Bottom navigation button size changed from 144x96.")
+		_check(nav_button.size.is_equal_approx(expected_home_size), "Bottom navigation hotspot does not match the five-column production bar.")
 		var rect := nav_button.get_global_rect()
 		_check(rect.position.x >= 0.0 and rect.end.x <= 720.0, "Bottom navigation button exceeds the horizontal viewport.")
-		_check(rect.position.y >= 1139.0 and rect.end.y <= 1280.0, "Bottom navigation button exceeds its safe area.")
+		_check(rect.position.y >= 1134.0 and rect.end.y <= 1280.0, "Bottom navigation button exceeds its safe area.")
+		var image := nav_button.get_node_or_null("ButtonImage") as TextureRect
+		_check(image != null and image.visible == nav_button.button_pressed, "Navigation must overlay artwork only for the selected tab.")
+		if nav_button.button_pressed:
+			selected_home_count += 1
+			_check(image != null and image.texture == nav_button.get_meta("pressed_texture"), "Navigation selection must use its complete selected-state artwork.")
+		else:
+			_check(image == null or not image.visible, "Unselected tabs must use only the normal artwork embedded in the navigation bar.")
+	_check(selected_home_count == 1, "Navigation must show exactly one selected tab.")
+
+	scene.call("_switch_tab", "explore")
+	for id in buttons:
+		var nav_button := buttons[id] as Button
+		_check(nav_button.size.is_equal_approx(expected_home_size), "Navigation hotspot changed size after switching pages.")
+		var image := nav_button.get_node_or_null("ButtonImage") as TextureRect
+		_check(image != null and image.visible == nav_button.button_pressed, "Only the active page may render selected navigation artwork.")
+		if image != null:
+			var expected_texture = nav_button.get_meta("pressed_texture") if id == "explore" else nav_button.get_meta("normal_texture")
+			_check(image.texture == expected_texture, "Navigation highlight does not match the selected page.")
+	var team_button := buttons.get("team") as Button
+	var team_image := team_button.get_node_or_null("ButtonImage") as TextureRect
+	scene.call("_on_image_button_hover_changed", team_button, true)
+	_check(team_image != null and team_image.texture == team_button.get_meta("normal_texture"), "Hover must not use the selected navigation texture.")
+	scene.call("_on_image_button_hover_changed", team_button, false)
+	scene.call("_switch_tab", "camp")
 
 
 func _verify_world_map(scene: Node) -> void:
 	scene.call("_switch_tab", "explore")
 	await process_frame
 	await process_frame
-	var scroll := scene.get("world_map_scroll") as ScrollContainer
-	var zoom_container := scene.get("world_map_zoom_container") as Control
-	_check(scroll != null and zoom_container != null, "World map scroll controls were not created.")
-	if scroll == null or zoom_container == null:
+	var canvas := scene.get("world_map_canvas") as Control
+	var go_button := scene.get("world_map_go_button") as Button
+	_check(canvas != null, "Target world map canvas was not created.")
+	_check(go_button != null and go_button.size.is_equal_approx(Vector2(508, 88)), "Target location action hotspot is missing or misaligned.")
+	if canvas == null:
 		return
-	_check(zoom_container.size.x <= scroll.size.x + 2.0 and zoom_container.size.y <= scroll.size.y + 2.0, "World map overview does not show the complete image.")
-	scene.call("_on_world_map_immersive_pressed")
-	await process_frame
-	_check(zoom_container.size.x > scroll.size.x, "World map detail mode did not expand into a draggable canvas.")
+	var hotspot_count := 0
+	for child in canvas.get_children():
+		if child is Button and child.has_meta("world_site_id"):
+			hotspot_count += 1
+			_check((child as Button).get_theme_stylebox("normal") is StyleBoxEmpty, "Explore node hotspots must remain visually transparent over production artwork.")
+	_check(hotspot_count == 5, "Target explore map must expose five location hotspots.")
 
-	scroll.scroll_horizontal = 0
-	var press := InputEventMouseButton.new()
-	press.button_index = MOUSE_BUTTON_LEFT
-	press.pressed = true
-	press.position = Vector2(320, 300)
-	scene.call("_on_world_map_input", press)
-	var motion := InputEventMouseMotion.new()
-	motion.position = Vector2(100, 300)
-	motion.relative = Vector2(-220, 0)
-	scene.call("_on_world_map_input", motion)
-	var release := InputEventMouseButton.new()
-	release.button_index = MOUSE_BUTTON_LEFT
-	release.pressed = false
-	release.position = Vector2(100, 300)
-	scene.call("_on_world_map_input", release)
-	_check(scroll.scroll_horizontal > 0, "World map mouse drag did not change horizontal scroll.")
-
-	var sites: Array = scene.call("_get_region_world_sites")
+	var sites: Array = scene.call("_get_target_explore_sites")
 	if sites.size() > 1:
 		var player = _player()
 		var food_before := int(player.supplies.get("food", 0))
@@ -81,7 +100,7 @@ func _verify_world_map(scene: Node) -> void:
 func _verify_formation(scene: Node) -> void:
 	scene.call("_switch_tab", "team")
 	await process_frame
-	_check(scene.find_child("TeamRadar", true, false) != null, "Formation six-axis radar chart is missing.")
+	_check(scene.find_child("TargetTeamRating", true, false) != null, "Target formation rating panel is missing.")
 	var occupied_index := -1
 	var player = _player()
 	for i in range(player.formation_grid.size()):

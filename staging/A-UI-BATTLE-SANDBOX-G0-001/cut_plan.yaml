@@ -1,0 +1,55 @@
+schema: cut_plan.v1
+ticket: A-UI-BATTLE-SANDBOX-G0-001
+revision: 1
+dispatch_id: DSP-A-UI-BATTLE-SANDBOX-G0-001-R1-PLAN-20260905-01
+input_hash: sha256:d2e64b794a9241507a0993788cf2abd1fb4a194f873860c2ac5a687f3441c3f2
+context_pack_hash: sha256:733a6ee812356fc648ea613ee8503e600a8a034bd5859cac70ab4905bfb727e6
+design_pack_hash: sha256:9724879596be4f1c76a8ab95e21578795c0312c1c8b3df6f4305957e5817a475
+source:
+  image: C:/Users/Administrator/.codex/generated_images/01a06d17-b58f-7001-a6b8-4b6e71613fee/call_cLdzk2lLXalitKpfklpHiFFe.png
+  sha256: sha256:7a3d4632a0c55afce88b9d06cc178e99c23f7992ffd8340ec280f3bf771fc596
+  usage: style_and_layout_reference_only
+  direct_crop_forbidden: true
+region:
+  base_resolution: [720, 1280]
+  supported_resolution: [1080, 2400]
+  scope: [battle_panel_shells, formation_slot_equal_cells, skill_button_shell_states, battle_log_panel_shell]
+component:
+  tree: component_tree.json
+  independence_decisions: independence_decisions.json
+  four_families: [battle_panel_shell, formation_slot_equal_grid, skill_button_shell, battle_log_panel_shell]
+policy_packs:
+  - sha256:df5623110f01cbec1243bbfea3e4d563a76a608f728be0da9b0cad12bbd6a051
+  - sha256:8081168f40754bbc80ffc0423bb1450936b10f5efc7c508081578eb7830fe0d8
+  - sha256:674ad8a604d20fc4c0e841c7a517324ffa05acad70c7bcb211d80a2a40f45b35
+  - sha256:52f60feb555d9600c1dd86edce73adb1ea21861f7928ef62dd8a5baf794fe1b8
+text_policy:
+  mode: runtime_only
+  static_png_excludes: [labels, values, cooldown_numbers, resource_costs, badges, unit_cards, icons, targeting_lines, log_entries]
+  restoration_requirement: retain_continuous_dark_metal_surface_and_complete_border_after_any_text_or_icon_removal
+deliverables:
+  file_list: deliverables.json
+  production_directory_after_approval: assets/images/ui/candidates/battle_sandbox_g0/
+  candidate_png_count: 14
+  state_geometry_invariant: true
+runtime_text:
+  slots: text_positions.csv
+  layout: ui_layout.json
+  click_regions: click_regions.json
+metadata_outputs:
+  ui_layout: ui_layout.json
+  text_slots: text_positions.csv
+  click_regions: click_regions.json
+  provenance: provenance_plan.json
+forbidden:
+  - direct_crop_of_reference
+  - production_or_manifest_write_in_this_dispatch
+  - Godot_or_scene_edit
+  - baked_dynamic_text_values_badges_or_semantic_icons
+  - baked_character_enemy_or_background_art
+  - baked_target_or_intercept_line
+  - unequal_formation_cells
+  - button_or_icon_baked_into_panel
+expected_png_count: 14
+review_required: true
+review_triggers: [first_new_resource_family, possible_ninepatch, multiple_buttons_or_interactive_elements, dynamic_text_or_values]

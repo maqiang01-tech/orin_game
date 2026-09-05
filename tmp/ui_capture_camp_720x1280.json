@@ -1,0 +1,18 @@
+{
+	"page_id": "camp",
+	"variant": "720x1280",
+	"scene_path": "res://scenes/main/main.tscn",
+	"fresh": false,
+	"width": 720,
+	"height": 1280,
+	"visible_bounds": {
+		"found": true,
+		"x": 1,
+		"y": 1,
+		"width": 716,
+		"height": 1278
+	},
+	"sha256": "7c011bb335ad1b0fec337d1ea15e9a0b160c04393c47a7d79a7a63c89b6235e8",
+	"timestamp": "2026-09-01 22:58:56",
+	"output_path": "res://tmp/ui_capture_camp_720x1280.png"
+}

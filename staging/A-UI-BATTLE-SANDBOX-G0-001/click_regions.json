@@ -1,0 +1,21 @@
+{
+  "schema": "click_regions.v1",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "coordinate_space":{"base_resolution":[720,1280],"responsive_rule":"multiply all rect values by viewport_width / 720"},
+  "regions":[
+    {"id":"battle_flow_control","rect":[34,878,82,34],"interactive":true,"runtime_control":true,"modes":["start","pause","step"],"enabled_binding":"battle.state"},
+    {"id":"action.normal_attack","rect":[34,782,124,84],"interactive":true,"asset_family":"skill_action_shell","state_binding":"battle.actions.0"},
+    {"id":"action.exclusive_active","rect":[166,782,124,84],"interactive":true,"asset_family":"skill_action_shell","state_binding":"battle.actions.1"},
+    {"id":"action.equip_skill_1","rect":[298,782,124,84],"interactive":true,"asset_family":"skill_action_shell","state_binding":"battle.actions.2"},
+    {"id":"action.equip_skill_2","rect":[430,782,124,84],"interactive":true,"asset_family":"skill_action_shell","state_binding":"battle.actions.3"},
+    {"id":"action.guard","rect":[562,782,124,84],"interactive":true,"asset_family":"skill_action_shell","state_binding":"battle.actions.4"},
+    {"id":"auto_toggle","rect":[400,878,70,34],"interactive":true,"runtime_control":true,"state_binding":"battle.auto_state"},
+    {"id":"retreat","rect":[478,878,70,34],"interactive":true,"runtime_control":true,"state_binding":"battle.can_retreat"},
+    {"id":"speed_cycle","rect":[556,878,62,34],"interactive":true,"runtime_control":true,"state_binding":"battle.speed_state"},
+    {"id":"battle_log_scroll","rect":[24,948,672,244],"interactive":true,"runtime_control":true,"gesture":"vertical_scroll","state_binding":"battle.log.entries"}
+  ],
+  "non_interactive_runtime_regions":[
+    {"id":"enemy_formation_matrix","rect":[150,132,420,210],"reason":"Gate 0 uses automatic targeting; target lines and cell highlights are runtime read-only."},
+    {"id":"player_formation_matrix","rect":[150,406,420,210],"reason":"Gate 0 has no manual movement or manual target selection."}
+  ]
+}

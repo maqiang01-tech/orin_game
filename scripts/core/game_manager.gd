@@ -89,12 +89,48 @@ const UI_PROD_ICON_QUESTION = preload("res://assets/images/ui/production/03_icon
 const UI_PROD_ICON_NOTIFICATION = preload("res://assets/images/ui/production/03_icons/system/icon_notification.png")
 const UI_PROD_ICON_CLOSE = preload("res://assets/images/ui/production/03_icons/system/icon_close.png")
 const UI_PROD_PANEL_RESOURCE = preload("res://assets/images/ui/production/07_panels/panel_resource.png")
-const UI_GLOBAL_BG_BLACK_IRON = preload("res://assets/images/ui/production/17_generated/bg_global_subway_black_iron.png")
+const UI_SCREEN_BG_TILE = preload("res://assets/images/ui/production/18_survival_adaptive/01_screen_adaptive/bg_page_tile.png")
+const UI_SCREEN_FRAME_CORNER_TL = preload("res://assets/images/ui/production/18_survival_adaptive/01_screen_adaptive/frame_screen_corner_tl.png")
+const UI_SCREEN_FRAME_CORNER_TR = preload("res://assets/images/ui/production/18_survival_adaptive/01_screen_adaptive/frame_screen_corner_tr.png")
+const UI_SCREEN_FRAME_CORNER_BL = preload("res://assets/images/ui/production/18_survival_adaptive/01_screen_adaptive/frame_screen_corner_bl.png")
+const UI_SCREEN_FRAME_CORNER_BR = preload("res://assets/images/ui/production/18_survival_adaptive/01_screen_adaptive/frame_screen_corner_br.png")
+const UI_SCREEN_FRAME_EDGE_TOP = preload("res://assets/images/ui/production/18_survival_adaptive/01_screen_adaptive/frame_screen_edge_top.png")
+const UI_SCREEN_FRAME_EDGE_BOTTOM = preload("res://assets/images/ui/production/18_survival_adaptive/01_screen_adaptive/frame_screen_edge_bottom.png")
+const UI_SCREEN_FRAME_EDGE_LEFT = preload("res://assets/images/ui/production/18_survival_adaptive/01_screen_adaptive/frame_screen_edge_left.png")
+const UI_SCREEN_FRAME_EDGE_RIGHT = preload("res://assets/images/ui/production/18_survival_adaptive/01_screen_adaptive/frame_screen_edge_right.png")
 const UI_BASE_COMPOSITE = preload("res://assets/images/ui/production/17_generated/bg_base_facilities_composite.png")
 const UI_CHARACTER_STATUS_FRAME = preload("res://assets/images/ui/production/17_generated/frame_character_status_empty_v2.png")
-const UI_HOME_SURVIVAL_MASTER = preload("res://assets/images/ui/production/17_generated/home_survival_master_complete.png")
 const UI_SUPPLEMENT_BOTTOM_NAV_BLACK_IRON = preload("res://assets/images/ui/production/16_supplement/bottom_nav_black_iron.png")
 const UI_SUPPLEMENT_STATUS_BAR_BLACK_IRON = preload("res://assets/images/ui/production/16_supplement/status_bar_black_iron.png")
+const UI_SURVIVAL_DATE_BAR = preload("res://assets/images/ui/production/18_survival_adaptive/02_top_status/top_date_bar.png")
+const UI_SURVIVAL_STATUS_BAR = preload("res://assets/images/ui/production/18_survival_adaptive/02_top_status/top_player_status_bar.png")
+const UI_SURVIVAL_SCENE_PANEL = preload("res://assets/images/ui/production/18_survival_adaptive/03_scene_panel/panel_scene_9patch.png")
+const UI_SURVIVAL_MISSION_PANEL = preload("res://assets/images/ui/production/18_survival_adaptive/04_main_quest/panel_main_quest.png")
+const UI_SURVIVAL_CONTINUE_NORMAL = preload("res://assets/images/ui/production/18_survival_adaptive/05_primary_buttons/btn_continue_normal.png")
+const UI_SURVIVAL_CONTINUE_SELECTED = UI_SURVIVAL_CONTINUE_NORMAL
+const UI_SURVIVAL_CONTINUE_PRESSED = preload("res://assets/images/ui/production/18_survival_adaptive/05_primary_buttons/btn_continue_pressed.png")
+const UI_SURVIVAL_CONTINUE_DISABLED = preload("res://assets/images/ui/production/18_survival_adaptive/05_primary_buttons/btn_continue_disabled.png")
+const UI_SURVIVAL_ACTION_NORMAL_TEXTURES = [
+	preload("res://assets/images/ui/production/18_survival_adaptive/06_action_buttons/btn_search_normal.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/06_action_buttons/btn_rest_normal.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/06_action_buttons/btn_leave_normal.png")
+]
+const UI_SURVIVAL_ACTION_SELECTED_TEXTURES = [
+	UI_SURVIVAL_ACTION_NORMAL_TEXTURES[0],
+	UI_SURVIVAL_ACTION_NORMAL_TEXTURES[1],
+	UI_SURVIVAL_ACTION_NORMAL_TEXTURES[2]
+]
+const UI_SURVIVAL_ACTION_PRESSED_TEXTURES = [
+	preload("res://assets/images/ui/production/18_survival_adaptive/06_action_buttons/btn_search_pressed.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/06_action_buttons/btn_rest_pressed.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/06_action_buttons/btn_leave_pressed.png")
+]
+const UI_SURVIVAL_ACTION_DISABLED_TEXTURES = [
+	preload("res://assets/images/ui/production/18_survival_adaptive/06_action_buttons/btn_search_disabled.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/06_action_buttons/btn_rest_disabled.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/06_action_buttons/btn_leave_disabled.png")
+]
+const UI_SURVIVAL_NAV_BAR = preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_bar.png")
 const UI_PROD_WINDOW_MEDIUM = preload("res://assets/images/ui/production/05_windows/window_medium.png")
 const UI_PROD_WINDOW_LARGE = preload("res://assets/images/ui/production/05_windows/window_large.png")
 const UI_PROD_NODE_HOSPITAL = preload("res://assets/images/ui/production/02_map_nodes/node_hospital_normal.png")
@@ -107,24 +143,77 @@ const UI_PROD_NODE_SAFEHOUSE = preload("res://assets/images/ui/production/02_map
 const UI_PROD_NODE_SAFEHOUSE_SELECTED = preload("res://assets/images/ui/production/02_map_nodes/node_safehouse_selected.png")
 const UI_PROD_NODE_UNKNOWN = preload("res://assets/images/ui/production/02_map_nodes/node_unknown_normal.png")
 const UI_PROD_NODE_UNKNOWN_LOCKED = preload("res://assets/images/ui/production/02_map_nodes/node_unknown_locked.png")
+const UI_TARGET_EXPLORE_TOP_BAR = preload("res://assets/images/ui/production/19_target_pages/01_explore/panels/top_bar.png")
+const UI_TARGET_EXPLORE_MAP_AREA = preload("res://assets/images/ui/production/19_target_pages/01_explore/panels/map_area.png")
+const UI_TARGET_EXPLORE_LOCATION_INFO = preload("res://assets/images/ui/production/19_target_pages/01_explore/panels/location_info_panel.png")
+const UI_TARGET_FORMATION_TOP = preload("res://assets/images/ui/production/19_target_pages/02_formation/panels/top_header.png")
+const UI_TARGET_FORMATION_CARDS = [
+	preload("res://assets/images/ui/production/19_target_pages/02_formation/character_cards/card_chen_mo.png"),
+	preload("res://assets/images/ui/production/19_target_pages/02_formation/character_cards/card_lin_mei.png"),
+	preload("res://assets/images/ui/production/19_target_pages/02_formation/character_cards/card_lao_zhou.png"),
+	preload("res://assets/images/ui/production/19_target_pages/02_formation/character_cards/card_chen_feng.png"),
+	preload("res://assets/images/ui/production/19_target_pages/02_formation/character_cards/card_su_xiao.png")
+]
+const UI_TARGET_FORMATION_PANEL = preload("res://assets/images/ui/production/19_target_pages/02_formation/panels/panel_formation.png")
+const UI_TARGET_FORMATION_RATING = preload("res://assets/images/ui/production/19_target_pages/02_formation/panels/panel_team_rating.png")
+const UI_TARGET_FORMATION_ACTIONS = [
+	preload("res://assets/images/ui/production/19_target_pages/02_formation/buttons/btn_adjust_team_normal.png"),
+	preload("res://assets/images/ui/production/19_target_pages/02_formation/buttons/btn_equipment_normal.png"),
+	preload("res://assets/images/ui/production/19_target_pages/02_formation/buttons/btn_skill_normal.png")
+]
+const UI_TARGET_BASE_HEADER = preload("res://assets/images/ui/production/19_target_pages/03_base/panels/base_header_scene.png")
+const UI_TARGET_BASE_RESOURCES = preload("res://assets/images/ui/production/19_target_pages/03_base/panels/resource_status_bar.png")
+const UI_TARGET_BASE_CARDS = [
+	preload("res://assets/images/ui/production/19_target_pages/03_base/facility_cards/facility_card_workbench.png"),
+	preload("res://assets/images/ui/production/19_target_pages/03_base/facility_cards/facility_card_storage.png"),
+	preload("res://assets/images/ui/production/19_target_pages/03_base/facility_cards/facility_card_bed.png"),
+	preload("res://assets/images/ui/production/19_target_pages/03_base/facility_cards/facility_card_medical_station.png"),
+	preload("res://assets/images/ui/production/19_target_pages/03_base/facility_cards/facility_card_kitchen.png"),
+	preload("res://assets/images/ui/production/19_target_pages/03_base/facility_cards/facility_card_generator.png")
+]
+const UI_TARGET_REINCARNATION_TOP = preload("res://assets/images/ui/production/19_target_pages/04_reincarnation/panels/top_header.png")
+const UI_TARGET_REINCARNATION_PANELS = [
+	preload("res://assets/images/ui/production/19_target_pages/04_reincarnation/panels/panel_current_cycle.png"),
+	preload("res://assets/images/ui/production/19_target_pages/04_reincarnation/panels/panel_highest_chapter.png"),
+	preload("res://assets/images/ui/production/19_target_pages/04_reincarnation/panels/panel_truth_progress.png"),
+	preload("res://assets/images/ui/production/19_target_pages/04_reincarnation/panels/panel_reincarnation_marks.png"),
+	preload("res://assets/images/ui/production/19_target_pages/04_reincarnation/panels/panel_permanent_talents.png"),
+	preload("res://assets/images/ui/production/19_target_pages/04_reincarnation/panels/panel_boss_info.png"),
+	preload("res://assets/images/ui/production/19_target_pages/04_reincarnation/panels/panel_settlement_reward.png")
+]
+const UI_TARGET_REINCARNATION_ACTION = preload("res://assets/images/ui/production/19_target_pages/04_reincarnation/buttons/btn_reincarnate_selected.png")
 const UI_PROD_SLOT_FORMATION_NORMAL = preload("res://assets/images/ui/production/10_slots/slot_formation_normal.png")
 const UI_PROD_SLOT_FORMATION_OCCUPIED = preload("res://assets/images/ui/production/10_slots/slot_formation_occupied.png")
 const UI_PROD_SLOT_FORMATION_SELECTED = preload("res://assets/images/ui/production/10_slots/slot_formation_selected.png")
 const UI_PROD_SLOT_PARTNER_NORMAL = preload("res://assets/images/ui/production/10_slots/slot_partner_normal.png")
 const UI_PROD_SLOT_PARTNER_SELECTED = preload("res://assets/images/ui/production/10_slots/slot_partner_selected.png")
 const UI_PROD_NAV_NORMAL_TEXTURES = [
-	preload("res://assets/images/ui/production/11_bottom_navigation/nav_survival_normal.png"),
-	preload("res://assets/images/ui/production/11_bottom_navigation/nav_explore_normal.png"),
-	preload("res://assets/images/ui/production/11_bottom_navigation/nav_team_normal.png"),
-	preload("res://assets/images/ui/production/11_bottom_navigation/nav_base_normal.png"),
-	preload("res://assets/images/ui/production/11_bottom_navigation/nav_reincarnation_normal.png")
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_survival_normal.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_explore_normal.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_team_normal.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_base_normal.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_reincarnation_normal.png")
 ]
 const UI_PROD_NAV_SELECTED_TEXTURES = [
-	preload("res://assets/images/ui/production/11_bottom_navigation/nav_survival_selected.png"),
-	preload("res://assets/images/ui/production/11_bottom_navigation/nav_explore_selected.png"),
-	preload("res://assets/images/ui/production/11_bottom_navigation/nav_team_selected.png"),
-	preload("res://assets/images/ui/production/11_bottom_navigation/nav_base_selected.png"),
-	preload("res://assets/images/ui/production/11_bottom_navigation/nav_reincarnation_selected.png")
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_survival_selected.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_explore_selected.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_team_selected.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_base_selected.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_reincarnation_selected.png")
+]
+const UI_PROD_NAV_PRESSED_TEXTURES = [
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_survival_pressed.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_explore_pressed.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_team_pressed.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_base_pressed.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_reincarnation_pressed.png")
+]
+const UI_PROD_NAV_DISABLED_TEXTURES = [
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_survival_disabled.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_explore_disabled.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_team_disabled.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_base_disabled.png"),
+	preload("res://assets/images/ui/production/18_survival_adaptive/07_bottom_nav/nav_reincarnation_disabled.png")
 ]
 const UI_NAV_NORMAL_TEXTURES = [
 	preload("res://assets/images/ui/extracted/buttons/nav_survival_normal.png"),
@@ -159,11 +248,14 @@ const TALENT_CONFIG: Array = [
 
 # UI 引用
 var background_frame: TextureRect
+var outer_frame_overlay: Control
 var status_bar: Control
 var content_container: Control
 var bottom_tab_bar: Control
 var tab_pages: Dictionary = {}  # tab_id -> Control
 var tab_buttons: Dictionary = {}  # tab_id -> Button
+var tab_notification_state: Dictionary = {}
+var tab_notification_dots: Dictionary = {}
 
 # 当前Tab
 var current_tab: String = "camp"
@@ -394,6 +486,7 @@ func _ready() -> void:
 	_build_effect_status_bar()
 	_build_content_area()
 	_build_tab_navigation()
+	_build_outer_frame_overlay()
 	_build_reincarnation_popup()
 	_build_story_popup()
 	_build_gacha_result_popup()
@@ -412,13 +505,70 @@ func _ready() -> void:
 func _build_background_frame() -> void:
 	background_frame = TextureRect.new()
 	background_frame.name = "BackgroundFrame"
-	background_frame.texture = UI_GLOBAL_BG_BLACK_IRON
+	background_frame.texture = UI_SCREEN_BG_TILE
 	background_frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	background_frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	background_frame.stretch_mode = TextureRect.STRETCH_SCALE
+	background_frame.stretch_mode = TextureRect.STRETCH_TILE
 	background_frame.modulate = Color.WHITE
 	background_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(background_frame)
+
+
+func _build_outer_frame_overlay() -> void:
+	outer_frame_overlay = Control.new()
+	outer_frame_overlay.name = "OuterFrameOverlay"
+	outer_frame_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	outer_frame_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(outer_frame_overlay)
+
+	var pieces := [
+		["TopEdge", UI_SCREEN_FRAME_EDGE_TOP, Rect2()],
+		["BottomEdge", UI_SCREEN_FRAME_EDGE_BOTTOM, Rect2()],
+		["LeftEdge", UI_SCREEN_FRAME_EDGE_LEFT, Rect2()],
+		["RightEdge", UI_SCREEN_FRAME_EDGE_RIGHT, Rect2()],
+		["TopLeft", UI_SCREEN_FRAME_CORNER_TL, Rect2(0, 0, 13, 13)],
+		["TopRight", UI_SCREEN_FRAME_CORNER_TR, Rect2(37, 0, 13, 13)],
+		["BottomLeft", UI_SCREEN_FRAME_CORNER_BL, Rect2(0, 37, 13, 13)],
+		["BottomRight", UI_SCREEN_FRAME_CORNER_BR, Rect2(37, 37, 13, 13)]
+	]
+	for spec in pieces:
+		var piece := TextureRect.new()
+		piece.name = str(spec[0])
+		var source_texture: Texture2D = spec[1]
+		var source_region: Rect2 = spec[2]
+		if source_region.size == Vector2.ZERO:
+			piece.texture = source_texture
+		else:
+			var atlas := AtlasTexture.new()
+			atlas.atlas = source_texture
+			atlas.region = source_region
+			piece.texture = atlas
+		piece.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		piece.stretch_mode = TextureRect.STRETCH_SCALE
+		piece.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		outer_frame_overlay.add_child(piece)
+
+	outer_frame_overlay.resized.connect(_layout_outer_frame_overlay)
+	call_deferred("_layout_outer_frame_overlay")
+
+
+func _layout_outer_frame_overlay() -> void:
+	if outer_frame_overlay == null:
+		return
+	var frame_size := outer_frame_overlay.size
+	var corner_size := minf(13.0, minf(frame_size.x, frame_size.y) * 0.5)
+	var edge_thickness := corner_size
+	var horizontal_span := maxf(0.0, frame_size.x - corner_size * 2.0)
+	var vertical_span := maxf(0.0, frame_size.y - corner_size * 2.0)
+
+	_place_control(outer_frame_overlay.get_node("TopEdge"), corner_size, 0, horizontal_span, edge_thickness)
+	_place_control(outer_frame_overlay.get_node("BottomEdge"), corner_size, frame_size.y - edge_thickness, horizontal_span, edge_thickness)
+	_place_control(outer_frame_overlay.get_node("LeftEdge"), 0, corner_size, edge_thickness, vertical_span)
+	_place_control(outer_frame_overlay.get_node("RightEdge"), frame_size.x - edge_thickness, corner_size, edge_thickness, vertical_span)
+	_place_control(outer_frame_overlay.get_node("TopLeft"), 0, 0, corner_size, corner_size)
+	_place_control(outer_frame_overlay.get_node("TopRight"), frame_size.x - corner_size, 0, corner_size, corner_size)
+	_place_control(outer_frame_overlay.get_node("BottomLeft"), 0, frame_size.y - corner_size, corner_size, corner_size)
+	_place_control(outer_frame_overlay.get_node("BottomRight"), frame_size.x - corner_size, frame_size.y - corner_size, corner_size, corner_size)
 
 
 func _make_flat_style(
@@ -655,13 +805,34 @@ func _apply_image_button(button: Button, normal_texture: Texture2D, pressed_text
 	button.add_child(image)
 
 
+func _apply_state_image_button(
+		button: Button,
+		normal_texture: Texture2D,
+		selected_texture: Texture2D,
+		pressed_texture: Texture2D,
+		disabled_texture: Texture2D
+) -> void:
+	_apply_image_button(button, normal_texture, selected_texture)
+	button.set_meta("pressed_state_texture", pressed_texture)
+	button.set_meta("disabled_texture", disabled_texture)
+	button.set_meta("image_button_down", false)
+	button.button_down.connect(_on_image_button_down.bind(button))
+	button.button_up.connect(_on_image_button_up.bind(button))
+
+
 func _update_image_button_texture(button: Button, selected: bool) -> void:
 	if not button.has_node("ButtonImage"):
 		return
 	var image := button.get_node("ButtonImage") as TextureRect
 	if image == null:
 		return
-	var highlighted := selected or button.has_focus() or bool(button.get_meta("image_button_hovered", false))
+	if button.disabled and button.has_meta("disabled_texture"):
+		image.texture = button.get_meta("disabled_texture")
+		return
+	if bool(button.get_meta("image_button_down", false)) and button.has_meta("pressed_state_texture"):
+		image.texture = button.get_meta("pressed_state_texture")
+		return
+	var highlighted := selected
 	image.texture = button.get_meta("pressed_texture") if highlighted else button.get_meta("normal_texture")
 
 
@@ -671,6 +842,16 @@ func _on_image_button_hover_changed(button: Button, hovered: bool) -> void:
 
 
 func _on_image_button_focus_changed(button: Button, _focused: bool) -> void:
+	_update_image_button_texture(button, button.button_pressed)
+
+
+func _on_image_button_down(button: Button) -> void:
+	button.set_meta("image_button_down", true)
+	_update_image_button_texture(button, button.button_pressed)
+
+
+func _on_image_button_up(button: Button) -> void:
+	button.set_meta("image_button_down", false)
 	_update_image_button_texture(button, button.button_pressed)
 
 
@@ -1129,19 +1310,36 @@ func _build_effect_home_page() -> Control:
 	page.name = "HomePage"
 	page.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	var master := TextureRect.new()
-	master.name = "HomeMasterBackground"
-	master.texture = UI_HOME_SURVIVAL_MASTER
-	master.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	master.stretch_mode = TextureRect.STRETCH_SCALE
-	master.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	master.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	page.add_child(master)
+	var page_background := ColorRect.new()
+	page_background.color = Color(0.012, 0.013, 0.012, 1.0)
+	page_background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	page_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	page.add_child(page_background)
 
-	# The master image owns the complete frame. Runtime values and actions stay as controls.
-	var date_back := ColorRect.new()
-	date_back.color = Color(0.015, 0.014, 0.012, 0.94)
-	_place_control(date_back, 188, 20, 360, 40)
+	var date_bar := TextureRect.new()
+	date_bar.name = "HomeDateBar"
+	date_bar.texture = UI_SURVIVAL_DATE_BAR
+	date_bar.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	date_bar.stretch_mode = TextureRect.STRETCH_SCALE
+	date_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(date_bar, 18, 0, 684, 59)
+	page.add_child(date_bar)
+
+	var status_bar_art := TextureRect.new()
+	status_bar_art.name = "HomeStatusBarArt"
+	status_bar_art.texture = UI_SURVIVAL_STATUS_BAR
+	status_bar_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	status_bar_art.stretch_mode = TextureRect.STRETCH_SCALE
+	status_bar_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(status_bar_art, 18, 59, 684, 78)
+	page.add_child(status_bar_art)
+
+	var date_back := TextureRect.new()
+	date_back.texture = UI_SCREEN_BG_TILE
+	date_back.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	date_back.stretch_mode = TextureRect.STRETCH_TILE
+	date_back.modulate = Color(0.56, 0.53, 0.48, 1.0)
+	_place_control(date_back, 132, 10, 456, 39)
 	date_back.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	page.add_child(date_back)
 	var home_date := Label.new()
@@ -1149,16 +1347,16 @@ func _build_effect_home_page() -> Control:
 	_apply_label_style(home_date, 18, Color(0.82, 0.74, 0.64, 1.0))
 	home_date.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	home_date.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_place_control(home_date, 188, 20, 360, 40)
+	_place_control(home_date, 132, 10, 456, 39)
 	home_date.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	page.add_child(home_date)
 
 	var status_value_specs := [
-		["HomeHpValue", 39, Color(0.91, 0.33, 0.28, 1.0)],
-		["HomeStaminaValue", 181, COLOR_AMBER],
-		["HomeHungerValue", 323, Color(0.78, 0.58, 0.32, 1.0)],
-		["HomeThirstValue", 465, Color(0.35, 0.68, 0.88, 1.0)],
-		["HomeMutationValue", 607, Color(0.86, 0.20, 0.18, 1.0)]
+		["HomeHpValue", 36, Color(0.91, 0.33, 0.28, 1.0)],
+		["HomeStaminaValue", 177, COLOR_AMBER],
+		["HomeHungerValue", 318, Color(0.78, 0.58, 0.32, 1.0)],
+		["HomeThirstValue", 459, Color(0.35, 0.68, 0.88, 1.0)],
+		["HomeMutationValue", 600, Color(0.86, 0.20, 0.18, 1.0)]
 	]
 	for spec in status_value_specs:
 		var value_label := Label.new()
@@ -1168,50 +1366,84 @@ func _build_effect_home_page() -> Control:
 		value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		value_label.add_theme_color_override("font_outline_color", Color.BLACK)
 		value_label.add_theme_constant_override("outline_size", 2)
-		_place_control(value_label, float(spec[1]), 119, 108, 24)
+		_place_control(value_label, float(spec[1]), 108, 112, 22)
 		value_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		page.add_child(value_label)
 
-	var location_layer := Control.new()
-	location_layer.name = "HomeLocationCard"
-	location_layer.clip_contents = true
-	_place_control(location_layer, 24, 160, 672, 604)
-	page.add_child(location_layer)
+	var scene_panel := Control.new()
+	scene_panel.name = "HomeScenePanel"
+	scene_panel.clip_contents = true
+	_place_control(scene_panel, 18, 146, 684, 636)
+	page.add_child(scene_panel)
+
+	var scene_frame := NinePatchRect.new()
+	scene_frame.name = "HomeSceneFrame"
+	scene_frame.texture = UI_SURVIVAL_SCENE_PANEL
+	scene_frame.patch_margin_left = 34
+	scene_frame.patch_margin_top = 34
+	scene_frame.patch_margin_right = 34
+	scene_frame.patch_margin_bottom = 34
+	scene_frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	scene_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	scene_panel.add_child(scene_frame)
+
+	var scene_background := TextureRect.new()
+	scene_background.name = "HomeSceneBackground"
+	scene_background.texture = UI_PROD_BG_SUBWAY
+	scene_background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	scene_background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	scene_background.modulate = Color(0.76, 0.73, 0.68, 1.0)
+	_place_control(scene_background, 16, 20, 652, 600)
+	scene_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	scene_panel.add_child(scene_background)
+
+	var scene_shade := ColorRect.new()
+	scene_shade.name = "HomeSceneShade"
+	scene_shade.color = Color(0.0, 0.0, 0.0, 0.30)
+	_place_control(scene_shade, 16, 20, 652, 600)
+	scene_shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	scene_panel.add_child(scene_shade)
 
 	scene_title_label = Label.new()
 	scene_title_label.text = "废弃地铁站"
-	_apply_label_style(scene_title_label, 34, Color(0.96, 0.92, 0.84, 1.0))
+	_apply_label_style(scene_title_label, 32, Color(0.96, 0.92, 0.84, 1.0))
 	scene_title_label.add_theme_constant_override("outline_size", 3)
 	scene_title_label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 0.9))
-	_place_control(scene_title_label, 30, 34, 430, 54)
-	location_layer.add_child(scene_title_label)
+	_place_control(scene_title_label, 38, 40, 430, 50)
+	scene_panel.add_child(scene_title_label)
 
 	scene_desc_label = Label.new()
 	scene_desc_label.text = "黑暗中传来金属摩擦声。你握紧手中的武器，小心翼翼地向前移动。"
 	_apply_label_style(scene_desc_label, 17, Color(0.88, 0.86, 0.78, 1.0))
 	scene_desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_place_control(scene_desc_label, 30, 104, 390, 180)
-	location_layer.add_child(scene_desc_label)
+	_place_control(scene_desc_label, 38, 100, 410, 170)
+	scene_panel.add_child(scene_desc_label)
 
 	scene_hot_container = VBoxContainer.new()
 	scene_hot_container.add_theme_constant_override("separation", 6)
 	scene_hot_container.visible = false
-	_place_control(scene_hot_container, 30, 292, 390, 120)
-	location_layer.add_child(scene_hot_container)
+	_place_control(scene_hot_container, 38, 284, 390, 120)
+	scene_panel.add_child(scene_hot_container)
 
 	var continue_button := Button.new()
 	continue_button.name = "ContinueExploreButton"
-	continue_button.text = ""
-	_place_control(continue_button, 174, 624, 372, 104)
-	continue_button.focus_mode = Control.FOCUS_ALL
-	_apply_transparent_hotspot_skin(continue_button)
+	_place_control(continue_button, 86, 512, 512, 112)
+	_apply_state_image_button(continue_button, UI_SURVIVAL_CONTINUE_NORMAL, UI_SURVIVAL_CONTINUE_SELECTED, UI_SURVIVAL_CONTINUE_PRESSED, UI_SURVIVAL_CONTINUE_DISABLED)
 	continue_button.pressed.connect(func() -> void: _switch_tab("explore"))
-	page.add_child(continue_button)
+	scene_panel.add_child(continue_button)
 
 	var mission_panel := Control.new()
 	mission_panel.name = "MainMissionPanel"
-	_place_control(mission_panel, 26, 778, 668, 190)
+	_place_control(mission_panel, 18, 792, 684, 186)
 	page.add_child(mission_panel)
+
+	var mission_art := TextureRect.new()
+	mission_art.texture = UI_SURVIVAL_MISSION_PANEL
+	mission_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	mission_art.stretch_mode = TextureRect.STRETCH_SCALE
+	mission_art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	mission_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	mission_panel.add_child(mission_art)
 
 	var mission_layer := Control.new()
 	mission_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -1225,11 +1457,11 @@ func _build_effect_home_page() -> Control:
 	story_card_text_label.text = "第 12 章：失联基地\n前往失联基地核心区，寻找信号源并确认幸存者下落。"
 	_apply_label_style(story_card_text_label, 16, COLOR_TEXT)
 	story_card_text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_place_control(story_card_text_label, 118, 62, 510, 76)
+	_place_control(story_card_text_label, 120, 58, 510, 72)
 	mission_layer.add_child(story_card_text_label)
 
 	var progress := TextureProgressBar.new()
-	_place_control(progress, 118, 144, 470, 12)
+	_place_control(progress, 120, 142, 470, 12)
 	progress.max_value = 1.0
 	progress.value = 0.0
 	progress.texture_under = UI_PROD_PROGRESS_TRACK
@@ -1240,7 +1472,7 @@ func _build_effect_home_page() -> Control:
 	progress_text.text = "0/1"
 	_apply_label_style(progress_text, 13, COLOR_AMBER)
 	progress_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_place_control(progress_text, 590, 134, 48, 24)
+	_place_control(progress_text, 594, 132, 48, 24)
 	mission_layer.add_child(progress_text)
 
 	story_card_button_container = HBoxContainer.new()
@@ -1249,22 +1481,22 @@ func _build_effect_home_page() -> Control:
 
 	var search_button := Button.new()
 	search_button.name = "HomeSearchButton"
-	_place_control(search_button, 24, 990, 216, 144)
-	_apply_transparent_hotspot_skin(search_button)
+	_place_control(search_button, 24, 1006, 208, 112)
+	_apply_state_image_button(search_button, UI_SURVIVAL_ACTION_NORMAL_TEXTURES[0], UI_SURVIVAL_ACTION_SELECTED_TEXTURES[0], UI_SURVIVAL_ACTION_PRESSED_TEXTURES[0], UI_SURVIVAL_ACTION_DISABLED_TEXTURES[0])
 	search_button.pressed.connect(func() -> void: _switch_tab("explore"))
 	page.add_child(search_button)
 
 	var rest_button := Button.new()
 	rest_button.name = "HomeRestButton"
-	_place_control(rest_button, 252, 990, 216, 144)
-	_apply_transparent_hotspot_skin(rest_button)
+	_place_control(rest_button, 256, 1006, 208, 112)
+	_apply_state_image_button(rest_button, UI_SURVIVAL_ACTION_NORMAL_TEXTURES[1], UI_SURVIVAL_ACTION_SELECTED_TEXTURES[1], UI_SURVIVAL_ACTION_PRESSED_TEXTURES[1], UI_SURVIVAL_ACTION_DISABLED_TEXTURES[1])
 	rest_button.pressed.connect(_on_rest_pressed)
 	page.add_child(rest_button)
 
 	var leave_button := Button.new()
 	leave_button.name = "HomeLeaveButton"
-	_place_control(leave_button, 480, 990, 216, 144)
-	_apply_transparent_hotspot_skin(leave_button)
+	_place_control(leave_button, 488, 1006, 208, 112)
+	_apply_state_image_button(leave_button, UI_SURVIVAL_ACTION_NORMAL_TEXTURES[2], UI_SURVIVAL_ACTION_SELECTED_TEXTURES[2], UI_SURVIVAL_ACTION_PRESSED_TEXTURES[2], UI_SURVIVAL_ACTION_DISABLED_TEXTURES[2])
 	leave_button.pressed.connect(func() -> void: _set_home_status("当前区域暂未开放撤离结算。"))
 	page.add_child(leave_button)
 
@@ -1280,7 +1512,53 @@ func _build_effect_home_page() -> Control:
 	home_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	status_box.add_child(home_status_label)
 
+	page.resized.connect(_layout_effect_home_page.bind(page))
+	call_deferred("_layout_effect_home_page", page)
+
 	return page
+
+
+func _layout_effect_home_page(page: Control) -> void:
+	var page_height := maxf(page.size.y, 1280.0)
+	var nav_top := page_height - 146.0
+	var actions_top := nav_top - 144.0
+	var mission_top := actions_top - 198.0
+	var scene_top := 146.0
+	var scene_height := maxf(520.0, mission_top - scene_top - 10.0)
+
+	var scene_panel := page.get_node_or_null("HomeScenePanel") as Control
+	if scene_panel != null:
+		scene_panel.position = Vector2(18, scene_top)
+		scene_panel.size = Vector2(684, scene_height)
+		var scene_background := scene_panel.get_node_or_null("HomeSceneBackground") as TextureRect
+		if scene_background != null:
+			scene_background.position = Vector2(16, 20)
+			scene_background.size = Vector2(652, scene_height - 36.0)
+		var scene_shade := scene_panel.get_node_or_null("HomeSceneShade") as ColorRect
+		if scene_shade != null:
+			scene_shade.position = Vector2(16, 20)
+			scene_shade.size = Vector2(652, scene_height - 36.0)
+		var continue_button := scene_panel.get_node_or_null("ContinueExploreButton") as Button
+		if continue_button != null:
+			continue_button.position = Vector2(86, scene_height - 124.0)
+			continue_button.size = Vector2(512, 112)
+
+	var mission_panel := page.get_node_or_null("MainMissionPanel") as Control
+	if mission_panel != null:
+		mission_panel.position = Vector2(18, mission_top)
+		mission_panel.size = Vector2(684, 186)
+
+	var action_names := ["HomeSearchButton", "HomeRestButton", "HomeLeaveButton"]
+	var action_x := [24.0, 256.0, 488.0]
+	for i in range(action_names.size()):
+		var action_button := page.get_node_or_null(action_names[i]) as Button
+		if action_button != null:
+			action_button.position = Vector2(action_x[i], actions_top + 16.0)
+			action_button.size = Vector2(208, 112)
+
+	if home_status_panel != null:
+		home_status_panel.position = Vector2(54, mission_top - 58.0)
+		home_status_panel.size = Vector2(612, 50)
 
 
 func _make_home_action_button(text: String, style_kind: String = "panel") -> Button:
@@ -1316,109 +1594,144 @@ func _make_home_action_button(text: String, style_kind: String = "panel") -> But
 func _build_formation_page() -> Control:
 	var page := Control.new()
 	page.name = "FormationPage"
+	var page_background := ColorRect.new()
+	page_background.color = Color(0.012, 0.013, 0.012, 1.0)
+	page_background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	page_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	page.add_child(page_background)
+
+	var top_header := TextureRect.new()
+	top_header.name = "TargetFormationHeader"
+	top_header.texture = UI_TARGET_FORMATION_TOP
+	top_header.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	top_header.stretch_mode = TextureRect.STRETCH_SCALE
+	top_header.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(top_header, 0, 0, 720, 130)
+	page.add_child(top_header)
 
 	formation_label = Label.new()
-	formation_label.text = "编队 · 强攻阵"
-	_apply_label_style(formation_label, 32, COLOR_TEXT)
-	formation_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(formation_label, 0, 20, 720, 52)
+	formation_label.visible = false
 	page.add_child(formation_label)
 
-	var power_row := Label.new()
-	power_row.text = "队伍战力  %d" % (_get_team_level(GameState.player) * 1000)
-	_apply_label_style(power_row, 29, COLOR_AMBER)
-	power_row.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(power_row, 0, 91, 720, 48)
-	page.add_child(power_row)
+	var back_button := Button.new()
+	back_button.name = "FormationBackButton"
+	back_button.tooltip_text = "返回生存页"
+	_place_control(back_button, 20, 4, 72, 66)
+	_apply_invisible_hotspot_skin(back_button)
+	back_button.pressed.connect(func() -> void: _switch_tab("camp"))
+	page.add_child(back_button)
 
-	var card_row := HBoxContainer.new()
-	card_row.add_theme_constant_override("separation", 0)
-	_place_control(card_row, 12, 160, 696, 360)
-	page.add_child(card_row)
-	for survivor in _get_formation_showcase_survivors():
-		card_row.add_child(_make_formation_character_card(survivor))
+	var help_button := Button.new()
+	help_button.name = "FormationHelpButton"
+	help_button.tooltip_text = "编队帮助"
+	_place_control(help_button, 636, 4, 68, 66)
+	_apply_invisible_hotspot_skin(help_button)
+	help_button.pressed.connect(func() -> void: _set_home_status("拖动或点击阵位可调整出战伙伴。"))
+	page.add_child(help_button)
 
-	var grid_panel := PanelContainer.new()
-	_place_control(grid_panel, 24, 540, 362, 440)
-	_apply_tinted_panel_texture(grid_panel, UI_PROD_PANEL_FORMATION, Color(0.56, 0.51, 0.42, 1.0), 14)
-	page.add_child(grid_panel)
-	var grid_box := _make_panel_margin(grid_panel, 10)
+	var card_positions := [
+		Rect2(14, 130, 137, 390),
+		Rect2(153, 130, 136, 390),
+		Rect2(291, 130, 135, 390),
+		Rect2(428, 130, 133, 390),
+		Rect2(563, 130, 143, 390)
+	]
+	var card_names := ["陈末", "林美", "老周", "陈锋", "苏晓"]
+	for i in range(UI_TARGET_FORMATION_CARDS.size()):
+		var card_rect: Rect2 = card_positions[i]
+		var card_art := TextureRect.new()
+		card_art.texture = UI_TARGET_FORMATION_CARDS[i]
+		card_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		card_art.stretch_mode = TextureRect.STRETCH_SCALE
+		card_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_place_control(card_art, card_rect.position.x, card_rect.position.y, card_rect.size.x, card_rect.size.y)
+		page.add_child(card_art)
 
-	var grid_title := Label.new()
-	grid_title.text = "编队阵型（3×3）"
-	_apply_label_style(grid_title, 15, COLOR_AMBER)
-	grid_box.add_child(grid_title)
+		var card_button := Button.new()
+		card_button.name = "FormationCard%d" % i
+		card_button.tooltip_text = "%s详情" % card_names[i]
+		_place_control(card_button, card_rect.position.x, card_rect.position.y, card_rect.size.x, card_rect.size.y)
+		_apply_invisible_hotspot_skin(card_button)
+		card_button.pressed.connect(_on_target_formation_card_pressed.bind(card_names[i]))
+		page.add_child(card_button)
 
-	# 九宫格编队网格
+	var formation_panel := TextureRect.new()
+	formation_panel.name = "TargetFormationPanel"
+	formation_panel.texture = UI_TARGET_FORMATION_PANEL
+	formation_panel.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	formation_panel.stretch_mode = TextureRect.STRETCH_SCALE
+	formation_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(formation_panel, 14, 536, 378, 513)
+	page.add_child(formation_panel)
+
+	var rating_panel := TextureRect.new()
+	rating_panel.name = "TargetTeamRating"
+	rating_panel.texture = UI_TARGET_FORMATION_RATING
+	rating_panel.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	rating_panel.stretch_mode = TextureRect.STRETCH_SCALE
+	rating_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(rating_panel, 397, 536, 309, 513)
+	page.add_child(rating_panel)
+
 	formation_grid_container = GridContainer.new()
 	formation_grid_container.columns = 3
-	formation_grid_container.add_theme_constant_override("h_separation", 6)
-	formation_grid_container.add_theme_constant_override("v_separation", 6)
-	formation_grid_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	grid_box.add_child(formation_grid_container)
+	formation_grid_container.add_theme_constant_override("h_separation", 5)
+	formation_grid_container.add_theme_constant_override("v_separation", 2)
+	_place_control(formation_grid_container, 29, 628, 348, 379)
+	page.add_child(formation_grid_container)
 
-	# 创建9个格子按钮
 	formation_grid_buttons = []
 	for i in range(9):
 		var grid_button := Button.new()
-		grid_button.custom_minimum_size = Vector2(96, 92)
-		grid_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		_apply_slot_button_skin(grid_button, UI_PROD_SLOT_FORMATION_NORMAL, UI_PROD_SLOT_FORMATION_SELECTED)
+		grid_button.custom_minimum_size = Vector2(109, 125)
+		grid_button.tooltip_text = "调整%s阵位" % GameState.player.get_grid_position_label(i)
+		grid_button.set_meta("target_art_hotspot", true)
+		_apply_invisible_hotspot_skin(grid_button)
 		grid_button.pressed.connect(_on_grid_cell_pressed.bind(i))
 		formation_grid_container.add_child(grid_button)
 		formation_grid_buttons.append(grid_button)
 
-	var rating_panel := PanelContainer.new()
-	_place_control(rating_panel, 398, 540, 298, 440)
-	_apply_tinted_panel_texture(rating_panel, UI_PROD_PANEL_TEAM_RATING, Color(0.56, 0.51, 0.42, 1.0), 14)
-	page.add_child(rating_panel)
-	var rating_box := _make_panel_margin(rating_panel, 14)
-	var rating_title := Label.new()
-	rating_title.text = "队伍能力评估"
-	_apply_label_style(rating_title, 16, COLOR_AMBER)
-	rating_box.add_child(rating_title)
-	var radar := TeamRadarChart.new()
-	radar.name = "TeamRadar"
-	radar.custom_minimum_size = Vector2(250, 322)
-	radar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	radar.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	rating_box.add_child(radar)
-	var rating_summary := Label.new()
-	rating_summary.text = "综合评价  B  ·  生存能力突出"
-	_apply_label_style(rating_summary, 13, COLOR_TEXT)
-	rating_summary.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	rating_box.add_child(rating_summary)
-
 	formation_selection_label = Label.new()
-	formation_selection_label.text = "点击「调整编队」选择伙伴，再点击阵位放置"
-	_apply_label_style(formation_selection_label, 13, COLOR_MUTED)
-	formation_selection_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(formation_selection_label, 24, 988, 672, 22)
+	formation_selection_label.visible = false
 	page.add_child(formation_selection_label)
 
+	var action_rects := [
+		Rect2(14, 1065, 246, 81),
+		Rect2(266, 1065, 202, 81),
+		Rect2(476, 1065, 230, 81)
+	]
+	for i in range(UI_TARGET_FORMATION_ACTIONS.size()):
+		var action_rect: Rect2 = action_rects[i]
+		var action_art := TextureRect.new()
+		action_art.texture = UI_TARGET_FORMATION_ACTIONS[i]
+		action_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		action_art.stretch_mode = TextureRect.STRETCH_SCALE
+		action_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_place_control(action_art, action_rect.position.x, action_rect.position.y, action_rect.size.x, action_rect.size.y)
+		page.add_child(action_art)
 
-	var adjust_button := Button.new()
-	adjust_button.text = "调整编队"
-	_place_control(adjust_button, 24, 1018, 208, 112)
-	_apply_button_style(adjust_button, "adjust_team")
-	adjust_button.pressed.connect(_on_adjust_team_pressed)
-	page.add_child(adjust_button)
-
-	var equip_button := Button.new()
-	equip_button.text = "装备"
-	_place_control(equip_button, 256, 1018, 208, 112)
-	_apply_button_style(equip_button, "equipment")
-	equip_button.pressed.connect(func() -> void: _set_home_status("装备页待接入角色装备快捷入口。"))
-	page.add_child(equip_button)
-
-	var skill_button := Button.new()
-	skill_button.text = "技能"
-	_place_control(skill_button, 488, 1018, 208, 112)
-	_apply_button_style(skill_button, "skill")
-	skill_button.pressed.connect(func() -> void: _set_home_status("技能页待接入角色技能强化入口。"))
-	page.add_child(skill_button)
+		var action_button := Button.new()
+		action_button.name = ["AdjustFormationButton", "EquipmentButton", "SkillButton"][i]
+		action_button.tooltip_text = ["调整编队", "装备", "技能"][i]
+		_place_control(action_button, action_rect.position.x, action_rect.position.y, action_rect.size.x, action_rect.size.y)
+		_apply_invisible_hotspot_skin(action_button)
+		if i == 0:
+			action_button.pressed.connect(_on_adjust_team_pressed)
+		elif i == 1:
+			action_button.pressed.connect(func() -> void: _set_home_status("装备页待接入角色装备快捷入口。"))
+		else:
+			action_button.pressed.connect(func() -> void: _set_home_status("技能页待接入角色技能强化入口。"))
+		page.add_child(action_button)
 
 	return page
+
+
+func _on_target_formation_card_pressed(display_name: String) -> void:
+	for survivor in GameState.player.survivors:
+		if str(survivor.get("name", "")) == display_name:
+			_on_survivor_selected(str(survivor.get("id", "")))
+			return
+	_set_home_status("%s尚未加入当前队伍。" % display_name)
 
 
 func _get_formation_showcase_survivors() -> Array:
@@ -2002,45 +2315,46 @@ func _build_battle_popup() -> void:
 func _build_explore_page() -> Control:
 	var page := Control.new()
 	page.name = "ExplorePage"
+	var page_background := ColorRect.new()
+	page_background.color = Color(0.012, 0.013, 0.012, 1.0)
+	page_background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	page_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	page.add_child(page_background)
 
-	var title := Label.new()
-	title.text = "废土城区地图"
-	_apply_label_style(title, 32, Color(0.86, 0.66, 0.38, 1.0))
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(title, 185, 92, 350, 48)
-	page.add_child(title)
+	var top_bar := TextureRect.new()
+	top_bar.name = "ExploreTargetTopBar"
+	top_bar.texture = UI_TARGET_EXPLORE_TOP_BAR
+	top_bar.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	top_bar.stretch_mode = TextureRect.STRETCH_SCALE
+	top_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(top_bar, 0, 0, 720, 92)
+	page.add_child(top_bar)
+
+	var back_button := Button.new()
+	back_button.name = "ExploreBackButton"
+	back_button.tooltip_text = "返回生存页"
+	_place_control(back_button, 18, 8, 82, 76)
+	_apply_invisible_hotspot_skin(back_button)
+	back_button.pressed.connect(func() -> void: _switch_tab("camp"))
+	page.add_child(back_button)
+
+	var stamina_button := Button.new()
+	stamina_button.name = "ExploreStaminaButton"
+	stamina_button.tooltip_text = "恢复体力"
+	_place_control(stamina_button, 646, 12, 66, 68)
+	_apply_invisible_hotspot_skin(stamina_button)
+	stamina_button.pressed.connect(func() -> void: _set_home_status("体力恢复功能暂未开放。"))
+	page.add_child(stamina_button)
 
 	explore_status_label = Label.new()
-	explore_status_label.text = "消耗：半天（上午）"
-	_apply_label_style(explore_status_label, 14, COLOR_TEXT)
-	explore_status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(explore_status_label, 180, 132, 360, 26)
+	explore_status_label.visible = false
 	page.add_child(explore_status_label)
 
-	var route_title := Label.new()
-	route_title.text = "区域探索"
-	_apply_label_style(route_title, 18, COLOR_AMBER)
-	_place_control(route_title, 36, 162, 200, 34)
-	page.add_child(route_title)
-
-	var map_panel := PanelContainer.new()
-	_place_control(map_panel, 24, 190, 672, 890)
-	_apply_panel_texture(map_panel, UI_PROD_PANEL_LOCATION_INFO, 0)
-	page.add_child(map_panel)
-
-	var map_margin := MarginContainer.new()
-	map_margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	map_margin.add_theme_constant_override("margin_left", 24)
-	map_margin.add_theme_constant_override("margin_top", 24)
-	map_margin.add_theme_constant_override("margin_right", 24)
-	map_margin.add_theme_constant_override("margin_bottom", 24)
-	map_panel.add_child(map_margin)
-
 	explore_route_container = VBoxContainer.new()
-	explore_route_container.add_theme_constant_override("separation", 8)
-	explore_route_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	explore_route_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	map_margin.add_child(explore_route_container)
+	explore_route_container.name = "ExploreContent"
+	explore_route_container.add_theme_constant_override("separation", 0)
+	_place_control(explore_route_container, 0, 92, 720, 1042)
+	page.add_child(explore_route_container)
 
 	return page
 
@@ -2077,38 +2391,77 @@ func _build_inventory_page() -> Control:
 func _build_base_page() -> Control:
 	var page := Control.new()
 	page.name = "BasePage"
+	var page_background := ColorRect.new()
+	page_background.color = Color(0.012, 0.013, 0.012, 1.0)
+	page_background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	page_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	page.add_child(page_background)
 
 	var scroll := ScrollContainer.new()
 	scroll.name = "BaseCompositeScroll"
-	_place_control(scroll, 12, 140, 696, 999)
+	_place_control(scroll, 0, 0, 720, 1160)
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	page.add_child(scroll)
 
 	var composite_layer := Control.new()
 	composite_layer.name = "BaseCompositeLayer"
-	composite_layer.custom_minimum_size = Vector2(696, 1237)
+	composite_layer.custom_minimum_size = Vector2(720, 1164)
 	scroll.add_child(composite_layer)
 
-	var composite := TextureRect.new()
-	composite.texture = UI_BASE_COMPOSITE
-	composite.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	composite.stretch_mode = TextureRect.STRETCH_SCALE
-	_place_control(composite, 0, 0, 696, 1237)
-	composite.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	composite_layer.add_child(composite)
+	var header := TextureRect.new()
+	header.name = "TargetBaseHeader"
+	header.texture = UI_TARGET_BASE_HEADER
+	header.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	header.stretch_mode = TextureRect.STRETCH_SCALE
+	header.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(header, 0, 0, 720, 274)
+	composite_layer.add_child(header)
+
+	var resource_bar := TextureRect.new()
+	resource_bar.name = "TargetBaseResources"
+	resource_bar.texture = UI_TARGET_BASE_RESOURCES
+	resource_bar.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	resource_bar.stretch_mode = TextureRect.STRETCH_SCALE
+	resource_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(resource_bar, 20, 274, 680, 86)
+	composite_layer.add_child(resource_bar)
+
+	var header_upgrade_button := Button.new()
+	header_upgrade_button.name = "UpgradeBaseButton"
+	header_upgrade_button.tooltip_text = "升级基地"
+	_place_control(header_upgrade_button, 512, 170, 190, 88)
+	_apply_invisible_hotspot_skin(header_upgrade_button)
+	header_upgrade_button.pressed.connect(func() -> void: _set_home_status("请选择需要升级的设施。"))
+	composite_layer.add_child(header_upgrade_button)
 
 	base_facility_buttons.clear()
 	var facilities := _get_base_facility_definitions()
 	var regions := [
-		Rect2(20, 424, 318, 258), Rect2(354, 424, 320, 258),
-		Rect2(20, 703, 318, 251), Rect2(354, 703, 320, 251),
-		Rect2(20, 979, 318, 242), Rect2(354, 979, 320, 242)
+		Rect2(20, 385, 331, 245), Rect2(362, 385, 340, 245),
+		Rect2(20, 649, 331, 244), Rect2(362, 649, 340, 244),
+		Rect2(20, 914, 331, 250), Rect2(362, 914, 340, 250)
 	]
 	for i in range(facilities.size()):
 		var facility: Dictionary = facilities[i]
-		var button := _make_transparent_facility_hotspot(facility, regions[i])
+		var region: Rect2 = regions[i]
+		var card_art := TextureRect.new()
+		card_art.texture = UI_TARGET_BASE_CARDS[i]
+		card_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		card_art.stretch_mode = TextureRect.STRETCH_SCALE
+		card_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_place_control(card_art, region.position.x, region.position.y, region.size.x, region.size.y)
+		composite_layer.add_child(card_art)
+
+		var button := Button.new()
+		button.name = "Facility_%s" % str(facility.get("id", "unknown"))
+		button.toggle_mode = true
+		button.tooltip_text = "%s · 点击查看详情" % str(facility.get("name", "设施"))
+		_place_control(button, region.position.x, region.position.y, region.size.x, region.size.y)
+		_apply_invisible_hotspot_skin(button)
+		button.pressed.connect(_select_base_facility.bind(facility.duplicate(true)))
 		composite_layer.add_child(button)
 		base_facility_buttons[str(facility.get("id", ""))] = button
 
@@ -2163,35 +2516,111 @@ func _apply_transparent_hotspot_skin(button: Button) -> void:
 	button.add_theme_stylebox_override("disabled", StyleBoxEmpty.new())
 
 
+func _apply_invisible_hotspot_skin(button: Button) -> void:
+	button.text = ""
+	button.icon = null
+	button.focus_mode = Control.FOCUS_ALL
+	for state in ["normal", "hover", "pressed", "focus", "disabled"]:
+		button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
+
+
 func _build_reincarnation_page() -> Control:
 	var page := Control.new()
 	page.name = "ReincarnationPage"
 
-	var title := Label.new()
-	title.text = "轮回殿堂"
-	_apply_label_style(title, 32, COLOR_TEXT)
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place_control(title, 185, 155, 350, 56)
-	page.add_child(title)
+	var page_background := ColorRect.new()
+	page_background.color = Color(0.012, 0.013, 0.012, 1.0)
+	page_background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	page_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	page.add_child(page_background)
 
-	var scroll := ScrollContainer.new()
-	_place_control(scroll, 35, 230, 650, 838)
-	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	page.add_child(scroll)
+	var hall_background := TextureRect.new()
+	hall_background.texture = UI_PROD_BG_REINCARNATION
+	hall_background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	hall_background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	hall_background.modulate = Color(1.0, 0.96, 0.90, 1.0)
+	hall_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(hall_background, 350, 62, 370, 206)
+	page.add_child(hall_background)
+
+	var top_header := TextureRect.new()
+	top_header.name = "TargetReincarnationHeader"
+	top_header.texture = UI_TARGET_REINCARNATION_TOP
+	top_header.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	top_header.stretch_mode = TextureRect.STRETCH_SCALE
+	top_header.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(top_header, 0, 0, 720, 84)
+	page.add_child(top_header)
+
+	var back_button := Button.new()
+	back_button.name = "ReincarnationBackButton"
+	back_button.tooltip_text = "返回生存页"
+	_place_control(back_button, 20, 4, 72, 70)
+	_apply_invisible_hotspot_skin(back_button)
+	back_button.pressed.connect(func() -> void: _switch_tab("camp"))
+	page.add_child(back_button)
+
+	var help_button := Button.new()
+	help_button.name = "ReincarnationHelpButton"
+	help_button.tooltip_text = "轮回说明"
+	_place_control(help_button, 634, 4, 72, 70)
+	_apply_invisible_hotspot_skin(help_button)
+	help_button.pressed.connect(func() -> void: _set_home_status("轮回会结算本轮成果，并保留永久成长。"))
+	page.add_child(help_button)
+
+	var panel_rects := [
+		Rect2(35, 84, 336, 179),
+		Rect2(35, 272, 654, 110),
+		Rect2(35, 393, 654, 136),
+		Rect2(35, 536, 654, 112),
+		Rect2(35, 656, 654, 122),
+		Rect2(35, 789, 654, 151),
+		Rect2(35, 948, 654, 99)
+	]
+	for i in range(UI_TARGET_REINCARNATION_PANELS.size()):
+		var panel_rect: Rect2 = panel_rects[i]
+		var panel_art := TextureRect.new()
+		panel_art.texture = UI_TARGET_REINCARNATION_PANELS[i]
+		panel_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		panel_art.stretch_mode = TextureRect.STRETCH_SCALE
+		panel_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_place_control(panel_art, panel_rect.position.x, panel_rect.position.y, panel_rect.size.x, panel_rect.size.y)
+		page.add_child(panel_art)
 
 	reincarnation_content_container = VBoxContainer.new()
-	reincarnation_content_container.add_theme_constant_override("separation", 8)
-	reincarnation_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(reincarnation_content_container)
+	reincarnation_content_container.visible = false
+	page.add_child(reincarnation_content_container)
+
+	var reward_button := Button.new()
+	reward_button.name = "ReincarnationRewardButton"
+	reward_button.tooltip_text = "查看轮回奖励"
+	_place_control(reward_button, 480, 555, 180, 74)
+	_apply_invisible_hotspot_skin(reward_button)
+	reward_button.pressed.connect(func() -> void: _set_home_status("轮回印记可用于永久天赋与强化。"))
+	page.add_child(reward_button)
+
+	var talent_button := Button.new()
+	talent_button.name = "ReincarnationTalentButton"
+	talent_button.tooltip_text = "永久天赋"
+	_place_control(talent_button, 50, 685, 620, 76)
+	_apply_invisible_hotspot_skin(talent_button)
+	talent_button.pressed.connect(_on_talent_pressed)
+	page.add_child(talent_button)
+
+	var boss_button := Button.new()
+	boss_button.name = "ReincarnationBossIntelButton"
+	boss_button.tooltip_text = "查看 BOSS 情报"
+	_place_control(boss_button, 485, 830, 172, 82)
+	_apply_invisible_hotspot_skin(boss_button)
+	boss_button.pressed.connect(func() -> void: _set_home_status("BOSS 情报将在遭遇后逐步解锁。"))
+	page.add_child(boss_button)
 
 	var action_button := Button.new()
 	action_button.name = "ReincarnateButton"
-	action_button.text = "主动轮回"
-	_place_control(action_button, 79, 1083, 562, 86)
-	action_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_apply_button_style(action_button, "danger")
+	action_button.text = ""
+	action_button.tooltip_text = "主动轮回"
+	_place_control(action_button, 77, 1058, 571, 86)
+	_apply_texture_button_skin(action_button, UI_TARGET_REINCARNATION_ACTION, UI_TARGET_REINCARNATION_ACTION, UI_TARGET_REINCARNATION_ACTION, UI_TARGET_REINCARNATION_ACTION, 0, 0)
 	action_button.pressed.connect(_on_reincarnation_pressed)
 	page.add_child(action_button)
 
@@ -2319,18 +2748,18 @@ func _build_tab_navigation() -> void:
 	var tab_bar := Control.new()
 	bottom_tab_bar = tab_bar
 	tab_bar.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	tab_bar.offset_top = -141
+	tab_bar.offset_top = -146
 	tab_bar.offset_bottom = 0
 	tab_bar.offset_left = 0
 	tab_bar.offset_right = 0
-	# Selected assets contain a soft outer glow. Keep it inside the 141 px nav safe area.
+	# The home artwork already contains every normal tab. Only its selected tab is overlaid.
 	tab_bar.clip_contents = true
 	tab_bar.resized.connect(_layout_tab_navigation)
 	add_child(tab_bar)
 
 	var nav_bg := TextureRect.new()
 	nav_bg.name = "BottomNavBackground"
-	nav_bg.texture = UI_SUPPLEMENT_BOTTOM_NAV_BLACK_IRON
+	nav_bg.texture = UI_SURVIVAL_NAV_BAR
 	nav_bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	nav_bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	nav_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -2348,10 +2777,15 @@ func _build_tab_navigation() -> void:
 		var tab: Dictionary = tabs[i]
 		var button := Button.new()
 		button.tooltip_text = str(tab["label"])
-		button.custom_minimum_size = Vector2(144, 96)
+		button.custom_minimum_size = Vector2(144, 128)
 		button.toggle_mode = true
 		button.set_meta("nav_index", i)
-		_apply_image_button(button, UI_PROD_NAV_NORMAL_TEXTURES[i], UI_PROD_NAV_SELECTED_TEXTURES[i])
+		_apply_state_image_button(button, UI_PROD_NAV_NORMAL_TEXTURES[i], UI_PROD_NAV_SELECTED_TEXTURES[i], UI_PROD_NAV_PRESSED_TEXTURES[i], UI_PROD_NAV_DISABLED_TEXTURES[i])
+		var nav_image := button.get_node("ButtonImage") as TextureRect
+		nav_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		var runtime_dot := _make_runtime_notification_dot()
+		button.add_child(runtime_dot)
+		tab_notification_dots[str(tab["id"])] = runtime_dot
 		button.pressed.connect(_on_tab_pressed.bind(tab["id"]))
 		tab_bar.add_child(button)
 		tab_buttons[tab["id"]] = button
@@ -2365,23 +2799,34 @@ func _layout_tab_navigation() -> void:
 	if available_w <= 0.0:
 		available_w = get_viewport_rect().size.x
 	var scale := available_w / 720.0
-	var button_w := 144.0 * scale
-	var button_h := 96.0 * scale
-	var total_w := button_w * 5.0
-	var start_x := roundf((available_w - total_w) * 0.5)
-	var start_y := roundf((bottom_tab_bar.size.y - button_h) * 0.5)
-
 	var nav_bg := bottom_tab_bar.get_node_or_null("BottomNavBackground") as TextureRect
 	if nav_bg != null:
-		var shell_h := minf(bottom_tab_bar.size.y, available_w * 349.0 / 2146.0)
-		nav_bg.position = Vector2(0, roundf((bottom_tab_bar.size.y - shell_h) * 0.5))
-		nav_bg.size = Vector2(available_w, shell_h)
+		var shell_w := 684.0 * scale
+		var shell_h := 146.0 * scale
+		nav_bg.position = Vector2(roundf((available_w - shell_w) * 0.5), roundf((bottom_tab_bar.size.y - shell_h) * 0.5))
+		nav_bg.size = Vector2(shell_w, shell_h)
+		nav_bg.visible = true
+
+	var button_w := (684.0 / 5.0) * scale
+	var button_h := 128.0 * scale
+	var start_y := roundf((bottom_tab_bar.size.y - button_h) * 0.5)
+	var start_x := roundf((available_w - 684.0 * scale) * 0.5)
 
 	for id in tab_buttons:
 		var button: Button = tab_buttons[id]
 		var index := int(button.get_meta("nav_index", 0))
+		var image := button.get_node_or_null("ButtonImage") as TextureRect
+		button.custom_minimum_size = Vector2(button_w, button_h)
 		button.position = Vector2(start_x + float(index) * button_w, start_y)
 		button.size = Vector2(button_w, button_h)
+		if image != null:
+			image.visible = button.button_pressed
+		var dot := button.get_node_or_null("RuntimeNotificationDot") as Control
+		if dot != null:
+			var dot_size := maxf(6.0, 14.0 * scale)
+			dot.size = Vector2(dot_size, dot_size)
+			dot.position = Vector2(button_w - dot_size - 16.0 * scale, 18.0 * scale)
+			dot.visible = bool(tab_notification_state.get(str(id), false))
 
 
 # ============================================================
@@ -2393,10 +2838,9 @@ func _on_tab_pressed(tab_id: String) -> void:
 
 func _switch_tab(tab_id: String) -> void:
 	current_tab = tab_id
-	# The formation page owns its full title/power header, matching the production mockup.
-	# Hide the persistent survival status bar there so the two headers never overlap.
+	# Every production page owns its header; the legacy shared status bar would duplicate it.
 	if status_bar != null:
-		status_bar.visible = tab_id != "team"
+		status_bar.visible = false
 
 	# 更新按钮状态
 	for id in tab_buttons:
@@ -2407,6 +2851,8 @@ func _switch_tab(tab_id: String) -> void:
 	# 更新页面可见性
 	for id in tab_pages:
 		tab_pages[id].visible = (id == tab_id)
+	_layout_tab_navigation()
+	_sync_tab_notification_dots()
 
 	# 切换时刷新对应页面
 	match tab_id:
@@ -2421,6 +2867,36 @@ func _switch_tab(tab_id: String) -> void:
 			_refresh_base_page()
 		"reincarnation":
 			_refresh_reincarnation_page()
+
+
+func set_tab_notification(tab_id: String, visible: bool) -> void:
+	tab_notification_state[tab_id] = visible
+	_sync_tab_notification_dots()
+
+
+func get_tab_notification_state(tab_id: String) -> bool:
+	return bool(tab_notification_state.get(tab_id, false))
+
+
+func _sync_tab_notification_dots() -> void:
+	for tab_id in tab_notification_dots:
+		var dot := tab_notification_dots[tab_id] as Control
+		if dot != null:
+			dot.visible = bool(tab_notification_state.get(str(tab_id), false))
+
+
+func _make_runtime_notification_dot() -> Control:
+	var dot := Panel.new()
+	dot.name = "RuntimeNotificationDot"
+	dot.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	dot.visible = false
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.86, 0.07, 0.06, 1.0)
+	style.border_color = Color(0.18, 0.02, 0.02, 1.0)
+	style.set_border_width_all(1)
+	style.set_corner_radius_all(99)
+	dot.add_theme_stylebox_override("panel", style)
+	return dot
 
 
 # ============================================================
@@ -2526,7 +3002,7 @@ func _refresh_home_master_status(player: PlayerData) -> void:
 		return
 	var date_label := page.find_child("HomeDateValue", true, false) as Label
 	if date_label != null:
-		date_label.text = "第 %d 轮 · 第 %d 天 · %s · 阴" % [player.reincarnation, player.day, player.get_time_label()]
+		date_label.text = "第 %d 轮 · 第 %d 天 · %s · 阴  ☁" % [player.reincarnation, player.day, player.get_time_label()]
 	var hp_total := 0
 	var hp_max_total := 0
 	for survivor in player.survivors:
@@ -2645,6 +3121,9 @@ func _refresh_formation() -> void:
 	for i in range(9):
 		var grid_button: Button = formation_grid_buttons[i]
 		var survivor_id: String = player.get_grid_survivor(i)
+		if bool(grid_button.get_meta("target_art_hotspot", false)):
+			grid_button.text = ""
+			continue
 		if survivor_id != "":
 			var survivor_name := survivor_id
 			for survivor in player.survivors:
@@ -3184,41 +3663,86 @@ func _show_world_map() -> void:
 	var player := GameState.player
 	explore_status_label.text = "大地图 · %s · 口粮 %d" % [player.get_time_label(), player.supplies.get("food", 0)]
 	_clear_explore_container()
-	var sites := _get_region_world_sites()
-	if selected_world_site.is_empty() and not sites.is_empty():
+	var sites := _get_target_explore_sites()
+	var selected_is_valid := false
+	for site in sites:
+		if str(site.get("id", "")) == str(selected_world_site.get("id", "")):
+			selected_is_valid = true
+			break
+	if not selected_is_valid and not sites.is_empty():
 		selected_world_site = sites[0].duplicate(true)
 
-	var map_data: Dictionary = DataManager.region_data.get("map", {})
-	var map_header := HBoxContainer.new()
-	map_header.add_theme_constant_override("separation", 8)
-	map_header.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	explore_route_container.add_child(map_header)
+	var target_view := Control.new()
+	target_view.name = "TargetExploreWorldView"
+	target_view.custom_minimum_size = Vector2(720, 1042)
+	target_view.size = Vector2(720, 1042)
+	explore_route_container.add_child(target_view)
 
-	var map_title := Label.new()
-	map_title.text = "【%s】" % map_data.get("name", "荒原大地图")
-	_apply_label_style(map_title, 16, COLOR_AMBER)
-	map_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	map_header.add_child(map_title)
+	var map_area := TextureRect.new()
+	map_area.name = "ExploreMapArea"
+	map_area.texture = UI_TARGET_EXPLORE_MAP_AREA
+	map_area.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	map_area.stretch_mode = TextureRect.STRETCH_SCALE
+	map_area.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(map_area, 0, 0, 720, 508)
+	target_view.add_child(map_area)
 
-	var fit_mode_button := Button.new()
-	world_map_fit_button = fit_mode_button
+	var map_overlay := Control.new()
+	map_overlay.name = "WorldMapCanvas"
+	_place_control(map_overlay, 0, 0, 720, 508)
+	target_view.add_child(map_overlay)
+	world_map_viewport = map_overlay
+	world_map_scroll = null
+	world_map_zoom_container = map_overlay
+	world_map_canvas = map_overlay
+	world_map_base_size = Vector2(720, 508)
+	world_map_zoom = 1.0
+	world_map_fit_button = null
 	world_map_overview_mode = true
-	fit_mode_button.text = "放大探索"
-	fit_mode_button.tooltip_text = "在完整全图与可拖拽细节视图之间切换"
-	fit_mode_button.custom_minimum_size = Vector2(96, 34)
-	_apply_button_style(fit_mode_button)
-	fit_mode_button.pressed.connect(_on_world_map_immersive_pressed)
-	map_header.add_child(fit_mode_button)
 
-	var drag_hint := Label.new()
-	drag_hint.text = "按住拖动 · 滚轮缩放"
-	_apply_label_style(drag_hint, 11, COLOR_MUTED)
-	drag_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	drag_hint.custom_minimum_size = Vector2(142, 34)
-	map_header.add_child(drag_hint)
+	var hotspot_rects := [
+		Rect2(282, 22, 150, 180),
+		Rect2(88, 158, 160, 178),
+		Rect2(474, 158, 164, 180),
+		Rect2(282, 326, 158, 178),
+		Rect2(505, 306, 154, 188)
+	]
+	var hotspot_names := ["Hospital", "Supermarket", "Subway", "Safehouse", "Unknown"]
+	for i in range(sites.size()):
+		var site: Dictionary = sites[i]
+		var node_button := Button.new()
+		node_button.name = "ExploreNode%s" % hotspot_names[i]
+		node_button.tooltip_text = str(site.get("name", "地点"))
+		node_button.toggle_mode = true
+		node_button.button_pressed = str(site.get("id", "")) == str(selected_world_site.get("id", ""))
+		node_button.disabled = bool(site.get("locked", false))
+		node_button.set_meta("world_site_id", str(site.get("id", "")))
+		var hotspot: Rect2 = hotspot_rects[i]
+		_place_control(node_button, hotspot.position.x, hotspot.position.y, hotspot.size.x, hotspot.size.y)
+		_apply_invisible_hotspot_skin(node_button)
+		node_button.pressed.connect(_select_world_site.bind(site))
+		map_overlay.add_child(node_button)
 
-	_add_world_map_canvas()
-	_add_world_map_detail_card()
+	var detail_area := TextureRect.new()
+	detail_area.name = "ExploreLocationInfo"
+	detail_area.texture = UI_TARGET_EXPLORE_LOCATION_INFO
+	detail_area.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	detail_area.stretch_mode = TextureRect.STRETCH_SCALE
+	detail_area.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_place_control(detail_area, 20, 508, 680, 534)
+	target_view.add_child(detail_area)
+
+	var go_button := Button.new()
+	go_button.name = "ExploreGoButton"
+	go_button.tooltip_text = "前往当前地点"
+	_place_control(go_button, 106, 935, 508, 88)
+	_apply_invisible_hotspot_skin(go_button)
+	go_button.pressed.connect(_enter_selected_world_site)
+	target_view.add_child(go_button)
+	world_map_go_button = go_button
+	world_map_detail_title = null
+	world_map_detail_info = null
+	_update_world_map_detail()
 
 
 func _add_world_map_detail_card() -> void:
@@ -3563,6 +4087,57 @@ func _add_world_map_region_button(canvas: Control, site: Dictionary, map_size: V
 	button.add_theme_font_size_override("font_size", 9 if map_size.x < 900.0 else 11)
 	button.pressed.connect(_select_world_site.bind(site))
 	canvas.add_child(button)
+
+
+func _get_target_explore_sites() -> Array:
+	return [
+		{
+			"id": "abandoned_clinic",
+			"name": "医院",
+			"site_type": "resource",
+			"desc": "高危区域，仍可能找到药品与旧档案。",
+			"danger": 4,
+			"grid_size": 6,
+			"total_floors": 1
+		},
+		{
+			"id": "ruined_supermarket",
+			"name": "超市",
+			"site_type": "resource",
+			"desc": "废弃货架间散落着少量生存物资。",
+			"danger": 2,
+			"grid_size": 6,
+			"total_floors": 1
+		},
+		{
+			"id": "abandoned_subway",
+			"name": "地铁站",
+			"site_type": "resource",
+			"desc": "轨道深处传来异变体活动的声音。",
+			"danger": 5,
+			"grid_size": 7,
+			"total_floors": 2
+		},
+		{
+			"id": "safehouse",
+			"name": "安全屋",
+			"site_type": "resource",
+			"desc": "已清理的临时据点，可进行短暂休整。",
+			"danger": 1,
+			"grid_size": 5,
+			"total_floors": 1
+		},
+		{
+			"id": "unknown_sector",
+			"name": "未知区域",
+			"site_type": "resource",
+			"desc": "尚未取得进入该区域的路线情报。",
+			"danger": 6,
+			"grid_size": 7,
+			"total_floors": 2,
+			"locked": true
+		}
+	]
 
 
 func _get_region_world_sites() -> Array:

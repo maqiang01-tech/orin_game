@@ -1,0 +1,41 @@
+{
+  "schema": "a_cut_plan_result.v1",
+  "event": "CUT_PLAN_READY",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "revision": 1,
+  "dispatch_id": "DSP-A-UI-BATTLE-SANDBOX-G0-001-R1-PLAN-20260905-01",
+  "role": "A",
+  "stage": "A:plan",
+  "input_hash": "sha256:d2e64b794a9241507a0993788cf2abd1fb4a194f873860c2ac5a687f3441c3f2",
+  "context_pack_hash": "sha256:733a6ee812356fc648ea613ee8503e600a8a034bd5859cac70ab4905bfb727e6",
+  "design_pack_hash": "sha256:9724879596be4f1c76a8ab95e21578795c0312c1c8b3df6f4305957e5817a475",
+  "release_unit": "battle_sandbox_g0_ui_shells",
+  "status": "ready_for_c_asset_plan_review",
+  "planned_png_count": 14,
+  "generated_png_count": 0,
+  "artifacts": [
+    {"path":"staging/A-UI-BATTLE-SANDBOX-G0-001/cut_plan.yaml","sha256":"sha256:a4884fe22567977585bd80407d89adfd0c1085aa06157f36d544ce376f7202b0"},
+    {"path":"staging/A-UI-BATTLE-SANDBOX-G0-001/component_tree.json","sha256":"sha256:9a3feb03954a07d0af96f570afaabdae8c7d7682522ac3d2778ea078e0a85231"},
+    {"path":"staging/A-UI-BATTLE-SANDBOX-G0-001/independence_decisions.json","sha256":"sha256:9ef7d216ee43e2e4746803cfb87f0a37b03336094e70ad79e76d78b23d2f5500"},
+    {"path":"staging/A-UI-BATTLE-SANDBOX-G0-001/deliverables.json","sha256":"sha256:43e0b46da822a60b5728d67b5b2e92894f502d0394794768fe820848eb5bdd78"},
+    {"path":"staging/A-UI-BATTLE-SANDBOX-G0-001/ui_layout.json","sha256":"sha256:04d7ec2496265cf928afbbb76ae9c3d369c5306ca786e3330157386c7b2993e6"},
+    {"path":"staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.csv","sha256":"sha256:447a6aa617353d5a671e848803f673dbb8eca60fae47877d55efe98c68fe3098"},
+    {"path":"staging/A-UI-BATTLE-SANDBOX-G0-001/click_regions.json","sha256":"sha256:a5dd8f43c808186acae2de793116b479b587db53ced86b3384eb357cfdab718b"},
+    {"path":"staging/A-UI-BATTLE-SANDBOX-G0-001/provenance_plan.json","sha256":"sha256:c95b276823342fbdff662af4fce01b0ecac50793fc66731f60257e594dd1ab16"}
+  ],
+  "validation": {
+    "required_artifacts_present": true,
+    "json_and_csv_parse": true,
+    "planned_count_matches": true,
+    "button_state_geometry_invariant": true,
+    "click_regions_in_bounds": true,
+    "runtime_text_and_badge_exclusion": true,
+    "reference_source_hash_matches": true,
+    "current_png_count": 0,
+    "direct_crop_or_production_write": false
+  },
+  "blockers": [
+    "C_ASSET:plan_review is required because this is a first new resource family with multi-state buttons, dynamic runtime values, and a vertical ninepatch log panel.",
+    "No production dispatch exists; PNG generation, Manifest work, and Godot integration remain prohibited."
+  ]
+}

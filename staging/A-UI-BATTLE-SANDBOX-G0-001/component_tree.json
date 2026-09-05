@@ -1,0 +1,57 @@
+{
+  "schema": "ui_component_tree.v1",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "root": {
+    "id": "battle_sandbox_gate_0",
+    "type": "screen",
+    "children": [
+      {
+        "id": "title_status_bar",
+        "type": "static_shell_plus_runtime_controls",
+        "static_asset": "battle_title_status_shell",
+        "runtime_children": ["battle_title", "round", "current_actor", "auto_state", "speed_state", "battle_state"]
+      },
+      {
+        "id": "formation_battlefield",
+        "type": "static_shell_plus_runtime_matrix",
+        "static_asset": "battle_formation_field_shell",
+        "runtime_children": ["enemy_matrix_3x3_mirrored", "player_matrix_3x3", "targeting_gap", "actor_highlight", "target_highlight", "intercept_line"]
+      },
+      {
+        "id": "formation_slot_equal_grid",
+        "type": "reusable_texture_family",
+        "static_assets": ["formation_slot_normal", "formation_slot_occupied"],
+        "runtime_children": ["unit_card", "row_label", "actor_highlight", "target_highlight", "defeated_overlay"]
+      },
+      {
+        "id": "turn_order_strip",
+        "type": "static_shell_plus_runtime_controls",
+        "static_asset": "battle_turn_order_strip_shell",
+        "runtime_children": ["upcoming_actor_items", "action_bar_preview", "current_actor_reason"]
+      },
+      {
+        "id": "current_actor_skill_panel",
+        "type": "static_shell_plus_reusable_buttons",
+        "static_asset": "battle_current_actor_skill_panel_shell",
+        "runtime_children": ["actor_summary", "action_slots_5", "utility_controls"]
+      },
+      {
+        "id": "skill_button_shell",
+        "type": "reusable_state_texture_family",
+        "static_assets": ["normal", "pressed", "disabled", "highlight", "selected", "cooldown", "resource_blocked"],
+        "runtime_children": ["skill_label", "skill_icon", "cooldown_value", "resource_cost", "state_overlay"]
+      },
+      {
+        "id": "battle_log",
+        "type": "ninepatch_shell_plus_runtime_scroll_content",
+        "static_asset": "battle_log_panel_shell",
+        "runtime_children": ["log_title", "structured_log_entries", "scroll_indicator"]
+      },
+      {
+        "id": "result_panel",
+        "type": "out_of_scope_runtime_modal",
+        "reason": "not one of the four approved UI shell families for this ticket"
+      }
+    ]
+  }
+}

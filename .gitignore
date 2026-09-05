@@ -2,3 +2,34 @@
 .godot/
 .vs/
 /android/
+
+# Workflow and skill history lives in maqiang01-tech/spabcd-workflow.
+/.workflow-repository/
+/.codex/
+/.spabcd/
+/sabcd_workflow_stage1_starter/
+/spabcd_workflow_v4_1_design_layer/
+/benchmark/
+/output/
+/docs/planning/archives/
+/tmp/*
+!/tmp/ui_capture*
+
+# Rebuildable caches, local databases and credentials are not backups.
+**/__pycache__/
+*.pyc
+*.pyo
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+.env
+.env.*
+!.env.example
+auth.json
+credentials.json
+*.pem
+*.key

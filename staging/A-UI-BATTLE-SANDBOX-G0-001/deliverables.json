@@ -1,0 +1,46 @@
+{
+  "schema": "asset_deliverable_list.v1",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "expected_png_count": 14,
+  "families": [
+    {
+      "id": "battle_panel_shells",
+      "count": 4,
+      "items": [
+        {"asset_id":"battle_title_status_shell","file":"panels/battle_title_status_shell.png","canvas":[720,92],"component_type":"panel_shell","render_mode":"uniform_scale","states":["default"],"parent":"title_status_bar","separation_reason":"top status text changes at runtime"},
+        {"asset_id":"battle_formation_field_shell","file":"panels/battle_formation_field_shell.png","canvas":[672,560],"component_type":"panel_shell","render_mode":"uniform_scale","states":["default"],"parent":"formation_battlefield","separation_reason":"matrix cells and targeting effects are independently layered"},
+        {"asset_id":"battle_turn_order_strip_shell","file":"panels/battle_turn_order_strip_shell.png","canvas":[672,72],"component_type":"panel_shell","render_mode":"uniform_scale","states":["default"],"parent":"turn_order_strip","separation_reason":"order items and reason text are runtime content"},
+        {"asset_id":"battle_current_actor_skill_panel_shell","file":"panels/battle_current_actor_skill_panel_shell.png","canvas":[672,180],"component_type":"panel_shell","render_mode":"uniform_scale","states":["default"],"parent":"current_actor_skill_panel","separation_reason":"current actor and five actions change independently"}
+      ]
+    },
+    {
+      "id": "formation_slot_equal_grid",
+      "count": 2,
+      "items": [
+        {"asset_id":"formation_slot_normal","file":"slots/formation_slot_normal.png","canvas":[140,70],"component_type":"formation_slot","render_mode":"fixed_size","states":["normal"],"parent":"enemy_matrix_3x3_mirrored|player_matrix_3x3","separation_reason":"each of 18 cells is independently populated and can be empty"},
+        {"asset_id":"formation_slot_occupied","file":"slots/formation_slot_occupied.png","canvas":[140,70],"component_type":"formation_slot","render_mode":"fixed_size","states":["occupied"],"parent":"enemy_matrix_3x3_mirrored|player_matrix_3x3","separation_reason":"optional neutral base behind a runtime unit card; no portrait, plus sign, text, tint, or state marker"}
+      ]
+    },
+    {
+      "id": "skill_button_shell_states",
+      "count": 7,
+      "items": [
+        {"asset_id":"skill_action_shell","file":"buttons/skill_action_shell_normal.png","canvas":[124,84],"component_type":"button_shell","render_mode":"fixed_size","states":["normal"],"parent":"current_actor_skill_panel","separation_reason":"reused by five independently clickable action slots"},
+        {"asset_id":"skill_action_shell","file":"buttons/skill_action_shell_pressed.png","canvas":[124,84],"component_type":"button_shell","render_mode":"fixed_size","states":["pressed"],"parent":"current_actor_skill_panel","separation_reason":"mobile feedback state"},
+        {"asset_id":"skill_action_shell","file":"buttons/skill_action_shell_disabled.png","canvas":[124,84],"component_type":"button_shell","render_mode":"fixed_size","states":["disabled"],"parent":"current_actor_skill_panel","separation_reason":"unavailable action state"},
+        {"asset_id":"skill_action_shell","file":"buttons/skill_action_shell_highlight.png","canvas":[124,84],"component_type":"button_shell","render_mode":"fixed_size","states":["highlight"],"parent":"current_actor_skill_panel","separation_reason":"current recommended action visual state"},
+        {"asset_id":"skill_action_shell","file":"buttons/skill_action_shell_selected.png","canvas":[124,84],"component_type":"button_shell","render_mode":"fixed_size","states":["selected"],"parent":"current_actor_skill_panel","separation_reason":"step-debug selected action state"},
+        {"asset_id":"skill_action_shell","file":"buttons/skill_action_shell_cooldown.png","canvas":[124,84],"component_type":"button_shell","render_mode":"fixed_size","states":["cooldown"],"parent":"current_actor_skill_panel","separation_reason":"cooldown state; remaining turns are runtime text"},
+        {"asset_id":"skill_action_shell","file":"buttons/skill_action_shell_resource_blocked.png","canvas":[124,84],"component_type":"button_shell","render_mode":"fixed_size","states":["resource_blocked"],"parent":"current_actor_skill_panel","separation_reason":"resource failure state; cost and reason are runtime text"}
+      ]
+    },
+    {
+      "id": "battle_log_panel_shell",
+      "count": 1,
+      "items": [
+        {"asset_id":"battle_log_panel_shell","file":"panels/battle_log_panel_shell.png","canvas":[672,244],"component_type":"panel_shell","render_mode":"ninepatch_vertical","states":["default"],"parent":"battle_log","separation_reason":"scrolling audit entries require an independently stretchable background","ninepatch_margins":{"left":12,"top":12,"right":12,"bottom":12}}
+      ]
+    }
+  ],
+  "state_invariants":{"skill_action_shell":{"same_canvas":[124,84],"same_center":[62,42],"same_border_geometry":true,"allowed_changes":["color","brightness","outline","glow","pressed_effect"]}}
+}

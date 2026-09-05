@@ -1,0 +1,578 @@
+{
+  "schema": "canonical_rebind_validation.v1",
+  "event": "CANONICAL_REBIND_VALIDATION",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "revision": 1,
+  "dispatch_id": "DSP-A-UI-BATTLE-SANDBOX-G0-001-R1-PRODUCTION-RECONCILE-20260905-03",
+  "role": "A",
+  "stage": "A:production",
+  "operation": "canonical_hash_rebind_and_candidate_revalidation",
+  "input_hash": "sha256:6673e1b9285f71c75e0ffa71089696ab0ad538197fe6d82f06a8c6c69207cd6a",
+  "context_pack_hash": "sha256:84d6f83c701e0d1467770f4798254145c74c43e76b6748a1cacdaa115a4b4304",
+  "authoritative_design_pack_hash": "sha256:ba2e51fff739e138ee2d642df570042075fe37f2fba424d9e491e3e68a7283f3",
+  "hash_alias": {
+    "audit_path": "spabcd_workflow_v4_1_design_layer/design/P-FEATURE-BATTLE-SANDBOX-G0-001/r2/audits/design-pack-approval-hash-alias-resolution.v1.json",
+    "audit_sha256": "sha256:2b56d840fb796ceddea6185f5652eea47c1466998ec386174c1a98bc651bd2a6",
+    "legacy_approval_hash": "sha256:9724879596be4f1c76a8ab95e21578795c0312c1c8b3df6f4305957e5817a475",
+    "raw_design_pack_hash": "sha256:3041f5ea16a7b33ffb4c3504b9ee00cc624339e0b5d432941ba87940bc7a1fda",
+    "authoritative_canonical_hash": "sha256:ba2e51fff739e138ee2d642df570042075fe37f2fba424d9e491e3e68a7283f3",
+    "serialization_only": true
+  },
+  "skill_reference_mapping": {
+    "name": "yishi-art-production",
+    "version": "1.0.0",
+    "bundle_hash": "sha256:2f8ff8a34e9d81ff26bf73033711b352a1589c3e5915d74ad999411b7e1901a7",
+    "files": [
+      {
+        "file": "SKILL.md",
+        "expected_sha256": "sha256:faddfb8d4385d4418bf92533c64d1fdc81b818ae6e182c04d2193d4aae433f3b",
+        "actual_sha256": "sha256:faddfb8d4385d4418bf92533c64d1fdc81b818ae6e182c04d2193d4aae433f3b",
+        "match": true
+      },
+      {
+        "file": "agents/openai.yaml",
+        "expected_sha256": "sha256:8d645bacc50f24de03d5083956dd14822919f5afed7f65b84f34d8128e751721",
+        "actual_sha256": "sha256:8d645bacc50f24de03d5083956dd14822919f5afed7f65b84f34d8128e751721",
+        "match": true
+      },
+      {
+        "file": "references/production-checks.md",
+        "expected_sha256": "sha256:48d468184b194691b50eefc698ec76ef6f3e7f6e0c5a04be0b6399612753b315",
+        "actual_sha256": "sha256:48d468184b194691b50eefc698ec76ef6f3e7f6e0c5a04be0b6399612753b315",
+        "match": true
+      },
+      {
+        "file": "references/sources.md",
+        "expected_sha256": "sha256:8bf1eb584456b4711ad1eeb3e41b1ee540d0431cb8961d99f6ce7638dbed635b",
+        "actual_sha256": "sha256:8bf1eb584456b4711ad1eeb3e41b1ee540d0431cb8961d99f6ce7638dbed635b",
+        "match": true
+      }
+    ]
+  },
+  "legacy_baseline": {
+    "dispatch_id": "DSP-A-UI-BATTLE-SANDBOX-G0-001-R1-PRODUCTION-20260905-02",
+    "output_hashes_path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/output_hashes.json",
+    "output_hashes_sha256": "sha256:b5ac70bbb8d51880dd4cf161cf07217e64a4d043de3ac0ebb58f87f658aa4ced",
+    "expected_output_hashes_sha256": "sha256:b5ac70bbb8d51880dd4cf161cf07217e64a4d043de3ac0ebb58f87f658aa4ced",
+    "entry_count": 17,
+    "result_sha256": "sha256:81c6b2d7f6ad954b5937392ea87a8541c11f4908733c2862ede44818a5652025",
+    "expected_result_sha256": "sha256:81c6b2d7f6ad954b5937392ea87a8541c11f4908733c2862ede44818a5652025",
+    "c0_sha256": "sha256:343c57c0fc0770c54dba6dd998802686d9cf53bec5a2d4ed3c3514ab45dbb0ac",
+    "expected_c0_sha256": "sha256:343c57c0fc0770c54dba6dd998802686d9cf53bec5a2d4ed3c3514ab45dbb0ac",
+    "entries": [
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_cooldown.png",
+        "legacy_sha256": "sha256:670fa38238319a593cdfbc6b35ccc282a1a7744393d433ae974721c724352c54",
+        "actual_sha256": "sha256:670fa38238319a593cdfbc6b35ccc282a1a7744393d433ae974721c724352c54",
+        "byte_identical": true,
+        "bytes": 8938
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_disabled.png",
+        "legacy_sha256": "sha256:f2753e667e5f7e4fd62c9a6bd3409299924ac98f0fe95ace28c42441fbcfd92d",
+        "actual_sha256": "sha256:f2753e667e5f7e4fd62c9a6bd3409299924ac98f0fe95ace28c42441fbcfd92d",
+        "byte_identical": true,
+        "bytes": 8911
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_highlight.png",
+        "legacy_sha256": "sha256:0e423e9ea83ce71f9688eeb12361cf5913735046ce2ce8773cc6da5860089104",
+        "actual_sha256": "sha256:0e423e9ea83ce71f9688eeb12361cf5913735046ce2ce8773cc6da5860089104",
+        "byte_identical": true,
+        "bytes": 8757
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_normal.png",
+        "legacy_sha256": "sha256:4b4b03fdb1de983c916b327a22fed90ecc836314232e7ce80b003dc0e61a2846",
+        "actual_sha256": "sha256:4b4b03fdb1de983c916b327a22fed90ecc836314232e7ce80b003dc0e61a2846",
+        "byte_identical": true,
+        "bytes": 8871
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_pressed.png",
+        "legacy_sha256": "sha256:889d4c507d6415d9f8f087c0cd874bb0f5aa23f636e47ba03b49573b169a71db",
+        "actual_sha256": "sha256:889d4c507d6415d9f8f087c0cd874bb0f5aa23f636e47ba03b49573b169a71db",
+        "byte_identical": true,
+        "bytes": 8805
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_resource_blocked.png",
+        "legacy_sha256": "sha256:06c117db961e16217ecf0d669ef9831dbbce15dd18210f91438624ad6bae8d8b",
+        "actual_sha256": "sha256:06c117db961e16217ecf0d669ef9831dbbce15dd18210f91438624ad6bae8d8b",
+        "byte_identical": true,
+        "bytes": 8907
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_selected.png",
+        "legacy_sha256": "sha256:5a201c064c1407d912c88011b3db70aecd0c8e637ba480649a1821472eea15ea",
+        "actual_sha256": "sha256:5a201c064c1407d912c88011b3db70aecd0c8e637ba480649a1821472eea15ea",
+        "byte_identical": true,
+        "bytes": 8830
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/C0_SELF_CHECK.json",
+        "legacy_sha256": "sha256:343c57c0fc0770c54dba6dd998802686d9cf53bec5a2d4ed3c3514ab45dbb0ac",
+        "actual_sha256": "sha256:343c57c0fc0770c54dba6dd998802686d9cf53bec5a2d4ed3c3514ab45dbb0ac",
+        "byte_identical": true,
+        "bytes": 8347
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/candidate_manifest_delta.json",
+        "legacy_sha256": "sha256:6734f8869d480d5a44bd5dc49ca28e870237af9e852e26658525afe0188c255c",
+        "actual_sha256": "sha256:6734f8869d480d5a44bd5dc49ca28e870237af9e852e26658525afe0188c255c",
+        "byte_identical": true,
+        "bytes": 7297
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/contact_sheet.png",
+        "legacy_sha256": "sha256:df00172f3d9428e1ed3ce764d561f8c8fc163b306037d3715cc1f2449bedfda4",
+        "actual_sha256": "sha256:df00172f3d9428e1ed3ce764d561f8c8fc163b306037d3715cc1f2449bedfda4",
+        "byte_identical": true,
+        "bytes": 394750
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/panels/battle_current_actor_skill_panel_shell.png",
+        "legacy_sha256": "sha256:1513e07d74e9584c78ed3ec17c51f1df720ebf4d642cb15cd82ae4786b00e882",
+        "actual_sha256": "sha256:1513e07d74e9584c78ed3ec17c51f1df720ebf4d642cb15cd82ae4786b00e882",
+        "byte_identical": true,
+        "bytes": 107637
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/panels/battle_formation_field_shell.png",
+        "legacy_sha256": "sha256:3fc011a36c3b554995dc3b317211f7c1bb6b0a43fc7136d805ffd5f7090dd7ce",
+        "actual_sha256": "sha256:3fc011a36c3b554995dc3b317211f7c1bb6b0a43fc7136d805ffd5f7090dd7ce",
+        "byte_identical": true,
+        "bytes": 392315
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/panels/battle_log_panel_shell.png",
+        "legacy_sha256": "sha256:e89f8aeaabfb713a1497a01a24aaf42a65003581373e59671667babf677147b0",
+        "actual_sha256": "sha256:e89f8aeaabfb713a1497a01a24aaf42a65003581373e59671667babf677147b0",
+        "byte_identical": true,
+        "bytes": 153425
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/panels/battle_title_status_shell.png",
+        "legacy_sha256": "sha256:556fbc5fda7ce6c49b2dfb699ff5818931c68c4bb9c90fa532bde32df2c8fde0",
+        "actual_sha256": "sha256:556fbc5fda7ce6c49b2dfb699ff5818931c68c4bb9c90fa532bde32df2c8fde0",
+        "byte_identical": true,
+        "bytes": 51756
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/panels/battle_turn_order_strip_shell.png",
+        "legacy_sha256": "sha256:0ddf3224c2359581b955448cde17884d2f81cf6da4448b492d6b78fee67065d8",
+        "actual_sha256": "sha256:0ddf3224c2359581b955448cde17884d2f81cf6da4448b492d6b78fee67065d8",
+        "byte_identical": true,
+        "bytes": 35939
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/slots/formation_slot_normal.png",
+        "legacy_sha256": "sha256:e42a0986decf32b2961be4e8328d160ef090fab31d9211c9cb57048d3b2cdf7e",
+        "actual_sha256": "sha256:e42a0986decf32b2961be4e8328d160ef090fab31d9211c9cb57048d3b2cdf7e",
+        "byte_identical": true,
+        "bytes": 8222
+      },
+      {
+        "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/slots/formation_slot_occupied.png",
+        "legacy_sha256": "sha256:01e405b2f5dc359b856d30e9647728339d88a9239a457e2fec4059f47628d935",
+        "actual_sha256": "sha256:01e405b2f5dc359b856d30e9647728339d88a9239a457e2fec4059f47628d935",
+        "byte_identical": true,
+        "bytes": 8154
+      }
+    ]
+  },
+  "candidate_revalidation": {
+    "expected_png_count": 14,
+    "actual_png_count": 14,
+    "all_candidates_byte_identical": true,
+    "hash_mismatches": [],
+    "rgba_dimension_alpha_pass": true,
+    "assets": [
+      {
+        "asset_id": "battle_title_status_shell",
+        "file": "production/panels/battle_title_status_shell.png",
+        "sha256": "sha256:556fbc5fda7ce6c49b2dfb699ff5818931c68c4bb9c90fa532bde32df2c8fde0",
+        "expected_canvas": [
+          720,
+          92
+        ],
+        "actual_canvas": [
+          720,
+          92
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "battle_formation_field_shell",
+        "file": "production/panels/battle_formation_field_shell.png",
+        "sha256": "sha256:3fc011a36c3b554995dc3b317211f7c1bb6b0a43fc7136d805ffd5f7090dd7ce",
+        "expected_canvas": [
+          672,
+          560
+        ],
+        "actual_canvas": [
+          672,
+          560
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "battle_turn_order_strip_shell",
+        "file": "production/panels/battle_turn_order_strip_shell.png",
+        "sha256": "sha256:0ddf3224c2359581b955448cde17884d2f81cf6da4448b492d6b78fee67065d8",
+        "expected_canvas": [
+          672,
+          72
+        ],
+        "actual_canvas": [
+          672,
+          72
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "battle_current_actor_skill_panel_shell",
+        "file": "production/panels/battle_current_actor_skill_panel_shell.png",
+        "sha256": "sha256:1513e07d74e9584c78ed3ec17c51f1df720ebf4d642cb15cd82ae4786b00e882",
+        "expected_canvas": [
+          672,
+          180
+        ],
+        "actual_canvas": [
+          672,
+          180
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "formation_slot_normal",
+        "file": "production/slots/formation_slot_normal.png",
+        "sha256": "sha256:e42a0986decf32b2961be4e8328d160ef090fab31d9211c9cb57048d3b2cdf7e",
+        "expected_canvas": [
+          140,
+          70
+        ],
+        "actual_canvas": [
+          140,
+          70
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "formation_slot_occupied",
+        "file": "production/slots/formation_slot_occupied.png",
+        "sha256": "sha256:01e405b2f5dc359b856d30e9647728339d88a9239a457e2fec4059f47628d935",
+        "expected_canvas": [
+          140,
+          70
+        ],
+        "actual_canvas": [
+          140,
+          70
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "skill_action_shell",
+        "file": "production/buttons/skill_action_shell_normal.png",
+        "sha256": "sha256:4b4b03fdb1de983c916b327a22fed90ecc836314232e7ce80b003dc0e61a2846",
+        "expected_canvas": [
+          124,
+          84
+        ],
+        "actual_canvas": [
+          124,
+          84
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "skill_action_shell",
+        "file": "production/buttons/skill_action_shell_pressed.png",
+        "sha256": "sha256:889d4c507d6415d9f8f087c0cd874bb0f5aa23f636e47ba03b49573b169a71db",
+        "expected_canvas": [
+          124,
+          84
+        ],
+        "actual_canvas": [
+          124,
+          84
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "skill_action_shell",
+        "file": "production/buttons/skill_action_shell_disabled.png",
+        "sha256": "sha256:f2753e667e5f7e4fd62c9a6bd3409299924ac98f0fe95ace28c42441fbcfd92d",
+        "expected_canvas": [
+          124,
+          84
+        ],
+        "actual_canvas": [
+          124,
+          84
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "skill_action_shell",
+        "file": "production/buttons/skill_action_shell_highlight.png",
+        "sha256": "sha256:0e423e9ea83ce71f9688eeb12361cf5913735046ce2ce8773cc6da5860089104",
+        "expected_canvas": [
+          124,
+          84
+        ],
+        "actual_canvas": [
+          124,
+          84
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "skill_action_shell",
+        "file": "production/buttons/skill_action_shell_selected.png",
+        "sha256": "sha256:5a201c064c1407d912c88011b3db70aecd0c8e637ba480649a1821472eea15ea",
+        "expected_canvas": [
+          124,
+          84
+        ],
+        "actual_canvas": [
+          124,
+          84
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "skill_action_shell",
+        "file": "production/buttons/skill_action_shell_cooldown.png",
+        "sha256": "sha256:670fa38238319a593cdfbc6b35ccc282a1a7744393d433ae974721c724352c54",
+        "expected_canvas": [
+          124,
+          84
+        ],
+        "actual_canvas": [
+          124,
+          84
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "skill_action_shell",
+        "file": "production/buttons/skill_action_shell_resource_blocked.png",
+        "sha256": "sha256:06c117db961e16217ecf0d669ef9831dbbce15dd18210f91438624ad6bae8d8b",
+        "expected_canvas": [
+          124,
+          84
+        ],
+        "actual_canvas": [
+          124,
+          84
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      },
+      {
+        "asset_id": "battle_log_panel_shell",
+        "file": "production/panels/battle_log_panel_shell.png",
+        "sha256": "sha256:e89f8aeaabfb713a1497a01a24aaf42a65003581373e59671667babf677147b0",
+        "expected_canvas": [
+          672,
+          244
+        ],
+        "actual_canvas": [
+          672,
+          244
+        ],
+        "rgba": true,
+        "nonempty": true,
+        "exterior_alpha": true
+      }
+    ],
+    "button_state_family": {
+      "state_count": 7,
+      "canvas": [
+        124,
+        84
+      ],
+      "center_contract": [
+        62,
+        42
+      ],
+      "alpha_bounds": [
+        {
+          "file": "production/buttons/skill_action_shell_normal.png",
+          "alpha_bounds": [
+            0,
+            0,
+            123,
+            83
+          ],
+          "canvas": [
+            124,
+            84
+          ]
+        },
+        {
+          "file": "production/buttons/skill_action_shell_pressed.png",
+          "alpha_bounds": [
+            0,
+            0,
+            123,
+            83
+          ],
+          "canvas": [
+            124,
+            84
+          ]
+        },
+        {
+          "file": "production/buttons/skill_action_shell_disabled.png",
+          "alpha_bounds": [
+            0,
+            0,
+            123,
+            83
+          ],
+          "canvas": [
+            124,
+            84
+          ]
+        },
+        {
+          "file": "production/buttons/skill_action_shell_highlight.png",
+          "alpha_bounds": [
+            0,
+            0,
+            123,
+            83
+          ],
+          "canvas": [
+            124,
+            84
+          ]
+        },
+        {
+          "file": "production/buttons/skill_action_shell_selected.png",
+          "alpha_bounds": [
+            0,
+            0,
+            123,
+            83
+          ],
+          "canvas": [
+            124,
+            84
+          ]
+        },
+        {
+          "file": "production/buttons/skill_action_shell_cooldown.png",
+          "alpha_bounds": [
+            0,
+            0,
+            123,
+            83
+          ],
+          "canvas": [
+            124,
+            84
+          ]
+        },
+        {
+          "file": "production/buttons/skill_action_shell_resource_blocked.png",
+          "alpha_bounds": [
+            0,
+            0,
+            123,
+            83
+          ],
+          "canvas": [
+            124,
+            84
+          ]
+        }
+      ],
+      "identical_alpha_bounds": true,
+      "pass": true
+    },
+    "formation_slots": {
+      "state_count": 2,
+      "canvas": [
+        140,
+        70
+      ],
+      "pass": true
+    },
+    "battle_log_ninepatch": {
+      "canvas": [
+        672,
+        244
+      ],
+      "margins": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "center_alpha": 255,
+      "pass": true
+    },
+    "dynamic_content_exclusion": {
+      "pass": true,
+      "basis": "byte identity to prior C0 baseline plus native and reduced contact-sheet visual inspection",
+      "prohibited": [
+        "text",
+        "numeric_values",
+        "unit_cards",
+        "semantic_icons",
+        "badges",
+        "state_markers",
+        "target_lines",
+        "intercept_lines",
+        "log_content"
+      ]
+    }
+  },
+  "contact_sheet_inspection": {
+    "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/contact_sheet.png",
+    "sha256": "sha256:df00172f3d9428e1ed3ce764d561f8c8fc163b306037d3715cc1f2449bedfda4",
+    "native_canvas": [
+      1360,
+      1120
+    ],
+    "native_review": "pass: panel shells, slot bases, and state variations remain legible; no content residue",
+    "small_display_review": "pass: 4-column reduced inspection retains distinguishable disabled/cooldown/resource-blocked/highlight treatments without clipped frame or text",
+    "rendered_views": [
+      "view_image:original",
+      "view_image:high"
+    ]
+  },
+  "files_changed": false,
+  "candidate_pngs_modified": 0,
+  "status": "pass",
+  "blockers": "C_ASSET final review remains required before B0 or D may proceed."
+}

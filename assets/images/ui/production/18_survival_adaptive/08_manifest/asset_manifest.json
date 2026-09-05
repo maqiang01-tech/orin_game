@@ -1,0 +1,752 @@
+[
+  {
+    "file": "01_screen_adaptive/frame_screen_corner_tl.png",
+    "size": [
+      50,
+      50
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      50,
+      50
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "01_screen_adaptive/frame_screen_corner_tr.png",
+    "size": [
+      50,
+      50
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      50,
+      50
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "01_screen_adaptive/frame_screen_corner_bl.png",
+    "size": [
+      50,
+      50
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      50,
+      50
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "01_screen_adaptive/frame_screen_corner_br.png",
+    "size": [
+      50,
+      50
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      50,
+      50
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "01_screen_adaptive/frame_screen_edge_top.png",
+    "size": [
+      620,
+      13
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      620,
+      13
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "01_screen_adaptive/frame_screen_edge_bottom.png",
+    "size": [
+      620,
+      13
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      620,
+      13
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "01_screen_adaptive/frame_screen_edge_left.png",
+    "size": [
+      13,
+      1180
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      13,
+      1180
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "01_screen_adaptive/frame_screen_edge_right.png",
+    "size": [
+      13,
+      1180
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      13,
+      1180
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "01_screen_adaptive/bg_page_tile.png",
+    "size": [
+      64,
+      64
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      64,
+      64
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "02_top_status/top_date_bar.png",
+    "size": [
+      684,
+      59
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      684,
+      59
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "02_top_status/top_player_status_bar.png",
+    "size": [
+      684,
+      78
+    ],
+    "visible_bbox": [
+      0,
+      0,
+      684,
+      78
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "03_scene_panel/panel_scene_9patch.png",
+    "size": [
+      684,
+      602
+    ],
+    "visible_bbox": [
+      4,
+      4,
+      681,
+      599
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "04_main_quest/panel_main_quest.png",
+    "size": [
+      684,
+      186
+    ],
+    "visible_bbox": [
+      4,
+      4,
+      681,
+      183
+    ],
+    "source": "blank_720",
+    "notes": "full red border"
+  },
+  {
+    "file": "05_primary_buttons/btn_continue_normal.png",
+    "size": [
+      512,
+      112
+    ],
+    "visible_bbox": [
+      82,
+      5,
+      431,
+      108
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "05_primary_buttons/btn_continue_selected.png",
+    "size": [
+      512,
+      112
+    ],
+    "visible_bbox": [
+      51,
+      5,
+      462,
+      108
+    ],
+    "source": "pop_720",
+    "notes": ""
+  },
+  {
+    "file": "05_primary_buttons/btn_continue_pressed.png",
+    "size": [
+      512,
+      112
+    ],
+    "visible_bbox": [
+      51,
+      5,
+      462,
+      108
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "05_primary_buttons/btn_continue_disabled.png",
+    "size": [
+      512,
+      112
+    ],
+    "visible_bbox": [
+      82,
+      5,
+      430,
+      106
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "06_action_buttons/btn_search_normal.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      8,
+      6,
+      220,
+      135
+    ],
+    "source": "blank_720",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_search_selected.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      3,
+      1,
+      225,
+      140
+    ],
+    "source": "derived",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_search_pressed.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      3,
+      1,
+      225,
+      140
+    ],
+    "source": "derived",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_search_disabled.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      8,
+      6,
+      220,
+      135
+    ],
+    "source": "derived",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_rest_normal.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      8,
+      6,
+      220,
+      135
+    ],
+    "source": "blank_720",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_rest_selected.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      3,
+      1,
+      225,
+      140
+    ],
+    "source": "derived",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_rest_pressed.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      3,
+      1,
+      225,
+      140
+    ],
+    "source": "derived",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_rest_disabled.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      8,
+      6,
+      220,
+      135
+    ],
+    "source": "derived",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_leave_normal.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      8,
+      6,
+      220,
+      135
+    ],
+    "source": "blank_720",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_leave_selected.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      3,
+      1,
+      225,
+      140
+    ],
+    "source": "derived",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_leave_pressed.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      3,
+      1,
+      225,
+      140
+    ],
+    "source": "derived",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "06_action_buttons/btn_leave_disabled.png",
+    "size": [
+      228,
+      140
+    ],
+    "visible_bbox": [
+      8,
+      6,
+      220,
+      135
+    ],
+    "source": "derived",
+    "notes": "internal dark fill kept"
+  },
+  {
+    "file": "07_bottom_nav/nav_bar.png",
+    "size": [
+      684,
+      146
+    ],
+    "visible_bbox": [
+      3,
+      3,
+      682,
+      144
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_survival_normal.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      10,
+      2,
+      133,
+      126
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_survival_selected.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      10,
+      2,
+      133,
+      126
+    ],
+    "source": "pop_720",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_survival_pressed.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      10,
+      2,
+      133,
+      126
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_survival_disabled.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      10,
+      2,
+      133,
+      125
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_explore_normal.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      11,
+      3,
+      133,
+      126
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_explore_selected.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      4,
+      0,
+      140,
+      128
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_explore_pressed.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      4,
+      0,
+      140,
+      128
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_explore_disabled.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      11,
+      3,
+      133,
+      126
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_team_normal.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      12,
+      3,
+      132,
+      126
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_team_selected.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      5,
+      0,
+      139,
+      128
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_team_pressed.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      5,
+      0,
+      139,
+      128
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_team_disabled.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      12,
+      3,
+      132,
+      126
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_base_normal.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      12,
+      3,
+      133,
+      126
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_base_selected.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      5,
+      0,
+      140,
+      128
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_base_pressed.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      5,
+      0,
+      140,
+      128
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_base_disabled.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      12,
+      3,
+      133,
+      126
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_reincarnation_normal.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      10,
+      2,
+      134,
+      126
+    ],
+    "source": "blank_720",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_reincarnation_selected.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      5,
+      0,
+      140,
+      128
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_reincarnation_pressed.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      5,
+      0,
+      140,
+      128
+    ],
+    "source": "derived",
+    "notes": ""
+  },
+  {
+    "file": "07_bottom_nav/nav_reincarnation_disabled.png",
+    "size": [
+      144,
+      128
+    ],
+    "visible_bbox": [
+      10,
+      2,
+      134,
+      125
+    ],
+    "source": "derived",
+    "notes": ""
+  }
+]

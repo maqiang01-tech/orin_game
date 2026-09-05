@@ -1,0 +1,35 @@
+{
+  "schema": "game_workflow_backup_reference.v1",
+  "recorded_date": "2026-09-06",
+  "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+  "branch": "main",
+  "commit": "ed4acd9106124f8a05860cc51be01b044cc40913",
+  "local_checkout": ".workflow-repository",
+  "backup_manifest": "BACKUP_MANIFEST.json",
+  "source_files_hash_verified": 1768,
+  "purpose": "recovery_checkpoint_not_runtime_dependency_or_activation",
+  "workflow": {
+    "engineering_version": "V4.1 Stage 1.3-R1",
+    "state": "ENGINEERING_COMPLETE_SHADOW_ONLY",
+    "sqlite_authoritative": false
+  },
+  "p_skill": {
+    "candidate_version": "1.2.1",
+    "state": "SHADOW_READY_A3",
+    "activated": false
+  },
+  "model_router": {
+    "reviewed_baseline": "1.0.4",
+    "isolated_m7_stage": "M7_COMPLETE",
+    "requirement_intelligence_candidate": "1.1.0",
+    "candidate_audit": "NEEDS_FIXES"
+  },
+  "boundaries": {
+    "real_model_calls": false,
+    "M8": false,
+    "M9": false,
+    "automatic_policy_adoption": false,
+    "production_routing_changes": false,
+    "game_business_resumed": false
+  }
+}

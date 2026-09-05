@@ -1,0 +1,1 @@
+Rev8 nav fixed: adjusted bottom-nav Y crop so no upper stray border enters the cell assets. Action buttons remain from Rev7.\n

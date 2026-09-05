@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b0t6s0if2fr5o"
+
+[deps]
+
+files=["res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.region.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.x.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.y.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.width.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.height.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.anchor.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.content.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.visibility.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.data.translation"]
+
+source_file="res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.csv"
+dest_files=["res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.region.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.x.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.y.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.width.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.height.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.anchor.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.content.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.visibility.translation", "res://staging/A-UI-BATTLE-SANDBOX-G0-001/text_positions.data.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

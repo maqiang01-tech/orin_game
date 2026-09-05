@@ -1,0 +1,46 @@
+{
+  "schema": "a_asset_output_result.v1",
+  "event": "A_OUTPUT_READY",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "revision": 1,
+  "dispatch_id": "DSP-A-UI-BATTLE-SANDBOX-G0-001-R1-PRODUCTION-20260905-02",
+  "role": "A",
+  "stage": "A:production",
+  "input_hash": "sha256:ea4644bce4b22d490129cec32094bbd2d0fe5b33b9fd1261e1be4e2c98a04783",
+  "context_pack_hash": "sha256:645d366614a7b33fac48526ade03c611f3317fa0c13cdb65299406db82040504",
+  "design_pack_hash": "sha256:9724879596be4f1c76a8ab95e21578795c0312c1c8b3df6f4305957e5817a475",
+  "release_unit": "battle_sandbox_g0_ui_shells",
+  "status": "candidate_ready_for_c_asset_final_review",
+  "candidate_png_count": 14,
+  "candidate_manifest_delta": {
+    "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/candidate_manifest_delta.json",
+    "sha256": "sha256:6734f8869d480d5a44bd5dc49ca28e870237af9e852e26658525afe0188c255c"
+  },
+  "contact_sheet": {
+    "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/contact_sheet.png",
+    "sha256": "sha256:df00172f3d9428e1ed3ce764d561f8c8fc163b306037d3715cc1f2449bedfda4"
+  },
+  "c0_self_check": {
+    "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/C0_SELF_CHECK.json",
+    "sha256": "sha256:343c57c0fc0770c54dba6dd998802686d9cf53bec5a2d4ed3c3514ab45dbb0ac",
+    "status": "pass"
+  },
+  "output_hashes": {
+    "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/output_hashes.json",
+    "sha256": "sha256:b5ac70bbb8d51880dd4cf161cf07217e64a4d043de3ac0ebb58f87f658aa4ced",
+    "entry_count": 17
+  },
+  "validated_invariants": [
+    "14 expected and 14 actual candidate PNGs",
+    "RGBA, nonempty sampled content, and transparent-corner edge checks pass",
+    "seven 124x84 state-invariant action shells centered at contract center [62,42]",
+    "two 140x70 equal formation slot shells",
+    "battle-log vertical ninepatch margins are 12 on every side",
+    "no baked text, values, icons, portraits, badges, highlights, targeting lines, or logs",
+    "new generated material source is hash-distinct from the reference and direct cropping was not used"
+  ],
+  "blockers": [
+    "C_ASSET final review is required before any promotion or downstream resource gate can advance.",
+    "These remain staging candidates only; no production Manifest, project production asset, or Godot integration has been changed."
+  ]
+}

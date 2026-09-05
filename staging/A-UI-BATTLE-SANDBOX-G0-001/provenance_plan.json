@@ -1,0 +1,30 @@
+{
+  "schema": "asset_provenance_plan.v1",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "identity_binding": {
+    "revision": 1,
+    "dispatch_id": "DSP-A-UI-BATTLE-SANDBOX-G0-001-R1-PLAN-20260905-01",
+    "input_hash": "sha256:d2e64b794a9241507a0993788cf2abd1fb4a194f873860c2ac5a687f3441c3f2",
+    "context_pack_hash": "sha256:733a6ee812356fc648ea613ee8503e600a8a034bd5859cac70ab4905bfb727e6",
+    "design_pack_hash": "sha256:9724879596be4f1c76a8ab95e21578795c0312c1c8b3df6f4305957e5817a475"
+  },
+  "approved_style_references": [
+    {"path":"C:/Users/Administrator/.codex/generated_images/01a06d17-b58f-7001-a6b8-4b6e71613fee/call_cLdzk2lLXalitKpfklpHiFFe.png","sha256":"sha256:7a3d4632a0c55afce88b9d06cc178e99c23f7992ffd8340ec280f3bf771fc596","use":"layout and material vocabulary only","direct_crop":false,"release_source":false},
+    {"path":"assets/images/ui/extracted/latest_panel_battle.png","sha256":"sha256:5fc0007e4675954f30603c3aff8517f357d6fc3cfb839179e3c1d0ec8281a8b5","use":"black-gold density reference only","direct_crop":false,"release_source":false},
+    {"path":"assets/images/ui/production/14_page_mockups/mockup_survival_720x1280.png","sha256":"sha256:fb281e3b19e98e81ac946f6a5556cfa9f350469655bb81abd79ccd3473894811","use":"vertical mobile panel hierarchy reference only","direct_crop":false,"release_source":false},
+    {"path":"assets/images/ui/production/14_page_mockups/mockup_formation_720x1280.png","sha256":"sha256:8538223b0bee60aeda8cf522245fe9d0a498e4224711903e1b14501094cad389","use":"formation information grouping reference only","direct_crop":false,"release_source":false}
+  ],
+  "reusable_asset_decisions": [
+    {"path":"assets/images/ui/production/16_supplement/formation_grid_black_iron.png","sha256":"sha256:513d79033b0b835a8332dbd4248bea785424338ce6a93cde80f4949f96ca988a","decision":"reject_reuse","reason":"single 3x3 composite prevents independently stateful 140x70 cells"},
+    {"path":"assets/images/ui/production/10_slots/slot_formation_normal.png","sha256":"sha256:bcf89d1849a80c682ab1e71e194737702ed118faeabf1a726d76fd682dc62100","decision":"reject_reuse","reason":"120x120 canvas and baked plus sign violate the approved 140x70 equal-cell and runtime semantic policy"},
+    {"path":"assets/images/ui/production/01_buttons/function/btn_skill_normal.png","sha256":"sha256:3984b985f303e5280e6b1512455bdc55ae2fec85bc161b888df2dfed008ed757","decision":"reject_reuse","reason":"208x112 shell has a baked semantic icon and lacks the approved seven-state family"},
+    {"path":"assets/images/ui/extracted/component_panel_dark_clean.png","sha256":"sha256:1b076b1c1d65b079e78749031a51cd1ec67bb215304d285880a7818bf3d6ae01","decision":"reject_reuse","reason":"extracted non-production source has no evidence of this ticket's state, border, or responsive contract"}
+  ],
+  "future_production_binding": {
+    "method":"new_candidate_generation_or_manual_reconstruction_from_design_spec; never crop or overwrite a reference",
+    "per_output_record_required":["ticket","revision","dispatch_id","input_hash","design_pack_hash","cut_plan_sha256","approved_reference_hashes","generator_or_edit_recipe_hash","output_sha256"],
+    "allowed_materials":["near-black metal surface","subtle worn copper border","low-density soot and scratch decoration"],
+    "excluded_materials":["text","numbers","portrait","enemy","background","semantic icon","badge","targeting line","cooldown number"],
+    "pre_generation_gate":"C_ASSET plan_review pass and new S A:production dispatch only"
+  }
+}

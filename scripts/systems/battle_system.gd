@@ -77,8 +77,10 @@ static func create_battle(
 	party: Array,
 	enemies: Array,
 	formation_bonus: Dictionary = {},
-	grid_indices: Array = []
+	grid_indices: Array = [],
+	rng_seed: int = -1
 ) -> Dictionary:
+	var seed_value := rng_seed if rng_seed >= 0 else _make_runtime_seed(party, enemies)
 	var battle: Dictionary = {
 		"round": 1,
 		"units": {},
@@ -92,8 +94,10 @@ static func create_battle(
 		"rewards": {},
 		"result_applied": false,
 		"player_party": [],
-		"enemy_party": []
+		"enemy_party": [],
+		"rng_seed": seed_value
 	}
+	_attach_rng(battle, seed_value)
 
 	# 添加玩家单位
 	for i in range(party.size()):
@@ -125,7 +129,8 @@ static func create_battle_from_encounter(
 	party: Array,
 	encounter: Dictionary,
 	formation_bonus: Dictionary = {},
-	grid_indices: Array = []
+	grid_indices: Array = [],
+	rng_seed: int = -1
 ) -> Dictionary:
 	var enemies: Array = []
 	for enemy_ref in encounter.get("enemies", []):
@@ -142,7 +147,7 @@ static func create_battle_from_encounter(
 		var fallback_id := str(encounter.get("beast_id", ""))
 		if fallback_id != "" and DataManager.beasts.has(fallback_id):
 			enemies.append(DataManager.beasts[fallback_id].duplicate(true))
-	var battle := create_battle(party, enemies, formation_bonus, grid_indices)
+	var battle := create_battle(party, enemies, formation_bonus, grid_indices, rng_seed)
 	battle["encounter_id"] = str(encounter.get("id", ""))
 	battle["stage_id"] = str(encounter.get("stage", ""))
 	battle["encounter_rewards"] = encounter.get("rewards", {})
@@ -155,6 +160,42 @@ static func _grid_index_to_row(grid_index: int) -> int:
 	if grid_index >= 3 and grid_index <= 5:
 		return 1
 	return 2
+
+
+static func _make_runtime_seed(party: Array, enemies: Array) -> int:
+	var source := JSON.stringify({
+		"party_size": party.size(),
+		"enemy_size": enemies.size(),
+		"time": Time.get_unix_time_from_system()
+	})
+	return int(abs(hash(source)))
+
+
+static func _attach_rng(battle: Dictionary, seed_value: int) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_value
+	battle["_rng"] = rng
+	battle["rng_seed"] = seed_value
+
+
+static func _get_rng(battle: Dictionary) -> RandomNumberGenerator:
+	if not battle.has("_rng") or battle["_rng"] == null:
+		_attach_rng(battle, int(battle.get("rng_seed", 1)))
+	return battle["_rng"] as RandomNumberGenerator
+
+
+static func _randf(battle: Dictionary) -> float:
+	return _get_rng(battle).randf()
+
+
+static func _randi_range(battle: Dictionary, from: int, to: int) -> int:
+	return _get_rng(battle).randi_range(from, to)
+
+
+static func _pick_random(battle: Dictionary, values: Array) -> Variant:
+	if values.is_empty():
+		return null
+	return values[_randi_range(battle, 0, values.size() - 1)]
 
 
 static func _build_player_unit(survivor: Dictionary, formation_bonus: Dictionary, row: int) -> Dictionary:
@@ -470,10 +511,10 @@ static func calculate_damage(
 	return maxi(1, roundi(damage))
 
 
-static func _calculate_critical(unit: Dictionary) -> bool:
+static func _calculate_critical(battle: Dictionary, unit: Dictionary) -> bool:
 	var speed: float = float(unit["stats"].get("speed", 10.0))
 	var rate := 5.0 + speed * 0.3
-	return randf() * 100.0 < rate
+	return _randf(battle) * 100.0 < rate
 
 
 # ============================================================
@@ -573,7 +614,7 @@ static func perform_action(
 		var foes: Array = get_alive_team_units(battle, "player" if actor["team"] == "enemy" else "enemy")
 		var pool: Array = allies + foes
 		if pool.size() > 0:
-			var random_target: String = str(pool[randi() % pool.size()])
+			var random_target: String = str(_pick_random(battle, pool))
 			_add_log(battle, "%s 陷入混乱，随机攻击 %s！" % [actor["name"], units[random_target]["name"]])
 			_resolve_attack(battle, actor_id, random_target, DataManager.skills.get(BASIC_ATTACK_ID, {}), true)
 		else:
@@ -625,7 +666,7 @@ static func _resolve_attack(battle: Dictionary, attacker_id: String, target_id: 
 	var affinity_text := get_affinity_label(skill, defender)
 
 	for h in range(hits):
-		var critical := _calculate_critical(attacker)
+		var critical := _calculate_critical(battle, attacker)
 		var guard: bool = bool(defender.get("guard", false))
 		var shield: float = float(defender.get("statuses", {}).get("shield", {}).get("value", 0)) if defender.get("statuses", {}).has("shield") else 0.0
 		var damage := calculate_damage(attacker, defender, skill, critical, guard)
@@ -756,7 +797,7 @@ static func _execute_skill(battle: Dictionary, actor_id: String, skill: Dictiona
 			var total_damage: int = 0
 			var critical_hits: int = 0
 			for h in range(hits):
-				var critical := _calculate_critical(actor)
+				var critical := _calculate_critical(battle, actor)
 				var guard: bool = bool(target.get("guard", false))
 				var shield: float = _get_shield_value(target)
 				var damage := calculate_damage(actor, target, skill, critical, guard)
@@ -839,19 +880,19 @@ static func _execute_skill(battle: Dictionary, actor_id: String, skill: Dictiona
 
 static func _apply_skill_status_effects(battle: Dictionary, actor: Dictionary, target: Dictionary, skill: Dictionary) -> void:
 	# 灼烧
-	if skill.has("burn_chance") and randf() * 100.0 < float(skill.get("burn_chance", 0)):
+	if skill.has("burn_chance") and _randf(battle) * 100.0 < float(skill.get("burn_chance", 0)):
 		_apply_status(battle, target, "burn", 3, {"value": 5})
 		_add_log(battle, "%s 被灼烧！" % target["name"])
 	# 减速
-	if skill.has("slow_chance") and randf() * 100.0 < float(skill.get("slow_chance", 0)):
+	if skill.has("slow_chance") and _randf(battle) * 100.0 < float(skill.get("slow_chance", 0)):
 		_apply_status(battle, target, "speed_down", 3, {"value": 30})
 		_add_log(battle, "%s 被减速！" % target["name"])
 	# 中毒
-	if skill.has("poison_chance") and randf() * 100.0 < float(skill.get("poison_chance", 0)):
+	if skill.has("poison_chance") and _randf(battle) * 100.0 < float(skill.get("poison_chance", 0)):
 		_apply_status(battle, target, "poison", 3, {"value": 3})
 		_add_log(battle, "%s 中毒了！" % target["name"])
 	# 混乱
-	if skill.has("confusion_chance") and randf() * 100.0 < float(skill.get("confusion_chance", 0)):
+	if skill.has("confusion_chance") and _randf(battle) * 100.0 < float(skill.get("confusion_chance", 0)):
 		_apply_status(battle, target, "confusion", 2, {})
 		_add_log(battle, "%s 陷入混乱！" % target["name"])
 
@@ -1133,11 +1174,11 @@ static func calculate_rewards(battle: Dictionary) -> Dictionary:
 			if not (drop is Dictionary):
 				continue
 			var rate := float(drop.get("rate", 1.0))
-			if randf() > rate:
+			if _randf(battle) > rate:
 				continue
 			var min_count := int(drop.get("min", drop.get("qty", 1)))
 			var max_count := int(drop.get("max", min_count))
-			var count := randi_range(min_count, max_count)
+			var count := _randi_range(battle, min_count, max_count)
 			var item_id := str(drop.get("id", drop.get("item", "")))
 			if item_id == "":
 				continue
@@ -1221,7 +1262,7 @@ static func decide_ai_action(battle: Dictionary, actor_id: String) -> Dictionary
 		var foes: Array = get_alive_team_units(battle, "player" if actor_team == "enemy" else "enemy")
 		var pool: Array = allies + foes
 		if pool.size() > 0:
-			return {"action": "attack", "target_id": str(pool[randi() % pool.size()])}
+			return {"action": "attack", "target_id": str(_pick_random(battle, pool))}
 		return {"action": "guard"}
 
 	# 1. HP < 30% → 优先治疗/防御

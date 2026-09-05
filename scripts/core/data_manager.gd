@@ -19,6 +19,7 @@ var equipment: Dictionary = {}  # id -> equipment dict
 var main_story: Dictionary = {}  # id -> 48章主线配置
 var act_01_story: Dictionary = {}  # 第一篇章详细剧情剧本（8章）
 var store_items: Dictionary = {}  # 商城商品配置
+var balance_rules: Dictionary = {}  # 版本化数值规则配置
 var configs_loaded: bool = false
 
 
@@ -98,6 +99,11 @@ func ensure_loaded() -> void:
 	var store_data: Variant = load_json_file("res://data/configs/store_items.json")
 	if store_data is Dictionary:
 		store_items = store_data
+
+	# 加载数值规则配置
+	var balance_data: Variant = load_json_file("res://data/configs/balance_rules.json")
+	if balance_data is Dictionary:
+		balance_rules = balance_data
 
 	configs_loaded = true
 	print("Loaded survivors: ", survivors.size(), " / beasts: ", beasts.size(), " / routes: ", exploration_routes.size())

@@ -1,0 +1,308 @@
+{
+  "schema": "C0_SELF_CHECK.v1",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "revision": 1,
+  "dispatch_id": "DSP-A-UI-BATTLE-SANDBOX-G0-001-R1-PRODUCTION-20260905-02",
+  "input_hash": "sha256:ea4644bce4b22d490129cec32094bbd2d0fe5b33b9fd1261e1be4e2c98a04783",
+  "design_pack_hash": "sha256:9724879596be4f1c76a8ab95e21578795c0312c1c8b3df6f4305957e5817a475",
+  "status": "pass",
+  "checks": {
+    "exact_png_count": {
+      "expected": 14,
+      "actual": 14,
+      "pass": true
+    },
+    "expected_files": {
+      "missing": [],
+      "unexpected": [],
+      "pass": true
+    },
+    "dimensions_and_rgba": {
+      "pass": true
+    },
+    "nonempty_and_edge_alpha": {
+      "pass": true
+    },
+    "skill_state_geometry": {
+      "expected_canvas": [
+        124,
+        84
+      ],
+      "expected_center": [
+        62,
+        42
+      ],
+      "state_count": 7,
+      "pass": true
+    },
+    "formation_slot_geometry": {
+      "expected_canvas": [
+        140,
+        70
+      ],
+      "state_count": 2,
+      "pass": true
+    },
+    "battle_log_ninepatch": {
+      "asset": "production/panels/battle_log_panel_shell.png",
+      "margins": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "pass": true
+    },
+    "runtime_content_exclusion": {
+      "no_baked_text_values_badges_icons_portraits_lines_or_logs": true,
+      "verification": "construction recipe plus visual contact-sheet review",
+      "pass": true
+    },
+    "direct_crop_exclusion": {
+      "reference_sha256": "sha256:7a3d4632a0c55afce88b9d06cc178e99c23f7992ffd8340ec280f3bf771fc596",
+      "generated_material_sha256": "sha256:ae346e9070771c02664fb2333d610ad404846fcbcdcf35aecc7cae04e06156da",
+      "distinct": true,
+      "pass": true
+    }
+  },
+  "asset_checks": [
+    {
+      "asset_id": "battle_title_status_shell",
+      "file": "production/panels/battle_title_status_shell.png",
+      "expected_canvas": [
+        720,
+        92
+      ],
+      "actual_canvas": [
+        720,
+        92
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:556fbc5fda7ce6c49b2dfb699ff5818931c68c4bb9c90fa532bde32df2c8fde0"
+    },
+    {
+      "asset_id": "battle_formation_field_shell",
+      "file": "production/panels/battle_formation_field_shell.png",
+      "expected_canvas": [
+        672,
+        560
+      ],
+      "actual_canvas": [
+        672,
+        560
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:3fc011a36c3b554995dc3b317211f7c1bb6b0a43fc7136d805ffd5f7090dd7ce"
+    },
+    {
+      "asset_id": "battle_turn_order_strip_shell",
+      "file": "production/panels/battle_turn_order_strip_shell.png",
+      "expected_canvas": [
+        672,
+        72
+      ],
+      "actual_canvas": [
+        672,
+        72
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:0ddf3224c2359581b955448cde17884d2f81cf6da4448b492d6b78fee67065d8"
+    },
+    {
+      "asset_id": "battle_current_actor_skill_panel_shell",
+      "file": "production/panels/battle_current_actor_skill_panel_shell.png",
+      "expected_canvas": [
+        672,
+        180
+      ],
+      "actual_canvas": [
+        672,
+        180
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:1513e07d74e9584c78ed3ec17c51f1df720ebf4d642cb15cd82ae4786b00e882"
+    },
+    {
+      "asset_id": "formation_slot_normal",
+      "file": "production/slots/formation_slot_normal.png",
+      "expected_canvas": [
+        140,
+        70
+      ],
+      "actual_canvas": [
+        140,
+        70
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:e42a0986decf32b2961be4e8328d160ef090fab31d9211c9cb57048d3b2cdf7e"
+    },
+    {
+      "asset_id": "formation_slot_occupied",
+      "file": "production/slots/formation_slot_occupied.png",
+      "expected_canvas": [
+        140,
+        70
+      ],
+      "actual_canvas": [
+        140,
+        70
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:01e405b2f5dc359b856d30e9647728339d88a9239a457e2fec4059f47628d935"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_normal.png",
+      "expected_canvas": [
+        124,
+        84
+      ],
+      "actual_canvas": [
+        124,
+        84
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:4b4b03fdb1de983c916b327a22fed90ecc836314232e7ce80b003dc0e61a2846"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_pressed.png",
+      "expected_canvas": [
+        124,
+        84
+      ],
+      "actual_canvas": [
+        124,
+        84
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:889d4c507d6415d9f8f087c0cd874bb0f5aa23f636e47ba03b49573b169a71db"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_disabled.png",
+      "expected_canvas": [
+        124,
+        84
+      ],
+      "actual_canvas": [
+        124,
+        84
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:f2753e667e5f7e4fd62c9a6bd3409299924ac98f0fe95ace28c42441fbcfd92d"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_highlight.png",
+      "expected_canvas": [
+        124,
+        84
+      ],
+      "actual_canvas": [
+        124,
+        84
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:0e423e9ea83ce71f9688eeb12361cf5913735046ce2ce8773cc6da5860089104"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_selected.png",
+      "expected_canvas": [
+        124,
+        84
+      ],
+      "actual_canvas": [
+        124,
+        84
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:5a201c064c1407d912c88011b3db70aecd0c8e637ba480649a1821472eea15ea"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_cooldown.png",
+      "expected_canvas": [
+        124,
+        84
+      ],
+      "actual_canvas": [
+        124,
+        84
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:670fa38238319a593cdfbc6b35ccc282a1a7744393d433ae974721c724352c54"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_resource_blocked.png",
+      "expected_canvas": [
+        124,
+        84
+      ],
+      "actual_canvas": [
+        124,
+        84
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:06c117db961e16217ecf0d669ef9831dbbce15dd18210f91438624ad6bae8d8b"
+    },
+    {
+      "asset_id": "battle_log_panel_shell",
+      "file": "production/panels/battle_log_panel_shell.png",
+      "expected_canvas": [
+        672,
+        244
+      ],
+      "actual_canvas": [
+        672,
+        244
+      ],
+      "dimension_pass": true,
+      "rgba_pass": true,
+      "nonempty_pass": true,
+      "edge_alpha_pass": true,
+      "sha256": "sha256:e89f8aeaabfb713a1497a01a24aaf42a65003581373e59671667babf677147b0"
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "schema": "candidate_manifest_delta.v1",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "revision": 1,
+  "dispatch_id": "DSP-A-UI-BATTLE-SANDBOX-G0-001-R1-PRODUCTION-20260905-02",
+  "input_hash": "sha256:ea4644bce4b22d490129cec32094bbd2d0fe5b33b9fd1261e1be4e2c98a04783",
+  "design_pack_hash": "sha256:9724879596be4f1c76a8ab95e21578795c0312c1c8b3df6f4305957e5817a475",
+  "release_unit": "battle_sandbox_g0_ui_shells",
+  "classification": "candidate_only",
+  "production_mutation": false,
+  "expected_png_count": 14,
+  "actual_png_count": 14,
+  "generated_material_source": {
+    "path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a05d5c-a696-7dc2-a210-6f627f8fdc71\\exec-47b8e24d-1612-4723-825e-1c6d720012c5.png",
+    "sha256": "sha256:ae346e9070771c02664fb2333d610ad404846fcbcdcf35aecc7cae04e06156da",
+    "role": "new tile-friendly material source; not a reference crop"
+  },
+  "reference_exclusion": {
+    "reference_sha256": "sha256:7a3d4632a0c55afce88b9d06cc178e99c23f7992ffd8340ec280f3bf771fc596",
+    "direct_crop": false,
+    "reference_pixels_in_candidate": false
+  },
+  "entries": [
+    {
+      "asset_id": "battle_title_status_shell",
+      "file": "production/panels/battle_title_status_shell.png",
+      "sha256": "sha256:556fbc5fda7ce6c49b2dfb699ff5818931c68c4bb9c90fa532bde32df2c8fde0",
+      "bytes": 51756,
+      "canvas": [
+        720,
+        92
+      ],
+      "component_type": "panel_shell",
+      "states": [
+        "default"
+      ],
+      "render_mode": "uniform_scale"
+    },
+    {
+      "asset_id": "battle_formation_field_shell",
+      "file": "production/panels/battle_formation_field_shell.png",
+      "sha256": "sha256:3fc011a36c3b554995dc3b317211f7c1bb6b0a43fc7136d805ffd5f7090dd7ce",
+      "bytes": 392315,
+      "canvas": [
+        672,
+        560
+      ],
+      "component_type": "panel_shell",
+      "states": [
+        "default"
+      ],
+      "render_mode": "uniform_scale"
+    },
+    {
+      "asset_id": "battle_turn_order_strip_shell",
+      "file": "production/panels/battle_turn_order_strip_shell.png",
+      "sha256": "sha256:0ddf3224c2359581b955448cde17884d2f81cf6da4448b492d6b78fee67065d8",
+      "bytes": 35939,
+      "canvas": [
+        672,
+        72
+      ],
+      "component_type": "panel_shell",
+      "states": [
+        "default"
+      ],
+      "render_mode": "uniform_scale"
+    },
+    {
+      "asset_id": "battle_current_actor_skill_panel_shell",
+      "file": "production/panels/battle_current_actor_skill_panel_shell.png",
+      "sha256": "sha256:1513e07d74e9584c78ed3ec17c51f1df720ebf4d642cb15cd82ae4786b00e882",
+      "bytes": 107637,
+      "canvas": [
+        672,
+        180
+      ],
+      "component_type": "panel_shell",
+      "states": [
+        "default"
+      ],
+      "render_mode": "uniform_scale"
+    },
+    {
+      "asset_id": "formation_slot_normal",
+      "file": "production/slots/formation_slot_normal.png",
+      "sha256": "sha256:e42a0986decf32b2961be4e8328d160ef090fab31d9211c9cb57048d3b2cdf7e",
+      "bytes": 8222,
+      "canvas": [
+        140,
+        70
+      ],
+      "component_type": "formation_slot",
+      "states": [
+        "normal"
+      ],
+      "render_mode": "fixed_size"
+    },
+    {
+      "asset_id": "formation_slot_occupied",
+      "file": "production/slots/formation_slot_occupied.png",
+      "sha256": "sha256:01e405b2f5dc359b856d30e9647728339d88a9239a457e2fec4059f47628d935",
+      "bytes": 8154,
+      "canvas": [
+        140,
+        70
+      ],
+      "component_type": "formation_slot",
+      "states": [
+        "occupied"
+      ],
+      "render_mode": "fixed_size"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_normal.png",
+      "sha256": "sha256:4b4b03fdb1de983c916b327a22fed90ecc836314232e7ce80b003dc0e61a2846",
+      "bytes": 8871,
+      "canvas": [
+        124,
+        84
+      ],
+      "component_type": "button_shell",
+      "states": [
+        "normal"
+      ],
+      "render_mode": "fixed_size"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_pressed.png",
+      "sha256": "sha256:889d4c507d6415d9f8f087c0cd874bb0f5aa23f636e47ba03b49573b169a71db",
+      "bytes": 8805,
+      "canvas": [
+        124,
+        84
+      ],
+      "component_type": "button_shell",
+      "states": [
+        "pressed"
+      ],
+      "render_mode": "fixed_size"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_disabled.png",
+      "sha256": "sha256:f2753e667e5f7e4fd62c9a6bd3409299924ac98f0fe95ace28c42441fbcfd92d",
+      "bytes": 8911,
+      "canvas": [
+        124,
+        84
+      ],
+      "component_type": "button_shell",
+      "states": [
+        "disabled"
+      ],
+      "render_mode": "fixed_size"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_highlight.png",
+      "sha256": "sha256:0e423e9ea83ce71f9688eeb12361cf5913735046ce2ce8773cc6da5860089104",
+      "bytes": 8757,
+      "canvas": [
+        124,
+        84
+      ],
+      "component_type": "button_shell",
+      "states": [
+        "highlight"
+      ],
+      "render_mode": "fixed_size"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_selected.png",
+      "sha256": "sha256:5a201c064c1407d912c88011b3db70aecd0c8e637ba480649a1821472eea15ea",
+      "bytes": 8830,
+      "canvas": [
+        124,
+        84
+      ],
+      "component_type": "button_shell",
+      "states": [
+        "selected"
+      ],
+      "render_mode": "fixed_size"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_cooldown.png",
+      "sha256": "sha256:670fa38238319a593cdfbc6b35ccc282a1a7744393d433ae974721c724352c54",
+      "bytes": 8938,
+      "canvas": [
+        124,
+        84
+      ],
+      "component_type": "button_shell",
+      "states": [
+        "cooldown"
+      ],
+      "render_mode": "fixed_size"
+    },
+    {
+      "asset_id": "skill_action_shell",
+      "file": "production/buttons/skill_action_shell_resource_blocked.png",
+      "sha256": "sha256:06c117db961e16217ecf0d669ef9831dbbce15dd18210f91438624ad6bae8d8b",
+      "bytes": 8907,
+      "canvas": [
+        124,
+        84
+      ],
+      "component_type": "button_shell",
+      "states": [
+        "resource_blocked"
+      ],
+      "render_mode": "fixed_size"
+    },
+    {
+      "asset_id": "battle_log_panel_shell",
+      "file": "production/panels/battle_log_panel_shell.png",
+      "sha256": "sha256:e89f8aeaabfb713a1497a01a24aaf42a65003581373e59671667babf677147b0",
+      "bytes": 153425,
+      "canvas": [
+        672,
+        244
+      ],
+      "component_type": "panel_shell",
+      "states": [
+        "default"
+      ],
+      "render_mode": "ninepatch_vertical"
+    }
+  ],
+  "ninepatch": {
+    "asset": "production/panels/battle_log_panel_shell.png",
+    "margins": {
+      "left": 12,
+      "top": 12,
+      "right": 12,
+      "bottom": 12
+    },
+    "axis": "vertical"
+  }
+}

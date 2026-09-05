@@ -1,0 +1,1 @@
+Production Cut Spec V1.2 button/nav repair package.\n- Exterior black canvas removed to transparent alpha.\n- Internal dark button fill preserved.\n- Action buttons: 208x112.\n- Continue button: 512x112.\n- Bottom nav items: 144x128.\n- Included states: normal, selected, pressed, disabled.\n

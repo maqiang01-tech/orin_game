@@ -1,2 +1,8 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
+
+# Preserve byte hashes of imported plans and identity-bound resource evidence.
+/docs/planning/** -text
+/staging/** -text
+/assets/images/ui/production/18_survival_adaptive/** -text
+/assets/images/ui/production/19_target_pages/** -text

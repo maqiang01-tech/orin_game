@@ -1,0 +1,35 @@
+{
+  "schema": "ui_layout.v1",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "base_viewport": {"width":720,"height":1280},
+  "responsive_contract": {
+    "supported_viewports":[[720,1280],[1080,2400]],
+    "width_scale":"viewport_width / 720",
+    "horizontal_padding":"24 * width_scale",
+    "fixed_regions":"header, formation, turn_order, actor_skill_panel use width_scale with locked aspect ratio",
+    "vertical_fill":"battle_log_panel expands vertically after fixed regions; its center uses the declared 12px ninepatch margins scaled by width_scale",
+    "log_bottom_gap":"88 * width_scale",
+    "no_text_or_content_may_change_container_dimensions":true
+  },
+  "regions": [
+    {"id":"title_status_bar","rect":[0,0,720,92],"asset":"battle_title_status_shell","render_mode":"uniform_scale","anchor":"top_wide"},
+    {"id":"formation_battlefield","rect":[24,100,672,560],"asset":"battle_formation_field_shell","render_mode":"uniform_scale","anchor":"top_center"},
+    {"id":"enemy_matrix_3x3_mirrored","rect":[150,132,420,210],"rows":3,"columns":3,"cell_size":[140,70],"display_row_labels":["后排","中排","前排"],"runtime_child":"unit_card_or_empty"},
+    {"id":"central_targeting_gap","rect":[150,342,420,64],"runtime_children":["target_line","intercept_line","effect_marker"],"static_asset":null},
+    {"id":"player_matrix_3x3","rect":[150,406,420,210],"rows":3,"columns":3,"cell_size":[140,70],"display_row_labels":["前排","中排","后排"],"runtime_child":"unit_card_or_empty"},
+    {"id":"turn_order_strip","rect":[24,672,672,72],"asset":"battle_turn_order_strip_shell","render_mode":"uniform_scale","anchor":"top_center"},
+    {"id":"current_actor_skill_panel","rect":[24,756,672,180],"asset":"battle_current_actor_skill_panel_shell","render_mode":"uniform_scale","anchor":"top_center"},
+    {"id":"action_slots_5","rect":[34,782,652,84],"count":5,"cell_size":[124,84],"gap":8,"asset_family":"skill_action_shell","runtime_children":["label","icon","cooldown","cost","state_overlay"]},
+    {"id":"utility_controls","rect":[400,878,286,42],"asset":null,"render_mode":"runtime_control","controls":["auto_toggle","retreat","speed_cycle","battle_flow_control"]},
+    {"id":"battle_log","rect":[24,948,672,244],"asset":"battle_log_panel_shell","render_mode":"ninepatch_vertical","anchor":"bottom_center","minimum_height":244,"runtime_children":["log_title","scroll_entries","scroll_indicator"]}
+  ],
+  "formation_contract": {
+    "team_local_data_rows":{"front":0,"middle":1,"back":2},
+    "player_display_rows":[0,1,2],
+    "enemy_display_rows":[2,1,0],
+    "occupied_and_empty_cell_dimensions_identical":true,
+    "cell_texture_tint":"runtime_team_or_state_modulate_only",
+    "actor_target_defeated_and_guard_markers":"runtime_overlay_only"
+  },
+  "asset_exclusions": ["all_text","all_numbers","all_portraits","all_semantic_icons","all_badges","all_target_lines","all_intercept_lines","all_log_entries","all_progress_fills"]
+}

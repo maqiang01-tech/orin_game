@@ -1,0 +1,51 @@
+﻿file,width,height,source,notes
+01_screen_adaptive/frame_screen_corner_tl.png,50,50,blank_720,
+01_screen_adaptive/frame_screen_corner_tr.png,50,50,blank_720,
+01_screen_adaptive/frame_screen_corner_bl.png,50,50,blank_720,
+01_screen_adaptive/frame_screen_corner_br.png,50,50,blank_720,
+01_screen_adaptive/frame_screen_edge_top.png,620,13,blank_720,
+01_screen_adaptive/frame_screen_edge_bottom.png,620,13,blank_720,
+01_screen_adaptive/frame_screen_edge_left.png,13,1180,blank_720,
+01_screen_adaptive/frame_screen_edge_right.png,13,1180,blank_720,
+01_screen_adaptive/bg_page_tile.png,64,64,blank_720,
+02_top_status/top_date_bar.png,684,59,blank_720,
+02_top_status/top_player_status_bar.png,684,78,blank_720,
+03_scene_panel/panel_scene_9patch.png,684,602,blank_720,
+04_main_quest/panel_main_quest.png,684,186,blank_720,full red border
+05_primary_buttons/btn_continue_normal.png,512,112,blank_720,
+05_primary_buttons/btn_continue_selected.png,512,112,pop_720,
+05_primary_buttons/btn_continue_pressed.png,512,112,derived,
+05_primary_buttons/btn_continue_disabled.png,512,112,derived,
+06_action_buttons/btn_search_normal.png,228,140,blank_720,internal dark fill kept
+06_action_buttons/btn_search_selected.png,228,140,derived,internal dark fill kept
+06_action_buttons/btn_search_pressed.png,228,140,derived,internal dark fill kept
+06_action_buttons/btn_search_disabled.png,228,140,derived,internal dark fill kept
+06_action_buttons/btn_rest_normal.png,228,140,blank_720,internal dark fill kept
+06_action_buttons/btn_rest_selected.png,228,140,derived,internal dark fill kept
+06_action_buttons/btn_rest_pressed.png,228,140,derived,internal dark fill kept
+06_action_buttons/btn_rest_disabled.png,228,140,derived,internal dark fill kept
+06_action_buttons/btn_leave_normal.png,228,140,blank_720,internal dark fill kept
+06_action_buttons/btn_leave_selected.png,228,140,derived,internal dark fill kept
+06_action_buttons/btn_leave_pressed.png,228,140,derived,internal dark fill kept
+06_action_buttons/btn_leave_disabled.png,228,140,derived,internal dark fill kept
+07_bottom_nav/nav_bar.png,684,146,blank_720,
+07_bottom_nav/nav_survival_normal.png,144,128,blank_720,
+07_bottom_nav/nav_survival_selected.png,144,128,pop_720,
+07_bottom_nav/nav_survival_pressed.png,144,128,derived,
+07_bottom_nav/nav_survival_disabled.png,144,128,derived,
+07_bottom_nav/nav_explore_normal.png,144,128,blank_720,
+07_bottom_nav/nav_explore_selected.png,144,128,derived,
+07_bottom_nav/nav_explore_pressed.png,144,128,derived,
+07_bottom_nav/nav_explore_disabled.png,144,128,derived,
+07_bottom_nav/nav_team_normal.png,144,128,blank_720,
+07_bottom_nav/nav_team_selected.png,144,128,derived,
+07_bottom_nav/nav_team_pressed.png,144,128,derived,
+07_bottom_nav/nav_team_disabled.png,144,128,derived,
+07_bottom_nav/nav_base_normal.png,144,128,blank_720,
+07_bottom_nav/nav_base_selected.png,144,128,derived,
+07_bottom_nav/nav_base_pressed.png,144,128,derived,
+07_bottom_nav/nav_base_disabled.png,144,128,derived,
+07_bottom_nav/nav_reincarnation_normal.png,144,128,blank_720,
+07_bottom_nav/nav_reincarnation_selected.png,144,128,derived,
+07_bottom_nav/nav_reincarnation_pressed.png,144,128,derived,
+07_bottom_nav/nav_reincarnation_disabled.png,144,128,derived,

@@ -1,0 +1,17 @@
+{
+  "schema": "ui_independence_decisions.v1",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "decisions": [
+    {"component":"panel_shells","decision":"separate","reason":["different_scaling_from_parent","runtime_children","ninepatch_anchor"]},
+    {"component":"formation_slot","decision":"separate","reason":["reused_separately","independently_highlighted_or_selected","independently_replaced","equal_slot_geometry"]},
+    {"component":"unit_card_and_portrait","decision":"runtime_only","reason":["dynamic_content","independently_replaced","out_of_scope_character_art"]},
+    {"component":"actor_target_defeated_guard_intercept_marks","decision":"runtime_overlay_only","reason":["state_marker","independently_shown","semantic_highlight"]},
+    {"component":"targeting_and_intercept_lines","decision":"runtime_draw_only","reason":["independently_animated","dynamic_endpoint","layer_order_can_change"]},
+    {"component":"skill_button_shell","decision":"separate_state_family","reason":["independently_clickable","independently_pressed_or_disabled","stateful","reused_five_times"]},
+    {"component":"skill_icon_and_label","decision":"runtime_only","reason":["semantic_icon","dynamic_text","independently_replaced"]},
+    {"component":"action_slots","decision":"single_reusable_shell_family","reason":["identical_geometry","same_state_lifecycle","no_baked_semantics"]},
+    {"component":"utility_controls","decision":"runtime_control","reason":["out_of_scope_static_asset","label_and_state_runtime_controlled"]},
+    {"component":"battle_log_shell","decision":"separate_ninepatch","reason":["scroll_content_dynamic","different_scaling_from_parent","stretchable_center"]},
+    {"component":"log_text_and_scroll_indicator","decision":"runtime_only","reason":["dynamic_text_or_numeric_content","independently_moved","independently_hidden_or_shown"]}
+  ]
+}

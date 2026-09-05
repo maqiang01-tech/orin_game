@@ -1,0 +1,94 @@
+{
+  "schema": "output_hashes.v1",
+  "ticket": "A-UI-BATTLE-SANDBOX-G0-001",
+  "revision": 1,
+  "dispatch_id": "DSP-A-UI-BATTLE-SANDBOX-G0-001-R1-PRODUCTION-20260905-02",
+  "input_hash": "sha256:ea4644bce4b22d490129cec32094bbd2d0fe5b33b9fd1261e1be4e2c98a04783",
+  "outputs": [
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_cooldown.png",
+      "sha256": "sha256:670fa38238319a593cdfbc6b35ccc282a1a7744393d433ae974721c724352c54",
+      "bytes": 8938
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_disabled.png",
+      "sha256": "sha256:f2753e667e5f7e4fd62c9a6bd3409299924ac98f0fe95ace28c42441fbcfd92d",
+      "bytes": 8911
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_highlight.png",
+      "sha256": "sha256:0e423e9ea83ce71f9688eeb12361cf5913735046ce2ce8773cc6da5860089104",
+      "bytes": 8757
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_normal.png",
+      "sha256": "sha256:4b4b03fdb1de983c916b327a22fed90ecc836314232e7ce80b003dc0e61a2846",
+      "bytes": 8871
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_pressed.png",
+      "sha256": "sha256:889d4c507d6415d9f8f087c0cd874bb0f5aa23f636e47ba03b49573b169a71db",
+      "bytes": 8805
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_resource_blocked.png",
+      "sha256": "sha256:06c117db961e16217ecf0d669ef9831dbbce15dd18210f91438624ad6bae8d8b",
+      "bytes": 8907
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/buttons/skill_action_shell_selected.png",
+      "sha256": "sha256:5a201c064c1407d912c88011b3db70aecd0c8e637ba480649a1821472eea15ea",
+      "bytes": 8830
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/C0_SELF_CHECK.json",
+      "sha256": "sha256:343c57c0fc0770c54dba6dd998802686d9cf53bec5a2d4ed3c3514ab45dbb0ac",
+      "bytes": 8347
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/candidate_manifest_delta.json",
+      "sha256": "sha256:6734f8869d480d5a44bd5dc49ca28e870237af9e852e26658525afe0188c255c",
+      "bytes": 7297
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/contact_sheet.png",
+      "sha256": "sha256:df00172f3d9428e1ed3ce764d561f8c8fc163b306037d3715cc1f2449bedfda4",
+      "bytes": 394750
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/panels/battle_current_actor_skill_panel_shell.png",
+      "sha256": "sha256:1513e07d74e9584c78ed3ec17c51f1df720ebf4d642cb15cd82ae4786b00e882",
+      "bytes": 107637
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/panels/battle_formation_field_shell.png",
+      "sha256": "sha256:3fc011a36c3b554995dc3b317211f7c1bb6b0a43fc7136d805ffd5f7090dd7ce",
+      "bytes": 392315
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/panels/battle_log_panel_shell.png",
+      "sha256": "sha256:e89f8aeaabfb713a1497a01a24aaf42a65003581373e59671667babf677147b0",
+      "bytes": 153425
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/panels/battle_title_status_shell.png",
+      "sha256": "sha256:556fbc5fda7ce6c49b2dfb699ff5818931c68c4bb9c90fa532bde32df2c8fde0",
+      "bytes": 51756
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/panels/battle_turn_order_strip_shell.png",
+      "sha256": "sha256:0ddf3224c2359581b955448cde17884d2f81cf6da4448b492d6b78fee67065d8",
+      "bytes": 35939
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/slots/formation_slot_normal.png",
+      "sha256": "sha256:e42a0986decf32b2961be4e8328d160ef090fab31d9211c9cb57048d3b2cdf7e",
+      "bytes": 8222
+    },
+    {
+      "path": "staging/A-UI-BATTLE-SANDBOX-G0-001/production/slots/formation_slot_occupied.png",
+      "sha256": "sha256:01e405b2f5dc359b856d30e9647728339d88a9239a457e2fec4059f47628d935",
+      "bytes": 8154
+    }
+  ]
+}
