@@ -3,6 +3,7 @@
 
 # Preserve byte hashes of imported plans and identity-bound resource evidence.
 /docs/planning/** -text
+/docs/backup/requests/** -text
 /staging/** -text
 /assets/images/ui/production/18_survival_adaptive/** -text
 /assets/images/ui/production/19_target_pages/** -text

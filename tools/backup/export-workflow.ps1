@@ -20,6 +20,7 @@ foreach ($name in @('sabcd_workflow_stage1_starter','spabcd_workflow_v4_1_design
 Add-Mapping (Join-Path $project '.spabcd') 'project_snapshot/.spabcd'
 Add-Mapping (Join-Path $project '.codex') 'project_snapshot/.codex'
 Add-Mapping (Join-Path $project 'output') 'reports'
+Add-Mapping (Join-Path $project 'docs/backup/requests') 'requests'
 Add-Mapping (Join-Path $project 'docs/planning/archives') 'releases/p-skill'
 foreach ($file in @('V1_2_1_SOURCE_RELEASE_2026-09-05.md','ROUND_CLOSEOUT_AUTONOMY_2026-09-05.md','SKILL_RESEARCH_GAMEPLAY_UI_ART_2026-09-05.md')) {
     Add-Mapping (Join-Path $project "docs/planning/$file") "docs/history/$file"
@@ -44,12 +45,14 @@ Add-Mapping (Join-Path $DownloadsRoot 'spabcd_p_game_design_ui_experience_skill_
 
 $excluded = [Collections.Generic.List[object]]::new()
 $entries = [Collections.Generic.List[object]]::new()
-$skipDirs = @('.git','.godot','.vs','__pycache__','node_modules','.venv','context_hook_fixture')
+$skipDirs = @('.git','.godot','.vs','__pycache__','node_modules','.venv','.test-deps','context_hook_fixture')
 function Get-SnapshotFiles([string]$root, [bool]$topOnly) {
     $item = Get-Item -LiteralPath $root -Force
     if (-not $item.PSIsContainer) { return $item }
     foreach ($child in Get-ChildItem -LiteralPath $root -Force) {
         if ($child.PSIsContainer -and ($skipDirs -contains $child.Name -or $topOnly)) { continue }
+        $verificationRoot = (Join-Path $project '.spabcd/verification') + [IO.Path]::DirectorySeparatorChar
+        if ($child.PSIsContainer -and $child.Name -in @('extract','tmp') -and $child.FullName.StartsWith($verificationRoot, [StringComparison]::OrdinalIgnoreCase)) { continue }
         if (($child.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
             throw "Refusing reparse point: $($child.FullName)"
         }
@@ -72,17 +75,26 @@ foreach ($mapping in $mappings) {
 }
 if (($entries | Group-Object path | Where-Object Count -gt 1)) { throw 'Duplicate export destination.' }
 $manifestPath = Join-Path $destinationPath 'BACKUP_MANIFEST.json'
+$previousHashes = @{}
 if (Test-Path -LiteralPath $manifestPath) {
     $old = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
     $currentPaths = @($entries | ForEach-Object path)
     foreach ($entry in $old.files) {
+        $previousHashes[$entry.path] = $entry.sha256
         if ($entry.path -notin $currentPaths) { throw "Previously exported path disappeared; review manually: $($entry.path)" }
     }
 }
 foreach ($entry in $entries) {
     $target = Join-Path $destinationPath $entry.path
     [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($target)) | Out-Null
-    Copy-Item -LiteralPath $entry.source -Destination $target
+    if (Test-Path -LiteralPath $target) {
+        $existingHash = (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLower()
+        if ($existingHash -eq $entry.sha256) { continue }
+        if (-not $previousHashes.ContainsKey($entry.path) -or $existingHash -ne $previousHashes[$entry.path]) {
+            throw "Backup checkout has independent changes; preserve and review: $($entry.path)"
+        }
+    }
+    Copy-Item -LiteralPath $entry.source -Destination $target -Force
     if ((Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLower() -ne $entry.sha256) { throw "Copy hash mismatch: $($entry.path)" }
 }
 foreach ($entry in $entries) {
@@ -96,6 +108,7 @@ $manifest = [ordered]@{
     files=@($entries | Sort-Object path)
     excluded_files=@($excluded | Sort-Object source)
     excluded_directory_names=$skipDirs
+    excluded_verification_subdirectories=@('extract','tmp')
 }
 [IO.File]::WriteAllText($manifestPath, ($manifest | ConvertTo-Json -Depth 8) + "`n", [Text.UTF8Encoding]::new($false))
 [pscustomobject]@{files=$entries.Count;excluded=$excluded.Count;bytes=($entries | Measure-Object bytes -Sum).Sum;manifest=$manifestPath} | ConvertTo-Json

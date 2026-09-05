@@ -2,6 +2,19 @@
 
 The user requested Git backups at task closeout to prevent lost work.
 
+## Workflow Facts Before Work
+
+- Before workflow/Skill work or dispatch, read
+  `.codex/coordination/system-version-state.json` and its bound evidence.
+- This is a derived, read-only view, not another source of authority. Compare
+  its `source.sha256` with the current `S_CONTROL_STATE.json` bytes. If missing
+  or stale, ask S to regenerate it; do not infer approval from an old snapshot.
+- Keep source version, audit result, repair status, installation and approval
+  scope separate. P V1.2.1 is a candidate; historical M7 completion does not
+  authorize real model calls or M8/M9. Only S writes authoritative task state.
+
+## Git Closeout
+
 - Game repository: git@github.com:maqiang01-tech/orin_game.git.
 - Workflow/skill repository: git@github.com:maqiang01-tech/spabcd-workflow.git.
 - Local workflow checkout: .workflow-repository/ (excluded from the game repo).

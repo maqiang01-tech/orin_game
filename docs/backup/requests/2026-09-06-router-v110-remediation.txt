@@ -1,0 +1,678 @@
+确认。你这次核实结果应当覆盖我上一版总结里不准确的状态描述，作为当前新的事实基线。
+
+现在最重要的不是继续加新功能，而是先把**版本事实、审计事实、修复状态**重新收敛，否则 Codex 很容易在 V1.0.4、V1.1.0、M7、P V1.2.1 之间产生版本漂移。
+
+## 当前应锁定的真实状态
+
+| 模块                          | 当前真实状态                                 | 是否可信基线    |
+| --------------------------- | -------------------------------------- | --------- |
+| Workflow                    | S/P/A/B/C/D V4.1                       | ✅         |
+| P Skill V1.2.0              | 已完成 Shadow 自治体系                        | ✅         |
+| **P Skill V1.2.1**          | **候选包已完成，16 组回归 + 29 项加固测试；未安装/激活**    | 🟡 候选     |
+| Router V1.0.4 R4            | 独立审计 PASS                              | ✅         |
+| **Router M7**               | **`M7_COMPLETE`，Shadow 与 C-WF 复审已有闭环** | ✅         |
+| Router V1.1.0               | Requirement Intelligence 已实现，但独立审计失败   | ❌ 待修      |
+| Router V1.1.1               | 未找到完整可信交付闭环                            | ⚪ 拟实施/需核实 |
+| Router V1.1.2               | Artifact Type Safety                   | ⚪ 拟实施     |
+| Context Compiler            | **P 内已有可执行实现**                         | ✅ 局部      |
+| Global Context Broker       | 未全工作流自动接入                              | ❌         |
+| Context Lifecycle           | 设计已有，工程闭环不完整                           | ❌         |
+| M8/M9                       | 禁止                                     | 🔒        |
+| Production adaptive routing | 禁止                                     | 🔒        |
+
+最重要的三处修正就是：
+
+```text
+P V1.2.1 ≠ 尚未实现
+→ 已有候选包，只是未授权集成
+
+Router M7 ≠ 尚未开始
+→ 已经 M7_COMPLETE
+
+Context Compiler ≠ 不存在
+→ P 内已有可执行版本
+→ 缺的是全局接入和 Lifecycle
+```
+
+---
+
+# 第一优先级：先修“控制面事实源”
+
+现在最大的问题其实不是代码，而是：
+
+> **Codex 不知道什么已经完成、什么失败、什么只是规划。**
+
+应优先新增统一事实源：
+
+```text
+.codex/coordination/system-version-state.json
+```
+
+建议至少记录：
+
+```yaml
+workflow:
+  version: V4.1
+  state: active
+
+p_skill:
+  trusted:
+    version: 1.2.0
+
+  candidate:
+    version: 1.2.1
+    package_complete: true
+    regression_suites_passed: 16
+    hardening_tests_passed: 29
+    installed: false
+    activated: false
+    real_canary: false
+
+model_router:
+  trusted_baseline:
+    version: 1.0.4
+    security_hardening: R4
+    independent_audit: PASS
+
+  m7:
+    state: M7_COMPLETE
+    shadow_complete: true
+    cwf_review_complete: true
+    real_model_validation: false
+
+  requirement_intelligence:
+    version: 1.1.0
+    state: NEEDS_FIX
+    independent_audit: FAIL
+
+    blocking_findings:
+      - ANALYSIS_CACHE_INTEGRITY_REVALIDATION
+      - ANALYSIS_CACHE_SIGNATURE_INCOMPLETE
+      - HARD_ROUTE_CONSTRAINT_LOST
+      - CAPABILITY_ALIAS_TOO_BROAD
+
+    nonblocking_or_p2_findings:
+      - DEPENDENCY_GRAPH_VALIDATION_MISSING
+      - CACHE_HIT_INCOMPLETE_RESTORE
+
+    trust_boundary_findings:
+      - ANALYSIS_MARK_VALIDATOR_NOT_TRUSTED
+
+  planned:
+    v1_1_1: unverified
+    v1_1_2: planned
+    v1_2_0: prohibited_until_gates_pass
+
+context:
+  p_context_compiler:
+    implemented: true
+
+  global_context_broker:
+    fully_integrated: false
+
+  save_restore:
+    implemented: true
+
+  compression_handoff:
+    implemented: true
+
+  lifecycle:
+    lease_registry: incomplete
+    event_release: incomplete
+    invalidation: incomplete
+    expiry: incomplete
+    retention: incomplete
+    gc: incomplete
+
+governance:
+  m8_enabled: false
+  m9_enabled: false
+  real_model_calls_enabled: false
+  production_adaptive_routing: false
+  automatic_policy_adoption: false
+```
+
+以后 **S、Codex、C-WF、Router、P** 都应该先读取这个状态，再开始工作。
+
+---
+
+# 第二优先级：补上本轮审计 → S 的交接
+
+这是现在最明确的“漏执行”。
+
+应该建立一个正式修复 Ticket，例如：
+
+```text
+MR-V110-AUDIT-REMEDIATION-001
+```
+
+由 S 登记：
+
+```yaml
+source:
+  independent_audit:
+    version: router-v1.1.0
+    result: FAIL
+
+state:
+  stage: REMEDIATION
+  run_state: queued
+
+blocks:
+  - Router V1.1.0 promotion
+  - Requirement Intelligence activation
+  - M8
+
+does_not_block:
+  - trusted V1.0.4 baseline
+  - completed M7 historical state
+```
+
+这样系统不会再出现：
+
+```text
+审计员知道 V1.1.0 有问题
+但 S 还认为一切正常
+```
+
+---
+
+# 第三优先级：集中修 Router V1.1.0
+
+不要现在同时做 V1.1.1、V1.1.2、V1.2。
+
+先修这 **6+1 项**。
+
+## P1-1 Cache 读取重新验证
+
+现在不能：
+
+```text
+Cache Hit
+→ 直接返回 Analysis
+```
+
+必须：
+
+```text
+Cache Hit
+↓
+重新计算 Artifact Hash
+↓
+Schema Validate
+↓
+Identity Validate
+↓
+Compatibility Validate
+↓
+Lifecycle Validate
+↓
+PASS 才返回
+```
+
+否则：
+
+```text
+CACHE_ARTIFACT_INTEGRITY_FAILED
+```
+
+---
+
+## P1-2 扩大 Analysis Signature
+
+现在 Cache Key 必须覆盖需求语义中真正会影响分析结果的内容。
+
+至少：
+
+```text
+normalized_requirement_hash
+scope_hash
+constraints_hash
+required_capabilities_hash
+quality_requirement_hash
+acceptance_hash
+spec_hash
+workflow_hash
+policy_hash
+skill_hash
+baseline_hash
+analysis_policy_hash
+```
+
+尤其：
+
+```text
+能力要求改变
+范围改变
+质量要求改变
+验收标准改变
+```
+
+必须导致 Cache Miss。
+
+---
+
+## P1-3 Shadow Route 必须继承 Hard Constraints
+
+这是高优先级。
+
+不能：
+
+```text
+正式 Router:
+C-WF L3 → Astra
+
+Shadow Route:
+C-WF L3 → Sol
+```
+
+Requirement Intelligence 只能**增加要求**，不能降低已有硬门槛。
+
+最终计算应类似：
+
+```text
+effective_floor =
+max(
+    hard_route_floor,
+    role_mode_floor,
+    risk_floor,
+    capability_floor,
+    requirement_analysis_floor,
+    memory_floor
+)
+```
+
+---
+
+## P1-4 Capability Matching 改成严格 Registry
+
+不要：
+
+```text
+deep_code
+≈ code
+≈ coding
+≈ software
+```
+
+自动放宽。
+
+正确：
+
+```text
+Canonical Capability ID
++
+explicit alias registry
+```
+
+只有注册过：
+
+```yaml
+aliases:
+  godot_code:
+    - godot_development
+```
+
+才允许转换。
+
+否则：
+
+```text
+UNKNOWN_CAPABILITY
+或
+NO_ELIGIBLE_MODEL
+```
+
+必须 fail-closed。
+
+---
+
+## P2-5 Dependency Graph Validator
+
+必须检查：
+
+```text
+self cycle
+multi-node cycle
+missing dependency
+duplicate node
+orphan dependency
+invalid parallel dependency
+```
+
+Shadow DAG 不合法：
+
+```text
+ROUTE_PLAN_INVALID
+```
+
+不能继续生成模型计划。
+
+---
+
+## P2-6 Cache Hit 必须完整恢复
+
+Cache 命中不能只返回 Analysis Pack。
+
+应该返回完整的：
+
+```text
+Analysis Artifact
+Subtasks
+Dependency Graph
+Capability Requirements
+Shadow Route Plan
+Lifecycle Metadata
+Cache Provenance
+```
+
+并重新验证这些部分 Hash。
+
+---
+
+# 第四优先级：修 `analysis-mark` 信任边界
+
+现在：
+
+```text
+--validator USER
+```
+
+不是身份认证。
+
+不能因为字符串写着：
+
+```text
+USER
+C_WF
+S
+```
+
+就当成可信审批。
+
+应该改成：
+
+```text
+trusted_control_plane_evidence
+```
+
+例如：
+
+```yaml
+validation:
+  validator_role: C_WF
+
+  validator_identity:
+    source: workflowd
+    principal_id: CWF-...
+
+  evidence_ref:
+    CWF-REVIEW-...
+
+  evidence_hash:
+    sha256:...
+
+  target:
+    analysis_id: AN-...
+    analysis_hash: sha256:...
+    ticket_id: ...
+    revision: ...
+
+  decision:
+    validated
+```
+
+并在消费时再次验证。
+
+这和之前 Router Signal/Approval R1–R4 安全加固应保持同一安全模型。
+
+---
+
+# 第五优先级：V1.1.0 修复后不要自己宣告通过
+
+正确：
+
+```text
+V1.1.0-fixed
+↓
+包内回归
+↓
+安全负向测试
+↓
+Migration验证
+↓
+Fresh ZIP extraction
+↓
+独立审计
+↓
+C-WF
+↓
+S更新版本状态
+```
+
+只有这样才能从：
+
+```text
+NEEDS_FIX
+```
+
+升级为：
+
+```text
+REQUIREMENT_INTELLIGENCE_SHADOW_APPROVED
+```
+
+---
+
+# 第六优先级：Context Lifecycle
+
+Router 修复完成后，我认为应该在 V1.2 自动策略优化之前补这个。
+
+因为未来：
+
+```text
+Router Memory
+Quality Baseline
+Policy Learning
+```
+
+不仅要求：
+
+```text
+数据类型正确
+```
+
+还要求：
+
+```text
+数据生命周期仍然有效
+```
+
+建议实现：
+
+```text
+ContextLifecycleManager
+```
+
+核心：
+
+```text
+Lease Registry
+Event-driven Release
+Invalidation
+Expiry
+Retention
+GC
+```
+
+正常路径：
+
+```text
+TASK_COMPLETED
+→ RELEASE
+
+REVISION_SUPERSEDED
+→ INVALIDATE
+
+TASK_CANCELLED
+→ RELEASE
+
+SPEC/POLICY/SKILL incompatible
+→ INVALIDATE
+```
+
+兜底：
+
+```text
+Scheduled GC
+→ stale/orphan/expired only
+```
+
+不是定时清空窗口。
+
+---
+
+# 第七优先级：V1.1.2 Artifact Type Safety
+
+然后再做：
+
+```text
+artifact_type
+artifact_category
+validation_domain
+validation_state
+policy_learning_eligibility
+```
+
+这一步是 V1.2 Policy Evolution 的硬依赖。
+
+---
+
+# 第八优先级：全局 Context Broker
+
+P 内的 Context Compiler 已经不用重新造。
+
+正确做法是：
+
+```text
+P Context Compiler
+        ↓
+抽象公共接口
+        ↓
+Global Context Broker
+        ↓
+S/P/A/B/C/D共用
+```
+
+而不是重新实现另一套。
+
+全局 Broker 负责：
+
+```text
+Context Lease
+Policy Pack
+Role Skill
+Memory Retrieval
+Budget
+Protected Fields
+Cache
+Invalidation
+```
+
+---
+
+# 第九优先级：真实功效验证
+
+你这次也指出了一个重要事实：
+
+> 同资源 paired-run 已经做过，但约 80.8% 是上下文估算缩减，不能写成实际费用节省。
+
+以后指标必须严格拆开：
+
+```text
+estimated_context_reduction
+actual_input_tokens
+actual_cached_tokens
+actual_output_tokens
+actual_reasoning_tokens
+actual_provider_cost
+cycle_time
+first_pass_rate
+rework_count
+```
+
+不要再把：
+
+```text
+上下文字符减少
+```
+
+直接写成：
+
+```text
+成本下降
+```
+
+---
+
+# 更新后的阶段顺序
+
+现在我建议正式锁成：
+
+```text
+① 统一版本事实源
+        ↓
+② V1.1.0 审计交接到 S
+        ↓
+③ 修 V1.1.0 六项 + analysis-mark
+        ↓
+④ 独立安全复审
+        ↓
+⑤ Context Lifecycle Manager
+        ↓
+⑥ V1.1.2 Artifact Type Safety
+        ↓
+⑦ Global Context Broker 接入
+        ↓
+⑧ M7 已完成结果与新版本重新兼容验证
+        ↓
+⑨ 真实玩法/UI paired validation
+        ↓
+⑩ P V1.2.1 单独授权集成
+        ↓
+⑪ V1.2 Policy Evolution
+        ↓
+⑫ M8
+        ↓
+⑬ M9 Real Model Canary
+```
+
+其中要特别注意：
+
+> **M7 是历史上已经完成的阶段事实，不需要“重新做 M7”。**
+
+但由于 Requirement Intelligence、Artifact Type、Context Lifecycle 后面都会改变输入数据结构，所以后面需要做的是：
+
+```text
+M7 compatibility / replay validation
+```
+
+而不是：
+
+```text
+M7 从头开发
+```
+
+---
+
+## 现在 Codex 应该聚焦的唯一主任务
+
+建议现在不要让它继续自由开发未来版本。
+
+只给它一个主目标：
+
+> **`MR-V110-AUDIT-REMEDIATION-001`：修复 Router V1.1.0 独立审计发现的 6 项问题 + analysis-mark 信任边界，并完成包内回归、负向测试、Fresh ZIP 验证，等待下一轮独立审计。**
+
+这样可以最快重新把版本线收敛起来。
+
+这次核实非常有价值，因为现在已经把“真的没做”“已经做但没激活”“已经完成但版本视图没更新”三种情况彻底分开了。
