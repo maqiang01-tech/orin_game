@@ -85,5 +85,28 @@
     "S_state_sha256": "341a83c81b9a4e6034bca967531877cb2e11a645619e845133df6e3015ab82e5",
     "scope": "historical scoped backup only; no runtime replacement, state adoption or queue replay",
     "report": "reports/cwf-pr6-closeout-20260906/CLOSEOUT.md"
+  },
+  "pr6_bridge_activation_backup": {
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/cwf-pr6-closeout",
+    "commit": "015272ac8954640580cd6df23d3fb3b772dcf9e9",
+    "remote_branch_verified": true,
+    "manifest": "BACKUP_MANIFEST.json",
+    "verified_manifest_files": 2157,
+    "candidate_head": "b086a0384447858bd3b801655ac04771aff9eeca",
+    "ticket": "D-PR6-BRIDGE-ACTIVATION-001",
+    "revision": 1,
+    "accepted_activation": "PASS",
+    "current_accepted_gate": "PR6_BRIDGE_ACTIVE_SCOPE_REQUEST_S_ONLY",
+    "accepted_pid": 33944,
+    "scope_request_enabled_for": "S_ONLY",
+    "cwmc_generation": 1,
+    "S_state_sha256": "27d56667c1bd817b6d93af0292bf9a7d0ad4318525c7329d708abcc46358dff1",
+    "limitations": [
+      "No immutable pre-activation authority-file hash; generation equality does not prove full authority byte equivalence.",
+      "Old full Win32 command observed in S tools, not serialized separately in D evidence."
+    ],
+    "report": "reports/pr6-activation-closeout-20260906/CLOSEOUT.md",
+    "scope": "backup of S acceptance only, not permission for further dispatch or gate expansion"
   }
 }
