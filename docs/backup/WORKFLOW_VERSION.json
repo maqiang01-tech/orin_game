@@ -42,6 +42,17 @@
     "production_routing_changes": false,
     "game_business_resumed": false
   },
+  "mobile_console_technical_proposal": {
+    "version": "1.0-review",
+    "status": "AWAITING_USER_REVIEW",
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/mobile-console-technical-proposal",
+    "commit": "e8e5a5de053a62a8b86824f347fbb36cd8b0c798",
+    "path": "reports/planning/CODEX_WORKFLOW_MOBILE_CONSOLE_TECHNICAL_PROPOSAL_V1_0_REVIEW.md",
+    "sha256": "3ee98f0f13ca9e384afefdf1806f4abb109c7d46ef2ba8a4e0e5588234849446",
+    "remote_branch_verified": true,
+    "scope": "technical_proposal_only_not_implementation_approval_or_activation"
+  },
   "phased_plan_archive": {
     "path": "reports/planning/S_PHASED_PLAN_B7505DC_20260906.md",
     "sha256": "7357ebb1c87c4225bf32b3ca47c1536d58804c7732cb323b96fd1e52230332fd",
