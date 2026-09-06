@@ -26,6 +26,15 @@ dependency. Existing local workflow and installed Skill paths remain unchanged.
 The initial user-authorized backup includes existing uncommitted game work.
 It is a recovery checkpoint, not a claim that those changes passed tests.
 
+For a ticket-only closeout, pass explicit project-relative files/directories
+with `-ScopePaths` to the exporter. It preserves unrelated archived manifest
+entries and exclusion records, without rereading or replacing those sources.
+Missing previously exported files within the selected scope still fail closed.
+`.codex/bridge*` runtime/state/backup directories are never collected; requesting
+one explicitly as scope is rejected. Use isolated backup branches when the live
+checkouts contain concurrent work. A backup branch does not update a frozen
+Candidate head or authorize replay/installation.
+
 ## Restore Boundaries
 
 Clone the game repository and the workflow repository. Use the exact workflow

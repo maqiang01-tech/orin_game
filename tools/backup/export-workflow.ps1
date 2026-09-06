@@ -2,10 +2,31 @@ param(
     [Parameter(Mandatory=$true)][string]$ProjectRoot,
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$SkillsRoot,
-    [Parameter(Mandatory=$true)][string]$DownloadsRoot
+    [Parameter(Mandatory=$true)][string]$DownloadsRoot,
+    [string[]]$ScopePaths=@()
 )
 $ErrorActionPreference = 'Stop'
-$project = (Resolve-Path -LiteralPath $ProjectRoot).Path
+$project = [IO.Path]::GetFullPath((Resolve-Path -LiteralPath $ProjectRoot).Path)
+$selectedRoots = @($ScopePaths | ForEach-Object {
+    $selected = [IO.Path]::GetFullPath((Join-Path $project $_))
+    if (-not $selected.StartsWith($project + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
+        throw 'Scope paths must stay inside ProjectRoot.'
+    }
+    if ($_ -match '(^|[\\/])\.codex[\\/]bridge([^\\/]*)([\\/]|$)') {
+        throw 'Bridge runtime and backup directories are not exportable scope.'
+    }
+    if (-not (Test-Path -LiteralPath $selected)) { throw "Selected source missing: $_" }
+    $selected
+})
+function Test-SelectedPath([string]$path, [bool]$ancestors=$false) {
+    if ($selectedRoots.Count -eq 0) { return $true }
+    foreach ($selected in $selectedRoots) {
+        if ($path.Equals($selected, [StringComparison]::OrdinalIgnoreCase) -or
+            $path.StartsWith($selected + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase) -or
+            ($ancestors -and $selected.StartsWith($path + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase))) { return $true }
+    }
+    return $false
+}
 $destinationPath = [IO.Path]::GetFullPath($Destination)
 if ($destinationPath -eq $project -or -not $destinationPath.StartsWith($project + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
     throw 'Destination must be a separate child checkout of ProjectRoot.'
@@ -47,9 +68,12 @@ $excluded = [Collections.Generic.List[object]]::new()
 $entries = [Collections.Generic.List[object]]::new()
 $skipDirs = @('.git','.godot','.vs','__pycache__','node_modules','.venv','.test-deps','context_hook_fixture')
 function Get-SnapshotFiles([string]$root, [bool]$topOnly) {
+    if (-not (Test-SelectedPath $root $true)) { return }
     $item = Get-Item -LiteralPath $root -Force
     if (-not $item.PSIsContainer) { return $item }
     foreach ($child in Get-ChildItem -LiteralPath $root -Force) {
+        if ($root.Equals((Join-Path $project '.codex'), [StringComparison]::OrdinalIgnoreCase) -and $child.Name -like 'bridge*') { continue }
+        if (-not (Test-SelectedPath $child.FullName $true)) { continue }
         if ($child.PSIsContainer -and ($skipDirs -contains $child.Name -or $topOnly)) { continue }
         $verificationRoot = (Join-Path $project '.spabcd/verification') + [IO.Path]::DirectorySeparatorChar
         if ($child.PSIsContainer -and $child.Name -in @('extract','tmp') -and $child.FullName.StartsWith($verificationRoot, [StringComparison]::OrdinalIgnoreCase)) { continue }
@@ -62,6 +86,7 @@ function Get-SnapshotFiles([string]$root, [bool]$topOnly) {
     }
 }
 foreach ($mapping in $mappings) {
+    if (-not (Test-SelectedPath $mapping.source $true)) { continue }
     $rootItem = Get-Item -LiteralPath $mapping.source -Force
     foreach ($file in Get-SnapshotFiles $mapping.source $mapping.topOnly) {
         if ($file.Name -match '(?i)(\.(db|sqlite|sqlite3)(-(wal|shm|journal))?|\.py[co]|\.import|\.translation)$' -or $file.Name -match '(?i)^(auth|credentials)\.json$|^\.env($|\.)|\.(pem|key)$') {
@@ -76,11 +101,22 @@ foreach ($mapping in $mappings) {
 if (($entries | Group-Object path | Where-Object Count -gt 1)) { throw 'Duplicate export destination.' }
 $manifestPath = Join-Path $destinationPath 'BACKUP_MANIFEST.json'
 $previousHashes = @{}
+$retainedEntries = [Collections.Generic.List[object]]::new()
 if (Test-Path -LiteralPath $manifestPath) {
     $old = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
+    if ($selectedRoots.Count -gt 0) {
+        foreach ($priorExclusion in $old.excluded_files) {
+            if (-not (Test-SelectedPath $priorExclusion.source)) { $excluded.Add($priorExclusion) }
+        }
+    }
     $currentPaths = @($entries | ForEach-Object path)
     foreach ($entry in $old.files) {
         $previousHashes[$entry.path] = $entry.sha256
+        if ($selectedRoots.Count -gt 0 -and -not (Test-SelectedPath $entry.source)) {
+            # Keep old archived bytes; scoped export must not refresh unrelated work.
+            $retainedEntries.Add($entry)
+            continue
+        }
         if ($entry.path -notin $currentPaths) { throw "Previously exported path disappeared; review manually: $($entry.path)" }
     }
 }
@@ -105,7 +141,9 @@ $manifest = [ordered]@{
     generated_at_utc=[DateTime]::UtcNow.ToString('o')
     source_game_repository='git@github.com:maqiang01-tech/orin_game.git'
     scope='source_and_artifact_backup_not_activation'
-    files=@($entries | Sort-Object path)
+    files=@(@($entries.ToArray()) + @($retainedEntries.ToArray()) | Sort-Object path)
+    selected_source_paths=@($selectedRoots)
+    retained_historical_file_count=$retainedEntries.Count
     excluded_files=@($excluded | Sort-Object source)
     excluded_directory_names=$skipDirs
     excluded_verification_subdirectories=@('extract','tmp')

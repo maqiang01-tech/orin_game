@@ -68,5 +68,22 @@
     "sha256": "7357ebb1c87c4225bf32b3ca47c1536d58804c7732cb323b96fd1e52230332fd",
     "implementation_baseline": "b7505dcbac04ac5922d99c37af96db330857744c",
     "scope": "plan_archive_only_not_dispatch_approval_or_activation"
+  },
+  "pr6_cwf_closeout_backup": {
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/cwf-pr6-closeout",
+    "commit": "fc89d29fcab86b741333ec90cf8917882c37c5a0",
+    "remote_branch_verified": true,
+    "manifest": "BACKUP_MANIFEST.json",
+    "verified_manifest_files": 2152,
+    "candidate_head": "b086a0384447858bd3b801655ac04771aff9eeca",
+    "ticket": "CWF-PR6-HARDENED-SCOPE-001",
+    "revision": 1,
+    "accepted_verdict": "PASS",
+    "gate": "CANDIDATE_REVIEW_PASS_AWAITING_ACTIVATION_AUTHORIZATION",
+    "activation_authorized": false,
+    "S_state_sha256": "341a83c81b9a4e6034bca967531877cb2e11a645619e845133df6e3015ab82e5",
+    "scope": "historical scoped backup only; no runtime replacement, state adoption or queue replay",
+    "report": "reports/cwf-pr6-closeout-20260906/CLOSEOUT.md"
   }
 }
