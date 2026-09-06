@@ -8,6 +8,16 @@
   "backup_manifest": "BACKUP_MANIFEST.json",
   "source_files_hash_verified": 2116,
   "purpose": "recovery_checkpoint_not_runtime_dependency_or_activation",
+  "bridge_v04_repair": {
+    "branch": "feature/chatgpt-codex-bridge-v0",
+    "commit": "c3ccce47f5f18432edf67d2969461b8391bcafdb",
+    "remote_branch_verified": true,
+    "scope": "deterministic health and dispatch replay repair; no workflow authority change",
+    "offline_tests_passed": 27,
+    "live_health_smoke": "PASS_S_AND_CWMC_NO_MODEL_TURN",
+    "evidence": "tools/codex-bridge/reports/HEALTH_V04_VALIDATION.json",
+    "review_status": "AWAITING_REVIEW_NOT_MERGED"
+  },
   "workflow": {
     "engineering_version": "V4.1 Stage 1.3-R1",
     "state": "ENGINEERING_COMPLETE_SHADOW_ONLY",
