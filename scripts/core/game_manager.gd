@@ -2837,6 +2837,11 @@ func _on_tab_pressed(tab_id: String) -> void:
 
 
 func _switch_tab(tab_id: String) -> void:
+	if not tab_pages.has(tab_id) or not tab_buttons.has(tab_id):
+		return
+	# The initial tab is named before its page is shown. Only an already visible
+	# page can skip refresh; repeated toggle clicks must still restore selection.
+	var already_visible: bool = current_tab == tab_id and tab_pages[tab_id].visible
 	current_tab = tab_id
 	# Every production page owns its header; the legacy shared status bar would duplicate it.
 	if status_bar != null:
@@ -2853,6 +2858,8 @@ func _switch_tab(tab_id: String) -> void:
 		tab_pages[id].visible = (id == tab_id)
 	_layout_tab_navigation()
 	_sync_tab_notification_dots()
+	if already_visible:
+		return
 
 	# 切换时刷新对应页面
 	match tab_id:
