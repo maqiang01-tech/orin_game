@@ -20,6 +20,7 @@ func _initialize() -> void:
 	await process_frame
 
 	_verify_navigation(scene)
+	await _verify_navigation_state(scene)
 	await _verify_world_map(scene)
 	await _verify_formation(scene)
 	await _verify_base(scene)
@@ -37,6 +38,7 @@ func _initialize() -> void:
 func _verify_navigation(scene: Node) -> void:
 	var buttons: Dictionary = scene.get("tab_buttons")
 	_check(buttons.size() == 5, "Bottom navigation must contain five buttons.")
+	_check_active_page(scene, "camp")
 	var expected_home_size := Vector2(136.8, 128)
 	var selected_home_count := 0
 	for button in buttons.values():
@@ -69,6 +71,94 @@ func _verify_navigation(scene: Node) -> void:
 	_check(team_image != null and team_image.texture == team_button.get_meta("normal_texture"), "Hover must not use the selected navigation texture.")
 	scene.call("_on_image_button_hover_changed", team_button, false)
 	scene.call("_switch_tab", "camp")
+
+
+func _verify_navigation_state(scene: Node) -> void:
+	var buttons: Dictionary = scene.get("tab_buttons")
+	var pages: Dictionary = scene.get("tab_pages")
+	var page_ids := {}
+	for id in pages:
+		page_ids[id] = pages[id].get_instance_id()
+	var player = _player()
+	var sites: Array = scene.call("_get_target_explore_sites")
+	_check(sites.size() > 1, "Navigation state fixture needs a nondefault world site.")
+	_check(not player.survivors.is_empty(), "Navigation state fixture needs an owned survivor.")
+	if sites.size() < 2 or player.survivors.is_empty():
+		return
+	scene.call("_switch_tab", "explore")
+	scene.call("_select_world_site", sites[1])
+	var selected_site := str(sites[1].get("id", ""))
+	scene.call("_switch_tab", "base")
+	var facilities: Dictionary = scene.get("base_facility_buttons")
+	_check(facilities.has("workbench"), "Navigation state fixture needs the workbench hotspot.")
+	if not facilities.has("workbench"):
+		return
+	(facilities["workbench"] as Button).pressed.emit()
+	scene.call("_switch_tab", "team")
+	var selected_survivor := str(player.survivors[0].get("id", ""))
+	scene.set("selected_formation_survivor_id", "")
+	scene.call("_on_survivor_selected", selected_survivor)
+	var formation_before: Array = player.formation_grid.duplicate(true)
+	var supplies_before: Dictionary = player.supplies.duplicate(true)
+	var materials_before: Dictionary = player.materials.duplicate(true)
+	var day_before: int = player.day
+
+	for tab_id in ["camp", "explore", "team", "base", "reincarnation", "base", "team", "explore", "camp"]:
+		var button := buttons[tab_id] as Button
+		# Reproduce toggle-mode Button state before its pressed callback.
+		button.set_pressed_no_signal(not button.button_pressed)
+		button.pressed.emit()
+		await process_frame
+		_check_active_page(scene, tab_id)
+		_check(pages[tab_id].get_instance_id() == page_ids[tab_id], "Navigation replaced a persistent page: " + tab_id)
+		_check(str((scene.get("selected_world_site") as Dictionary).get("id", "")) == selected_site, "Navigation lost the selected world site.")
+		_check(str((scene.get("base_selected_facility") as Dictionary).get("id", "")) == "workbench", "Navigation lost the selected base facility.")
+		_check(str(scene.get("selected_formation_survivor_id")) == selected_survivor, "Navigation lost the selected formation survivor.")
+		_check(player.formation_grid == formation_before, "Navigation changed the formation grid.")
+		_check(player.supplies == supplies_before and player.materials == materials_before and player.day == day_before, "Navigation consumed resources or advanced the game day.")
+
+		var content_before := _node_ids(pages[tab_id])
+		button.set_pressed_no_signal(false)
+		button.pressed.emit()
+		await process_frame
+		_check_active_page(scene, tab_id)
+		_check(_node_ids(pages[tab_id]) == content_before, "Clicking the active tab rebuilt page content: " + tab_id)
+		for invalid_id in ["", "unknown_page"]:
+			scene.call("_switch_tab", invalid_id)
+			_check_active_page(scene, tab_id)
+			_check(_node_ids(pages[tab_id]) == content_before, "An invalid tab request changed page content.")
+
+	# Refreshing business data remains explicit even when navigation is idempotent.
+	scene.call("_switch_tab", "explore")
+	var old_canvas: Node = scene.get("world_map_canvas")
+	var old_canvas_id := old_canvas.get_instance_id()
+	scene.call("_refresh_explore")
+	await process_frame
+	var refreshed_canvas: Node = scene.get("world_map_canvas")
+	_check(refreshed_canvas.get_instance_id() != old_canvas_id, "Explicit explore refresh stopped updating the page.")
+	_check(str((scene.get("selected_world_site") as Dictionary).get("id", "")) == selected_site, "Explicit explore refresh lost a still-valid site selection.")
+	scene.call("_switch_tab", "camp")
+
+
+func _check_active_page(scene: Node, expected_id: String) -> void:
+	_check(str(scene.get("current_tab")) == expected_id, "Current tab does not match navigation: " + expected_id)
+	var pages: Dictionary = scene.get("tab_pages")
+	var buttons: Dictionary = scene.get("tab_buttons")
+	_check(pages.size() == 5, "Navigation must retain all five pages.")
+	for id in pages:
+		_check(pages[id].visible == (id == expected_id), "Page visibility does not match navigation: " + id)
+	for id in buttons:
+		var button := buttons[id] as Button
+		_check(button.button_pressed == (id == expected_id), "Button selection does not match navigation: " + id)
+		var image := button.get_node_or_null("ButtonImage") as TextureRect
+		_check(image != null and image.visible == (id == expected_id), "Selected artwork does not match navigation: " + id)
+
+
+func _node_ids(node: Node) -> Array[int]:
+	var result: Array[int] = [node.get_instance_id()]
+	for child in node.get_children():
+		result.append_array(_node_ids(child))
+	return result
 
 
 func _verify_world_map(scene: Node) -> void:

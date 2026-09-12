@@ -1146,7 +1146,7 @@ func get_partner_equipment_bonus(partner_id: String) -> Dictionary:
 		var item_id: String = equipment[slot]
 		if item_id == "":
 			continue
-		var item := DataManager.get_equipment_by_id(item_id)
+		var item: Dictionary = DataManager.get_equipment_by_id(item_id)
 		if item.is_empty():
 			continue
 		var item_stats: Dictionary = item.get("stats", {})
