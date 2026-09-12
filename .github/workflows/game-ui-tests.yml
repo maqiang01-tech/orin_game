@@ -14,6 +14,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: game-ui-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   windows-godot:
     runs-on: windows-latest
@@ -48,9 +52,19 @@ jobs:
             $log = Join-Path 'test-evidence' "$Name.log"
             & $env:GODOT_EXE @Arguments 2>&1 | Tee-Object -FilePath $log
             if ($LASTEXITCODE -ne 0) { throw "$Name exited with $LASTEXITCODE" }
-            $text = Get-Content -Raw $log
-            if ($text -match '(?m)^(SCRIPT ERROR:|ERROR:.*[Pp]arse|Parse Error:)') {
-              throw "$Name reported a script error."
+            $text = (Get-Content -Raw $log) -replace '\x1b\[[0-?]*[ -/]*[@-~]', ''
+            $errors = @($text -split '\r?\n' | Where-Object { $_ -match '^(SCRIPT ERROR:|ERROR:|Parse Error:)' })
+            # The existing integrity suite deliberately corrupts this fixture
+            # and checks backup recovery. Every other engine error fails the job.
+            if ($Name -eq 'integrity') {
+              $expectedError = 'ERROR: SaveManager: 存档解析失败 user://integrity_save_test.json'
+              if (@($errors | Where-Object { $_ -ceq $expectedError }).Count -gt 1) {
+                throw 'Unexpected repeated save corruption error.'
+              }
+              $errors = @($errors | Where-Object { $_ -cne $expectedError })
+            }
+            if ($errors.Count -gt 0) {
+              throw "$Name reported an engine or script error."
             }
             if ($SuccessMarker -and -not $text.Contains($SuccessMarker)) {
               throw "$Name did not report completion."

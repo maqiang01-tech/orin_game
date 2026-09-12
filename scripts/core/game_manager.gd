@@ -3485,7 +3485,7 @@ func _refresh_partner_detail() -> void:
 		if item_id == "":
 			equip_parts.append("%s：未装备" % slot_names[slot])
 		else:
-			var item := DataManager.get_equipment_by_id(item_id)
+			var item: Dictionary = DataManager.get_equipment_by_id(item_id)
 			equip_parts.append("%s：%s  %s" % [slot_names[slot], item.get("name", item_id), _format_equipment_stats(item)])
 	partner_detail_equipment.text = "\n".join(equip_parts)
 
@@ -5850,7 +5850,7 @@ func _refresh_inventory() -> void:
 		inventory_content_container.add_child(empty_label)
 	else:
 		for equip_id in player.owned_equipment:
-			var item := DataManager.get_equipment_by_id(str(equip_id))
+			var item: Dictionary = DataManager.get_equipment_by_id(str(equip_id))
 			var item_label := Label.new()
 			var slot_name: String = {"weapon": "武器", "armor": "防具", "accessory": "饰品"}.get(str(item.get("slot", "")), str(item.get("slot", "")))
 			item_label.text = "%s · %s（稀有度 %d）" % [str(item.get("name", equip_id)), slot_name, int(item.get("rarity", 1))]
