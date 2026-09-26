@@ -68,5 +68,16 @@
     "sha256": "7357ebb1c87c4225bf32b3ca47c1536d58804c7732cb323b96fd1e52230332fd",
     "implementation_baseline": "b7505dcbac04ac5922d99c37af96db330857744c",
     "scope": "plan_archive_only_not_dispatch_approval_or_activation"
+  },
+  "local_followup_20260926": {
+    "branch": "codex/local-followup-20260926",
+    "commit": "f35a321d3b4d2899a1a40c8838c9e4c1aa72cf99",
+    "remote_verified": true,
+    "source_head": "55a11556210d817b9bec7e5f9ca13f0e8542c829",
+    "game_source_head": "3c2cc9e838874a0edae3fc5195fee3c31e99e749",
+    "report": "reports/local-followup-20260926/REPORT.md",
+    "three_file_read_only_verifier": "READY",
+    "save_restore": "NOT_RUN",
+    "scope": "source_sync_and_read_only_evidence_not_activation"
   }
 }
