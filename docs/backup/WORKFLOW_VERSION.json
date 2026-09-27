@@ -1,5 +1,20 @@
 {
   "schema": "game_workflow_backup_reference.v1",
+  "cursor_adapter_candidate": {
+    "recorded_date": "2026-09-27",
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/cursor-adapter-candidate-20260927",
+    "commit": "da7e0be65a3c90eac446da55625466bf2a912dce",
+    "remote_branch_verified": true,
+    "status": "NON_AUTHORITATIVE_SOURCE_CANDIDATE",
+    "offline_tests_passed": 15,
+    "existing_spool_regression": "PASS",
+    "cli_connectivity": "DIRECT_USER_AUTHORIZED_ASK_PING_PASS_NOT_S_DISPATCH",
+    "installed": false,
+    "activated": false,
+    "evidence": "docs/CURSOR_ADAPTER_CANDIDATE.md",
+    "remaining": "bounded runner, S binding, C-WF and runtime admission"
+  },
   "recorded_date": "2026-09-06",
   "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
   "branch": "main",
