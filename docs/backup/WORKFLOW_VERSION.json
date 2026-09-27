@@ -4,7 +4,7 @@
     "recorded_date": "2026-09-27",
     "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
     "branch": "codex/cursor-adapter-candidate-20260927",
-    "commit": "aef2969b50a073dc52f257e61e3ae204b72b5f0d",
+    "commit": "bc33797069d581eb44fbe6e32cd43d25283d2761",
     "remote_branch_verified": true,
     "status": "NON_AUTHORITATIVE_SOURCE_CANDIDATE",
     "offline_tests_passed": 20,
@@ -12,6 +12,9 @@
     "cli_connectivity": "DIRECT_USER_AUTHORIZED_ASK_PING_PASS_NOT_S_DISPATCH",
     "installed": false,
     "activated": false,
+    "runtime_probe": "FILESYSTEM_ISOLATION_UNSUPPORTED_NATIVE_WINDOWS",
+    "runtime_probe_evidence": "reports/cursor-integration-20260927/runtime-probe.json",
+    "external_dependency": "Administrator-assisted isolated runtime setup; WSL status exit 50 and optional-feature query requires elevation",
     "evidence": "docs/CURSOR_ADAPTER_CANDIDATE.md",
     "remaining": "CLI entrypoint binding, capability enforcement, descendant cleanup validation, S binding, C-WF and runtime admission"
   },
