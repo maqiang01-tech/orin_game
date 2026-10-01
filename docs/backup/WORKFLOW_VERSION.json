@@ -22,9 +22,9 @@
     "recorded_date": "2026-10-01",
     "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
     "branch": "codex/cursor-adapter-candidate-20260927",
-    "commit": "b1e21bca67f0be12165638b922c53267ca7d2f3f",
+    "commit": "36fe3d2e23d5ec7ab009ee8e541d7e6a7c946a58",
     "remote_branch_verified": true,
-    "status": "SOURCE_READY_FOR_REVIEW_RUNTIME_UNVERIFIED",
+    "status": "CORRECTED_SOURCE_READY_FOR_R2_REVIEW_RUNTIME_UNVERIFIED",
     "offline_tests_passed": 36,
     "existing_spool_regression": "PASS",
     "cli_connectivity": "DIRECT_USER_AUTHORIZED_ASK_PING_PASS_NOT_S_DISPATCH",
@@ -51,8 +51,14 @@
     "offline_regression_suites_passed": 2,
     "control_entry": "SessionBindingAuthority.authorize_binding_SOURCE_ONLY",
     "installed_snapshot_export": "FAILED_LOCKED_BRIDGE_LOG",
-    "offline_evidence": "reports/cursor-integration-20261001/integrated-offline-windows.json",
-    "source_review_handoff": "reports/cursor-integration-20261001/source-review-handoff.json"
+    "offline_evidence": "reports/cursor-integration-20261001/integrated-offline-windows-r2.json",
+    "source_review_handoff": "reports/cursor-integration-20261001/source-review-handoff-r2.json",
+    "transport_scope": "Cursor spool only; validation-only package dependency; installed GitHub Bridge unchanged",
+    "prior_review": {
+      "candidate_head": "b1e21bca67f0be12165638b922c53267ca7d2f3f",
+      "source_verdict": "NEEDS_FIXES_ACCEPTED",
+      "evidence": "reports/cursor-integration-20261001/CWF-CURSOR-INTEGRATION-001-r1-result.json"
+    }
   },
   "recorded_date": "2026-09-06",
   "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
