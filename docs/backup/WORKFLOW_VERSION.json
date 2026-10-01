@@ -43,7 +43,7 @@
     "branch": "codex/cursor-adapter-candidate-20260927",
     "commit": "36fe3d2e23d5ec7ab009ee8e541d7e6a7c946a58",
     "remote_branch_verified": true,
-    "status": "CORRECTED_SOURCE_READY_FOR_R2_REVIEW_RUNTIME_UNVERIFIED",
+    "status": "SOURCE_CWF_PASS_RUNTIME_UNVERIFIED",
     "offline_tests_passed": 36,
     "existing_spool_regression": "PASS",
     "cli_connectivity": "DIRECT_USER_AUTHORIZED_ASK_PING_PASS_NOT_S_DISPATCH",
@@ -63,9 +63,9 @@
       "final_integrated_verification": "INCOMPLETE_WSL_LAUNCHER_NO_OUTPUT_INTERRUPTED",
       "final_integrated_verification_evidence": "reports/cursor-integration-20261001/integrated-offline-linux-interrupted.json"
     },
-    "external_dependency": "S formal C-WF registration and reviewed installation; final integrated Linux capability admission and S Binding",
+    "external_dependency": "Windows WslService StopPending; reviewed installation and final Linux capability admission; host admission callback and actual S Binding",
     "evidence": "docs/CURSOR_ADAPTER_CANDIDATE.md",
-    "remaining": "Formal final-head C-WF, exclusive old-writer installation/operation window, final Linux verification, restricted runner admission, host admission callback and actual S dispatch",
+    "remaining": "Recover WSL; reviewed installation, final Linux verification, restricted runner admission, host admission callback and actual S dispatch",
     "offline_tests_skipped": 2,
     "offline_regression_suites_passed": 2,
     "control_entry": "SessionBindingAuthority.authorize_binding_SOURCE_ONLY",
@@ -77,6 +77,14 @@
       "candidate_head": "b1e21bca67f0be12165638b922c53267ca7d2f3f",
       "source_verdict": "NEEDS_FIXES_ACCEPTED",
       "evidence": "reports/cursor-integration-20261001/CWF-CURSOR-INTEGRATION-001-r1-result.json"
+    },
+    "source_cwf_review": {
+      "ticket": "CWF-CURSOR-INTEGRATION-001",
+      "revision": 2,
+      "accepted_verdict": "PASS",
+      "scope": "C-WF_SOURCE_ONLY",
+      "result_sha256": "sha256:47615fc3dd512fd4d5626ae9e23b3cf593a2d4f703da29c24586dc20e4e4c6b9",
+      "evidence_backup_commit": "b16004105f87c412ffccc86da1ac681058153c89"
     }
   },
   "recorded_date": "2026-09-06",
