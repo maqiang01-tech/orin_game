@@ -84,7 +84,8 @@
       "final_integrated_verification_evidence": "reports/cursor-runtime-recovery-20261001/integrated-offline-linux-r2.json",
       "prior_interrupted_verification_evidence": "reports/cursor-integration-20261001/integrated-offline-linux-interrupted.json",
       "read_boundary_probe": "DEFAULT_DIAGNOSTIC_POLICY_THREE_SYNTHETIC_READ_DENIAL_EXPECTATIONS_FAILED_NOT_ASK_POLICY_PROOF",
-      "read_boundary_evidence": "reports/cursor-runtime-recovery-20261001/linux-read-boundary.json"
+      "read_boundary_evidence": "reports/cursor-runtime-recovery-20261001/linux-read-boundary.json",
+      "workspace_policy_diagnostic_evidence": "reports/cursor-runtime-recovery-20261001/linux-workspace-read-boundary.json"
     },
     "external_dependency": "Restricted runner read/tool boundary proof; trusted host admission callback; reviewed installation and actual S Binding",
     "evidence": "docs/CURSOR_ADAPTER_CANDIDATE.md",
@@ -112,7 +113,7 @@
     "runtime_recovery_evidence": {
       "recorded_date": "2026-10-01",
       "branch": "codex/cursor-runtime-evidence-20261001",
-      "commit": "a38a134e81b19c799189b1d42ec4628c80572e5e",
+      "commit": "13c0d2d8bd219b40a1fa1f27506d496c4266dec1",
       "remote_branch_verified": true,
       "path": "reports/cursor-runtime-recovery-20261001/evidence-index.json",
       "source_candidate_head": "36fe3d2e23d5ec7ab009ee8e541d7e6a7c946a58",
