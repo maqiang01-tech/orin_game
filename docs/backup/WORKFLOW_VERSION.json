@@ -363,5 +363,31 @@
     "sha256": "7357ebb1c87c4225bf32b3ca47c1536d58804c7732cb323b96fd1e52230332fd",
     "implementation_baseline": "b7505dcbac04ac5922d99c37af96db330857744c",
     "scope": "plan_archive_only_not_dispatch_approval_or_activation"
+  },
+  "cursor_wsl_runner_repair_candidate": {
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/cursor-wsl-runner-candidate-r5-20261001",
+    "commit": "232bef138497d5dfad45153a370fc6ea4addcb44",
+    "remote_branch_verified": true,
+    "source_status": "REPAIR_CHECKPOINT_PENDING_R4_FINDINGS_AND_FINAL_R5_CWF",
+    "installed": false,
+    "activated": false,
+    "runtime_admission": "NOT_GRANTED"
+  },
+  "cursor_windows_owned_diagnostics": {
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/cursor-runtime-admission-20261001",
+    "commit": "5c3162b49a924b1405df27c6d0db0d21a757ad55",
+    "remote_branch_verified": true,
+    "evidence_index_path": "reports/cursor-wsl-runtime-plan-20261001/index.json",
+    "evidence_index_sha256": "sha256:cee5382df3859e85ac906c47c4309a605b95f5a2a2fb23969d465b1740fdb01b",
+    "actual_read_assessment": "PASS_TOOL_POLICY_ONLY",
+    "raw_result_sha256": "sha256:dc12f54e0895c906c210d15152ee6da15329a4af052934007bb248a6107d6644",
+    "input_symlink_escape": "NOT_TESTED_ACTUAL_CLI",
+    "formal_six_checks": "NOT_COMPLETE",
+    "exact_S_STOP": "NOT_TESTED",
+    "installed": false,
+    "activated": false,
+    "runtime_admission": "NOT_GRANTED"
   }
 }
