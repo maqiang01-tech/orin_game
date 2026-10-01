@@ -1,4 +1,21 @@
 {
+  "cursor_runtime_diagnostic_preparation": {
+    "recorded_date": "2026-10-01",
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/cursor-runtime-admission-20261001",
+    "commit": "b1d401895d13ca44a6d3f64af6fd5823c95d3e7e",
+    "remote_branch_verified": true,
+    "source_candidate_head": "54a5d5e60a3c9923a10c57619537cb2612c65e0c",
+    "evidence": "reports/cursor-runtime-admission-20261001/preparation-v3-index.json",
+    "evidence_sha256": "72fdac2895fa981c5391180fff3a47d3c749f00162dba4e4967b5bba0a8d40d2",
+    "plan_sha256": "32f6fa0da32865941ac5d80913718a0a7cfcab72bac0a037c85c20a1c44e0ee4",
+    "status": "PREPARED_AWAITING_EXPLICIT_DIRECT_USER_DIAGNOSTIC_CONFIRMATION",
+    "provider_called": false,
+    "installed": false,
+    "activated": false,
+    "worker_binding_created": false,
+    "runtime_admission": "UNVERIFIED_NOT_GRANTED"
+  },
   "cursor_source_cwf_r3_acceptance": {
     "recorded_date": "2026-10-01",
     "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
