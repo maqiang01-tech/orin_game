@@ -1,5 +1,22 @@
 {
   "schema": "game_workflow_backup_reference.v1",
+  "cursor_source_cwf_derived_correction": {
+    "recorded_date": "2026-10-01",
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/local-followup-20260926",
+    "commit": "bb5c46bf18b2b39ca803dd2c8e61e8d84341b4fc",
+    "remote_branch_verified": true,
+    "path": "reports/cursor-source-cwf-view-correction-20261001/evidence-index.json",
+    "receipt_sha256": "3774468c93351549155911d406f9c138e083fe57acf2602aceaf8dbbc964c22e",
+    "source_candidate_head": "36fe3d2e23d5ec7ab009ee8e541d7e6a7c946a58",
+    "authority_changed": false,
+    "historical_evidence_preserved": true,
+    "source_status": "SOURCE_CWF_PASS_RUNTIME_UNVERIFIED",
+    "runtime_status": "RUNTIME_UNVERIFIED",
+    "installed": false,
+    "activated": false,
+    "FAST_PATH_LIVE": "CLOSED"
+  },
   "context_fragment_reuse_evidence": {
     "recorded_date": "2026-10-01",
     "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
