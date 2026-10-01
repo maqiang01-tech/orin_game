@@ -1,10 +1,10 @@
 {
   "schema": "game_workflow_backup_reference.v1",
   "cursor_adapter_candidate": {
-    "recorded_date": "2026-09-27",
+    "recorded_date": "2026-10-01",
     "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
     "branch": "codex/cursor-adapter-candidate-20260927",
-    "commit": "bc33797069d581eb44fbe6e32cd43d25283d2761",
+    "commit": "28172c8aa3208c97a2c8292b3c9fee3384a888f9",
     "remote_branch_verified": true,
     "status": "NON_AUTHORITATIVE_SOURCE_CANDIDATE",
     "offline_tests_passed": 20,
@@ -14,7 +14,15 @@
     "activated": false,
     "runtime_probe": "FILESYSTEM_ISOLATION_UNSUPPORTED_NATIVE_WINDOWS",
     "runtime_probe_evidence": "reports/cursor-integration-20260927/runtime-probe.json",
-    "external_dependency": "Administrator-assisted isolated runtime setup; WSL status exit 50 and optional-feature query requires elevation",
+    "linux_runtime": {
+      "distribution": "Ubuntu WSL2",
+      "cli_version": "2026.09.28-64d2043",
+      "basic_write_and_loopback_probe": "PASS_5_CHECKS_ONLY",
+      "evidence": "reports/cursor-integration-20261001/linux-sandbox-probe-r3.json",
+      "authentication": "AWAITING_USER_BROWSER_LOGIN",
+      "full_runtime_admission": false
+    },
+    "external_dependency": "Linux CLI browser authentication, remaining capability verification and S binding",
     "evidence": "docs/CURSOR_ADAPTER_CANDIDATE.md",
     "remaining": "CLI entrypoint binding, capability enforcement, descendant cleanup validation, S binding, C-WF and runtime admission"
   },
