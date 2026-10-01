@@ -60,12 +60,15 @@
       "full_runtime_admission": false,
       "roundtrip": "DIRECT_USER_PROBE_PASS_NOT_S_DISPATCH",
       "roundtrip_evidence": "reports/cursor-integration-20261001/linux-roundtrip-r2.json",
-      "final_integrated_verification": "INCOMPLETE_WSL_LAUNCHER_NO_OUTPUT_INTERRUPTED",
-      "final_integrated_verification_evidence": "reports/cursor-integration-20261001/integrated-offline-linux-interrupted.json"
+      "final_integrated_verification": "PASS_37_UNIT_1_WINDOWS_SKIP_2_REGRESSION_SUITES",
+      "final_integrated_verification_evidence": "reports/cursor-runtime-recovery-20261001/integrated-offline-linux-r2.json",
+      "prior_interrupted_verification_evidence": "reports/cursor-integration-20261001/integrated-offline-linux-interrupted.json",
+      "read_boundary_probe": "DEFAULT_DIAGNOSTIC_POLICY_THREE_SYNTHETIC_READ_DENIAL_EXPECTATIONS_FAILED_NOT_ASK_POLICY_PROOF",
+      "read_boundary_evidence": "reports/cursor-runtime-recovery-20261001/linux-read-boundary.json"
     },
-    "external_dependency": "Windows WslService StopPending; reviewed installation and final Linux capability admission; host admission callback and actual S Binding",
+    "external_dependency": "Restricted runner read/tool boundary proof; trusted host admission callback; reviewed installation and actual S Binding",
     "evidence": "docs/CURSOR_ADAPTER_CANDIDATE.md",
-    "remaining": "Recover WSL; reviewed installation, final Linux verification, restricted runner admission, host admission callback and actual S dispatch",
+    "remaining": "Restricted runner and host admission integration; review changed control source; reviewed installation, runtime admission and actual S dispatch",
     "offline_tests_skipped": 2,
     "offline_regression_suites_passed": 2,
     "control_entry": "SessionBindingAuthority.authorize_binding_SOURCE_ONLY",
@@ -85,6 +88,22 @@
       "scope": "C-WF_SOURCE_ONLY",
       "result_sha256": "sha256:47615fc3dd512fd4d5626ae9e23b3cf593a2d4f703da29c24586dc20e4e4c6b9",
       "evidence_backup_commit": "b16004105f87c412ffccc86da1ac681058153c89"
+    },
+    "runtime_recovery_evidence": {
+      "recorded_date": "2026-10-01",
+      "branch": "codex/cursor-runtime-evidence-20261001",
+      "commit": "a38a134e81b19c799189b1d42ec4628c80572e5e",
+      "remote_branch_verified": true,
+      "path": "reports/cursor-runtime-recovery-20261001/evidence-index.json",
+      "source_candidate_head": "36fe3d2e23d5ec7ab009ee8e541d7e6a7c946a58",
+      "source_and_tests_verified_against_frozen_git": 11,
+      "wsl_service_recovery": "PASS_USER_AUTHORIZED_SERVICE_ONLY",
+      "provider_called": false,
+      "installed": false,
+      "activated": false,
+      "runtime_admission": "UNVERIFIED_NOT_GRANTED",
+      "FAST_PATH_LIVE": "CLOSED",
+      "purpose": "evidence_supplement_not_new_reviewed_source_identity"
     }
   },
   "recorded_date": "2026-09-06",
