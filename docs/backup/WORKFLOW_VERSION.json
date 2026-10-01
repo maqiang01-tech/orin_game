@@ -1,4 +1,26 @@
 {
+  "cursor_source_cwf_r4_review_recovery": {
+    "recorded_date": "2026-10-01",
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/local-followup-20260926",
+    "commit": "7db3759321d2e66c016dc635327cc1d8b3258d8c",
+    "remote_branch_verified": true,
+    "path": "reports/cursor-source-cwf-20261001-r4-recovery/index.json",
+    "evidence_sha256": "5d564277eefc9fb9d24090e1d1227ba47a2669e7f6ba7934f8ddb54b990bba46",
+    "ticket": "CWF-CURSOR-INTEGRATION-001",
+    "revision": 4,
+    "dispatch_id": "DSP-CWF-CURSOR-INTEGRATION-001-R4-C-20261001-04",
+    "candidate_head": "1379e371c2b5f3f0f2c332231cccbbf2da35c68f",
+    "prior_response": "OUT_OF_SCOPE_NOT_ACCEPTED_AS_CURSOR_CWF",
+    "resumed_reviewer_turn_id": "01a0f7df-f65b-7753-980e-1dffdeb4948e",
+    "status": "EXISTING_REVIEW_SCOPE_RESTORED_AWAITING_RESULT",
+    "authority_changed": false,
+    "duplicate_dispatch_or_lease_created": false,
+    "installed": false,
+    "activated": false,
+    "runtime_admission": "NOT_GRANTED",
+    "FAST_PATH_LIVE": "CLOSED"
+  },
   "cursor_source_cwf_r4_dispatch": {
     "recorded_date": "2026-10-01",
     "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
