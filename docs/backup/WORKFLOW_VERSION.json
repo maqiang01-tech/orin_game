@@ -1,4 +1,24 @@
 {
+  "cursor_host_monitor_candidate": {
+    "recorded_date": "2026-10-01",
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/cursor-host-admission-candidate-20261001",
+    "commit": "54a5d5e60a3c9923a10c57619537cb2612c65e0c",
+    "remote_branch_verified": true,
+    "base_head": "36fe3d2e23d5ec7ab009ee8e541d7e6a7c946a58",
+    "evidence": "reports/cursor-host-monitor-20261001/evidence-index.json",
+    "evidence_sha256": "sha256:1d84d80b0af49914ed99e5d323988478ac377081966803acea1acbd25d3a2619",
+    "status": "SOURCE_DELTA_AWAITING_CWF",
+    "windows": "29_PASS_2_LINUX_ONLY_SKIP",
+    "linux": "31_PASS",
+    "native_helper": "7_CHECKS_PASS_EXPLICIT_POLICY_ONLY",
+    "runtime_admission": "UNVERIFIED_NOT_GRANTED",
+    "live_inspector": "ABSENT_DEFAULT_DENY",
+    "installed": false,
+    "activated": false,
+    "provider_called": false,
+    "FAST_PATH_LIVE": "CLOSED"
+  },
   "schema": "game_workflow_backup_reference.v1",
   "cursor_source_cwf_derived_correction": {
     "recorded_date": "2026-10-01",
