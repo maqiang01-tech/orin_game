@@ -411,5 +411,21 @@
     "installed": false,
     "activated": false,
     "runtime_admission": "NOT_GRANTED"
+  },
+  "cursor_r5_source_handoff": {
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/cursor-runtime-admission-20261001",
+    "commit": "37f7a9e815abc59dbf8213d4f0ae9b779f64629b",
+    "remote_branch_verified": true,
+    "candidate_source_head": "232bef138497d5dfad45153a370fc6ea4addcb44",
+    "delta_base": "1379e371c2b5f3f0f2c332231cccbbf2da35c68f",
+    "source_delta_index_path": "reports/cursor-wsl-r5-source-handoff-20261001/source-delta-index.json",
+    "source_delta_index_sha256": "sha256:fa584b60765faa7940a0f29ea53a6e248bee43200344482d2fd96ba478139619",
+    "independent_r4_result_sha256": "sha256:2d27780ae42020b82202e0035ea3355f580fd354210546c121e546c943c29a79",
+    "independent_r4_verdict": "NEEDS_FIXES",
+    "status": "FINAL_SOURCE_DELTA_READY_PENDING_INDEPENDENT_R5",
+    "installed": false,
+    "activated": false,
+    "runtime_admission": "NOT_GRANTED"
   }
 }
