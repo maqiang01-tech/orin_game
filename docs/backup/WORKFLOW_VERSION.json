@@ -1,4 +1,27 @@
 {
+  "cursor_source_cwf_r3_dispatch": {
+    "recorded_date": "2026-10-01",
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/local-followup-20260926",
+    "commit": "b0038017d571277313986bb03f02981287b9f356",
+    "remote_branch_verified": true,
+    "path": "reports/cursor-source-cwf-20261001-r3/evidence-index.json",
+    "ticket": "CWF-CURSOR-INTEGRATION-001",
+    "revision": 3,
+    "dispatch_id": "DSP-CWF-CURSOR-INTEGRATION-001-R3-C-20261001-03",
+    "candidate_head": "54a5d5e60a3c9923a10c57619537cb2612c65e0c",
+    "base_head": "36fe3d2e23d5ec7ab009ee8e541d7e6a7c946a58",
+    "status": "REGISTERED_DISPATCHED_AWAITING_INDEPENDENT_C_RESULT",
+    "reviewer_thread_id": "01a05d5c-ac4c-7091-b12c-97db2351a466",
+    "reviewer_turn_id_observed": "01a0f6a0-0be9-7181-b55d-411a40b92a7a",
+    "source_state_sha256_at_dispatch": "sha256:24ed98e73e472f56f92ed930ac77543af136a5ee6492e823e26f86e00b291410",
+    "historical_reviews_preserved": true,
+    "runtime_status": "RUNTIME_UNVERIFIED",
+    "installed": false,
+    "activated": false,
+    "worker_binding_created": false,
+    "FAST_PATH_LIVE": "CLOSED"
+  },
   "cursor_host_monitor_candidate": {
     "recorded_date": "2026-10-01",
     "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
