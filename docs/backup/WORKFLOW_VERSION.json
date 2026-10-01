@@ -1,5 +1,25 @@
 {
   "schema": "game_workflow_backup_reference.v1",
+  "context_fragment_reuse_evidence": {
+    "recorded_date": "2026-10-01",
+    "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
+    "branch": "codex/local-followup-20260926",
+    "commit": "93a56341be4a575820a5dccea2df15dc2c3f8350",
+    "remote_branch_verified": true,
+    "path": "reports/local-followup-20261001/fragment-reuse-check.json",
+    "sha256": "5adfba5222a4a79d47680e7199cba61032965255a5fabde7647f70fb79812e78",
+    "source_head": "c134d24ff302030df95b85f3b90e116c791f55b5",
+    "historical_collection": "PASS_BOTH_REQUESTS_20260927",
+    "this_batch_collection": "NOT_RUN_REUSED_PASS",
+    "this_batch_metadata_and_range_recheck": "PASS",
+    "global_map": "PARTIAL",
+    "recovery_unique_section": "UNIQUE_SECTION_METADATA_READY",
+    "three_file_plan": "THREE_FILE_PLAN_INCOMPLETE",
+    "context_write_or_save_restore": "NOT_RUN",
+    "authority_changed": false,
+    "live_changed": false,
+    "FAST_PATH_LIVE": "CLOSED"
+  },
   "cursor_source_cwf_r2_evidence": {
     "recorded_date": "2026-10-01",
     "repository": "git@github.com:maqiang01-tech/spabcd-workflow.git",
